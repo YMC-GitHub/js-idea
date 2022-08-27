@@ -1,0 +1,38 @@
+{
+  "name": "@ymc/ycs-help-generate-entry",
+  "author": {
+    "name": "yemiancheng",
+    "email": "ymc.github@gmail.com",
+    "url": "https://github.com/ymc-github"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "unpkg": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry/issues"
+  },
+  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry/blob/master#readme",
+  "license": "MIT",
+  "version": "0.0.2",
+  "description": "ymc package ycs-help-generate-entry",
+  "keywords": [
+    "ymc",
+    "ycs-help-generate-entry"
+  ],
+  "scripts": {
+    "chk:rol": "rollup --version",
+    "compile": "rm -rf dist/* && rollup -c",
+    "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
+    "test": "exit 0",
+    "doc:js": "jsdoc2md dist/index.esm.js",
+    "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+    "fmt:js": "prettier --no-error-on-unmatched-pattern --write --config .prettierrc 'src/**/*.{js,ts,jsx,tsx,md}' "
+  },
+  "private": false
+}

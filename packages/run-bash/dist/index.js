@@ -1,5 +1,10 @@
 /**
-  * runBash v0.0.1
+  * runBash v0.0.3
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+/**
+  * runBash v0.0.2
   * (c) 2018-2022 ymc
   * @license MIT
   */
@@ -40,25 +45,42 @@
    * @param {object} cmdOpts some cmd opts
    * @param {object} execOpts some exec opts
    * @returns {Promise}
+   * @sample
+   * ```js
+   * await exec(`git`,`--version`,execOpts) //correct
+   * await exec(`git`,[`--version`],execOpts) //correct
+   * await exec(`git --version`,execOpts) //correct
+   * ```
    */
 
   var execWraper = function execWraper(cmd, cmdOpts, execOpts) {
     return new Promise(function (resolve, reject) {
-      var cmdList = cmdOptArr2cmdOptStr(cmdOpts); // eg:{exec}=require("child_process");
+      //desc: for exec(`git --version`],execOpts)
+      if (!execOpts) {
+        execOpts = cmdOpts;
+        cmdOpts = cmd;
+        cmd = '';
+      }
 
-      var exec = execOpts.exec; // support exe opt : exec(cmd,execOpts,callback)
-      // https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
-      // delete execOpts.exec;
+      var option = cmdOptArr2cmdOptStr(cmdOpts); //desc: other yuyi to string
 
-      exec("".concat(cmd, " ").concat(cmdList), execOpts, function (e, stdout, stderr) {
+      var _execOpts = execOpts,
+          exec = _execOpts.exec; //eg:{exec}=require("child_process");
+
+      cmd = cmd ? "".concat(cmd, " ").concat(option) : "".concat(option); // cmd=`${cmd} ${option}`.trimStart()
+      //delete execOpts.exec; //desc:clean some property to keep execOpts as native
+      //support exe opt : exec(cmd,execOpts,callback)
+      //https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
+
+      exec("".concat(cmd), execOpts, function (e, stdout, stderr) {
         if (e) {
           reject(e);
-        } // case:reject std err and resolve std res
-        // if (stderr) {
+        } //case:reject std err and resolve std res
+        //if (stderr) {
         //    reject(e);
-        // }
-        // resolve(stdout)
-        // case:resolve std err and res
+        //}
+        //resolve(stdout)
+        //case:resolve std err and res
 
 
         resolve({

@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/run-bash/blob/master#readme",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ymc package run-bash",
   "keywords": [
     "ymc",

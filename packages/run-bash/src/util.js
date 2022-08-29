@@ -8,8 +8,9 @@
  * @param {string} [splitChar=' '] some string
  * @returns {string[]}
  */
-export const cmdOptStr2cmdOptArr = (cmdOptStr, splitChar = ' ') =>
-  Array.isArray(cmdOptStr) ? cmdOptStr : cmdOptStr.split(splitChar)
+export const cmdOptStr2cmdOptArr = (cmdOptStr, splitChar = ' ') => {
+  return Array.isArray(cmdOptStr) ? cmdOptStr : cmdOptStr.split(splitChar)
+}
 /**
  * opt to str-format
  * @description
@@ -20,8 +21,9 @@ export const cmdOptStr2cmdOptArr = (cmdOptStr, splitChar = ' ') =>
  * @param {string} [splitChar=' '] some string
  * @returns {string}
  */
-export const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') =>
-  Array.isArray(cmdOptStr) ? cmdOptStr.join(splitChar) : cmdOptStr
+export const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') => {
+  return Array.isArray(cmdOptStr) ? cmdOptStr.join(splitChar) : cmdOptStr
+}
 
 /**
  * exec wraper
@@ -29,27 +31,45 @@ export const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') =>
  * @param {object} cmdOpts some cmd opts
  * @param {object} execOpts some exec opts
  * @returns {Promise}
+ * @sample
+ * ```js
+ * await exec(`git`,`--version`,execOpts) //correct
+ * await exec(`git`,[`--version`],execOpts) //correct
+ * await exec(`git --version`,execOpts) //correct
+ * ```
  */
-export const execWraper = (cmd, cmdOpts, execOpts) =>
-  new Promise((resolve, reject) => {
-    const cmdList = cmdOptArr2cmdOptStr(cmdOpts)
-    // eg:{exec}=require("child_process");
-    const { exec } = execOpts
-    // support exe opt : exec(cmd,execOpts,callback)
-    // https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
-    // delete execOpts.exec;
-    exec(`${cmd} ${cmdList}`, execOpts, (e, stdout, stderr) => {
+export const execWraper = (cmd, cmdOpts, execOpts) => {
+  return new Promise((resolve, reject) => {
+    //desc: for exec(`git --version`],execOpts)
+    if (!execOpts) {
+      execOpts = cmdOpts
+      cmdOpts = cmd
+      cmd = ''
+    }
+
+    const option = cmdOptArr2cmdOptStr(cmdOpts) //desc: other yuyi to string
+    let { exec } = execOpts //eg:{exec}=require("child_process");
+
+    cmd = cmd ? `${cmd} ${option}` : `${option}`
+    // cmd=`${cmd} ${option}`.trimStart()
+
+    //delete execOpts.exec; //desc:clean some property to keep execOpts as native
+
+    //support exe opt : exec(cmd,execOpts,callback)
+    //https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
+    exec(`${cmd}`, execOpts, (e, stdout, stderr) => {
       if (e) {
         reject(e)
       }
-      // case:reject std err and resolve std res
-      // if (stderr) {
+      //case:reject std err and resolve std res
+      //if (stderr) {
       //    reject(e);
-      // }
-      // resolve(stdout)
+      //}
+      //resolve(stdout)
 
-      // case:resolve std err and res
+      //case:resolve std err and res
       resolve({ stdout, stderr })
     })
   })
+}
 export default execWraper

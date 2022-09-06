@@ -1,5 +1,18 @@
 export const { log } = console
 
+/**
+ * get option name
+ * @param {sting} s
+ * @param {sting} t
+ * @returns {string}
+ * @sample
+ * ```
+ * getOptName('-h,--help','l') //help
+ * getOptName('-h,--help','s') //h
+ * getOptName('-h,--help') //help
+ * getOptName('-h') //h
+ * ```
+ */
 export const getOptName = (s = '', t = 'l') => {
   // idea: get l or loc as name
   // get -l,--loc
@@ -12,9 +25,11 @@ export const getOptName = (s = '', t = 'l') => {
 
   switch (t.toLowerCase()) {
     case 's':
+    case 'short':
       keys = keys[0]
       break
     case 'l':
+    case 'long':
       // feat: if not l , use s
       if (!keys[1]) {
         keys = keys[0]
@@ -26,11 +41,35 @@ export const getOptName = (s = '', t = 'l') => {
   return keys
 }
 
+/**
+ *
+ * @param {[]|{}} map
+ * @param {string} ns
+ * @param {{}|[]} def
+ * @returns {{}|[]}
+ * @sample
+ * ```
+ *
+ * ```
+ */
 export const getMapPathValue = (map, ns, def = {}) => {
   map[ns] = map[ns] ? map[ns] : def
   return map[ns]
 }
 
+/**
+ *
+ * @param {{}} optionMap
+ * @param {string} ns
+ * @param {string} cmd
+ * @returns
+ * @sample
+ * ```
+ * getMap({},'jcm','add')
+ * getMap({},'jcm','get')
+ * getMap({},'ini')
+ * ```
+ */
 export const getMap = (optionMap, ns = '', cmd = '') => {
   let map = optionMap
   if (ns && cmd) {
@@ -47,6 +86,18 @@ export const getMap = (optionMap, ns = '', cmd = '') => {
   }
   return map
 }
+/**
+ *
+ * @param {string[]} opts
+ * @param {string} s
+ * @param {number} num
+ * @returns {string}
+ * @sample
+ * ```
+ * getFormatOptStr(['aaa'],'0',2)// 00aaa
+ * getFormatOptStr(['aaa'],'-',2)// --aaa
+ * ```
+ */
 export const getFormatOptStr = (opts, s = '', num = 2) => {
   opts = Array.isArray(opts) ? opts : [opts]
   return opts.join(`\n`).replace(/^/gim, Array(num).fill(s).join(''))

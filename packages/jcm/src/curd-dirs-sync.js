@@ -8,6 +8,24 @@ import {
 import { dirname } from 'path'
 
 // curd diretory sync
+/**
+ * make dirs sync
+ * @param {string} dirPath
+ * @returns {true}
+ * @sample
+ * ```
+ * mkdirsSync('./src')
+ * ```
+ * @description
+ * ```
+ * ## why use ?
+ * - [x] make dirs recursive
+ * ## base
+ * - [x] exist dir sync
+ * - [x] get dir name
+ * - [x] make a dir
+ * ```
+ */
 function mkdirsSync(dirPath) {
   if (_existsSync(dirPath)) {
     return true

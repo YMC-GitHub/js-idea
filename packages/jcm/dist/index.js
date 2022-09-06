@@ -8,71 +8,37 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/**
-  * jcm v0.0.1
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('fs'), require('path')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'fs', 'path'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.jcm = {}, global.fs, global.path));
-})(this, (function (exports, fs, path) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.jcm = {}));
+})(this, (function (exports) { 'use strict';
 
-  function mkdirsSync(dirPath) {
-    if (fs.existsSync(dirPath)) {
-      return true;
-    }
-
-    if (mkdirsSync(path.dirname(dirPath))) {
-      fs.mkdirSync(dirPath);
-
-      return true;
-    }
-  }
-
-  const makeDirs = mkdirsSync;
-
+  // import { readJson, saveJson, getUserHome } from './jcm-too.js'
   const {
     log
   } = console;
-  const readJson = (jsonLoc, def = {}) => {
-    let data;
+  /**
+   * @description
+   * ```
+   * idea: use json conf
+   * uc is short for using conf
+   * ```
+   */
 
-    try {
-      data = fs.readFileSync(jsonLoc);
-      data = JSON.parse(data);
-    } catch (error) {
-      data = def;
-    }
-
-    return data;
-  };
-  const saveJson = (jsonLoc, data) => {
-    fs.writeFileSync(jsonLoc, JSON.stringify(data, null, 2));
-  }; // idea:
-  // get des dir
-  // log msg
-  // load pkg json
-  // update pkg json
-  // idea:genreate config to des dir
-  // make dir
-  // mgnt cnf
-  // idea: read config
-  // user-path-> project-path -> des-path
-  // rc is short for reading-config
-  // rc.use(userLevelJson).use(projLevelConf).use(destLevelConf).load()
-
-  const getUserHome = () => process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME']; // idea: use json conf
-  // uc is short for using conf
-
-
-  class UC {
+  class Ujc {
     constructor() {
       this.list = [];
       this.index = -1;
       this.freeze = false;
     }
+    /**
+     * add config to config list by order
+     * @param {{}} config
+     * @param {numbber} order
+     * @returns {this} why ? to chain
+     */
+
 
     use(config = {}, order) {
       let {
@@ -98,6 +64,17 @@
 
       return this;
     }
+    /**
+     *
+     * @returns {{}}
+     * @description
+     * ```
+     * - [x] get config by index in config list
+     * - [x] simple merge config
+     * - [x] freeze result optionally
+     * ```
+     */
+
 
     load() {
       const {
@@ -127,38 +104,31 @@
       return res; // return Object.freeze(Object.assign({}, config, dotenv, node_env, argv))
     }
 
-  } // idea: read conf
-  // a sam for rc
-  // rc is short for reading conf
+  }
+  /**
+   * @description
+   * ```
+   * idea: get or set conf
+   * gsc is short for get-set-conf
+   * gsc.bind(data).split('.').conf(key,val)
+   * ```
+   */
 
 
-  const readConf = (cnfLocList = ['.ymcrc.json']) => {
-    // let name='.ymcrc.json'
-    // let userLoc=joinPath(getUserHome(),name)
-    const rc = new UC(); // rc.use(readJson(userLoc))
-    // rc.use(readJson(name))
-    // rc.use(readJson(joinPath(wkd,name)))
-    // data = rc.load()
-    // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
-
-    for (let index = 0; index < cnfLocList.length; index++) {
-      const cnfLoc = cnfLocList[index];
-      rc.use(readJson(cnfLoc));
-    }
-
-    return rc.load();
-  }; // idea: get or set conf
-  // gsc.bind(data).split('.').conf(key,val)
-  // gsc is short for get-set-conf
-
-
-  class GSC {
+  class Gsc {
     constructor() {
       this.data = {};
       this.option = {
         splitChar: '.'
       };
     }
+    /**
+     * bind data to ctx.data
+     * @param {*} data
+     * @returns {this} why ? to chain
+     *
+     */
+
 
     bind(data) {
       if (data) {
@@ -167,6 +137,12 @@
 
       return this;
     }
+    /**
+     * set split char
+     * @param {string} s
+     * @returns {this} why ? to chain
+     */
+
 
     split(s = '.') {
       if (s) {
@@ -175,6 +151,16 @@
 
       return this;
     }
+    /**
+     * get or set value with key
+     * @param {string} key
+     * @param {*} val
+     * @returns {val|this}
+     * @description
+     * ```
+     * ```
+     */
+
 
     conf(key = '', val) {
       if (!key) return this; // note: extract com var
@@ -216,62 +202,206 @@
       return this;
     }
 
-  } // idea:
-  // read old
-  // update
-  // save new
+  }
+  /**
+   * read conf in file list
+   * @param {string[]} cnfLocList
+   * @param {function(loc,def):json} readJson
+   * @returns {json}
+   * @description
+   * ```
+   * idea: read conf
+   * a sam for rc
+   * rc is short for reading conf
+   * ``
+   */
 
 
-  const args = process.argv.slice(2);
-  if (args.length == 0) args[0] = 'packages/noop'; // log(args)
+  function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
+    // let name='.ymcrc.json'
+    // let userLoc=joinPath(getUserHome(),name)
+    const rc = new Ujc(); // rc.use(readJson(userLoc))
+    // rc.use(readJson(name))
+    // rc.use(readJson(joinPath(wkd,name)))
+    // data = rc.load()
+    // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
 
-  let wkd;
-  wkd = args[0]; // addDirs(wkd)
-  // delDirs(wkd)
+    for (let index = 0; index < cnfLocList.length; index++) {
+      const cnfLoc = cnfLocList[index];
+      rc.use(readJson(cnfLoc));
+    }
 
-  let data;
-  const name = '.ymcrc.json';
-  const cnfLocList = [path.join(getUserHome(), name), name, path.join(wkd, name)];
-  data = readConf(cnfLocList);
-  const gsc = new GSC();
-  gsc.bind(data); // preset - 1. set spilt char different with key 2. use one level
+    return rc.load();
+  }
 
-  gsc.split('/');
-  gsc.conf('npm.user', 'hualei');
-  gsc.conf('git.user.name', 'ymc-github');
-  gsc.conf('git.user.email', 'ymc.github@gmail.com');
-  gsc.conf('git.remote', 'github');
-  gsc.conf('github.enable', true);
-  gsc.conf('github.user.name', 'ymc-github'); // gsc.conf('github.user.email','ymc.github@gmail.com')
+  new Ujc();
+  new Gsc();
 
-  gsc.conf('github.repo.name', 'sam');
-  gsc.conf('gitlab.enable', true);
-  gsc.conf('npm.scope', 'sam');
-  gsc.conf('npm.pkg', 'sam');
-  gsc.conf('is.monorepo', true);
-  gsc.conf('is.monorepo.root', true); // gsc.conf(key,val)
-  // log(gsc.data)
+  // get des dir
+  // log msg
+  // load pkg json
+  // update pkg json
 
-  data = gsc.data;
-  makeDirs(wkd);
-  saveJson(path.join(wkd, name), data); // run as node script
-  // node script/conf-gen.js ./packages/noop
-  // node script/conf-gen.js packages/noop
-  // node script/conf-gen.js --des=packages/noop -c -u -w --name=.ymcrc.json
-  // idea: json conf mgnt
-  // jcm is short for json conf mgnt
-  // case - 1. set cnf
-  // jcm user.name ymc
-  // case - 1. get cnf
-  // jcm user.name
-  // case - 1. get cnf 2. set data file name
-  // jcm user.name --name=.ymcrc.json
-  // case - 1. set cnf 2. set data file dir 3. use current dir 4. use des dir 5. use user dir
-  // jcm user.name ymc --des=packages/noop -c -u -w --name=.ymcrc.json
-  // node script/jcm-api.js
+  class Jcm {
+    constructor() {
+      this.option = {};
+      this.tool = {};
+    }
+    /**
+     *
+     * @param {string} name
+     * @returns {string}
+     */
 
-  exports.readJson = readJson;
-  exports.saveJson = saveJson;
+
+    getFileLoc(name) {
+      let {
+        option,
+        tool
+      } = this;
+      let filename = name ? name : option.name;
+      let flags = option;
+
+      if (flags.usd || flags.u) {
+        return tool.joinPath(tool.getUserHome(), filename);
+      }
+
+      if (flags.crd || flags.c) {
+        return filename;
+      }
+
+      if (flags.wkd
+      /*|| flags.w*/
+      ) {
+        return tool.joinPath(flags.wkd, filename);
+      }
+
+      return filename;
+    }
+    /**
+     *
+     * @param {string} name
+     * @returns {string[]}
+     * @description
+     * ```
+     * user-path-> project-path -> des-path
+     * ```
+     */
+
+
+    getFileLocList(name) {
+      let loclist = [];
+      let {
+        option
+      } = this;
+      let list = [['usd', 'u'], ['crd', 'c'], ['wkd']];
+      loclist = list.map(keys => {
+        let flag = keys.some(key => option[key]);
+
+        if (flag) {
+          return this.getFileLoc(name);
+        }
+
+        return false;
+      }).filter(v => v);
+      return loclist;
+    }
+    /**
+     * read config
+     * @param {string} name
+     * @returns {[]|{}}
+     * @description
+     * ```
+     * user-path -> project-path -> des-path
+     * read-conf -> read-json
+     * ```
+     */
+
+
+    magicReadConfig(name = '.ymcrc.json') {
+      let {
+        tool
+      } = this;
+      let loclist = this.getFileLocList(name);
+      return readConf(loclist, tool.readJson);
+    }
+    /**
+     * @param {{}} data
+     * @param {string} key
+     * @param {string} val
+     * @returns {{}}
+     * @description
+     * ```
+     * ## why use?
+     * - [x] easy to write json config in node.js
+     *
+     * - [x] idea: bind-cache-data -> define-json-data
+     * ```
+     */
+
+
+    magicDefineConfig(data, key, val) {
+      const gsc = new Gsc();
+      gsc.bind(data); // preset - 1. set spilt char different with key 2. use one level
+
+      gsc.split('/'); // gsc.conf('npm.user', 'hualei')
+
+      gsc.conf(key, val);
+      return gsc.data;
+    }
+    /**
+     *
+     * @param {string} cmd
+     * @returns {{}}
+     * @description
+     * ```
+     * idea:genreate config to des dir
+     * make dir
+     * mgnt cnf
+     * ```
+     */
+
+
+    comEntry(cmd) {
+      let {
+        option,
+        tool
+      } = this;
+      let {
+        name
+      } = option;
+      let data = {};
+
+      switch (cmd) {
+        case 'add':
+          //add
+          data = this.magicReadConfig(name);
+          data = this.magicDefineConfig(data);
+          tool.addDirs(option.wkd);
+          let loc = tool.joinPath(wkd, name);
+          tool.saveJson(loc, data);
+          break;
+
+        case 'del':
+          //del
+          // todo:it.deleteConfFile(flags)
+          break;
+
+        case 'get':
+        default:
+          data = magicReadConfig(name);
+          break;
+      }
+
+      return data;
+    }
+
+  }
+
+  const jcm = new Jcm();
+
+  exports.Jcm = Jcm;
+  exports.jcm = jcm;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

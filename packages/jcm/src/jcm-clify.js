@@ -1,23 +1,24 @@
 import GE from './ycs-hel-ge-api.js'
 import genOptionFromUsage from './ycs-hel-uo.js'
-
+// import { getOptName } from './ycs-hel-bo-too.js'
 //(GE,genOptionFromUsage)=>{}
+// import { jcm } from './jcm-api.js'
 
 const { log } = console
 // idea: define usage likes below
 const defUsage = (ns = 'ns') => {
   const msg = `cnf gen for ymc repo
-  mgnt .ymcrc.json file
+  mgnt cnf file
   usage:ns [subcmd] [option]
     ${ns} -h
     ${ns} -v
 
-  subcmd:add|del|get|put|cls|log
+  subcmd:add|del|get
     add - add des file
     del - del des file
     get - get des file
   option:
-    -n,--name cnf file name
+    -n,--name cnf file name (default:.ymcrc.json )
     -w,--wkd use working dir
     -u,--usd use user dir
     -c,--crd use current dir
@@ -34,22 +35,31 @@ const builtinFlags = { name: '.ymcrc.json', wkd: true, usd: false, crd: true }
 const entrys = (flags = {}) => {
   // log nano parser result 's flags (flags vs _ vs extras)
   // log(flags)
+  log(`[info] run cmd with: ns`)
   log(`hello ns`)
+  //do sth. here
+  log(`[info] log cli option:`)
+  log(flags)
 }
 // 1. gen cmd fun
 const defFun =
   (cmd = 'add') =>
-  (flags = {}) => {
-    // flags = { ...builtinFlags, ...flags }
-    // comEntry(cmd, flags)
+  (cliFlags = {}) => {
+    log(`[info] run cmd with: ns ${cmd}`)
     log(`hello ${cmd}`)
+
+    //do sth. here
+    log(`[info] log cli option:`)
+    log(cliFlags)
+
+    let nowFlags = { ...builtinFlags, ...cliFlags }
+    // comEntry(cmd, nowFlags)
   }
 // 2. bind cmd fun
 const ge = new GE()
 // ge.entrys(entrys).bind('add|get|del|put|cls|log',defFun,'call')
-// ge.entrys(entrys).bind('add|del|put',defFun,'call')
-
-ge.entrys(entrys).bind('eslint|jest|babel|tsc', defFun, 'call')
+ge.entrys(entrys).bind('add|del|put', defFun, 'call')
+// ge.entrys(entrys).bind('eslint|jest|babel|tsc', defFun, 'call')
 // log(entrys)
 
 // entrys.add = (flags = {}) => {
@@ -92,7 +102,9 @@ entrys.option = option
 // feat: enable zero option
 // entrys.log.enableZeroOption=true
 // entrys.cls.enableZeroOption=true
+// feat(cli): en-able ns zero arg\n with entrys.enableZeroOption=true
 entrys.enableZeroOption = true
+// feat(cli): en-able _ and extras\nwith entrys.notOnlyFlags=true
 entrys.notOnlyFlags = true
 export default entrys
 

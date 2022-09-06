@@ -6,13 +6,13 @@ ymc package jcm
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.js | 6.44kb | 2.16kb | 1.94kb
-dist/index.min.js | 2.20kb | 1.06kb | 0.97kb
-dist/index.esm.js | 5.59kb | 1.95kb | 1.77kb
-bin/index.esm.js | 13.61kb | 3.97kb | 3.60kb
-bin/index.umd.js | 14.34kb | 4.00kb | 3.61kb
-bin/index.esm.min.js | 4.00kb | 1.74kb | 1.59kb
-bin/index.umd.min.js | 4.09kb | 1.78kb | 1.63kb
+dist/index.js | 7.74kb | 2.34kb | 2.10kb
+dist/index.min.js | 2.03kb | 0.99kb | 0.91kb
+dist/index.esm.js | 6.57kb | 2.09kb | 1.89kb
+bin/index.esm.js | 14.08kb | 4.16kb | 3.78kb
+bin/index.umd.js | 14.84kb | 4.20kb | 3.79kb
+bin/index.esm.min.js | 4.04kb | 1.77kb | 1.62kb
+bin/index.umd.min.js | 4.13kb | 1.81kb | 1.66kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

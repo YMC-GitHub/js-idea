@@ -10,12 +10,6 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-#!/usr/bin/env node
-/**
-  * jcm v0.0.1
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 (function (factory) {
   typeof define === 'function' && define.amd ? define(factory) :
   factory();
@@ -139,23 +133,26 @@
     return option;
   };
 
+  //(GE,genOptionFromUsage)=>{}
+  // import { jcm } from './jcm-api.js'
+
   const {
     log: log$1
   } = console; // idea: define usage likes below
 
   const defUsage = (ns = 'ns') => {
     const msg = `cnf gen for ymc repo
-  mgnt .ymcrc.json file
+  mgnt cnf file
   usage:ns [subcmd] [option]
     ${ns} -h
     ${ns} -v
 
-  subcmd:add|del|get|put|cls|log
+  subcmd:add|del|get
     add - add des file
     del - del des file
     get - get des file
   option:
-    -n,--name cnf file name
+    -n,--name cnf file name (default:.ymcrc.json )
     -w,--wkd use working dir
     -u,--usd use user dir
     -c,--crd use current dir
@@ -165,24 +162,41 @@
     return msg;
   }; // feat: use built in flags
 
+
+  const builtinFlags = {
+    name: '.ymcrc.json',
+    wkd: true,
+    usd: false,
+    crd: true
+  }; // idea:cli-fy api to cli with ymc style
+
   const entrys = (flags = {}) => {
     // log nano parser result 's flags (flags vs _ vs extras)
     // log(flags)
-    log$1(`hello ns`);
+    log$1(`[info] run cmd with: ns`);
+    log$1(`hello ns`); //do sth. here
+
+    log$1(`[info] log cli option:`);
+    log$1(flags);
   }; // 1. gen cmd fun
 
 
-  const defFun = (cmd = 'add') => (flags = {}) => {
-    // flags = { ...builtinFlags, ...flags }
-    // comEntry(cmd, flags)
-    log$1(`hello ${cmd}`);
+  const defFun = (cmd = 'add') => (cliFlags = {}) => {
+    log$1(`[info] run cmd with: ns ${cmd}`);
+    log$1(`hello ${cmd}`); //do sth. here
+
+    log$1(`[info] log cli option:`);
+    log$1(cliFlags);
+    ({ ...builtinFlags,
+      ...cliFlags
+    }); // comEntry(cmd, nowFlags)
   }; // 2. bind cmd fun
 
 
   const ge = new GE(); // ge.entrys(entrys).bind('add|get|del|put|cls|log',defFun,'call')
-  // ge.entrys(entrys).bind('add|del|put',defFun,'call')
 
-  ge.entrys(entrys).bind('eslint|jest|babel|tsc', defFun, 'call'); // log(entrys)
+  ge.entrys(entrys).bind('add|del|put', defFun, 'call'); // ge.entrys(entrys).bind('eslint|jest|babel|tsc', defFun, 'call')
+  // log(entrys)
   // entrys.add = (flags = {}) => {
   //   flags = { ...builtinFlags, ...flags }
   //   comEntry('add', flags)
@@ -219,8 +233,10 @@
   entrys.option = option; // feat: enable zero option
   // entrys.log.enableZeroOption=true
   // entrys.cls.enableZeroOption=true
+  // feat(cli): en-able ns zero arg\n with entrys.enableZeroOption=true
 
-  entrys.enableZeroOption = true;
+  entrys.enableZeroOption = true; // feat(cli): en-able _ and extras\nwith entrys.notOnlyFlags=true
+
   entrys.notOnlyFlags = true;
   // 1. check this file js syantx
   // node script/jcm-clify.js

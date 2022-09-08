@@ -3,11 +3,6 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/**
-  * jcm v0.0.1
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -16,7 +11,7 @@
 
   // import { readJson, saveJson, getUserHome } from './jcm-too.js'
   const {
-    log
+    log: log$1
   } = console;
   /**
    * @description
@@ -197,7 +192,7 @@
 
 
       data[last] = val;
-      log(`set ${last} ${val}`); // feat: support chain when setting
+      log$1(`set ${last} ${val}`); // feat: support chain when setting
 
       return this;
     }
@@ -237,6 +232,9 @@
   new Ujc();
   new Gsc();
 
+  const {
+    log
+  } = console; // idea:
   // get des dir
   // log msg
   // load pkg json
@@ -263,6 +261,7 @@
       let flags = option;
 
       if (flags.usd || flags.u) {
+        // log(tool.getUserHome(), filename, option)
         return tool.joinPath(tool.getUserHome(), filename);
       }
 
@@ -273,6 +272,7 @@
       if (flags.wkd
       /*|| flags.w*/
       ) {
+        log(filename, option);
         return tool.joinPath(flags.wkd, filename);
       }
 
@@ -296,14 +296,30 @@
       } = this;
       let list = [['usd', 'u'], ['crd', 'c'], ['wkd']];
       loclist = list.map(keys => {
-        let flag = keys.some(key => option[key]);
+        let ukey, uVal, flag;
+
+        for (let index = 0; index < keys.length; index++) {
+          const key = keys[index];
+
+          if (option[key]) {
+            uVal = option[key];
+            ukey = key;
+            flag = true;
+            break;
+          }
+        }
 
         if (flag) {
+          this.option = {
+            [`${ukey}`]: uVal,
+            name: option.name
+          };
           return this.getFileLoc(name);
         }
 
         return false;
       }).filter(v => v);
+      this.option = option;
       return loclist;
     }
     /**
@@ -350,6 +366,81 @@
       return gsc.data;
     }
     /**
+     * get val with key
+     * @param {string} key
+     * @param {string} val
+     * @returns {string}
+     * @sample
+     * ```
+     * getJsonVal(data,'key','val')
+     * ```
+     */
+
+
+    getJsonVal(key = 'key', val = 'val') {
+      let {
+        data
+      } = this;
+      let res; // if (option[keyname]) {
+      //   // case:get key eg. jcm get --key=username
+      //   res = data[option[keyname]]
+      //   log(res)
+      //   return res
+      // }
+
+      if (key) {
+        // case:get key eg. jcm get --key=username
+        res = data[val];
+        log(res);
+        return res;
+      }
+    }
+    /**
+     *
+     * @param {string} key
+     * @param {string} val
+     */
+
+
+    setJsonVal(key, val, hasval) {
+      let {
+        option,
+        tool
+      } = this;
+      let self = this;
+      let {
+        name
+      } = option;
+      let data;
+      data = self.magicReadConfig(name); // if (option[keyname] && valname in option) {
+      //   // case:set key eg. jcm add --key=username --val=ymc
+      //   data = self.magicDefineConfig(data, option[keyname], option[valname])
+      // }
+
+      if (key && hasval) {
+        // case:set key eg. jcm add --key=username --val=ymc
+        data = self.magicDefineConfig(data, key, val);
+      } // tool.addDirs(option.wkd)
+      // let loc = tool.joinPath(wkd, name)
+
+
+      let loc; //loc = self.getFileLoc(name)
+
+      loc = self.getFileLocList(name);
+      loc = loc[loc.length - 1];
+      let locdir = tool.parsePath(loc).dir;
+
+      if (locdir) {
+        tool.addDirs(locdir);
+      }
+
+      if (!option.dryrun) {
+        tool.saveJson(loc, data);
+      }
+
+      this.data = data;
+    }
+    /**
      *
      * @param {string} cmd
      * @returns {{}}
@@ -371,15 +462,36 @@
         name
       } = option;
       let data = {};
+      let keyname = 'key';
+      let valname = 'val';
+      let key, val, hasval;
+
+      if (cmd == 'cnf') {
+        //eg.jcm cnf --org=ymc
+        //eg.jcm cnf --org
+        let arglist = Object.keys(option);
+        let builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|');
+        key = arglist.filter(v => !builtinlist.includes(v))[0];
+        val = option[key];
+        hasval = key in option;
+
+        if (hasval) {
+          cmd = 'add';
+        } else {
+          cmd = 'get';
+        }
+      } else {
+        //eg.jcm add --key=org --val=ymc
+        //eg.jcm get --key=org
+        key = option[keyname];
+        val = option[valname];
+        hasval = valname in option;
+      }
 
       switch (cmd) {
         case 'add':
           //add
-          data = this.magicReadConfig(name);
-          data = this.magicDefineConfig(data);
-          tool.addDirs(option.wkd);
-          let loc = tool.joinPath(wkd, name);
-          tool.saveJson(loc, data);
+          this.setJsonVal(key, val, hasval);
           break;
 
         case 'del':
@@ -389,16 +501,23 @@
 
         case 'get':
         default:
-          data = magicReadConfig(name);
+          data = this.magicReadConfig(name);
+          this.getJsonVal(key, val); // case:get key eg. jcm get
+
+          log(`[info] info data:`);
+          log(data);
           break;
       }
 
-      return data;
+      return data; //key,val
+      //jcm get --key=username
+      //key=option[keyname]
+      //val=option[valname]
     }
 
   }
 
-  const jcm = new Jcm();
+  const jcm = new Jcm(); // jcm.tool = {
 
   exports.Jcm = Jcm;
   exports.jcm = jcm;

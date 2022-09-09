@@ -1,8 +1,21 @@
+//docs(core): add docs comment
+/**
+ * parse cli cmd string
+ * @param {string} input
+ * @returns {{args:string[],extras:string[],_:string[]}}
+ * @sample
+ * ```
+ * nanoargs(`ns cmd -a -b -c -- -a -b -c`)
+ * nanoargs(`ns subns cmd -a -b -c -- -a -b -c`)
+ * nanoargs(`ns subns subcmd -a -b -c -- -a -b -c`)
+ * ```
+ */
 export default function nanoargs(input) {
   let extras = []
   let args = input
   const _ = []
 
+  //feat(nano-parse): support extras when '--' bind to ouput.extras
   if (input.includes('--')) {
     extras = input.slice(input.indexOf('--') + 1)
     args = input.slice(0, input.indexOf('--'))
@@ -15,12 +28,14 @@ export default function nanoargs(input) {
     const curr = args[i]
     const next = args[i + 1]
 
+    //eg:ymc.rc.json
     const nextIsValue = next && !/^--.+/.test(next) && !/^-.+/.test(next)
 
     const pushWithNext = x => {
       newArgs.push([x, nextIsValue ? next : true])
     }
 
+    //eg:--conf=ymc.rc.json -f=ymc.rc.json
     if (/^--.+=/.test(curr) || /^-.=/.test(curr)) {
       newArgs.push(curr.split('='))
     } else if (/^-[^-].*/.test(curr)) {
@@ -73,6 +88,11 @@ export default function nanoargs(input) {
   return { flags, _: _.map(value => parseValue(value)), extras: extras.map(value => parseValue(value)) }
 }
 
+/**
+ * cli value to node.js boolean , string or number
+ * @param {string} thing
+ * @returns {string|boolean|number}
+ */
 const parseValue = thing => {
   if (['true', true].includes(thing)) {
     return true

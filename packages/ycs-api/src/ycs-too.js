@@ -1,3 +1,4 @@
+//docs(core): add docs comment
 export const defOption = () => ({
   helpmsg: `usage:ns option`,
   argvIndexS: 2, // argv index start position
@@ -14,6 +15,17 @@ export const defOption = () => ({
   autoSubNs: ''
 })
 
+/**
+ *
+ * @param {{option:{}}} entrys
+ * @returns
+ * @description
+ * ```
+ * - [x] bind entrys.option to ysc.option
+ * - [x] bind entrys.xx to ysc.option (xx is some of version,ns,autoSubCmd,autoSubNs)
+ * - [x] bind entrys to ysc.context
+ * ```
+ */
 export const installEntrys =
   (entrys = {}) =>
   ycs => {

@@ -19,6 +19,13 @@ const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') => {
   return Array.isArray(cmdOptStr) ? cmdOptStr.join(splitChar) : cmdOptStr
 };
 
+function trimstdout(stdout) {
+  return stdout
+    .split(/\r?\n/)
+    .map(v => v.trim())
+    .filter(v => v)
+    .join('\n')
+}
 /**
  * exec wraper
  * @param {string} cmd some cmd
@@ -57,6 +64,12 @@ const execWraper = (cmd, cmdOpts, execOpts) => {
       if (e && execOpts.exitWhenErr) {
         reject(e);
       }
+      //feat(core): trim stdout and stderr \ndo not trim when execOpts.noTrimOut=true
+      if (!execOpts.noTrimOut) {
+        stdout = trimstdout(stdout);
+        stderr = trimstdout(stderr);
+      }
+
       //case:reject std err and resolve std res
       //feat(core): set reject stderr to be optional in execOpts\nreject when execOpts.rejectStderr=true
       if (execOpts.rejectStderr) {

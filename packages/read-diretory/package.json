@@ -1,0 +1,38 @@
+{
+  "name": "@ymc/read-diretory",
+  "author": {
+    "name": "yemiancheng",
+    "email": "ymc.github@gmail.com",
+    "url": "https://github.com/ymc-github"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "unpkg": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/read-diretory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ymc-github/ts-mono-repo/packages/read-diretory/issues"
+  },
+  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/read-diretory/blob/master#readme",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "ymc package read-diretory",
+  "keywords": [
+    "ymc",
+    "read-diretory"
+  ],
+  "scripts": {
+    "chk:rol": "rollup --version",
+    "compile": "rm -rf dist/* && rollup -c",
+    "min:js": "uglifyjs --compress --mangle -o dist/index.min.js -- dist/index.js",
+    "test": "exit 0",
+    "doc:js": "jsdoc2md dist/index.esm.js",
+    "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+    "fmt:js": "prettier --no-error-on-unmatched-pattern --write --config .prettierrc 'src/**/*.{js,ts,jsx,tsx,md}' "
+  },
+  "private": false
+}

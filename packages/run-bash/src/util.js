@@ -1,3 +1,5 @@
+import { exec } from 'child_process'
+
 /**
  * opt to arr-format
  * @description
@@ -48,8 +50,9 @@ export const execWraper = (cmd, cmdOpts, execOpts) => {
     }
 
     const option = cmdOptArr2cmdOptStr(cmdOpts) //desc: other yuyi to string
-    let { exec } = execOpts //eg:{exec}=require("child_process");
-
+    // let { exec } = execOpts //eg:{exec}=require("child_process");
+    //fix: exec is optional in execOpts
+    let run = execOpts.exec ? execOpts.exec : exec
     cmd = cmd ? `${cmd} ${option}` : `${option}`
     // cmd=`${cmd} ${option}`.trimStart()
 
@@ -57,7 +60,7 @@ export const execWraper = (cmd, cmdOpts, execOpts) => {
 
     //support exe opt : exec(cmd,execOpts,callback)
     //https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
-    exec(`${cmd}`, execOpts, (e, stdout, stderr) => {
+    run(`${cmd}`, execOpts, (e, stdout, stderr) => {
       if (e) {
         reject(e)
       }

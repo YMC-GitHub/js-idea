@@ -3,23 +3,8 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/**
-  * runBash v0.0.2
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 import { exec } from 'child_process';
 
-/**
- * opt to arr-format
- * @description
- * ```
- * str to arr
- * ```
- * @param {string|string[]} cmdOptStr some cmd opt str-format or arr-format
- * @param {string} [splitChar=' '] some string
- * @returns {string[]}
- */
 /**
  * opt to str-format
  * @description
@@ -57,8 +42,9 @@ const execWraper = (cmd, cmdOpts, execOpts) => {
     }
 
     const option = cmdOptArr2cmdOptStr(cmdOpts); //desc: other yuyi to string
-    let { exec } = execOpts; //eg:{exec}=require("child_process");
-
+    // let { exec } = execOpts //eg:{exec}=require("child_process");
+    //fix: exec is optional in execOpts
+    let run = execOpts.exec ? execOpts.exec : exec;
     cmd = cmd ? `${cmd} ${option}` : `${option}`;
     // cmd=`${cmd} ${option}`.trimStart()
 
@@ -66,7 +52,7 @@ const execWraper = (cmd, cmdOpts, execOpts) => {
 
     //support exe opt : exec(cmd,execOpts,callback)
     //https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
-    exec(`${cmd}`, execOpts, (e, stdout, stderr) => {
+    run(`${cmd}`, execOpts, (e, stdout, stderr) => {
       if (e) {
         reject(e);
       }

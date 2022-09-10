@@ -58,11 +58,13 @@ const execWraper = (cmd, cmdOpts, execOpts) => {
         reject(e);
       }
       //case:reject std err and resolve std res
-      //if (stderr) {
-      //    reject(e);
-      //}
-      //resolve(stdout)
-
+      //feat(core): set reject stderr to be optional in execOpts\nreject when execOpts.rejectStderr=true
+      if (execOpts.rejectStderr) {
+        if (stderr) {
+          reject(e);
+        }
+        resolve(stdout);
+      }
       //case:resolve std err and res
       resolve({ stdout, stderr });
     });

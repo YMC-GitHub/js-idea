@@ -53,7 +53,8 @@ const execWraper = (cmd, cmdOpts, execOpts) => {
     //support exe opt : exec(cmd,execOpts,callback)
     //https://stackoverflow.com/questions/18894433/nodejs-child-process-working-directory
     run(`${cmd}`, execOpts, (e, stdout, stderr) => {
-      if (e) {
+      //feat: set reject err to be optional\nwhen execOpts.exitWhenErr=true
+      if (e && execOpts.exitWhenErr) {
         reject(e);
       }
       //case:reject std err and resolve std res

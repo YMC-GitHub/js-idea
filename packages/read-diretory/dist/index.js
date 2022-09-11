@@ -102,7 +102,8 @@
     // too.log(regexp, opt)
     //fix(core): fix do nothing\nwith opt to !opt
 
-    if (!regexp || !opt) return;
+    if (!regexp || !opt) return; //feat(core): set built-in option mode\nset option.mode='file' as default
+
     let buitlinopt = {
       mode: 'file'
     };

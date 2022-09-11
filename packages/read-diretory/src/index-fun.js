@@ -3,7 +3,7 @@ import { isRegExp, isArray, isFunction, isString, registerFnToOption, getMixFunF
 import * as cfm from './custom-fun.js'
 
 let cache = []
-/** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option*/
+/** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp,log?:boolean}} option*/
 /**
  * get dst in dir with regexp
  * @param {string} dst
@@ -68,7 +68,7 @@ function getDstDir(dst, option) {
   //feat: find dst with regexp in file name and path\nwith option.mode != 'file_text'
   if (regexp.test(name) && !cfm.isFileTextMode(opt.mode)) {
     //feat: output dst to console
-    cfm.output(dst)
+    opt.log && cfm.output(dst)
     cache.push(dst)
     return cache
   }
@@ -78,7 +78,7 @@ function getDstDir(dst, option) {
   if (cfm.isFileTextMode(opt.mode) && too.isFile(dst)) {
     const text = too.readFileSync(dst)
     if (opt.fileTextRegexp && opt.fileTextRegexp.test(text)) {
-      cfm.output(dst)
+      opt.log && cfm.output(dst)
       cache.push(dst)
       return cache
     }

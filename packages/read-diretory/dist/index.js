@@ -74,7 +74,7 @@
   }
 
   let cache = [];
-  /** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option*/
+  /** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp,log?:boolean}} option*/
 
   /**
    * get dst in dir with regexp
@@ -139,7 +139,7 @@
 
     if (regexp.test(name) && !isFileTextMode(opt.mode)) {
       //feat: output dst to console
-      output(dst);
+      opt.log && output(dst);
       cache.push(dst);
       return cache;
     } //solution - b
@@ -150,7 +150,7 @@
       const text = fs.readFileSync(dst);
 
       if (opt.fileTextRegexp && opt.fileTextRegexp.test(text)) {
-        output(dst);
+        opt.log && output(dst);
         cache.push(dst);
         return cache;
       }

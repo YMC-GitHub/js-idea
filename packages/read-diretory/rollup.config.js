@@ -4,10 +4,10 @@ import loadNodeModule from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import buble from '@rollup/plugin-buble';
 
-// import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+//import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 // import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
-// import postcss from 'rollup-plugin-postcss';
+//import postcss from 'rollup-plugin-postcss';
 
 export default [
   {
@@ -18,13 +18,13 @@ export default [
       name: 'readDiretory'
     },
     plugins: [
-      // peerDepsExternal({includeDependencies: true}),
+      //peerDepsExternal({includeDependencies: true}),
       convertCjs2Es6(),
       loadNodeModule(), 
       babel({ babelHelpers: 'bundled' }),
       buble(),
-      // terser(),
-      // postcss()
+      //terser(),
+      //postcss()
     ]
   },
   {
@@ -34,13 +34,13 @@ export default [
       format: 'esm',
     },
     plugins: [
-      // peerDepsExternal({includeDependencies: true}),
+      //peerDepsExternal({includeDependencies: true}),
       convertCjs2Es6(),
       loadNodeModule(), 
-      // babel({ babelHelpers: 'bundled' }),
-      // buble(),
-      // terser(),
-      // postcss()
+      //babel({ babelHelpers: 'bundled' }),
+      //buble(),
+      //terser(),
+      //postcss()
     ]
   },  
 ];

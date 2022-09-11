@@ -1,5 +1,5 @@
 /**
-  * readDiretory v1.0.0
+  * readDiretory v0.0.1
   * (c) 2018-2022 ymc
   * @license MIT
   */

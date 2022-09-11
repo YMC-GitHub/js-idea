@@ -9,6 +9,10 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["read-diretory"] = {}, global.fs, global.path));
 })(this, (function (exports, fs, path) { 'use strict';
 
+  const {
+    log
+  } = console; //touch packages/read-diretory/{api,too}.js
+
   const isDiretory = folder => fs.statSync(folder).isDirectory();
 
   const isFile = folder => fs.statSync(folder).isFile();
@@ -40,7 +44,8 @@
     let falseList = ['boolean', 'string', 'number', 'function'];
     if (falseList.some(v => v == type)) return false;
 
-    if (type == 'object' && 'test' in s) {
+    if (type == 'object' && s.test) {
+      //'test' in s
       return true;
     } // log(s, typeof s, 'test' in s)
     // return typeof s
@@ -93,8 +98,17 @@
 
   function getDstDir(dst, option) {
     //feat: ini function option
-    let [regexp, opt] = parseOption(option);
-    if (!regexp || opt) return; //too:basename,isDiretory,readdirSync,isFile,readFileSync
+    let [regexp, opt] = parseOption(option); //fix: only parse option once\nwith option.parsed=true
+    // too.log(regexp, opt)
+    //fix(core): fix do nothing\nwith opt to !opt
+
+    if (!regexp || !opt) return;
+    let buitlinopt = {
+      mode: 'file'
+    };
+    opt = { ...buitlinopt,
+      ...opt
+    }; // too.log(regexp, opt)
     //feat: register cumtom fun mix\nset opt.registered=true for once
     // if (!opt.registered) {
     //   opt = registerFnToOption(opt, cfm, 'isFileMode,isFileTextMode,output')
@@ -148,7 +162,7 @@
     if (files.length > 0) {
       files.forEach(file => {
         const fullPath = path.join(dst, file);
-        getDstDir(fullPath, regexp);
+        getDstDir(fullPath, opt); // getDstDir(fullPath, regexp)
       });
     }
   }
@@ -160,11 +174,17 @@
       if (isRegExp(option)) {
         //eg:getDstDir('../',/sha.js$/ig)
         regexp = option;
-        opt = {};
-      } else if (isRegExp(opt.regexp)) {
+        opt = {
+          parsed: true,
+          regexp
+        }; // option.parsed = true
+
+        log(option, regexp, isRegExp(option));
+      } else if (isRegExp(option.regexp)) {
         //eg:getDstDir('../',{regexp:/sha.js$/ig})
-        regexp = opt.regexp;
+        regexp = option.regexp;
         opt = option;
+        opt.parsed = true;
       } else {
         return [];
       }

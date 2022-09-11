@@ -6,6 +6,8 @@
 import { statSync, readFileSync, readdirSync } from 'fs';
 import { basename, join } from 'path';
 
+// import { isRegExp } from 'util/types'
+const { log } = console;
 const isDiretory = folder => statSync(folder).isDirectory();
 const isFile = folder => statSync(folder).isFile();
 
@@ -34,7 +36,8 @@ function isRegExp(s) {
   let type = typeof s;
   let falseList = ['boolean', 'string', 'number', 'function'];
   if (falseList.some(v => v == type)) return false
-  if (type == 'object' && 'test' in s) {
+  if (type == 'object' && s.test) {
+    //'test' in s
     return true
   }
   // log(s, typeof s, 'test' in s)
@@ -82,7 +85,13 @@ function output(s) {
 function getDstDir(dst, option) {
   //feat: ini function option
   let [regexp, opt] = parseOption(option);
-  if (!regexp || opt) return
+  //fix: only parse option once\nwith option.parsed=true
+
+  // too.log(regexp, opt)
+  //fix(core): fix do nothing\nwith opt to !opt
+  if (!regexp || !opt) return
+  let buitlinopt = { mode: 'file' };
+  opt = { ...buitlinopt, ...opt };
   //
 
   //feat: register cumtom fun mix\nset opt.registered=true for once
@@ -134,7 +143,8 @@ function getDstDir(dst, option) {
   if (files.length > 0) {
     files.forEach(file => {
       const fullPath = join(dst, file);
-      getDstDir(fullPath, regexp);
+      getDstDir(fullPath, opt);
+      // getDstDir(fullPath, regexp)
     });
   }
 }
@@ -145,11 +155,14 @@ function parseOption(option) {
     if (isRegExp(option)) {
       //eg:getDstDir('../',/sha.js$/ig)
       regexp = option;
-      opt = {};
-    } else if (isRegExp(opt.regexp)) {
+      opt = { parsed: true, regexp };
+      // option.parsed = true
+      log(option, regexp, isRegExp(option));
+    } else if (isRegExp(option.regexp)) {
       //eg:getDstDir('../',{regexp:/sha.js$/ig})
-      regexp = opt.regexp;
+      regexp = option.regexp;
       opt = option;
+      opt.parsed = true;
     } else {
       return []
     }

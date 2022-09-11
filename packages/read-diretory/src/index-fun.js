@@ -26,7 +26,14 @@ import * as cfm from './custom-fun.js'
 function getDstDir(dst, option) {
   //feat: ini function option
   let [regexp, opt] = parseOption(option)
-  if (!regexp || opt) return
+  //fix: only parse option once\nwith option.parsed=true
+
+  // too.log(regexp, opt)
+  //fix(core): fix do nothing\nwith opt to !opt
+  if (!regexp || !opt) return
+  let buitlinopt = { mode: 'file' }
+  opt = { ...buitlinopt, ...opt }
+  // too.log(regexp, opt)
   //too:basename,isDiretory,readdirSync,isFile,readFileSync
   //cc is short for commom cache
   let cc = {}
@@ -81,7 +88,8 @@ function getDstDir(dst, option) {
   if (files.length > 0) {
     files.forEach(file => {
       const fullPath = too.joinPath(dst, file)
-      getDstDir(fullPath, regexp)
+      getDstDir(fullPath, opt)
+      // getDstDir(fullPath, regexp)
     })
   }
 }
@@ -92,11 +100,14 @@ function parseOption(option) {
     if (isRegExp(option)) {
       //eg:getDstDir('../',/sha.js$/ig)
       regexp = option
-      opt = {}
-    } else if (isRegExp(opt.regexp)) {
+      opt = { parsed: true, regexp }
+      // option.parsed = true
+      too.log(option, regexp, isRegExp(option))
+    } else if (isRegExp(option.regexp)) {
       //eg:getDstDir('../',{regexp:/sha.js$/ig})
-      regexp = opt.regexp
+      regexp = option.regexp
       opt = option
+      opt.parsed = true
     } else {
       return []
     }

@@ -24,7 +24,8 @@ function isRegExp(s) {
   let type = typeof s
   let falseList = ['boolean', 'string', 'number', 'function']
   if (falseList.some(v => v == type)) return false
-  if (type == 'object' && 'test' in s) {
+  if (type == 'object' && s.test) {
+    //'test' in s
     return true
   }
   // log(s, typeof s, 'test' in s)

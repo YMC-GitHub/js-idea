@@ -5,6 +5,7 @@ import { log, blue } from './index-too.js'
 let option = {
   excludes: ['dist', 'lib', 'libtpl-rollup-plugins', 'vagrant']
 }
+let result = []
 //docs: update usage comment in instance\nwith xx to option.xx
 // log(blue(`get dst dir: node_modules`))
 // getDstDir("D:\\code-store",/node_modules/ig)
@@ -23,8 +24,8 @@ let option = {
 log(blue(`get dst file: the file that name with hua and ends with .sh`))
 // option.mode = 'file'
 option.regexp = /hzh.*\.sh$/gi
-getDstDir('D:\\code-store', option)
-
+result = getDstDir('D:\\code-store', option)
+log(result)
 // log(blue(`get dst file: the file that file text with ycs and name ends with .js`))
 // option.mode='file_text'
 // option.fileTextRegexp=/ycs/ig

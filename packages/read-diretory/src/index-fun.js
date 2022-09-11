@@ -2,12 +2,13 @@ import * as too from './index-too.js'
 import { isRegExp, isArray, isFunction, isString, registerFnToOption, getMixFunFromOption } from './index-sha.js'
 import * as cfm from './custom-fun.js'
 
+let cache = []
 /** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option*/
 /**
  * get dst in dir with regexp
  * @param {string} dst
  * @param {regexp|option} option
- * @returns {undefined|null}
+ * @returns {undefined|null|string[]}
  * @description
  * ```
  * - [x] find dst with regexp in file text
@@ -30,7 +31,7 @@ function getDstDir(dst, option) {
 
   // too.log(regexp, opt)
   //fix(core): fix do nothing\nwith opt to !opt
-  if (!regexp || !opt) return
+  if (!regexp || !opt) return cache
   //feat(core): set built-in option mode\nset option.mode='file' as default
   let buitlinopt = { mode: 'file' }
   opt = { ...buitlinopt, ...opt }
@@ -50,17 +51,17 @@ function getDstDir(dst, option) {
 
   // let stat = stat(dst)
   if (!too.isDiretory(dst) && !(cfm.isFileMode(opt.mode) || cfm.isFileTextMode(opt.mode))) {
-    return
+    return cache
   }
 
   const name = too.basename(dst)
   //feat: set excludes to be optional\nwith option.excludes=[]
   if (isArray(opt.excludes) && opt.excludes.includes(name)) {
-    return
+    return cache
   }
   //feat: support excludes regexp\nwith option.excludesRegexp=
   if (opt.excludesRegexp && opt.excludesRegexp.test(name)) {
-    return
+    return cache
   }
 
   //solution - a
@@ -68,7 +69,8 @@ function getDstDir(dst, option) {
   if (regexp.test(name) && !cfm.isFileTextMode(opt.mode)) {
     //feat: output dst to console
     cfm.output(dst)
-    return
+    cache.push(dst)
+    return cache
   }
 
   //solution - b
@@ -77,12 +79,13 @@ function getDstDir(dst, option) {
     const text = too.readFileSync(dst)
     if (opt.fileTextRegexp && opt.fileTextRegexp.test(text)) {
       cfm.output(dst)
-      return
+      cache.push(dst)
+      return cache
     }
   }
 
   if (!too.isDiretory(dst)) {
-    return
+    return cache
   }
   //feat:read diretory recursive
   const files = too.readdirSync(dst)
@@ -93,6 +96,7 @@ function getDstDir(dst, option) {
       // getDstDir(fullPath, regexp)
     })
   }
+  return cache
 }
 
 function parseOption(option) {

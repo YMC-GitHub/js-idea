@@ -73,13 +73,14 @@
     console.log(`found in:${s}`);
   }
 
+  let cache = [];
   /** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option*/
 
   /**
    * get dst in dir with regexp
    * @param {string} dst
    * @param {regexp|option} option
-   * @returns {undefined|null}
+   * @returns {undefined|null|string[]}
    * @description
    * ```
    * - [x] find dst with regexp in file text
@@ -102,7 +103,7 @@
     // too.log(regexp, opt)
     //fix(core): fix do nothing\nwith opt to !opt
 
-    if (!regexp || !opt) return; //feat(core): set built-in option mode\nset option.mode='file' as default
+    if (!regexp || !opt) return cache; //feat(core): set built-in option mode\nset option.mode='file' as default
 
     let buitlinopt = {
       mode: 'file'
@@ -120,18 +121,18 @@
     // let stat = stat(dst)
 
     if (!isDiretory(dst) && !(isFileMode(opt.mode) || isFileTextMode(opt.mode))) {
-      return;
+      return cache;
     }
 
     const name = path.basename(dst); //feat: set excludes to be optional\nwith option.excludes=[]
 
     if (isArray(opt.excludes) && opt.excludes.includes(name)) {
-      return;
+      return cache;
     } //feat: support excludes regexp\nwith option.excludesRegexp=
 
 
     if (opt.excludesRegexp && opt.excludesRegexp.test(name)) {
-      return;
+      return cache;
     } //solution - a
     //feat: find dst with regexp in file name and path\nwith option.mode != 'file_text'
 
@@ -139,7 +140,8 @@
     if (regexp.test(name) && !isFileTextMode(opt.mode)) {
       //feat: output dst to console
       output(dst);
-      return;
+      cache.push(dst);
+      return cache;
     } //solution - b
     //feat: find dst with regexp in file text\nwith option.mode == 'file_text'\nwith option.fileTextRegexp
 
@@ -149,12 +151,13 @@
 
       if (opt.fileTextRegexp && opt.fileTextRegexp.test(text)) {
         output(dst);
-        return;
+        cache.push(dst);
+        return cache;
       }
     }
 
     if (!isDiretory(dst)) {
-      return;
+      return cache;
     } //feat:read diretory recursive
 
 
@@ -166,6 +169,8 @@
         getDstDir(fullPath, opt); // getDstDir(fullPath, regexp)
       });
     }
+
+    return cache;
   }
 
   function parseOption(option) {

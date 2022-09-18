@@ -68,10 +68,15 @@
           } = execOpts;
 
           if (fixUnreadbleCode) {
+            let {
+              iconvDesEncoding,
+              iconvSrcEncoding
+            } = execOpts; //fix: convert unreadble code only with code
             //fixUnreadbleCode=(code,charset="cp936")=>{return iconv.decode(err, charset)})
-            fixUnreadbleCode(e);
-            fixUnreadbleCode(stdout);
-            fixUnreadbleCode(stderr);
+            // if (e) e = fixUnreadbleCode(e, iconvDesEncoding, iconvSrcEncoding)
+
+            if (stdout) stdout = fixUnreadbleCode(stdout, iconvDesEncoding, iconvSrcEncoding);
+            if (stderr) stderr = fixUnreadbleCode(stderr, iconvDesEncoding, iconvSrcEncoding); // console.log(e, stdout, stderr)
           } //feat: set reject err to be optional\nwhen execOpts.exitWhenErr=true
 
 

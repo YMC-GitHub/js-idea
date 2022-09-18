@@ -27,6 +27,28 @@ export const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') => {
     return Array.isArray(cmdOptStr) ? cmdOptStr.join(splitChar) : cmdOptStr
 }
 
+/**
+ *
+ * @param {{decode:function}} iconv
+ * @returns {function}
+ * @sample
+ * ```
+ *  import iconv from "iconv-lite";
+ *  let fixUnreadbleCode = defFixUnreadbleCode(iconv)
+ *  execOpts.encoding = "buffer";
+ *  execOpts.fixUnreadbleCode = fixUnreadbleCode;
+ *  execOpts.iconvDesEncoding="cp936"
+ *  execOpts.iconvSrcEncoding="binary"
+ *  await exec(`dir`, execOpts);
+ * ```
+ */
+export const defFixUnreadbleCode = iconv => {
+    return (code, encoding = 'cp936', binaryEncoding = 'binary') => {
+        iconv.skipDecodeWarning = true
+        return iconv.decode(Buffer.from(code, binaryEncoding), encoding)
+    }
+}
+
 function trimstdout(stdout) {
     return stdout
         .split(/\r?\n/)
@@ -71,10 +93,13 @@ export const execWraper = (cmd, cmdOpts, execOpts) => {
             //feat:fix unreadable zh code\with option.fixUnreadbleCode
             let { fixUnreadbleCode } = execOpts
             if (fixUnreadbleCode) {
+                let { iconvDesEncoding, iconvSrcEncoding } = execOpts
+                //fix: convert unreadble code only with code
                 //fixUnreadbleCode=(code,charset="cp936")=>{return iconv.decode(err, charset)})
-                fixUnreadbleCode(e)
-                fixUnreadbleCode(stdout)
-                fixUnreadbleCode(stderr)
+                // if (e) e = fixUnreadbleCode(e, iconvDesEncoding, iconvSrcEncoding)//del
+                if (stdout) stdout = fixUnreadbleCode(stdout, iconvDesEncoding, iconvSrcEncoding)
+                if (stderr) stderr = fixUnreadbleCode(stderr, iconvDesEncoding, iconvSrcEncoding)
+                // console.log(e, stdout, stderr)
             }
 
             //feat: set reject err to be optional\nwhen execOpts.exitWhenErr=true

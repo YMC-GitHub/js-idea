@@ -22,6 +22,28 @@ const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') => {
 /**
  *
  * @param {{decode:function}} iconv
+ * @param {{}} execOpts
+ * @sample
+ * ```
+ * import iconv from "iconv-lite";
+ * setExecOptsForIconv(iconv,execOpts)
+ * await exec(`dir`, execOpts);
+ * ```
+ */
+const setExecOptsForIconv = (iconv, execOpts) => {
+    // std 1.1 set execOpts.encoding as 'binary' || 'buffer'
+    execOpts.encoding = 'buffer'; //binary || buffer
+    // std 1.2 def fixUnreadbleCode(code,desencoding,srcencoding)
+    execOpts.iconvDesEncoding = 'cp936';
+    execOpts.iconvSrcEncoding = 'binary';
+    // execOpts.fixUnreadbleCode = fixUnreadbleCode;
+    execOpts.fixUnreadbleCode = defFixUnreadbleCode(iconv);
+    // res = await exec(`dir`, execOpts);
+};
+
+/**
+ *
+ * @param {{decode:function}} iconv
  * @returns {function}
  * @sample
  * ```
@@ -122,4 +144,4 @@ const execOpts = {
     exec: exec
 };
 
-export { defFixUnreadbleCode, execWraper as exec, execOpts };
+export { defFixUnreadbleCode, execWraper as exec, execOpts, setExecOptsForIconv };

@@ -23,6 +23,28 @@
     const cmdOptArr2cmdOptStr = (cmdOptStr, splitChar = ' ') => {
       return Array.isArray(cmdOptStr) ? cmdOptStr.join(splitChar) : cmdOptStr;
     };
+    /**
+     *
+     * @param {{decode:function}} iconv
+     * @returns {function}
+     * @sample
+     * ```
+     *  import iconv from "iconv-lite";
+     *  let fixUnreadbleCode = defFixUnreadbleCode(iconv)
+     *  execOpts.encoding = "buffer";
+     *  execOpts.fixUnreadbleCode = fixUnreadbleCode;
+     *  execOpts.iconvDesEncoding="cp936"
+     *  execOpts.iconvSrcEncoding="binary"
+     *  await exec(`dir`, execOpts);
+     * ```
+     */
+
+    const defFixUnreadbleCode = iconv => {
+      return (code, encoding = 'cp936', binaryEncoding = 'binary') => {
+        iconv.skipDecodeWarning = true;
+        return iconv.decode(Buffer.from(code, binaryEncoding), encoding);
+      };
+    };
 
     function trimstdout(stdout) {
       return stdout.split(/\r?\n/).map(v => v.trim()).filter(v => v).join('\n');
@@ -73,7 +95,7 @@
               iconvSrcEncoding
             } = execOpts; //fix: convert unreadble code only with code
             //fixUnreadbleCode=(code,charset="cp936")=>{return iconv.decode(err, charset)})
-            // if (e) e = fixUnreadbleCode(e, iconvDesEncoding, iconvSrcEncoding)
+            // if (e) e = fixUnreadbleCode(e, iconvDesEncoding, iconvSrcEncoding)//del
 
             if (stdout) stdout = fixUnreadbleCode(stdout, iconvDesEncoding, iconvSrcEncoding);
             if (stderr) stderr = fixUnreadbleCode(stderr, iconvDesEncoding, iconvSrcEncoding); // console.log(e, stdout, stderr)
@@ -113,6 +135,7 @@
       exec: child_process.exec
     };
 
+    exports.defFixUnreadbleCode = defFixUnreadbleCode;
     exports.exec = execWraper;
     exports.execOpts = execOpts;
 

@@ -6,9 +6,9 @@ ymc package run-bash
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.js | 3.99kb | 1.40kb | 1.24kb
-dist/index.min.js | 0.91kb | 0.57kb | 0.51kb
-dist/index.esm.js | 3.44kb | 1.20kb | 1.06kb
+dist/index.js | 4.72kb | 1.59kb | 1.42kb
+dist/index.min.js | 1.01kb | 0.63kb | 0.58kb
+dist/index.esm.js | 4.06kb | 1.37kb | 1.22kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

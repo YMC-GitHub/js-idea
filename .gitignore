@@ -1,0 +1,14 @@
+archive
+node_modules
+coverage
+package-lock.json
+# some cmd help info
+help.txt
+# some log info
+log.txt
+# some archive with zip format
+*.zip
+lib
+scr
+script
+# packages

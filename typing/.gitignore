@@ -1,0 +1,4 @@
+# to keep all diretory construtor
+# ignore all files but not .gitignore
+*
+!.gitignore

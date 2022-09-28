@@ -12,3 +12,5 @@ lib
 scr
 script
 # packages
+*.tmp.md
+*.7z

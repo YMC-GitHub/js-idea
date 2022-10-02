@@ -1,0 +1,10 @@
+{
+    "host": "github.com",
+    "owner": "ymc-github",
+    "repo": "ts-mono-repo",
+    "branch": "master",
+    "outdir": "dist",
+    "scope": "ymc",
+    "license": "MIT",
+    "isMonoRepo": true
+}

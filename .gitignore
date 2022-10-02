@@ -14,3 +14,5 @@ script
 # packages
 *.tmp.md
 *.7z
+# tool(core): set files as ignore\n include *.tmp.*
+*.tmp.*

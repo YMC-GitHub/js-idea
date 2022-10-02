@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "@ymc/*": ["packages/*"],
+            "@privatepkgs/*": ["scr/lib*"]
+        }
+    },
+    "exclude": ["node_modules", "dist"]
+}

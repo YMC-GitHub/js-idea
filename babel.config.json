@@ -1,0 +1,33 @@
+{
+    "plugins": [
+        [
+            "babel-plugin-module-resolver",
+            {
+                "root": ["node_modules", "./"],
+                "alias": {
+                    "^@ymc/(.+)$": "./packages/\\1"
+                },
+                "transformFunctions": [
+                    "require",
+                    "require.resolve",
+                    "System.import",
+                    "jest.genMockFromModule",
+                    "jest.mock",
+                    "jest.unmock",
+                    "jest.doMock",
+                    "jest.dontMock"
+                ]
+            }
+        ]
+    ],
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ]
+    ]
+}

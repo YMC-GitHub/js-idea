@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.env.enable
 
   # feat: use custom env file name
-  config.env.load "vagrant.env"
+  config.env.load "vagrant.env.properties"
   # https://github.com/gosuri/vagrant-env/blob/master/lib/vagrant-env/config.rb
   # https://github.com/gosuri/vagrant-env/issues/8
 

@@ -100,9 +100,9 @@ Vagrant.configure("2") do |config|
       #   ansible.playbook = "/etc/k8s-scripts/worker.yaml"
       #   ansible.verbose = "v"
       # end
-      subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-scoop.ps1"
-      subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-nodejs.ps1"
-      #subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-vagrant.ps1"
+      subconfig.vm.provision "shell", path: "#{BASHSCRIPTPATH}setup-scoop.ps1"
+      subconfig.vm.provision "shell", path: "#{BASHSCRIPTPATH}setup-nodejs.ps1"
+      #subconfig.vm.provision "shell", path: "#{BASHSCRIPTPATH}setup-vagrant.ps1"
       end
     end
     IP_S="#{IP_S}".to_i + ENV["NODE_COUNT"].to_i

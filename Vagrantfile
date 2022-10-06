@@ -1,6 +1,12 @@
 Vagrant.configure("2") do |config|
   # feat: use cnf in .env file
   config.env.enable
+
+  # feat: use custom env file name
+  config.env.load "vagrant.env"
+  # https://github.com/gosuri/vagrant-env/blob/master/lib/vagrant-env/config.rb
+  # https://github.com/gosuri/vagrant-env/issues/8
+
   # feat: use shared dir 
   config.vm.synced_folder ".", "/app"
   # config.vm.synced_folder ".data/", "/etc/.vagrantdata/"
@@ -23,7 +29,9 @@ Vagrant.configure("2") do |config|
 
   # feat: set guest vbguest (when virtualbox)
   if Vagrant.has_plugin?("vagrant-vbguest")
-    config.vbguest.auto_update = false
+    config.vbguest.iso_path = "https://download.virtualbox.org/virtualbox/%{version}/VBoxGuestAdditions_%{version}.iso"
+    config.vbguest.allow_downgrade = true
+    config.vbguest.auto_update = true
     config.vbguest.no_install = false
     config.vbguest.no_remote = false
   end
@@ -92,6 +100,9 @@ Vagrant.configure("2") do |config|
       #   ansible.playbook = "/etc/k8s-scripts/worker.yaml"
       #   ansible.verbose = "v"
       # end
+      subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-scoop.ps1"
+      subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-nodejs.ps1"
+      #subconfig.vm.provision "shell", path: "#{BASH_SCRIPT_PATH}setup-vagrant.ps1"
       end
     end
     IP_S="#{IP_S}".to_i + ENV["NODE_COUNT"].to_i

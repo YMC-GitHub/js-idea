@@ -1,8 +1,8 @@
 {
     "host": "github.com",
     "owner": "ymc-github",
-    "repo": "ts-mono-repo",
-    "branch": "master",
+    "repo": "js-idea",
+    "branch": "main",
     "outdir": "dist",
     "scope": "ymc",
     "license": "MIT",

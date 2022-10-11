@@ -1,5 +1,11 @@
 {
   "name": "@ymc/ycs-help-bind-option",
+  "version": "0.0.2",
+  "description": "ymc package ycs-help-bind-option",
+  "keywords": [
+    "ymc",
+    "ycs-help-bind-option"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-bind-option.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-bind-option/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-bind-option/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/ycs-help-bind-option#readme",
   "license": "MIT",
-  "version": "0.0.2",
-  "description": "ymc package ycs-help-bind-option",
-  "keywords": [
-    "ymc",
-    "ycs-help-bind-option"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

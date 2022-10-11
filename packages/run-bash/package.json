@@ -1,5 +1,11 @@
 {
   "name": "@ymc/run-bash",
+  "version": "0.0.3",
+  "description": "ymc package run-bash",
+  "keywords": [
+    "ymc",
+    "run-bash"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/run-bash.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/run-bash/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/run-bash/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/run-bash#readme",
   "license": "MIT",
-  "version": "0.0.3",
-  "description": "ymc package run-bash",
-  "keywords": [
-    "ymc",
-    "run-bash"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

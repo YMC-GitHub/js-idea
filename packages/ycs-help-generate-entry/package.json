@@ -1,5 +1,11 @@
 {
   "name": "@ymc/ycs-help-generate-entry",
+  "version": "0.0.2",
+  "description": "ymc package ycs-help-generate-entry",
+  "keywords": [
+    "ymc",
+    "ycs-help-generate-entry"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-generate-entry/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/ycs-help-generate-entry#readme",
   "license": "MIT",
-  "version": "0.0.2",
-  "description": "ymc package ycs-help-generate-entry",
-  "keywords": [
-    "ymc",
-    "ycs-help-generate-entry"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

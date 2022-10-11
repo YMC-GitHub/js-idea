@@ -1,5 +1,11 @@
 {
   "name": "@ymc/ycs-help-usage-to-option",
+  "version": "0.0.2",
+  "description": "ymc package ycs-help-usage-to-option",
+  "keywords": [
+    "ymc",
+    "ycs-help-usage-to-option"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-usage-to-option.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-usage-to-option/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-help-usage-to-option/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/ycs-help-usage-to-option#readme",
   "license": "MIT",
-  "version": "0.0.2",
-  "description": "ymc package ycs-help-usage-to-option",
-  "keywords": [
-    "ymc",
-    "ycs-help-usage-to-option"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

@@ -1,5 +1,11 @@
 {
   "name": "@ymc/jcm",
+  "version": "0.0.1",
+  "description": "ymc package jcm",
+  "keywords": [
+    "ymc",
+    "jcm"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/jcm.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/jcm/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/jcm/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/jcm#readme",
   "license": "MIT",
-  "version": "0.0.1",
-  "description": "ymc package jcm",
-  "keywords": [
-    "ymc",
-    "jcm"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

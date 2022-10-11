@@ -1,5 +1,11 @@
 {
   "name": "@ymc/ycs-api",
+  "version": "0.0.2",
+  "description": "ymc package ycs-api",
+  "keywords": [
+    "ymc",
+    "ycs-api"
+  ],
   "author": {
     "name": "yemiancheng",
     "email": "ymc.github@gmail.com",
@@ -12,19 +18,13 @@
   "unpkg": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymc-github/ts-mono-repo/packages/ycs-api.git"
+    "url": "git+https://github.com/ymc-github/js-idea.git"
   },
   "bugs": {
-    "url": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-api/issues"
+    "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/ts-mono-repo/packages/ycs-api/blob/master#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/ycs-api#readme",
   "license": "MIT",
-  "version": "0.0.2",
-  "description": "ymc package ycs-api",
-  "keywords": [
-    "ymc",
-    "ycs-api"
-  ],
   "scripts": {
     "chk:rol": "rollup --version",
     "compile": "rm -rf dist/* && rollup -c",

@@ -1,18 +1,49 @@
-archive
+# ignore node_modules file
+# ignore dir
 node_modules
+
+# ignore archive file
+# ignore dir
+archive
+
+# ignore test converage file
+# ignore dir
 coverage
+
+# ignore node_modules pkg lock file
 package-lock.json
-# some cmd help info
-help.txt
-# some log info
-log.txt
-# some archive with zip format
+# yarn.lock
+# pnpm-lock.yaml
+
+# ignore cmd help info file
+# ignore files that ends with .help.txt
+*.help.txt
+
+# ignore log info file
+# ignore files that ends with .log.txt
+*.log.txt
+
+# ignore compressed file
+# ignore files that ends with .zip
+# ignore files that ends with .7z
 *.zip
+*.7z
+
+# ignore output file that src compiled to
+# ignore dir
 lib
+
+# ignore privated-packages
+# ignore opv script file that is also privated too
+# ignore dir
 scr
 script
-# packages
+
+# ignore tmp file
 *.tmp.md
-*.7z
-# tool(core): set files as ignore\n include *.tmp.*
 *.tmp.*
+
+
+# note:
+# commit msg demo when commit this file
+# tool(core): set files as ignore\n include *.tmp.*

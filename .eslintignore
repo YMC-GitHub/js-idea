@@ -1,6 +1,54 @@
 
-node_modules
-dist
-lib
-# *-scr.js
-*-bin.js
+# ignore node_modules dir
+*node_modules
+
+# ignore output files that compiled to
+# ignore files that in dir
+*dist
+*lib
+*bin
+# ignore files that ends with .min.js
+*.min.js
+
+# ignore private packages 
+# ignore files that in dir
+*private-pkgs
+*scr
+*script
+
+# ignore docs files
+# ignore files that in dir
+*docs
+*note
+*handbook
+
+# ignore package.json file
+package.json
+# ignore all markdown file
+*.md
+
+# ignore test files
+# ignore files that ends with .spec.js
+*.spec.js
+
+# ignore typescipt typing files
+# ignore files that ends with .d.ts
+*.d.ts
+
+
+
+
+# note:
+# ignore files that in dir dist
+# dist/* # no work! eslint=8.25.0;os=window
+# **dist #no work! eslint=8.25.0;os=window
+# refs:
+# [eslint ignore rule intro] (https://juejin.cn/post/7007603848080523278)
+# [eslint-changed-files] (https://jdauriemma.com/programming/eslint-changed-files)
+
+# git changed files between master and now?
+# git diff master... --name-only -- "*.ts" "*.tsx" "*.js" "*.jsx"
+# git changed files between workingdir and staged
+# git diff --name-only -- "*.ts" "*.tsx" "*.js" "*.jsx"
+
+# npx eslint --print-config .eslintrc.json

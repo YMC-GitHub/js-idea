@@ -4,11 +4,7 @@
         "jest": true
     },
     "plugins": ["import", "prettier"],
-    "extends": [
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:prettier/recommended"
-    ],
+    "extends": ["plugin:import/errors", "plugin:import/warnings", "plugin:prettier/recommended"],
     "rules": {
         "import/extensions": 0,
         "import/no-extraneous-dependencies": [
@@ -28,10 +24,15 @@
     },
     "settings": {
         "import/resolver": {
-            "babel-module": {
-                "^@ymc/(.+)$": "./packages/\\1"
+            "alias": {
+                "map": [
+                    ["@ymc", "./packages"],
+                    ["@scss", "./packages/styles"]
+                ],
+                "extensions": [".js", ".vue"]
             }
-        }
+        },
+        "import/extensions": [".js", ".vue"]
     },
-    "parser": "babel-eslint"
+    "parser": "@babel/eslint-parser"
 }

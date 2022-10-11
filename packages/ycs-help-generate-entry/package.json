@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/ymc-github/js-idea/issues"
   },
-  "homepage": "https://github.com/ymc-github/js-idea/blob/master/packages/ycs-help-generate-entry#readme",
+  "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/ycs-help-generate-entry#readme",
   "license": "MIT",
   "scripts": {
     "doc:js": "jsdoc2md dist/index.esm.js",

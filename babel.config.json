@@ -5,7 +5,8 @@
             {
                 "root": ["node_modules", "./"],
                 "alias": {
-                    "^@ymc/(.+)$": "./packages/\\1"
+                    "^@ymc/(.+)$": "./packages/\\1",
+                    "^@private-pkgs/(.+)$": "./private-pkgs/\\1"
                 },
                 "transformFunctions": [
                     "require",

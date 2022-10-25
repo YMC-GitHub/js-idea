@@ -43,6 +43,10 @@ script
 *.tmp.md
 *.tmp.*
 
+.dns
+.app
+.docker
+.k8s
 
 # note:
 # commit msg demo when commit this file

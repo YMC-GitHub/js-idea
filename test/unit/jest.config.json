@@ -1,24 +1,21 @@
 {
-  "rootDir": "../../",
-  "moduleFileExtensions": [
-    "js"
-  ],
-  "moduleNameMapper": {
-    "^@/(.*?.?(js|vue)?|)$": "<rootDir>/packages/$1"
-  },
-  "transform": {
-    "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-  },
-  "snapshotSerializers": [],
-  "testMatch": [
-    "<rootDir>/test/unit/**/*.spec.js",
-    "<rootDir>/packages/**/*.spec.js"
-  ],
-  "testPathIgnorePatterns": [],
-  "coverageDirectory": "<rootDir>/test/unit/coverage",
-  "collectCoverageFrom": [
-    "src/components/*.(vue)",
-    "!src/main.js",
-    "!**/node_modules/**"
-  ]
+    "rootDir": "../../",
+    "moduleFileExtensions": ["js"],
+    "moduleNameMapper": {
+        "^@ymc/(.*?.?(js|vue)?|)$": "<rootDir>/packages/$1",
+        "^@private-pkgs/(.*?.?(js|vue)?|)$": "<rootDir>/private-pkgs/$1"
+    },
+    "transform": {
+        "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "snapshotSerializers": [],
+    "testMatch": [
+        "<rootDir>/scr/**/*.spec.js",
+        "<rootDir>/private-pkgs/**/*.spec.js",
+        "<rootDir>/packages/**/*.spec.js",
+        "<rootDir>/test/unit/**/*.spec.js"
+    ],
+    "testPathIgnorePatterns": [],
+    "coverageDirectory": "<rootDir>/test/unit/coverage",
+    "collectCoverageFrom": ["src/components/*.(vue)", "!src/main.js", "!**/node_modules/**"]
 }

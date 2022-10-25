@@ -6,7 +6,8 @@
         "baseUrl": "./",
         "paths": {
             "@ymc/*": ["packages/*"],
-            "@privatepkgs/*": ["scr/lib*"]
+            "@private-pkgs/*": ["private-pkgs/*"],
+            "@script-pkgs/*": ["scr/lib*"]
         }
     },
     "exclude": ["node_modules", "dist"]

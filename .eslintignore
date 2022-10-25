@@ -12,7 +12,7 @@
 
 # ignore private packages 
 # ignore files that in dir
-*private-pkgs
+# *private-pkgs
 *scr
 *script
 

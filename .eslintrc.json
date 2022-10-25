@@ -1,83 +1,47 @@
 {
-  "env": {
-    "node": true,
-    "browser": true,
-    "es6": true
-  },
-  "extends": [
-    "plugin:vue/essential",
-    "airbnb-base",
-    "prettier"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "vue"
-  ],
-  "rules": {},
-  "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [
-          [
-            "@ymc",
-            "./packages"
-          ],
-          [
-            "@scss",
-            "./packages/styles"
-          ]
-        ],
-        "extensions": [
-          ".ts",
-          ".tsx",
-          ".js",
-          ".jsx",
-          ".json",
-          ".vue"
-        ]
-      }
-    }
-  },
-  "overrides": [
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "parser": "@babel/eslint-parser",
-      "parserOptions": {},
-      "extends": [
-        "airbnb-base"
-      ]
+    "env": {
+        "node": true,
+        "browser": true
     },
-    {
-      "files": [
-        "*.ts"
-      ],
-      "parser": "@typescript-eslint/parser",
-      "plugins": [
-        "@typescript-eslint"
-      ],
-      "extends": [
-        "airbnb-base",
-        "plugin:@typescript-eslint/recommended"
-      ]
+    "extends": ["plugin:vue/essential", "airbnb-base", "prettier"],
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
     },
-    {
-      "files": [
-        "*.vue"
-      ],
-      "parser": "vue-eslint-parser",
-      "parserOptions": {
-        "parser": "@babel/eslint-parser"
-      },
-      "extends": [
-        "airbnb-base",
-        "plugin:vue/recommended"
-      ]
-    }
-  ]
+    "plugins": ["vue"],
+    "rules": {},
+    "settings": {
+        "import/resolver": {
+            "alias": {
+                "map": [
+                    ["@ymc", "./packages"],
+                    ["@private-pkgs", "./private-pkgs"],
+                    ["@scss", "./packages/styles"]
+                ],
+                "extensions": [".ts", ".tsx", ".js", ".jsx", ".json", ".vue"]
+            }
+        }
+    },
+    "overrides": [
+        {
+            "files": ["*.js", "*.jsx"],
+            "parser": "@babel/eslint-parser",
+            "parserOptions": {},
+            "extends": ["airbnb-base"]
+        },
+        {
+            "files": ["*.ts"],
+            "parser": "@typescript-eslint/parser",
+            "plugins": ["@typescript-eslint"],
+            "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended"]
+        },
+        {
+            "files": ["*.vue"],
+            "parser": "vue-eslint-parser",
+            "parserOptions": {
+                "parser": "@babel/eslint-parser"
+            },
+            "extends": ["airbnb-base", "plugin:vue/recommended"]
+        }
+    ]
 }

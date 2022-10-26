@@ -1,7 +1,7 @@
 {
   "name": "@ymc/url-to-des",
   "version": "1.0.0",
-  "description": "ymc package url-to-des",
+  "description": "get target file loc by url",
   "keywords": [
     "ymc",
     "url-to-des"

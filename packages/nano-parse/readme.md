@@ -1,4 +1,4 @@
-# pkg nanoParse
+# pkg nano-parse
 
 ## desc
 parse commandline argv

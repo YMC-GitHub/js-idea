@@ -1,15 +1,25 @@
 {
+    "name": "@ymc/js-idea",
+    "version": "1.0.0",
+    "description": "ymc 's daily inspiration",
     "private": true,
     "type": "module",
     "workspace": [
         "packages/**",
         "private-pkgs/**"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ymc-github/js-idea.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ymc-github/js-idea/issues"
+    },
+    "homepage": "https://github.com/ymc-github/js-idea/blob/main/#readme",
     "scripts": {
         "test": "jest",
         "lin:js": "eslint  --no-error-on-unmatched-pattern packages",
-        "lin:changed:js": "node scr/8.lin-changed-file.js",
-        "fmt:js": "prettier --no-error-on-unmatched-pattern --write --config .prettierrc 'src/**/*.{js,ts,jsx,tsx,md}' "
+        "lin:changed:js": "node scr/8.lin-changed-file.js"
     },
     "devDependencies": {
         "@babel/core": "^7.18.13",
@@ -51,5 +61,11 @@
         "typedoc": "^0.22.17",
         "typescript": "^4.8.2",
         "uglify-js": "^3.16.0"
-    }
+    },
+    "author": {
+        "name": "yemiancheng",
+        "email": "ymc.github@gmail.com",
+        "url": "https://github.com/ymc-github"
+    },
+    "license": "MIT"
 }

@@ -1,7 +1,7 @@
 {
   "name": "@ymc/extend-function",
   "version": "1.0.0",
-  "description": "ymc package extend-function",
+  "description": "extend node.js function, extend Function.prototype is optional",
   "keywords": [
     "ymc",
     "extend-function"

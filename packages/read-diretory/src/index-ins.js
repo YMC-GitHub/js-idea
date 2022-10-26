@@ -1,12 +1,13 @@
-import { getDstDir } from './index.js'
-import { log, blue } from './index-too.js'
+// fix Unexpected use of file extension "js" for "./index.js"      import/extensions
+import getDstDir from './index'
+import { log, blue } from './index-too'
 // sam here
 
-let option = {
+const option = {
   excludes: ['dist', 'lib', 'libtpl-rollup-plugins', 'vagrant']
 }
 let result = []
-//docs: update usage comment in instance\nwith xx to option.xx
+// docs: update usage comment in instance\nwith xx to option.xx
 // log(blue(`get dst dir: node_modules`))
 // getDstDir("D:\\code-store",/node_modules/ig)
 
@@ -21,7 +22,7 @@ let result = []
 // option.mode='file'
 // getDstDir("D:\\code-store",/fav.*\.js$/ig)
 
-log(blue(`get dst file: the file that name with hua and ends with .sh`))
+log(blue('get dst file: the file that name with hua and ends with .sh'))
 // option.mode = 'file'
 option.regexp = /hzh.*\.sh$/gi
 result = getDstDir('D:\\code-store', option)

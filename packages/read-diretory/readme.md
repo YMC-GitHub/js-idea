@@ -1,4 +1,4 @@
-# pkg readDiretory
+# pkg read-diretory
 
 ## desc
 ymc package read-diretory
@@ -6,9 +6,10 @@ ymc package read-diretory
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.js | 5.47kb | 1.85kb | 1.67kb
-dist/index.min.js | 1.42kb | 0.75kb | 0.69kb
-dist/index.esm.js | 4.65kb | 1.63kb | 1.49kb
+dist/index.js | 6.00kb | 2.01kb | 1.81kb
+dist/index.min.js | 1.40kb | 0.71kb | 0.66kb
+dist/index.esm.js | 5.13kb | 1.79kb | 1.62kb
+dist/index.esm.min.js | 1.13kb | 0.61kb | 0.56kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

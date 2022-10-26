@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import {
   existsSync,
   unlinkSync,
@@ -8,11 +10,12 @@ import {
   rmdirSync,
   readFileSync
 } from 'fs'
+
 import { join as joinPath, basename } from 'path'
 // import { isRegExp } from 'util/types'
 const { log } = console
 
-//touch packages/read-diretory/{api,too}.js
+// touch packages/read-diretory/{api,too}.js
 function blue(str) {
   // feat: info blue msg
   return `\x1b[1m\x1b[34m${str}\x1b[39m\x1b[22m`

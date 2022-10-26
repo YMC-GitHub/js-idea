@@ -1,2 +1,4 @@
-import { getDstDir } from './index-fun.js'
-export { getDstDir }
+import getDstDir from './index-fun'
+
+// fix Prefer default export
+export default getDstDir

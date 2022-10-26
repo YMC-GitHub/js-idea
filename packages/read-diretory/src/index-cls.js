@@ -1,23 +1,13 @@
-import * as too from './index-too.js'
+/* eslint-disable max-len,no-undef,no-shadow,no-unused-vars,prefer-const,no-use-before-define,no-unused-expressions */
 
-// readDirEng.conf().read().result
-// readDir(dir,dstRegExp,option)
-class ReadDest {
-  constructor() {
-    this.init()
-  }
-  init() {
-    this.option = {}
-  }
-  get() {}
-}
+import * as too from './index-too'
 
 // let dstMode = null
 // const excludes = ['dist', 'lib', 'libtpl-rollup-plugins', 'vagrant']
 // const excludesRegexp = null
 // const fileTextRegexp = null
-/** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option*/
-let option = { excludes: [] }
+/** @typedef {{regexp:regexp,mode?:string|null,excludes?:string[],excludesRegexp?:regexp,fileTextRegexp?:regexp}} option */
+const option = { excludes: [] }
 // option.excludes = ['dist', 'lib', 'libtpl-rollup-plugins', 'vagrant']
 /**
  * get dst in dir with regexp
@@ -35,10 +25,10 @@ let option = { excludes: [] }
  * ```
  */
 function getDstDir(dst, option) {
-  //feat: ini function option
-  let [regexp, opt] = parseOption(option)
+  // feat: ini function option
+  const [regexp, opt] = parseOption(option)
   if (!regexp || opt) return
-  //too:basename,isDiretory,readdirSync,isFile,readFileSync
+  // too:basename,isDiretory,readdirSync,isFile,readFileSync
 
   // let stat = stat(dst)
   if (!too.isDiretory(dst) && !(isFileMode(opt.mode) || isFileTextMode(opt.mode))) {
@@ -46,25 +36,25 @@ function getDstDir(dst, option) {
   }
 
   const name = too.basename(dst)
-  //feat: set excludes to be optional\nwith option.excludes=[]
+  // feat: set excludes to be optional\nwith option.excludes=[]
   if (Array.isArray(opt.excludes) && opt.excludes.includes(name)) {
     return
   }
-  //feat: support excludes regexp\nwith option.excludesRegexp=
+  // feat: support excludes regexp\nwith option.excludesRegexp=
   if (opt.excludesRegexp && opt.excludesRegexp.test(name)) {
     return
   }
 
-  //solution - a
-  //feat: find dst with regexp in file name and path\nwith option.mode != 'file_text'
+  // solution - a
+  // feat: find dst with regexp in file name and path\nwith option.mode != 'file_text'
   if (regexp.test(name) && !isFileTextMode(opt.mode)) {
-    //feat: output dst to console
+    // feat: output dst to console
     output(dst)
     return
   }
 
-  //solution - b
-  //feat: find dst with regexp in file text\nwith option.mode == 'file_text'\nwith option.fileTextRegexp
+  // solution - b
+  // feat: find dst with regexp in file text\nwith option.mode == 'file_text'\nwith option.fileTextRegexp
   if (isFileTextMode(opt.mode) && too.isFile(dst)) {
     const text = too.readFileSync(dst)
     if (opt.fileTextRegexp && opt.fileTextRegexp.test(text)) {
@@ -76,7 +66,7 @@ function getDstDir(dst, option) {
   if (!isDiretory(dst)) {
     return
   }
-  //feat:read diretory recursive
+  // feat:read diretory recursive
   const files = readdirSync(dst)
   if (files.length > 0) {
     files.forEach(file => {
@@ -87,14 +77,15 @@ function getDstDir(dst, option) {
 }
 
 function parseOption(option) {
-  let regexp, opt
+  let regexp
+  let opt
   if (opt) {
     if (isRegExp(option)) {
-      //eg:getDstDir('../',/sha.js$/ig)
+      // eg:getDstDir('../',/sha.js$/ig)
       regexp = option
       opt = {}
     } else if (isRegExp(opt.regexp)) {
-      //eg:getDstDir('../',{regexp:/sha.js$/ig})
+      // eg:getDstDir('../',{regexp:/sha.js$/ig})
       regexp = opt.regexp
       opt = option
     } else {
@@ -124,33 +115,33 @@ function parseOption(option) {
  */
 function isRegExp(s) {
   let result
-  //undefined,null
+  // undefined,null
   if (!s) {
     return false
   }
-  let type = typeof s
-  let falseList = ['boolean', 'string', 'number', 'function']
-  if (falseList.some(v => v == type)) return false
-  if (type == 'object' && 'test' in s) {
+  const type = typeof s
+  const falseList = ['boolean', 'string', 'number', 'function']
+  if (falseList.some(v => v === type)) return false
+  if (type === 'object' && 'test' in s) {
     return true
   }
   // log(s, typeof s, 'test' in s)
   // return typeof s
   return false
 }
-//api:isFileMode,isFileTextMode
+// api:isFileMode,isFileTextMode
 function isFileMode(s) {
-  return s == 'file'
+  return s === 'file'
 }
 function isFileTextMode(s) {
-  return s == 'file_text'
+  return s === 'file_text'
 }
 function output(s) {
-  //feat: output dst to console
+  // feat: output dst to console
   too.log(too.blue(`found in:${s}`))
 }
 
-export { getDstDir }
+export default getDstDir
 // run scr:
 // node get-dst-dir.js
 // node packages/read-diretory/src/index-fun.js

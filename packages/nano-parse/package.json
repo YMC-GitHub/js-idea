@@ -1,7 +1,7 @@
 {
   "name": "@ymc/nano-parse",
   "version": "0.0.1",
-  "description": "parse commandline argv",
+  "description": "parse commandline args - process.argv",
   "keywords": [
     "ymc",
     "nano-parse"

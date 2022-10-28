@@ -1,7 +1,7 @@
 # pkg ycs-help-usage-to-option
 
 ## desc
-ycs plugin help to set option with help msg
+ycs plugin - get txt from usage and gen entry option
 
 ## lib size  
 file | size | gzip | brotli

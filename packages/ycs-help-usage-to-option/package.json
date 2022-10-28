@@ -1,7 +1,7 @@
 {
   "name": "@ymc/ycs-help-usage-to-option",
   "version": "0.0.2",
-  "description": "ycs plugin help to set option with help msg",
+  "description": "ycs plugin - get txt from usage and gen entry option",
   "keywords": [
     "ymc",
     "ycs-help-usage-to-option"

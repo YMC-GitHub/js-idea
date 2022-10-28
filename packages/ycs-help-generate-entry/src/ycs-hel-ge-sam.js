@@ -1,4 +1,6 @@
-import GE from './ycs-hel-ge-api.js'
+/* eslint-disable no-unused-vars */
+
+import GE from './ycs-hel-ge-api'
 
 const { log } = console
 // idea: define usage likes below

@@ -1,4 +1,4 @@
-import GE from './ycs-hel-ge-api-cls.js'
+import GE from './ycs-hel-ge-api-cls'
 
 export default GE
 

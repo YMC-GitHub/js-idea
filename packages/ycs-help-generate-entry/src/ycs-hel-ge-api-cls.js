@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 // idea:easier,faster to write ycs-cli entrys when you clify your lib to ycs-cli
 // input entry
 // define a handle fun
@@ -9,7 +11,7 @@
 // ge is short for generate-entrys
 
 class GE {
-  constructor() {}
+  //   constructor() {} //fix Useless constructor
 
   entrys(entry) {
     // set
@@ -24,7 +26,7 @@ class GE {
   bind(subcmd = '', defFun = () => {}, bindType = '') {
     const entrys = this.entrys()
     if (!entrys) {
-      Error(`need entrys`)
+      Error('need entrys')
     }
 
     subcmd.split('|').forEach(cmd => {
@@ -34,6 +36,9 @@ class GE {
           // feat: support call then bind entry
           entry = defFun(cmd)
           break
+        default:
+          break
+        // fix Expected a default case
       }
       // feat: support bind entry
       entrys[cmd] = entry

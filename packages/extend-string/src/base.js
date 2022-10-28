@@ -1,8 +1,3 @@
-/**
-  * extendString v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 // @ymc/extend-string
 /* eslint-disable no-unused-vars,func-names */
 // fix no-unused-vars test,expectString
@@ -12,13 +7,13 @@
  * @param {()=>{}} handle
  */
 function extendStringPrototype(name, handle) {
-  const tobeExtende = String.prototype;
+  const tobeExtende = String.prototype
   if (!tobeExtende[name]) {
     // tobeExtende[name] = function(){return handle(this)}
     // function (...args){return padEndString(this,...args)}
     tobeExtende[name] = function (...args) {
       return handle(this, ...args)
-    };
+    }
   }
   // String.prototype.humanize= function(){return humanize(this)}
 }
@@ -43,12 +38,12 @@ function extendStringPrototype(name, handle) {
 function humanize(s) {
   return s
     .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-      let res = '';
+      let res = ''
       // log(word, index); //desc: for debug
       // feat: replace multi - or _ to one space
-      res = word.replace(/[-_]+/g, ' ');
+      res = word.replace(/[-_]+/g, ' ')
       // feat: add space to the char that is uppercase and is not the first index
-      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
+      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res
       // feat: the first char to upper ,other lowercase
       return index === 0 ? res.toUpperCase() : res.toLowerCase()
     })
@@ -145,9 +140,25 @@ function padEndString(number, len = 0, prefix = ' ') {
 //     return String(s) + padString.slice(0, targetLength);
 // };
 // String.prototype.padEndString = function (...args){return padEndString(this,...args)}
-extendStringPrototype('padEndString', padEndString);
-extendStringPrototype('padEnd', padEndString);
+extendStringPrototype('padEndString', padEndString)
+extendStringPrototype('padEnd', padEndString)
+
+export {
+  extendStringPrototype,
+  humanize,
+  slugify,
+  slugify as dasherize,
+  camelize,
+  underscoped,
+  classify,
+  swapCase,
+  capitialize,
+  sentence,
+  titleize,
+  padStartString,
+  padStartString as padStart,
+  padEndString,
+  padEndString as padEnd
+}
 
 // node lib/extend-string.js
-
-export { camelize, capitialize, classify, slugify as dasherize, extendStringPrototype, humanize, padEndString as padEnd, padEndString, padStartString as padStart, padStartString, sentence, slugify, swapCase, titleize, underscoped };

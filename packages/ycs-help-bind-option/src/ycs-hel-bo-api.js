@@ -1,4 +1,5 @@
-import { log, getOptName, getMapPathValue, getMap, getFormatOptStr } from './ycs-hel-bo-too.js'
+/* eslint-disable no-unused-vars */
+import { log, getOptName, getMapPathValue, getMap, getFormatOptStr } from './ycs-hel-bo-too'
 
 // idea:easier,faster to write ycs-cli usage when you clify your lib to ycs-cli
 // add or get option
@@ -9,6 +10,32 @@ import { log, getOptName, getMapPathValue, getMap, getFormatOptStr } from './ycs
 // bo.addOpt().getOpt().bind(ns)
 // bo.addOpt().getOpt().bind(subns,subcmd)
 // bo is short for bind-option
+/**
+ * @description
+ * ```
+ * ## why use?
+ * - [x] write cli option in node.js
+ * - [x] when many options is the same in subcmd or other cmd
+ * ```
+ * @sample
+ * ```
+ * //bo is short for bind-option
+ * const bo = new BO();
+ * //define option
+ * bo.addOpt(`-l,--loc the des file location`);
+ * bo.addOpt(`-h,--help get help`);
+ * bo.addOpt(`-v,--version get version`);
+ *
+ * // feat:bind option to another subns,subcmd
+ * bo.getOpt("loc").bindOpt("eslint", "add");
+ *
+ * // logMap()
+ * // log(getMap(bo.optionMap))
+ * // feat:option to usage
+ * log(bo.usage());
+ * // log(bo.usage('eslint','add'))
+ * ```
+ */
 class BO {
   constructor() {
     this.optionMap = {}
@@ -92,7 +119,7 @@ class BO {
     let subcmd = [...this.cmd].filter(v => v.trim()).join('|')
     subcmd = subcmd ? `subcmd:${subcmd}` : ''
 
-    let usage = `usage:ns [option]`
+    let usage = 'usage:ns [option]'
     if (subns) {
       usage = usage.replace(/\[option\]$/, '[subns] [option]')
     }

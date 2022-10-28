@@ -1,14 +1,15 @@
-# pkg ycsHelpBindOption
+# pkg ycs-help-bind-option
 
 ## desc
-ymc package ycs-help-bind-option
+ycs plugin - get txt from usage and gen entry option
 
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.js | 8.73kb | 2.37kb | 2.10kb
-dist/index.min.js | 4.00kb | 1.44kb | 1.28kb
-dist/index.esm.js | 3.85kb | 1.27kb | 1.15kb
+dist/index.js | 5.68kb | 1.85kb | 1.65kb
+dist/index.min.js | 1.79kb | 0.85kb | 0.77kb
+dist/index.esm.js | 5.00kb | 1.68kb | 1.52kb
+dist/index.esm.min.js | 1.51kb | 0.70kb | 0.64kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

@@ -1,13 +1,13 @@
-import BO from './ycs-hel-bo-api.js'
+import BO from './ycs-hel-bo-api'
 
 const { log } = console
 
 const main = () => {
   const bo = new BO()
   // feat: add option
-  bo.addOpt(`-l,--loc the des file location`)
-  bo.addOpt(`-h,--help get help`)
-  bo.addOpt(`-v,--version get version`)
+  bo.addOpt('-l,--loc the des file location')
+  bo.addOpt('-h,--help get help')
+  bo.addOpt('-v,--version get version')
 
   // feat:bind option to another subns,subcmd
   bo.getOpt('loc').bindOpt('eslint', 'add')

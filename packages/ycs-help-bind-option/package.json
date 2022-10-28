@@ -1,7 +1,7 @@
 {
   "name": "@ymc/ycs-help-bind-option",
   "version": "0.0.2",
-  "description": "ymc package ycs-help-bind-option",
+  "description": "ycs plugin - get txt from usage and gen entry option",
   "keywords": [
     "ymc",
     "ycs-help-bind-option"

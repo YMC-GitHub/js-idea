@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring,prefer-const */
 export const { log } = console
 
 export const getOptName = (s = '', t = 'l') => {
@@ -6,15 +7,18 @@ export const getOptName = (s = '', t = 'l') => {
   // get l or loc
   let keys = ''
   keys = s
-    .split(` `)[0]
+    .split(' ')[0]
     .split(',')
-    .map(v => v.replace(/^\-*/gi, ''))
+    .map(v => v.replace(/^-*/gi, '')) // fix Unnecessary escape character: \-
+
+  // fix Use array destructuring  //todo
 
   switch (t.toLowerCase()) {
     case 's':
       keys = keys[0]
       break
     case 'l':
+    default: // fix Expected a default case
       // feat: if not l , use s
       if (!keys[1]) {
         keys = keys[0]
@@ -27,8 +31,11 @@ export const getOptName = (s = '', t = 'l') => {
 }
 
 export const getMapPathValue = (map, ns, def = {}) => {
-  map[ns] = map[ns] ? map[ns] : def
-  return map[ns]
+  // fix no-param-reassign
+  let res
+  // map[ns] = map[ns] ? map[ns] : def
+  res = map[ns] ? map[ns] : def
+  return res
 }
 
 export const getMap = (optionMap, ns = '', cmd = '') => {
@@ -48,6 +55,8 @@ export const getMap = (optionMap, ns = '', cmd = '') => {
   return map
 }
 export const getFormatOptStr = (opts, s = '', num = 2) => {
-  opts = Array.isArray(opts) ? opts : [opts]
-  return opts.join(`\n`).replace(/^/gim, Array(num).fill(s).join(''))
+  // fix Assignment to function parameter 'opts'
+  let res
+  res = Array.isArray(opts) ? opts : [opts]
+  return res.join('\n').replace(/^/gim, Array(num).fill(s).join(''))
 }

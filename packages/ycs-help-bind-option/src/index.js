@@ -1,2 +1,4 @@
-import BindOption from './ycs-hel-bo-api.js'
+/* eslint-disable import/prefer-default-export */
+import BindOption from './ycs-hel-bo-api'
+
 export { BindOption }

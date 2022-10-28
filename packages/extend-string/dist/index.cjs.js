@@ -127,25 +127,6 @@ function padEndString(number, len = 0, prefix = ' ') {
 
   return padEndString(number + prefix, len, prefix);
 } // https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
-// https://www.zhangxinxu.com/wordpress/2018/07/js-padstart-padend/
-// function padEndString (s,targetLength, padString) {
-//     console.log(s,targetLength, padString)
-//     targetLength = targetLength >> 0;
-//     padString = String((typeof padString !== 'undefined' ? padString : ' '));
-//     if (s.length > targetLength || padString === '') {
-//         return String(s);
-//     }
-//     targetLength = targetLength - s.length;
-//     if (targetLength > padString.length) {
-//         padString += padString.repeat(targetLength / padString.length);
-//     }
-//     return String(s) + padString.slice(0, targetLength);
-// };
-// String.prototype.padEndString = function (...args){return padEndString(this,...args)}
-
-
-extendStringPrototype('padEndString', padEndString);
-extendStringPrototype('padEnd', padEndString);
  // node lib/extend-string.js
 
 exports.camelize = camelize;

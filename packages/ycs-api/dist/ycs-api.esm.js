@@ -1,8 +1,3 @@
-/**
-  * ycsApi v0.0.2
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 /* eslint-disable */
 // docs(core): add docs comment
 /**
@@ -133,47 +128,6 @@ const defOption = () => ({
   allowAutoSubNs: true,
   autoSubNs: ''
 });
-
-/**
- *
- * @param {{option:{}}} entrys
- * @returns
- * @description
- * ```
- * - [x] bind entrys.option to ysc.option
- * - [x] bind entrys.xx to ysc.option (xx is some of version,ns,autoSubCmd,autoSubNs)
- * - [x] bind entrys to ysc.context
- * ```
- */
-const installEntrys =
-  (entrys = {}) =>
-  ycs => {
-    // const ycs = new Ycs()
-    // let input =process.argv
-    // ycs.entry(entrys).run(input)
-    // ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys)
-
-    // idea: bind entrys.option to ysc.option
-    if (entrys.option) {
-      ycs.option = {
-        ...ycs.option,
-        ...entrys.option
-      };
-      // Assignment to property of function parameter 'ycs'
-    }
-
-    // idea: bind entrys.xx to ysc.option
-    // xx is some of version,ns,autoSubCmd,autoSubNs
-    'version,ns,autoSubCmd,autoSubNs'.split(',').forEach(item => {
-      if (entrys[item]) {
-        ycs.option[item] = entrys[item];
-      }
-      // Assignment to property of function parameter 'ycs'
-    });
-    ycs.entry(entrys);
-    // ysc.run(input)
-    return ycs
-  };
 
 /* eslint-disable prefer-const */
 // feat: support subcmd alias (todo)
@@ -378,4 +332,4 @@ class Ycs {
 // 1. check syt
 // node script/ycs-api.js
 
-export { Ycs, defOption, installEntrys };
+export { Ycs as default };

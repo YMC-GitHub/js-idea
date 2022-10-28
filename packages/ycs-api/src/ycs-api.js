@@ -1,6 +1,7 @@
-import nanoparse from './nano-parse.js'
+/* eslint-disable prefer-const */
+import nanoparse from './nano-parse'
 // import entrys from './ycs-ins.js';
-import { defOption } from './ycs-too.js'
+import { defOption } from './ycs-too'
 // feat: support subcmd alias (todo)
 
 // idea: extract function to class
@@ -76,7 +77,7 @@ class Ycs {
     // feat: support sub ns
     if (enbaleSubNs) {
       subns = input[argvIndexS]
-      argvIndexS++
+      argvIndexS += 1 // fix Unary operator '++' used
       helpmsg = helpmsg.replace(/option$/, 'subns option')
     }
 
@@ -90,7 +91,7 @@ class Ycs {
     if (enbaleSubCmd) {
       // subcmd = input[2]
       subcmd = input[argvIndexS]
-      argvIndexS++
+      argvIndexS += 1 // fix Unary operator '++' used
       // helpmsg=`usage:ns subcmd option`
       helpmsg = helpmsg.replace(/option$/, 'subcmd option')
     }
@@ -149,7 +150,7 @@ class Ycs {
 
     if (invalidArgvLength) {
       log(`${helpmsg}`)
-      log(`error:invalid argv length`)
+      log('error:invalid argv length')
       return
     }
 
@@ -193,9 +194,9 @@ class Ycs {
     // flags,_,extras
     // option is alias of flags
     if (entrys.notOnlyFlags || entry.notOnlyFlags) {
-      return entry(argv)
+      return entry(argv) /* eslint-disable-line consistent-return */
     }
-    return entry(option)
+    return entry(option) /* eslint-disable-line consistent-return */
   }
 }
 export default Ycs

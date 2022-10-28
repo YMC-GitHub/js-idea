@@ -1,13 +1,8 @@
-/**
-  * ycsApi v0.0.2
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["ycs-api"] = {}));
-})(this, (function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["ycs-api"] = factory());
+})(this, (function () { 'use strict';
 
   /* eslint-disable */
   // docs(core): add docs comment
@@ -142,43 +137,6 @@
     allowAutoSubNs: true,
     autoSubNs: ''
   });
-  /**
-   *
-   * @param {{option:{}}} entrys
-   * @returns
-   * @description
-   * ```
-   * - [x] bind entrys.option to ysc.option
-   * - [x] bind entrys.xx to ysc.option (xx is some of version,ns,autoSubCmd,autoSubNs)
-   * - [x] bind entrys to ysc.context
-   * ```
-   */
-
-  const installEntrys = (entrys = {}) => ycs => {
-    // const ycs = new Ycs()
-    // let input =process.argv
-    // ycs.entry(entrys).run(input)
-    // ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys)
-    // idea: bind entrys.option to ysc.option
-
-    if (entrys.option) {
-      ycs.option = { ...ycs.option,
-        ...entrys.option
-      }; // Assignment to property of function parameter 'ycs'
-    } // idea: bind entrys.xx to ysc.option
-    // xx is some of version,ns,autoSubCmd,autoSubNs
-
-
-    'version,ns,autoSubCmd,autoSubNs'.split(',').forEach(item => {
-      if (entrys[item]) {
-        ycs.option[item] = entrys[item];
-      } // Assignment to property of function parameter 'ycs'
-
-    });
-    ycs.entry(entrys); // ysc.run(input)
-
-    return ycs;
-  };
 
   /* eslint-disable prefer-const */
   // idea: extract function to class
@@ -385,10 +343,6 @@
   // 1. check syt
   // node script/ycs-api.js
 
-  exports.Ycs = Ycs;
-  exports.defOption = defOption;
-  exports.installEntrys = installEntrys;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  return Ycs;
 
 }));

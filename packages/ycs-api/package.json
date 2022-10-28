@@ -1,7 +1,7 @@
 {
   "name": "@ymc/ycs-api",
   "version": "0.0.2",
-  "description": "ymc package ycs-api",
+  "description": "ycs api",
   "keywords": [
     "ymc",
     "ycs-api"

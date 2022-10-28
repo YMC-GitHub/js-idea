@@ -1,4 +1,5 @@
-import { defOption } from './ycs-too.js'
+/* eslint-disable no-unused-vars */
+import { defOption } from './ycs-too'
 
 const { log } = console
 

@@ -1,4 +1,5 @@
-//docs(core): add docs comment
+/* eslint-disable */
+// docs(core): add docs comment
 /**
  * parse cli cmd string
  * @param {string} input
@@ -15,7 +16,7 @@ export default function nanoargs(input) {
   let args = input
   const _ = []
 
-  //feat(nano-parse): support extras when '--' bind to ouput.extras
+  // feat(nano-parse): support extras when '--' bind to ouput.extras
   if (input.includes('--')) {
     extras = input.slice(input.indexOf('--') + 1)
     args = input.slice(0, input.indexOf('--'))
@@ -28,14 +29,14 @@ export default function nanoargs(input) {
     const curr = args[i]
     const next = args[i + 1]
 
-    //eg:ymc.rc.json
+    // eg:ymc.rc.json
     const nextIsValue = next && !/^--.+/.test(next) && !/^-.+/.test(next)
 
     const pushWithNext = x => {
       newArgs.push([x, nextIsValue ? next : true])
     }
 
-    //eg:--conf=ymc.rc.json -f=ymc.rc.json
+    // eg:--conf=ymc.rc.json -f=ymc.rc.json
     if (/^--.+=/.test(curr) || /^-.=/.test(curr)) {
       newArgs.push(curr.split('='))
     } else if (/^-[^-].*/.test(curr)) {

@@ -1,7 +1,7 @@
 {
   "name": "@ymc/ycs-help-generate-entry",
   "version": "0.0.2",
-  "description": "ycs plugin help for generate-entry",
+  "description": "ycs plugin - gen entry for test or other case",
   "keywords": [
     "ymc",
     "ycs-help-generate-entry"

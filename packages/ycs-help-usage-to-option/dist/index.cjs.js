@@ -1,8 +1,7 @@
-/**
-  * ycsHelpUsageToOption v0.0.2
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 // idea: usage to option
 // uo is short for usage-to-option
 // get subns
@@ -10,16 +9,17 @@
 const getTxtFromUsage = (s, usage = '') => {
   const regexp = new RegExp(` *${s}:.*`, 'ig');
   const match = usage.match(regexp);
+
   if (match) {
-    return match[0].replace(new RegExp(` *${s}:`, 'i'), '')
+    return match[0].replace(new RegExp(` *${s}:`, 'i'), '');
   }
-  return ''
+
+  return '';
 };
 
 const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
   let option = {};
-  option = {
-    ...option,
+  option = { ...option,
     ...{
       version,
       ns,
@@ -27,7 +27,8 @@ const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
       autoSubNs: getTxtFromUsage('subns', usage)
     }
   };
-  return option
+  return option;
 };
 
-export { getTxtFromUsage, genOptionFromUsage as usageToOption };
+exports.getTxtFromUsage = getTxtFromUsage;
+exports.usageToOption = genOptionFromUsage;

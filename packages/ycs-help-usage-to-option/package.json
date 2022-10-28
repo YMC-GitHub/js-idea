@@ -1,7 +1,7 @@
 {
   "name": "@ymc/ycs-help-usage-to-option",
   "version": "0.0.2",
-  "description": "ymc package ycs-help-usage-to-option",
+  "description": "ycs plugin help to set option with help msg",
   "keywords": [
     "ymc",
     "ycs-help-usage-to-option"

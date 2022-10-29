@@ -1,3 +1,8 @@
+/**
+  * stylizeObjectKeys v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });

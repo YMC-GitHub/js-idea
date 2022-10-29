@@ -17,15 +17,15 @@
  * @param {()=>{}} handle
  */
 function extendStringPrototype(name, handle) {
-    const tobeExtende = String.prototype;
-    if (!tobeExtende[name]) {
-        // tobeExtende[name] = function(){return handle(this)}
-        // function (...args){return padEndString(this,...args)}
-        tobeExtende[name] = function (...args) {
-            return handle(this, ...args)
-        };
-    }
-    // String.prototype.humanize= function(){return humanize(this)}
+  const tobeExtende = String.prototype;
+  if (!tobeExtende[name]) {
+    // tobeExtende[name] = function(){return handle(this)}
+    // function (...args){return padEndString(this,...args)}
+    tobeExtende[name] = function (...args) {
+      return handle(this, ...args)
+    };
+  }
+  // String.prototype.humanize= function(){return humanize(this)}
 }
 
 /**
@@ -46,51 +46,51 @@ function extendStringPrototype(name, handle) {
  * ```
  */
 function humanize(s) {
-    return s
-        .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-            let res = '';
-            // log(word, index); //desc: for debug
-            // feat: replace multi - or _ to one space
-            res = word.replace(/[-_]+/g, ' ');
-            // feat: add space to the char that is uppercase and is not the first index
-            res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
-            // feat: the first char to upper ,other lowercase
-            return index === 0 ? res.toUpperCase() : res.toLowerCase()
-        })
-        .replace(/\s+/g, ' ')
+  return s
+    .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
+      let res = '';
+      // log(word, index); //desc: for debug
+      // feat: replace multi - or _ to one space
+      res = word.replace(/[-_]+/g, ' ');
+      // feat: add space to the char that is uppercase and is not the first index
+      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
+      // feat: the first char to upper ,other lowercase
+      return index === 0 ? res.toUpperCase() : res.toLowerCase()
+    })
+    .replace(/\s+/g, ' ')
 }
 
 function slugify(s) {
-    return humanize(s)
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toLowerCase())
-        .replace(/\s+/g, '-')
+  return humanize(s)
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toLowerCase())
+    .replace(/\s+/g, '-')
 }
 
 function camelize(s) {
-    return humanize(s)
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
-        .replace(/\s+/g, '')
+  return humanize(s)
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
+    .replace(/\s+/g, '')
 }
 
 function underscoped(s) {
-    return humanize(s)
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toLowerCase())
-        .replace(/\s+/g, '_')
+  return humanize(s)
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toLowerCase())
+    .replace(/\s+/g, '_')
 }
 
 function classify(s) {
-    return humanize(s)
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
-        .replace(/\s+/g, '')
+  return humanize(s)
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
+    .replace(/\s+/g, '')
 }
 
 function swapCase(s) {
-    return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) => {
-        if (/[A-Z]/.test(word)) {
-            return word.toLowerCase()
-        }
-        return word.toUpperCase()
-    })
+  return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) => {
+    if (/[A-Z]/.test(word)) {
+      return word.toLowerCase()
+    }
+    return word.toUpperCase()
+  })
 }
 
 /**
@@ -99,7 +99,7 @@ function swapCase(s) {
  * @returns
  */
 function capitialize(s) {
-    return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) => (index === 0 ? word.toUpperCase() : word))
+  return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) => (index === 0 ? word.toUpperCase() : word))
 }
 
 /**
@@ -108,9 +108,7 @@ function capitialize(s) {
  * @returns
  */
 function sentence(s) {
-    return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) =>
-        index === 0 ? word.toUpperCase() : word.toLowerCase()
-    )
+  return s.replace(/(?:^\w|[A-Z-a-z]|\b\w)/g, (word, index) => (index === 0 ? word.toUpperCase() : word.toLowerCase()))
 }
 
 /**
@@ -119,21 +117,21 @@ function sentence(s) {
  * @returns
  */
 function titleize(s) {
-    return s.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
+  return s.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 }
 
 function padStartString(number, len = 0, prefix = ' ') {
-    if (number.length >= len) {
-        return String(number)
-    }
-    return padStartString(prefix + number, len, prefix)
+  if (number.length >= len) {
+    return String(number)
+  }
+  return padStartString(prefix + number, len, prefix)
 }
 
 function padEndString(number, len = 0, prefix = ' ') {
-    if (number.length >= len) {
-        return String(number)
-    }
-    return padEndString(number + prefix, len, prefix)
+  if (number.length >= len) {
+    return String(number)
+  }
+  return padEndString(number + prefix, len, prefix)
 }
 
 var styles = /*#__PURE__*/Object.freeze({

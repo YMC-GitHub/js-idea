@@ -1,3 +1,8 @@
+/**
+  * readDiretory v0.0.1
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 'use strict';
 
 var node_fs = require('node:fs');

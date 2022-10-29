@@ -6,8 +6,8 @@ ycs plugin - bind option to cmd or ns
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 4.92kb | 1.64kb | 1.47kb
-dist/index.cjs.min.js | 1.49kb | 0.69kb | 0.62kb
+dist/index.cjs.js | 4.99kb | 1.70kb | 1.52kb
+dist/index.cjs.min.js | 1.57kb | 0.74kb | 0.67kb
 dist/index.esm.js | 5.00kb | 1.68kb | 1.52kb
 dist/index.esm.min.js | 1.51kb | 0.70kb | 0.64kb
 dist/index.js | 5.00kb | 1.68kb | 1.52kb

@@ -1,14 +1,13 @@
-#!/usr/bin/env node
 /**
   * jcm v0.0.1
   * (c) 2018-2022 ymc
   * @license MIT
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('fs'), require('path')) :
-  typeof define === 'function' && define.amd ? define(['fs', 'path'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.fs, global.path));
-})(this, (function (fs, path) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('node:fs'), require('node:path')) :
+  typeof define === 'function' && define.amd ? define(['node:fs', 'node:path'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.node_fs, global.node_path));
+})(this, (function (node_fs, node_path) { 'use strict';
 
   /**
    * @description
@@ -29,10 +28,10 @@
   class GE {
     constructor() {}
     /**
-     * set or get entry
-     * @param {{}} entry
-     * @returns {this|entry}
-     */
+       * set or get entry
+       * @param {{}} entry
+       * @returns {this|entry}
+       */
 
 
     entrys(entry) {
@@ -46,11 +45,11 @@
       return this.context;
     }
     /**
-     * bind ns or subcmd with handle fun
-     * @param {string} subcmd
-     * @param {function} defFun
-     * @param {string} bindType call handle fun
-     */
+       * bind ns or subcmd with handle fun
+       * @param {string} subcmd
+       * @param {function} defFun
+       * @param {string} bindType call handle fun
+       */
 
 
     bind(subcmd = '', defFun = () => {}, bindType = '') {
@@ -126,7 +125,7 @@
       }
     };
     return option;
-  }; //export {getTxtFromUsage,genOptionFromUsage}
+  }; // export {getTxtFromUsage,genOptionFromUsage}
 
   // import { readJson, saveJson, getUserHome } from './jcm-too.js'
   const {
@@ -147,11 +146,11 @@
       this.freeze = false;
     }
     /**
-     * add config to config list by order
-     * @param {{}} config
-     * @param {numbber} order
-     * @returns {this} why ? to chain
-     */
+       * add config to config list by order
+       * @param {{}} config
+       * @param {numbber} order
+       * @returns {this} why ? to chain
+       */
 
 
     use(config = {}, order) {
@@ -179,15 +178,15 @@
       return this;
     }
     /**
-     *
-     * @returns {{}}
-     * @description
-     * ```
-     * - [x] get config by index in config list
-     * - [x] simple merge config
-     * - [x] freeze result optionally
-     * ```
-     */
+       *
+       * @returns {{}}
+       * @description
+       * ```
+       * - [x] get config by index in config list
+       * - [x] simple merge config
+       * - [x] freeze result optionally
+       * ```
+       */
 
 
     load() {
@@ -237,11 +236,11 @@
       };
     }
     /**
-     * bind data to ctx.data
-     * @param {*} data
-     * @returns {this} why ? to chain
-     *
-     */
+       * bind data to ctx.data
+       * @param {*} data
+       * @returns {this} why ? to chain
+       *
+       */
 
 
     bind(data) {
@@ -252,10 +251,10 @@
       return this;
     }
     /**
-     * set split char
-     * @param {string} s
-     * @returns {this} why ? to chain
-     */
+       * set split char
+       * @param {string} s
+       * @returns {this} why ? to chain
+       */
 
 
     split(s = '.') {
@@ -266,14 +265,14 @@
       return this;
     }
     /**
-     * get or set value with key
-     * @param {string} key
-     * @param {*} val
-     * @returns {val|this}
-     * @description
-     * ```
-     * ```
-     */
+       * get or set value with key
+       * @param {string} key
+       * @param {*} val
+       * @returns {val|this}
+       * @description
+       * ```
+       * ```
+       */
 
 
     conf(key = '', val) {
@@ -365,19 +364,19 @@
       this.tool = {};
     }
     /**
-     *
-     * @param {string} name
-     * @returns {string}
-     */
+       *
+       * @param {string} name
+       * @returns {string}
+       */
 
 
     getFileLoc(name) {
-      let {
+      const {
         option,
         tool
       } = this;
-      let filename = name ? name : option.name;
-      let flags = option;
+      const filename = name || option.name;
+      const flags = option;
 
       if (flags.usd || flags.u) {
         // log(tool.getUserHome(), filename, option)
@@ -389,7 +388,7 @@
       }
 
       if (flags.wkd
-      /*|| flags.w*/
+      /* || flags.w */
       ) {
         log$2(filename, option);
         return tool.joinPath(flags.wkd, filename);
@@ -398,24 +397,26 @@
       return filename;
     }
     /**
-     *
-     * @param {string} name
-     * @returns {string[]}
-     * @description
-     * ```
-     * user-path-> project-path -> des-path
-     * ```
-     */
+       *
+       * @param {string} name
+       * @returns {string[]}
+       * @description
+       * ```
+       * user-path-> project-path -> des-path
+       * ```
+       */
 
 
     getFileLocList(name) {
       let loclist = [];
-      let {
+      const {
         option
       } = this;
-      let list = [['usd', 'u'], ['crd', 'c'], ['wkd']];
+      const list = [['usd', 'u'], ['crd', 'c'], ['wkd']];
       loclist = list.map(keys => {
-        let ukey, uVal, flag;
+        let ukey;
+        let uVal;
+        let flag;
 
         for (let index = 0; index < keys.length; index++) {
           const key = keys[index];
@@ -442,37 +443,37 @@
       return loclist;
     }
     /**
-     * read config
-     * @param {string} name
-     * @returns {[]|{}}
-     * @description
-     * ```
-     * user-path -> project-path -> des-path
-     * read-conf -> read-json
-     * ```
-     */
+       * read config
+       * @param {string} name
+       * @returns {[]|{}}
+       * @description
+       * ```
+       * user-path -> project-path -> des-path
+       * read-conf -> read-json
+       * ```
+       */
 
 
     magicReadConfig(name = '.ymcrc.json') {
-      let {
+      const {
         tool
       } = this;
-      let loclist = this.getFileLocList(name);
+      const loclist = this.getFileLocList(name);
       return readConf(loclist, tool.readJson);
     }
     /**
-     * @param {{}} data
-     * @param {string} key
-     * @param {string} val
-     * @returns {{}}
-     * @description
-     * ```
-     * ## why use?
-     * - [x] easy to write json config in node.js
-     *
-     * - [x] idea: bind-cache-data -> define-json-data
-     * ```
-     */
+       * @param {{}} data
+       * @param {string} key
+       * @param {string} val
+       * @returns {{}}
+       * @description
+       * ```
+       * ## why use?
+       * - [x] easy to write json config in node.js
+       *
+       * - [x] idea: bind-cache-data -> define-json-data
+       * ```
+       */
 
 
     magicDefineConfig(data, key, val) {
@@ -485,19 +486,19 @@
       return gsc.data;
     }
     /**
-     * get val with key
-     * @param {string} key
-     * @param {string} val
-     * @returns {string}
-     * @sample
-     * ```
-     * getJsonVal(data,'key','val')
-     * ```
-     */
+       * get val with key
+       * @param {string} key
+       * @param {string} val
+       * @returns {string}
+       * @sample
+       * ```
+       * getJsonVal(data,'key','val')
+       * ```
+       */
 
 
     getJsonVal(key = 'key', val = 'val') {
-      let {
+      const {
         data
       } = this;
       let res; // if (option[keyname]) {
@@ -515,19 +516,19 @@
       }
     }
     /**
-     *
-     * @param {string} key
-     * @param {string} val
-     */
+       *
+       * @param {string} key
+       * @param {string} val
+       */
 
 
     setJsonVal(key, val, hasval) {
-      let {
+      const {
         option,
         tool
       } = this;
-      let self = this;
-      let {
+      const self = this;
+      const {
         name
       } = option;
       let data;
@@ -543,11 +544,11 @@
       // let loc = tool.joinPath(wkd, name)
 
 
-      let loc; //loc = self.getFileLoc(name)
+      let loc; // loc = self.getFileLoc(name)
 
       loc = self.getFileLocList(name);
       loc = loc[loc.length - 1];
-      let locdir = tool.parsePath(loc).dir;
+      const locdir = tool.parsePath(loc).dir;
 
       if (locdir) {
         tool.addDirs(locdir);
@@ -560,36 +561,38 @@
       this.data = data;
     }
     /**
-     *
-     * @param {string} cmd
-     * @returns {{}}
-     * @description
-     * ```
-     * idea:genreate config to des dir
-     * make dir
-     * mgnt cnf
-     * ```
-     */
+       *
+       * @param {string} cmd
+       * @returns {{}}
+       * @description
+       * ```
+       * idea:genreate config to des dir
+       * make dir
+       * mgnt cnf
+       * ```
+       */
 
 
     comEntry(cmd) {
-      let {
+      const {
         option,
         tool
       } = this;
-      let {
+      const {
         name
       } = option;
       let data = {};
-      let keyname = 'key';
-      let valname = 'val';
-      let key, val, hasval;
+      const keyname = 'key';
+      const valname = 'val';
+      let key;
+      let val;
+      let hasval;
 
       if (cmd == 'cnf') {
-        //eg.jcm cnf --org=ymc
-        //eg.jcm cnf --org
-        let arglist = Object.keys(option);
-        let builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|');
+        // eg.jcm cnf --org=ymc
+        // eg.jcm cnf --org
+        const arglist = Object.keys(option);
+        const builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|');
         key = arglist.filter(v => !builtinlist.includes(v))[0];
         val = option[key];
         hasval = key in option;
@@ -600,8 +603,8 @@
           cmd = 'get';
         }
       } else {
-        //eg.jcm add --key=org --val=ymc
-        //eg.jcm get --key=org
+        // eg.jcm add --key=org --val=ymc
+        // eg.jcm get --key=org
         key = option[keyname];
         val = option[valname];
         hasval = valname in option;
@@ -609,12 +612,12 @@
 
       switch (cmd) {
         case 'add':
-          //add
+          // add
           this.setJsonVal(key, val, hasval);
           break;
 
         case 'del':
-          //del
+          // del
           // todo:it.deleteConfFile(flags)
           break;
 
@@ -623,15 +626,15 @@
           data = this.magicReadConfig(name);
           this.getJsonVal(key, val); // case:get key eg. jcm get
 
-          log$2(`[info] info data:`);
+          log$2('[info] info data:');
           log$2(data);
           break;
       }
 
-      return data; //key,val
-      //jcm get --key=username
-      //key=option[keyname]
-      //val=option[valname]
+      return data; // key,val
+      // jcm get --key=username
+      // key=option[keyname]
+      // val=option[valname]
     }
 
   }
@@ -658,19 +661,19 @@
    */
 
   function mkdirsSync(dirPath) {
-    if (fs.existsSync(dirPath)) {
+    if (node_fs.existsSync(dirPath)) {
       return true;
     }
 
-    if (mkdirsSync(path.dirname(dirPath))) {
-      fs.mkdirSync(dirPath);
+    if (mkdirsSync(node_path.dirname(dirPath))) {
+      node_fs.mkdirSync(dirPath);
 
       return true;
     }
   }
 
   const makeDirs = mkdirsSync;
-  const rmDirs = fs.rmdirSync;
+  const rmDirs = node_fs.rmdirSync;
 
   /**
    * read json sync
@@ -683,7 +686,7 @@
     let data;
 
     try {
-      data = fs.readFileSync(jsonLoc);
+      data = node_fs.readFileSync(jsonLoc);
       data = JSON.parse(data);
     } catch (error) {
       data = def;
@@ -699,7 +702,7 @@
 
 
   function saveJson(jsonLoc, data) {
-    fs.writeFileSync(jsonLoc, JSON.stringify(data, null, 2));
+    node_fs.writeFileSync(jsonLoc, JSON.stringify(data, null, 2));
   }
   /**
    * get user home dir
@@ -753,17 +756,17 @@
   const entrys = (flags = {}) => {
     // log nano parser result 's flags (flags vs _ vs extras)
     // log(flags)
-    entrys.debug && log$1(`[info] run cmd with: ns`);
-    entrys.debug && log$1(`[info] hello ns`); //do sth. here
+    entrys.debug && log$1('[info] run cmd with: ns');
+    entrys.debug && log$1('[info] hello ns'); // do sth. here
 
-    entrys.debug && log$1(`[info] log cli option:`);
+    entrys.debug && log$1('[info] log cli option:');
     entrys.debug && log$1(flags);
   }; // 1. gen cmd fun
 
 
   const defFun = (cmd = 'add') => (cliFlags = {}) => {
     entrys.debug && log$1(`[info] run cmd with: ns ${cmd}`);
-    entrys.debug && log$1(`[info] hello ${cmd}`); //do sth. here
+    entrys.debug && log$1(`[info] hello ${cmd}`); // do sth. here
     // log(`[info] log cli option:`)
     // log(cliFlags)
     // let nowFlags = { ...builtinFlags, ...cliFlags }
@@ -782,12 +785,12 @@
     } // comEntry(cmd, nowFlags)
 
 
-    entrys.debug && log$1(`[info] log now flags:`);
+    entrys.debug && log$1('[info] log now flags:');
     entrys.debug && log$1(nowFlags);
     jcm.option = nowFlags;
     jcm.tool = {
-      parsePath: path.parse,
-      joinPath: path.join,
+      parsePath: node_path.parse,
+      joinPath: node_path.join,
       addDirs: makeDirs,
       delDirs: rmDirs,
       readJson,
@@ -796,11 +799,11 @@
     };
 
     if (cmd == 'loc') {
-      let file = jcm.getFileLocList(); //jcm.getFileLoc()
+      const file = jcm.getFileLocList(); // jcm.getFileLoc()
 
-      log$1(`[info] cnf file list:`);
+      log$1('[info] cnf file list:');
       log$1(file);
-      log$1(`[info] the last file:`);
+      log$1('[info] the last file:');
       log$1(file[file.length - 1]); // log(jcm.tool.parsePath(file[file.length - 1]))
 
       return;
@@ -810,7 +813,7 @@
   }; // 2. bind cmd fun
 
 
-  const ge = new GE(); //let subcmd = getTxtFromUsage('subcmd', usage)
+  const ge = new GE(); // let subcmd = getTxtFromUsage('subcmd', usage)
   // ge.entrys(entrys).bind('add|get|del|put|cls|log',defFun,'call')
 
   ge.entrys(entrys).bind('add|del|put|get', defFun, 'call');
@@ -964,7 +967,7 @@
   };
 
   const defOption = () => ({
-    helpmsg: `usage:ns option`,
+    helpmsg: 'usage:ns option',
     argvIndexS: 2,
     // argv index start position
     enbaleSubCmd: false,
@@ -1151,7 +1154,7 @@
 
       if (invalidArgvLength) {
         log(`${helpmsg}`);
-        log(`error:invalid argv length`);
+        log('error:invalid argv length');
         return;
       } // feat: parse nano argv
       // let [,,...sinput ] = input
@@ -1203,13 +1206,13 @@
   // 1. check syt
   // node script/ycs-api.js
 
-  //#!/usr/bin/env node
+  // #!/usr/bin/env node
   // idea: use with cli
   // ycs.version('1.0.0').entry(entrys).run()
 
   const ycs = new Ycs();
   installEntrys(entrys)(ycs);
-  ycs.run(process.argv); //function main(ycs)(){}
+  ycs.run(process.argv); // function main(ycs)(){}
   // usage:
   // 1. add execable
   // chmod +x script/jcm-cli.js

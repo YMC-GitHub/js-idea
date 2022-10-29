@@ -1,4 +1,4 @@
-//#!/usr/bin/env node
+// #!/usr/bin/env node
 
 import entrys from './jcm-clify.js'
 import Ycs from './ycs-api.js'
@@ -10,7 +10,7 @@ import { installEntrys } from './ycs-too.js'
 const ycs = new Ycs()
 installEntrys(entrys)(ycs)
 ycs.run(process.argv)
-//function main(ycs)(){}
+// function main(ycs)(){}
 
 // usage:
 // 1. add execable

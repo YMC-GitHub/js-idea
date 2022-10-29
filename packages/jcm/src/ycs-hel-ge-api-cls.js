@@ -41,7 +41,7 @@ class GE {
   bind(subcmd = '', defFun = () => {}, bindType = '') {
     const entrys = this.entrys()
     if (!entrys) {
-      Error(`need entrys`)
+      Error('need entrys')
     }
 
     subcmd.split('|').forEach(cmd => {

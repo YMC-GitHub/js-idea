@@ -134,7 +134,7 @@ class BO {
     let subcmd = [...this.cmd].filter(v => v.trim()).join('|')
     subcmd = subcmd ? `subcmd:${subcmd}` : ''
 
-    let usage = `usage:ns [option]`
+    let usage = 'usage:ns [option]'
     if (subns) {
       usage = usage.replace(/\[option\]$/, '[subns] [option]')
     }

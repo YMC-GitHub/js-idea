@@ -14,6 +14,7 @@ class Ujc {
     this.index = -1
     this.freeze = false
   }
+
   /**
    * add config to config list by order
    * @param {{}} config
@@ -41,6 +42,7 @@ class Ujc {
     }
     return this
   }
+
   /**
    *
    * @returns {{}}
@@ -85,6 +87,7 @@ class Gsc {
       splitChar: '.'
     }
   }
+
   /**
    * bind data to ctx.data
    * @param {*} data
@@ -97,6 +100,7 @@ class Gsc {
     }
     return this
   }
+
   /**
    * set split char
    * @param {string} s
@@ -108,6 +112,7 @@ class Gsc {
     }
     return this
   }
+
   /**
    * get or set value with key
    * @param {string} key

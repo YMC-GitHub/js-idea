@@ -1,5 +1,5 @@
 export const defOption = () => ({
-  helpmsg: `usage:ns option`,
+  helpmsg: 'usage:ns option',
   argvIndexS: 2, // argv index start position
   enbaleSubCmd: false,
   subcmd: '',
@@ -17,7 +17,7 @@ export const defOption = () => ({
 export const installEntrys =
   (entrys = {}) =>
   ycs => {
-    if (!ycs) new Error(`need Ycs instance`)
+    if (!ycs) new Error('need Ycs instance')
     // const ycs = new Ycs()
     // let input =process.argv
     // ycs.entry(entrys).run(input)

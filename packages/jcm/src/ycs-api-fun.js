@@ -13,7 +13,7 @@ const run = () => {
   const input = process.argv
 
   // idea: extract share var
-  let helpmsg = `usage:ns option`
+  let helpmsg = 'usage:ns option'
   let argvIndexS = 2 // argv index start position
   let enbaleSubCmd = false
   let subcmd = ''
@@ -97,7 +97,7 @@ const run = () => {
   const invalidArgvLength = input.length <= argvIndexS
   if (invalidArgvLength) {
     log(`${helpmsg}`)
-    log(`error:invalid argv length`)
+    log('error:invalid argv length')
     return
   }
 

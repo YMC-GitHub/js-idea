@@ -1,5 +1,6 @@
 import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
-import { Ujs, Gsc, readConf } from './jcm-sha.js'
+import { Ujc, Gsc, readConf } from './jcm-sha.js'
+
 const { log } = console
 
 // idea:
@@ -20,11 +21,11 @@ function main(cmd = '', flags = {}) {
   // idea: get-cli-args -> get-wkd
   // get cli args and the first args is wkd
   const args = getArgs()
-  let cliOption = {
+  const cliOption = {
     wkd: args[0],
     name: '.ymcrc.json'
   }
-  let { wkd, name } = cliOption
+  const { wkd, name } = cliOption
   const cnfLocList = [joinPath(getUserHome(), name), name, joinPath(wkd, name)]
   // const cnfLocList = []
   // if (flags.usd || flags.u) {
@@ -40,16 +41,16 @@ function main(cmd = '', flags = {}) {
   let data = {}
   switch (cmd) {
     case 'add':
-      //add
-      //add to wkd dir
+      // add
+      // add to wkd dir
       // todo:it.writeConf(flags)
       data = magicDefineConfig(data)
       addDirs(wkd)
-      let loc = joinPath(wkd, name)
+      const loc = joinPath(wkd, name)
       saveJson(loc, data)
       break
     case 'del':
-      //del
+      // del
       // todo:it.deleteConfFile(flags)
       break
     case 'get':

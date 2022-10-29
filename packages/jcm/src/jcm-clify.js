@@ -1,7 +1,7 @@
 import GE from './ycs-hel-ge-api.js'
 import genOptionFromUsage from './ycs-hel-uo.js'
 // import { getOptName } from './ycs-hel-bo-too.js'
-//(GE,genOptionFromUsage)=>{}
+// (GE,genOptionFromUsage)=>{}
 import { jcm } from './jcm-api.js'
 import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
 
@@ -31,16 +31,21 @@ const defUsage = (ns = 'ns') => {
 }
 
 // feat: use built in flags
-const builtinFlags = { name: '.ymcrc.json', wkd: 'packages/noop', usd: false, crd: true }
+const builtinFlags = {
+  name: '.ymcrc.json',
+  wkd: 'packages/noop',
+  usd: false,
+  crd: true
+}
 
 // idea:cli-fy api to cli with ymc style
 const entrys = (flags = {}) => {
   // log nano parser result 's flags (flags vs _ vs extras)
   // log(flags)
-  entrys.debug && log(`[info] run cmd with: ns`)
-  entrys.debug && log(`[info] hello ns`)
-  //do sth. here
-  entrys.debug && log(`[info] log cli option:`)
+  entrys.debug && log('[info] run cmd with: ns')
+  entrys.debug && log('[info] hello ns')
+  // do sth. here
+  entrys.debug && log('[info] log cli option:')
   entrys.debug && log(flags)
 }
 // 1. gen cmd fun
@@ -50,7 +55,7 @@ const defFun =
     entrys.debug && log(`[info] run cmd with: ns ${cmd}`)
     entrys.debug && log(`[info] hello ${cmd}`)
 
-    //do sth. here
+    // do sth. here
     // log(`[info] log cli option:`)
     // log(cliFlags)
 
@@ -64,7 +69,7 @@ const defFun =
     }
 
     // comEntry(cmd, nowFlags)
-    entrys.debug && log(`[info] log now flags:`)
+    entrys.debug && log('[info] log now flags:')
     entrys.debug && log(nowFlags)
     jcm.option = nowFlags
     jcm.tool = {
@@ -78,10 +83,10 @@ const defFun =
     }
 
     if (cmd == 'loc') {
-      let file = jcm.getFileLocList() //jcm.getFileLoc()
-      log(`[info] cnf file list:`)
+      const file = jcm.getFileLocList() // jcm.getFileLoc()
+      log('[info] cnf file list:')
       log(file)
-      log(`[info] the last file:`)
+      log('[info] the last file:')
       log(file[file.length - 1])
       // log(jcm.tool.parsePath(file[file.length - 1]))
       return
@@ -90,7 +95,7 @@ const defFun =
   }
 // 2. bind cmd fun
 const ge = new GE()
-//let subcmd = getTxtFromUsage('subcmd', usage)
+// let subcmd = getTxtFromUsage('subcmd', usage)
 // ge.entrys(entrys).bind('add|get|del|put|cls|log',defFun,'call')
 ge.entrys(entrys).bind('add|del|put|get', defFun, 'call')
 ge.entrys(entrys).bind('loc|cnf', defFun, 'call')

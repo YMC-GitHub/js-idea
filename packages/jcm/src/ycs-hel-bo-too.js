@@ -19,7 +19,7 @@ export const getOptName = (s = '', t = 'l') => {
   // get l or loc
   let keys = ''
   keys = s
-    .split(` `)[0]
+    .split(' ')[0]
     .split(',')
     .map(v => v.replace(/^\-*/gi, ''))
 
@@ -100,5 +100,5 @@ export const getMap = (optionMap, ns = '', cmd = '') => {
  */
 export const getFormatOptStr = (opts, s = '', num = 2) => {
   opts = Array.isArray(opts) ? opts : [opts]
-  return opts.join(`\n`).replace(/^/gim, Array(num).fill(s).join(''))
+  return opts.join('\n').replace(/^/gim, Array(num).fill(s).join(''))
 }

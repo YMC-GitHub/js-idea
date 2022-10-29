@@ -13,15 +13,16 @@ class Jcm {
     this.option = {}
     this.tool = {}
   }
+
   /**
    *
    * @param {string} name
    * @returns {string}
    */
   getFileLoc(name) {
-    let { option, tool } = this
-    let filename = name ? name : option.name
-    let flags = option
+    const { option, tool } = this
+    const filename = name || option.name
+    const flags = option
     if (flags.usd || flags.u) {
       // log(tool.getUserHome(), filename, option)
       return tool.joinPath(tool.getUserHome(), filename)
@@ -29,12 +30,13 @@ class Jcm {
     if (flags.crd || flags.c) {
       return filename
     }
-    if (flags.wkd /*|| flags.w*/) {
+    if (flags.wkd /* || flags.w */) {
       log(filename, option)
       return tool.joinPath(flags.wkd, filename)
     }
     return filename
   }
+
   /**
    *
    * @param {string} name
@@ -46,11 +48,13 @@ class Jcm {
    */
   getFileLocList(name) {
     let loclist = []
-    let { option } = this
-    let list = [['usd', 'u'], ['crd', 'c'], ['wkd']]
+    const { option } = this
+    const list = [['usd', 'u'], ['crd', 'c'], ['wkd']]
     loclist = list
       .map(keys => {
-        let ukey, uVal, flag
+        let ukey
+        let uVal
+        let flag
         for (let index = 0; index < keys.length; index++) {
           const key = keys[index]
           if (option[key]) {
@@ -71,6 +75,7 @@ class Jcm {
     this.option = option
     return loclist
   }
+
   /**
    * read config
    * @param {string} name
@@ -82,10 +87,11 @@ class Jcm {
    * ```
    */
   magicReadConfig(name = '.ymcrc.json') {
-    let { tool } = this
-    let loclist = this.getFileLocList(name)
+    const { tool } = this
+    const loclist = this.getFileLocList(name)
     return readConf(loclist, tool.readJson)
   }
+
   /**
    * @param {{}} data
    * @param {string} key
@@ -108,6 +114,7 @@ class Jcm {
     gsc.conf(key, val)
     return gsc.data
   }
+
   /**
    * get val with key
    * @param {string} key
@@ -119,7 +126,7 @@ class Jcm {
    * ```
    */
   getJsonVal(key = 'key', val = 'val') {
-    let { data } = this
+    const { data } = this
     let res
     // if (option[keyname]) {
     //   // case:get key eg. jcm get --key=username
@@ -134,15 +141,16 @@ class Jcm {
       return res
     }
   }
+
   /**
    *
    * @param {string} key
    * @param {string} val
    */
   setJsonVal(key, val, hasval) {
-    let { option, tool } = this
-    let self = this
-    let { name } = option
+    const { option, tool } = this
+    const self = this
+    const { name } = option
     let data
     data = self.magicReadConfig(name)
     // if (option[keyname] && valname in option) {
@@ -156,10 +164,10 @@ class Jcm {
     // tool.addDirs(option.wkd)
     // let loc = tool.joinPath(wkd, name)
     let loc
-    //loc = self.getFileLoc(name)
+    // loc = self.getFileLoc(name)
     loc = self.getFileLocList(name)
     loc = loc[loc.length - 1]
-    let locdir = tool.parsePath(loc).dir
+    const locdir = tool.parsePath(loc).dir
     if (locdir) {
       tool.addDirs(locdir)
     }
@@ -168,6 +176,7 @@ class Jcm {
     }
     this.data = data
   }
+
   /**
    *
    * @param {string} cmd
@@ -180,19 +189,21 @@ class Jcm {
    * ```
    */
   comEntry(cmd) {
-    let { option, tool } = this
-    let self = this
-    let { name } = option
+    const { option, tool } = this
+    const self = this
+    const { name } = option
     let data = {}
     let res
-    let keyname = 'key'
-    let valname = 'val'
-    let key, val, hasval
+    const keyname = 'key'
+    const valname = 'val'
+    let key
+    let val
+    let hasval
     if (cmd == 'cnf') {
-      //eg.jcm cnf --org=ymc
-      //eg.jcm cnf --org
-      let arglist = Object.keys(option)
-      let builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|')
+      // eg.jcm cnf --org=ymc
+      // eg.jcm cnf --org
+      const arglist = Object.keys(option)
+      const builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|')
       key = arglist.filter(v => !builtinlist.includes(v))[0]
       val = option[key]
       hasval = key in option
@@ -202,19 +213,19 @@ class Jcm {
         cmd = 'get'
       }
     } else {
-      //eg.jcm add --key=org --val=ymc
-      //eg.jcm get --key=org
+      // eg.jcm add --key=org --val=ymc
+      // eg.jcm get --key=org
       key = option[keyname]
       val = option[valname]
       hasval = valname in option
     }
     switch (cmd) {
       case 'add':
-        //add
+        // add
         this.setJsonVal(key, val, hasval)
         break
       case 'del':
-        //del
+        // del
         // todo:it.deleteConfFile(flags)
         break
       case 'get':
@@ -222,15 +233,15 @@ class Jcm {
         data = this.magicReadConfig(name)
         res = this.getJsonVal(key, val)
         // case:get key eg. jcm get
-        log(`[info] info data:`)
+        log('[info] info data:')
         log(data)
         break
     }
     return data
-    //key,val
-    //jcm get --key=username
-    //key=option[keyname]
-    //val=option[valname]
+    // key,val
+    // jcm get --key=username
+    // key=option[keyname]
+    // val=option[valname]
   }
 }
 const jcm = new Jcm()

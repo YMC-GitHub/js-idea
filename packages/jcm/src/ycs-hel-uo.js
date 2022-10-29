@@ -50,5 +50,5 @@ const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
   }
   return option
 }
-//export {getTxtFromUsage,genOptionFromUsage}
+// export {getTxtFromUsage,genOptionFromUsage}
 export default genOptionFromUsage

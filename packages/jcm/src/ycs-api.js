@@ -149,7 +149,7 @@ class Ycs {
 
     if (invalidArgvLength) {
       log(`${helpmsg}`)
-      log(`error:invalid argv length`)
+      log('error:invalid argv length')
       return
     }
 

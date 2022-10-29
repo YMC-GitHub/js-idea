@@ -1,7 +1,7 @@
 // idea: gen entry for some context
 const genEntrys = (entrys, subcmd = '', defFun = () => {}, bindType = 'bind') => {
   if (!entrys) {
-    Error(`need entrys`)
+    Error('need entrys')
   }
   subcmd.split('|').forEach(cmd => {
     switch (bindType) {

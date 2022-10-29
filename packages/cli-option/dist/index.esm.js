@@ -188,10 +188,10 @@ function camelizeFlags(flags = {}, options = {}) {
   */
 
 function padEndString(number, len = 0, prefix = ' ') {
-    if (number.length >= len) {
-        return String(number)
-    }
-    return padEndString(number + prefix, len, prefix)
+  if (number.length >= len) {
+    return String(number)
+  }
+  return padEndString(number + prefix, len, prefix)
 }
 
 /* eslint-disable no-unused-vars,prefer-destructuring,prefer-const,class-methods-use-this */

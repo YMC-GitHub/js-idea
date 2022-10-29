@@ -6,8 +6,8 @@ extend node.js date, extend Date.prototype is optional
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 2.12kb | 0.85kb | 0.75kb
-dist/index.cjs.min.js | 0.61kb | 0.38kb | 0.33kb
+dist/index.cjs.js | 2.19kb | 0.90kb | 0.78kb
+dist/index.cjs.min.js | 0.68kb | 0.42kb | 0.36kb
 dist/index.esm.js | 2.06kb | 0.82kb | 0.73kb
 dist/index.esm.min.js | 0.61kb | 0.38kb | 0.33kb
 dist/index.js | 2.06kb | 0.82kb | 0.73kb

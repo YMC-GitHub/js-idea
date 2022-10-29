@@ -6,8 +6,8 @@ parse commandline args - process.argv
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 3.02kb | 1.13kb | 0.99kb
-dist/index.cjs.min.js | 1.01kb | 0.53kb | 0.47kb
+dist/index.cjs.js | 3.08kb | 1.17kb | 1.02kb
+dist/index.cjs.min.js | 1.08kb | 0.58kb | 0.51kb
 dist/index.esm.js | 3.09kb | 1.16kb | 1.00kb
 dist/index.esm.min.js | 1.08kb | 0.57kb | 0.51kb
 dist/index.js | 3.09kb | 1.16kb | 1.00kb

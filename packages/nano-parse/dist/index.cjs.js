@@ -1,3 +1,8 @@
+/**
+  * nanoParse v0.0.1
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 'use strict';
 
 /* eslint-disable no-use-before-define,no-restricted-syntax */

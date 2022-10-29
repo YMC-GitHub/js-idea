@@ -6,8 +6,8 @@ chain async task
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 0.72kb | 0.39kb | 0.32kb
-dist/index.cjs.min.js | 0.20kb | 0.17kb | 0.14kb
+dist/index.cjs.js | 0.78kb | 0.44kb | 0.37kb
+dist/index.cjs.min.js | 0.27kb | 0.22kb | 0.18kb
 dist/index.esm.js | 0.79kb | 0.43kb | 0.36kb
 dist/index.esm.min.js | 0.26kb | 0.22kb | 0.18kb
 dist/index.js | 0.79kb | 0.43kb | 0.36kb

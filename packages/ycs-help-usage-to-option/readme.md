@@ -6,8 +6,8 @@ ycs plugin - get txt from usage and gen entry option
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 0.75kb | 0.38kb | 0.34kb
-dist/index.cjs.min.js | 0.36kb | 0.27kb | 0.23kb
+dist/index.cjs.js | 0.83kb | 0.44kb | 0.37kb
+dist/index.cjs.min.js | 0.43kb | 0.32kb | 0.28kb
 dist/index.esm.js | 0.73kb | 0.38kb | 0.35kb
 dist/index.esm.min.js | 0.37kb | 0.28kb | 0.25kb
 dist/index.js | 0.73kb | 0.38kb | 0.35kb

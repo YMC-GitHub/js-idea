@@ -1,31 +1,27 @@
-/**
-  * ycsHelpGenerateEntry v0.0.2
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-/* eslint-disable import/prefer-default-export */
+'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
+/* eslint-disable import/prefer-default-export */
 // idea:easier,faster to write ycs-cli entrys when you clify your lib to ycs-cli
 // input entry
 // define a handle fun
 // bind a handle fun to ns,cmd
-
 // ge.entrys(entrys).bind(cmd,defFun,'call')
 // ge.entrys(entrys).bind(ns,defFun,'call')
 // ge.entrys(entrys.ns).bind(subcmd,defFun,'call')
 // ge is short for generate-entrys
-
 class GE {
   //   constructor() {} //fix Useless constructor
-
   entrys(entry) {
     // set
     if (entry) {
       this.context = entry;
-      return this
-    }
-    // get
-    return this.context
+      return this;
+    } // get
+
+
+    return this.context;
   }
 
   bind(subcmd = '', defFun = () => {}, bindType = '') {
@@ -33,17 +29,20 @@ class GE {
 
     subcmd.split('|').forEach(cmd => {
       let entry;
+
       switch (bindType.toLowerCase()) {
         case 'call':
           // feat: support call then bind entry
           entry = defFun(cmd);
-          break
+          break;
         // fix Expected a default case
-      }
-      // feat: support bind entry
+      } // feat: support bind entry
+
+
       entrys[cmd] = entry;
     });
   }
+
 }
 
-export { GE as GenerateEntrys };
+exports.GenerateEntrys = GE;

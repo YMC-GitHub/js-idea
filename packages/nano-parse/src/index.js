@@ -3,7 +3,7 @@
 /**
  * parse cli cmd string
  * @param {string} input
- * @returns {{args:string[],extras:string[],_:string[]}}
+ * @returns {{flags:string[],extras:string[],_:string[]}}
  * @sample
  * ```
  * nanoargs(`ns cmd -a -b -c -- -a -b -c`)

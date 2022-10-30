@@ -148,7 +148,8 @@
         // feat: auto camelize
         if (!option.noAutoCamelize) {
           // res[camelize(thelong.replace(/-+/gi, " "))] = value;
-          res[thelong.camelize()] = value;
+          // res[thelong.camelize()] = value
+          res[camelize(thelong)] = value;
         } // feat: slim them
 
         /* eslint-disable no-continue */

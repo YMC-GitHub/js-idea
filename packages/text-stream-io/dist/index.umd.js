@@ -120,8 +120,11 @@
         //   text = `${data}`;
 
         case 'head':
-        default:
           text = `${data}\n${old}`;
+          break;
+
+        default:
+          text = `${data}`;
           break;
       }
 

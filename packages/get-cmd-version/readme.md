@@ -1,0 +1,21 @@
+# pkg get-cmd-version
+
+## desc
+get cmd version in node.js, run-bash is custom-able
+
+## lib size  
+file | size | gzip | brotli
+:---- | :---- | :---- | :----
+dist/index.cjs.js | 2.46kb | 0.83kb | 0.75kb
+dist/index.cjs.min.js | 0.68kb | 0.40kb | 0.34kb
+dist/index.esm.js | 2.24kb | 0.75kb | 0.68kb
+dist/index.esm.min.js | 0.61kb | 0.35kb | 0.34kb
+dist/index.js | 2.24kb | 0.75kb | 0.68kb
+dist/index.umd.js | 3.05kb | 0.98kb | 0.87kb
+dist/index.umd.min.js | 0.90kb | 0.50kb | 0.44kb
+
+## Author
+yemiancheng <ymc.github@gmail.com>
+
+## License
+MIT

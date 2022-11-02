@@ -19,6 +19,19 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+@ymc/get-cmd-version|ymc package get-cmd-version|2022-11-02
+@ymc/git-commit-msg-read|read git-commit-msg from git log|2022-11-02
+@ymc/git-commit-msg-parse|parse git-commit-msg to json - parse angular style msg|2022-11-02
+@ymc/git-commit-msg-write|write git-commit-msg tpl and data , and render tpl to data|2022-11-02
+@ymc/tpl-exp|define simple template text expression , get tpl regexp , custom tpl label|2022-11-02
+@ymc/changlog-style|write simple changlog-style tpl and render to string|2022-11-01
+@ymc/changlog-file-io|read , parse and update changlog.md file|2022-11-01
+@ymc/class-es5-help|help to define es5 class - set constructor ,method ,method alias and so on|2022-11-01
+@ymc/class-esm-help|ymc package class-esm-help|2022-11-01
+@ymc/changeset|make or parse .changeset/xx.md file|2022-11-01
+@ymc/bump-version|ymc package bump-version|2022-11-01
+@ymc/is-type-of|check type of val - enhance-typeof|2022-10-30
+@ymc/cli-preset-param|cli param preset - base, token and other|2022-10-29
 @ymc/cli-engine|ymc package cli-engine|2022-10-28
 @ymc/cli-option|define option , to usage text , update entry option , get flags and so on.|2022-10-28
 @ymc/cli-runner|ymc(y) cli(c) style(s) runner|2022-10-28
@@ -43,6 +56,7 @@ name|description|created_at
 @ymc/extend-function|extend node.js function, extend Function.prototype is optional|2022-10-26
 @ymc/extend-string|extend node.js string, extend String.prototype is optional|2022-10-26
 @ymc/extend-date|extend node.js date, extend Date.prototype is optional|2022-10-26
+@ymc/copy-file|async copy file with stream|2022-10-11
 @ymc/nano-parse|parse commandline args - process.argv|2022-10-10
 @ymc/read-diretory|ymc package read-diretory|2022-10-02
 @ymc/jcm|ymc package jcm|2022-10-02

@@ -1,16 +1,6 @@
 /* eslint-disable  class-methods-use-this */
 import { getTplexp, magicGetTagRegexp } from './help'
 import './type'
-// /**
-//  * built in open label
-//  */
-// // const builtinTagS = excapeSpecialChar('{{')
-// const builtinTagS = '{{'
-// /**
-//  * built in close label
-//  */
-// // const builtinTagE = excapeSpecialChar('}}')
-// const builtinTagE = '}}'
 
 /**
  * @sample
@@ -81,11 +71,6 @@ class Tag {
     return new Tag(...option)
   }
 }
-// it.getTplexp()
-// it.getRegexp()
+
 const tag = new Tag()
-// export { builtinTagS,builtinTagE };
-// export { excapeSpecialChar, defineTag, magicDefineTag };
-// export { builtinTagS, builtinTagE, defineTag, magicDefineTag, getTplexp, tag };
-// export { getTagRegexp as defineTag, magicDefineTag, getTplexp, Tag, tag }
 export { Tag, tag }

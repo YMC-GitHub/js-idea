@@ -8,32 +8,6 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 /* eslint-disable prefer-const */
-//     return list.some(v => v === s)
-// }
-// /**
-//  * get special char regexp with special str
-//  * @param {string} s
-//  * @param {string} o
-//  * @returns {regexp}
-//  * @sample
-//  * ```
-//  * specialCharsReg = getSpecialCharsReg('{}[]()', 'ig')
-//  * ```
-//  */
-// const getSpecialCharsReg = (s, o = 'ig') => {
-//     let list = s.split('')
-//     list = list.map(v => {
-//         if (oneOf(v, ['{', '}'])) {
-//             return v
-//         }
-//         if (oneOf(v, `[]()`.split(''))) {
-//             return `\\${v}`
-//         }
-//     })
-//     list = list.map(v => `(${v})`).join('|')
-//     list = new RegExp(`${list}`, o)
-//     return list
-// }
 
 const specialCharsReg = /({|})|(\[|\])|(\(|\))/gi; // ok
 // specialCharsReg = getSpecialCharsReg('{}[]()', 'ig') //ok
@@ -54,24 +28,7 @@ const specialCharsReg = /({|})|(\[|\])|(\(|\))/gi; // ok
  * ```
  */
 
-const excapeSpecialChar = (s, scr = specialCharsReg) => s.replace(scr, '\\$&'); // /**
-//  * get tag regexp - tag (template expresssion)
-//  * @param {string} name tag name
-//  * @param {string} s tag open label
-//  * @param {string} e tag clsoe label
-//  * @param {string} o regexp option
-//  * @returns {regexp}
-//  */
-// const getTagRegexp = (name, s, e, o = 'ig') => new RegExp(`${s}${name}${e}`, o)
-// /**
-//  * get tag regexp - tag (template expresssion)
-//  * @param {string} name tag name
-//  * @param {string} s tag open label
-//  * @param {string} e tag clsoe label
-//  * @param {string} o regexp option
-//  * @returns {regexp}
-//  */
-
+const excapeSpecialChar = (s, scr = specialCharsReg) => s.replace(scr, '\\$&');
 /**
  * get tag regexp - tag (template expresssion)
  * @param {string} name
@@ -129,16 +86,6 @@ const magicGetTagRegexp = (name, options = {}) => {
 const getTplexp = (name, s = '{{', e = '}}') => `${s}${name}${e}`;
 
 /* eslint-disable  class-methods-use-this */
-//  * built in open label
-//  */
-// // const builtinTagS = excapeSpecialChar('{{')
-// const builtinTagS = '{{'
-// /**
-//  * built in close label
-//  */
-// // const builtinTagE = excapeSpecialChar('}}')
-// const builtinTagE = '}}'
-
 /**
  * @sample
  * ```
@@ -229,11 +176,9 @@ class Tag {
     return new Tag(...option);
   }
 
-} // it.getTplexp()
-// it.getRegexp()
+}
 
-
-const tag = new Tag(); // export { builtinTagS,builtinTagE };
+const tag = new Tag();
 
 exports.Tag = Tag;
 exports.tag = tag;

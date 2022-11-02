@@ -1,33 +1,34 @@
 /* eslint-disable prefer-const */
 import './type'
 
-// function oneOf(s, list) {
-//     return list.some(v => v === s)
-// }
-// /**
-//  * get special char regexp with special str
-//  * @param {string} s
-//  * @param {string} o
-//  * @returns {regexp}
-//  * @sample
-//  * ```
-//  * specialCharsReg = getSpecialCharsReg('{}[]()', 'ig')
-//  * ```
-//  */
-// const getSpecialCharsReg = (s, o = 'ig') => {
-//     let list = s.split('')
-//     list = list.map(v => {
-//         if (oneOf(v, ['{', '}'])) {
-//             return v
-//         }
-//         if (oneOf(v, `[]()`.split(''))) {
-//             return `\\${v}`
-//         }
-//     })
-//     list = list.map(v => `(${v})`).join('|')
-//     list = new RegExp(`${list}`, o)
-//     return list
-// }
+function oneOf(s, list) {
+  return list.some(v => v === s)
+}
+/**
+ * get special char regexp with special str
+ * @param {string} s
+ * @param {string} o
+ * @returns {regexp}
+ * @sample
+ * ```
+ * specialCharsReg = getSpecialCharsReg('{}[]()', 'ig')
+ * ```
+ */
+const getSpecialCharsReg = (s, o = 'ig') => {
+  let list = s.split('')
+  list = list.map(v => {
+    if (oneOf(v, ['{', '}'])) {
+      return v
+    }
+    if (oneOf(v, '[]()'.split(''))) {
+      return `\\${v}`
+    }
+    return v
+  })
+  list = list.map(v => `(${v})`).join('|')
+  list = new RegExp(`${list}`, o)
+  return list
+}
 
 const specialCharsReg = /({|})|(\[|\])|(\(|\))/gi // ok
 // specialCharsReg = getSpecialCharsReg('{}[]()', 'ig') //ok
@@ -48,24 +49,6 @@ const specialCharsReg = /({|})|(\[|\])|(\(|\))/gi // ok
  */
 const excapeSpecialChar = (s, scr = specialCharsReg) => s.replace(scr, '\\$&')
 
-// /**
-//  * get tag regexp - tag (template expresssion)
-//  * @param {string} name tag name
-//  * @param {string} s tag open label
-//  * @param {string} e tag clsoe label
-//  * @param {string} o regexp option
-//  * @returns {regexp}
-//  */
-// const getTagRegexp = (name, s, e, o = 'ig') => new RegExp(`${s}${name}${e}`, o)
-
-// /**
-//  * get tag regexp - tag (template expresssion)
-//  * @param {string} name tag name
-//  * @param {string} s tag open label
-//  * @param {string} e tag clsoe label
-//  * @param {string} o regexp option
-//  * @returns {regexp}
-//  */
 /**
  * get tag regexp - tag (template expresssion)
  * @param {string} name
@@ -110,4 +93,4 @@ const magicGetTagRegexp = (name, options = {}) => {
  * @returns {string}
  */
 const getTplexp = (name, s = '{{', e = '}}') => `${s}${name}${e}`
-export { excapeSpecialChar, getTagRegexp, magicGetTagRegexp, getTplexp }
+export { getSpecialCharsReg, excapeSpecialChar, getTagRegexp, magicGetTagRegexp, getTplexp }

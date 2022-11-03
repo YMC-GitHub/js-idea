@@ -1,0 +1,37 @@
+{
+    "name": "@ymc/get-os-name",
+    "version": "1.0.0",
+    "description": "get os name in node.js through process.platform",
+    "keywords": [
+        "ymc",
+        "get-os-name"
+    ],
+    "author": {
+        "name": "yemiancheng",
+        "email": "ymc.github@gmail.com",
+        "url": "https://github.com/ymc-github"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "type": "module",
+    "typings": "dist/index.d.ts",
+    "unpkg": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ymc-github/js-idea.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ymc-github/js-idea/issues"
+    },
+    "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/get-os-name#readme",
+    "license": "MIT",
+    "scripts": {
+        "doc:js": "jsdoc2md dist/index.esm.js",
+        "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
+        "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+        "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
+        "pac:js": "rm -rf dist/* && rollup -c",
+        "test": "exit 0"
+    },
+    "private": false
+}

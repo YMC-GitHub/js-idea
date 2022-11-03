@@ -19,6 +19,11 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+@ymc/get-user-home|get user home diretory in node.js through process.env and process.platform|2022-11-03
+@ymc/get-loc-in-different-os|get file location or others in different os|2022-11-03
+@ymc/get-os-name|get os name in node.js through process.platform|2022-11-03
+@ymc/git-commit-type-lang|write , parse git-commit-type for multi-language|2022-11-03
+@ymc/i18n|ymc package i18n|2022-11-03
 @ymc/get-cmd-version|ymc package get-cmd-version|2022-11-02
 @ymc/git-commit-msg-read|read git-commit-msg from git log|2022-11-02
 @ymc/git-commit-msg-parse|parse git-commit-msg to json - parse angular style msg|2022-11-02

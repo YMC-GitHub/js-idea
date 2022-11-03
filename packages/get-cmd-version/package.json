@@ -1,7 +1,7 @@
 {
   "name": "@ymc/get-cmd-version",
   "version": "1.0.0",
-  "description": "ymc package get-cmd-version",
+  "description": "get cmd version",
   "keywords": [
     "ymc",
     "get-cmd-version"

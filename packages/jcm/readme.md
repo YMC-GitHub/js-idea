@@ -1,7 +1,7 @@
 # pkg @ymc/jcm
 
 ## desc
-ymc package jcm
+manage .ymcrc.json file or other json-format file
 
 ## lib size  
 file | size | gzip | brotli

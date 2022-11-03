@@ -1,7 +1,7 @@
 # pkg @ymc/run-bash
 
 ## desc
-ymc package run-bash
+run bash cmd in node.js - like execa
 
 ## lib size  
 file | size | gzip | brotli

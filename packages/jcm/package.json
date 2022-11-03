@@ -1,7 +1,7 @@
 {
   "name": "@ymc/jcm",
   "version": "0.0.1",
-  "description": "ymc package jcm",
+  "description": "manage .ymcrc.json file or other json-format file",
   "keywords": [
     "ymc",
     "jcm"

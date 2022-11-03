@@ -1,7 +1,7 @@
 # pkg @ymc/read-diretory
 
 ## desc
-ymc package read-diretory
+get file or dir in some diretory with match-reg 
 
 ## lib size  
 file | size | gzip | brotli

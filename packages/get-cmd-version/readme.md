@@ -1,7 +1,7 @@
 # pkg @ymc/get-cmd-version
 
 ## desc
-ymc package get-cmd-version
+get cmd version
 
 ## lib size  
 file | size | gzip | brotli

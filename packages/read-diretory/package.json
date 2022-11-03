@@ -1,7 +1,7 @@
 {
   "name": "@ymc/read-diretory",
   "version": "0.0.1",
-  "description": "ymc package read-diretory",
+  "description": "get file or dir in some diretory with match-reg ",
   "keywords": [
     "ymc",
     "read-diretory"

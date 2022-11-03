@@ -1,7 +1,7 @@
 {
   "name": "@ymc/run-bash",
   "version": "0.0.3",
-  "description": "ymc package run-bash",
+  "description": "run bash cmd in node.js - like execa",
   "keywords": [
     "ymc",
     "run-bash"

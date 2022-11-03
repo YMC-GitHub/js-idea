@@ -32,24 +32,24 @@
  * ```
  */
 function humanize(s) {
-    return s
-        .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-            let res = '';
-            // log(word, index); //desc: for debug
-            // feat: replace multi - or _ to one space
-            res = word.replace(/[-_]+/g, ' ');
-            // feat: add space to the char that is uppercase and is not the first index
-            res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
-            // feat: the first char to upper ,other lowercase
-            return index === 0 ? res.toUpperCase() : res.toLowerCase()
-        })
-        .replace(/\s+/g, ' ')
+  return s
+    .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
+      let res = '';
+      // log(word, index); //desc: for debug
+      // feat: replace multi - or _ to one space
+      res = word.replace(/[-_]+/g, ' ');
+      // feat: add space to the char that is uppercase and is not the first index
+      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
+      // feat: the first char to upper ,other lowercase
+      return index === 0 ? res.toUpperCase() : res.toLowerCase()
+    })
+    .replace(/\s+/g, ' ')
 }
 
 function camelize(s) {
-    return humanize(s)
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
-        .replace(/\s+/g, '')
+  return humanize(s)
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
+    .replace(/\s+/g, '')
 }
 
 /* eslint-disable no-unused-vars */

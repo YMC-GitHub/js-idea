@@ -1,7 +1,14 @@
-import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
-import { Ujc, Gsc, readConf } from './jcm-sha.js'
+/* eslint-disable no-unused-vars,consistent-return */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-case-declarations */
+/* eslint-disable prefer-const */
+/* eslint-disable no-shadow */
+/* eslint-disable import/prefer-default-export */
 
-const { log } = console
+import { joinPath, addDirs, readJson, saveJson, getUserHome } from './jcm-too'
+import { Gsc, readConf } from './jcm-sha'
+
+// const { log } = console
 
 // idea:
 // get des dir
@@ -55,7 +62,6 @@ function main(cmd = '', flags = {}) {
       break
     case 'get':
       return magicReadConfig(name)
-      break
     default:
       break
   }
@@ -78,7 +84,7 @@ function main(cmd = '', flags = {}) {
    */
   function getArgs(def = 'packages/noop') {
     const args = process.argv.slice(2)
-    if (args.length == 0) args[0] = def
+    if (args.length === 0) args[0] = def
     return args
   }
   /**
@@ -129,7 +135,7 @@ function main(cmd = '', flags = {}) {
     return gsc.data
   }
 }
-main()
+// main()
 export { main }
 // run as node script
 // node script/conf-gen.js ./packages/noop

@@ -1,9 +1,10 @@
-import GE from './ycs-hel-ge-api.js'
-import genOptionFromUsage from './ycs-hel-uo.js'
-// import { getOptName } from './ycs-hel-bo-too.js'
+/* eslint-disable no-unused-expressions,consistent-return */
+import GE from './ycs-hel-ge-api'
+import genOptionFromUsage from './ycs-hel-uo'
+// import { getOptName } from './ycs-hel-bo-too'
 // (GE,genOptionFromUsage)=>{}
-import { jcm } from './jcm-api.js'
-import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
+import { jcm } from './jcm-api'
+import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too'
 
 const { log } = console
 // idea: define usage likes below
@@ -82,7 +83,7 @@ const defFun =
       getUserHome
     }
 
-    if (cmd == 'loc') {
+    if (cmd === 'loc') {
       const file = jcm.getFileLocList() // jcm.getFileLoc()
       log('[info] cnf file list:')
       log(file)

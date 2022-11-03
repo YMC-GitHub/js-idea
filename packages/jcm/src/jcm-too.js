@@ -1,8 +1,8 @@
 import { writeFileSync, readFileSync } from 'fs'
 import { parse as parsePath, join as joinPath } from 'path'
-import { makeDirs as addDirs, rmDirs as delDirs } from './curd-dirs-sync.js'
+import { makeDirs as addDirs, rmDirs as delDirs } from './curd-dirs-sync'
 
-const { log } = console
+// const { log } = console
 /**
  * read json sync
  * @param {string} jsonLoc
@@ -36,6 +36,6 @@ function saveJson(jsonLoc, data) {
  * ```
  */
 function getUserHome() {
-  return process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME']
+  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']
 }
 export { readJson, saveJson, getUserHome, addDirs, delDirs, parsePath, joinPath }

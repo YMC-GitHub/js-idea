@@ -1,5 +1,6 @@
-import nanoparse from './nano-parse.js'
-import entrys from './ycs-ins.js'
+/* eslint-disable consistent-return */
+import nanoparse from './nano-parse'
+import entrys from './ycs-ins'
 
 // idea:
 // get args from cli
@@ -42,7 +43,7 @@ const run = () => {
   // feat: support sub ns
   if (enbaleSubNs) {
     subns = input[argvIndexS]
-    argvIndexS++
+    argvIndexS += 1
     helpmsg = helpmsg.replace(/option$/, 'subns option')
   }
 
@@ -56,7 +57,7 @@ const run = () => {
   if (enbaleSubCmd) {
     // subcmd = input[2]
     subcmd = input[argvIndexS]
-    argvIndexS++
+    argvIndexS += 1
     // helpmsg=`usage:ns subcmd option`
     helpmsg = helpmsg.replace(/option$/, 'subcmd option')
   }
@@ -74,7 +75,7 @@ const run = () => {
       return
     }
     // log(`run subns ${subns}`)
-    helpmsg = entry[subns].usage ? entry[subns].usage : usage
+    helpmsg = entry[subns].usage ? entry[subns].usage : helpmsg
     version = entry[subns].version ? entry[subns].version : version
     entry = entry[subns] ? entry[subns] : () => {}
   }
@@ -87,7 +88,7 @@ const run = () => {
       return
     }
     // log(`run subcmd ${subcmd}`)
-    helpmsg = entry[subcmd].usage ? entry[subcmd].usage : usage
+    helpmsg = entry[subcmd].usage ? entry[subcmd].usage : helpmsg
     version = entry[subcmd].version ? entry[subcmd].version : version
     entry = entry[subcmd] ? entry[subcmd] : () => {}
   }

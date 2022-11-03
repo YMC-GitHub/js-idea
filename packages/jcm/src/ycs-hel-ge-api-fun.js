@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // idea: gen entry for some context
 const genEntrys = (entrys, subcmd = '', defFun = () => {}, bindType = 'bind') => {
   if (!entrys) {
@@ -11,6 +12,7 @@ const genEntrys = (entrys, subcmd = '', defFun = () => {}, bindType = 'bind') =>
         entrys[cmd] = defFun(cmd)
         break
       case 'bind':
+      default:
         // feat: support bind entry
         entrys[cmd] = defFun
         break

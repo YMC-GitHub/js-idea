@@ -1,4 +1,4 @@
-import BO from './ycs-hel-bo-api.js'
+import BO from './ycs-hel-bo-api'
 
 const { log } = console
 

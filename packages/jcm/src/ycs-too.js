@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 export const defOption = () => ({
   helpmsg: 'usage:ns option',
   argvIndexS: 2, // argv index start position
@@ -17,7 +18,7 @@ export const defOption = () => ({
 export const installEntrys =
   (entrys = {}) =>
   ycs => {
-    if (!ycs) new Error('need Ycs instance')
+    if (!ycs) Error('need Ycs instance')
     // const ycs = new Ycs()
     // let input =process.argv
     // ycs.entry(entrys).run(input)

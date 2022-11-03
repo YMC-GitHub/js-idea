@@ -25,14 +25,13 @@ var node_path = require('node:path');
  * ```
  */
 class GE {
-  constructor() {}
+  // constructor() {}
+
   /**
-     * set or get entry
-     * @param {{}} entry
-     * @returns {this|entry}
-     */
-
-
+   * set or get entry
+   * @param {{}} entry
+   * @returns {this|entry}
+   */
   entrys(entry) {
     // set
     if (entry) {
@@ -44,11 +43,11 @@ class GE {
     return this.context;
   }
   /**
-     * bind ns or subcmd with handle fun
-     * @param {string} subcmd
-     * @param {function} defFun
-     * @param {string} bindType call handle fun
-     */
+   * bind ns or subcmd with handle fun
+   * @param {string} subcmd
+   * @param {function} defFun
+   * @param {string} bindType call handle fun
+   */
 
 
   bind(subcmd = '', defFun = () => {}, bindType = '') {
@@ -127,6 +126,16 @@ const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
 }; // export {getTxtFromUsage,genOptionFromUsage}
 
 // import { readJson, saveJson, getUserHome } from './jcm-too.js'
+
+/* eslint-disable consistent-return */
+
+/* eslint-disable no-unused-vars,prefer-destructuring */
+
+/* eslint-disable default-param-last */
+
+/* eslint-disable max-classes-per-file */
+
+/* eslint-disable prefer-const */
 const {
   log: log$3
 } = console;
@@ -145,11 +154,11 @@ class Ujc {
     this.freeze = false;
   }
   /**
-     * add config to config list by order
-     * @param {{}} config
-     * @param {numbber} order
-     * @returns {this} why ? to chain
-     */
+   * add config to config list by order
+   * @param {{}} config
+   * @param {numbber} order
+   * @returns {this} why ? to chain
+   */
 
 
   use(config = {}, order) {
@@ -160,8 +169,8 @@ class Ujc {
 
     const useIndex = !order; // feat: auto increase index
 
-    if (useIndex || index == order) {
-      index++;
+    if (useIndex || index === order) {
+      index += 1;
     } else if (index < order) {
       index = order;
     } // warn: update index in this (when number,string,boolean)
@@ -177,15 +186,15 @@ class Ujc {
     return this;
   }
   /**
-     *
-     * @returns {{}}
-     * @description
-     * ```
-     * - [x] get config by index in config list
-     * - [x] simple merge config
-     * - [x] freeze result optionally
-     * ```
-     */
+   *
+   * @returns {{}}
+   * @description
+   * ```
+   * - [x] get config by index in config list
+   * - [x] simple merge config
+   * - [x] freeze result optionally
+   * ```
+   */
 
 
   load() {
@@ -194,7 +203,7 @@ class Ujc {
     } = this;
     let res = {};
 
-    for (let index = 0; index < list.length; index++) {
+    for (let index = 0; index < list.length; index += 1) {
       const config = list[index];
 
       if (config) {
@@ -235,11 +244,11 @@ class Gsc {
     };
   }
   /**
-     * bind data to ctx.data
-     * @param {*} data
-     * @returns {this} why ? to chain
-     *
-     */
+   * bind data to ctx.data
+   * @param {*} data
+   * @returns {this} why ? to chain
+   *
+   */
 
 
   bind(data) {
@@ -250,10 +259,10 @@ class Gsc {
     return this;
   }
   /**
-     * set split char
-     * @param {string} s
-     * @returns {this} why ? to chain
-     */
+   * set split char
+   * @param {string} s
+   * @returns {this} why ? to chain
+   */
 
 
   split(s = '.') {
@@ -264,17 +273,17 @@ class Gsc {
     return this;
   }
   /**
-     * get or set value with key
-     * @param {string} key
-     * @param {*} val
-     * @returns {val|this}
-     * @description
-     * ```
-     * ```
-     */
+   * get or set value with key
+   * @param {string} key
+   * @param {*} val
+   * @returns {val|this}
+   * @description
+   * ```
+   * ```
+   */
 
 
-  conf(key = '', val) {
+  conf(key, val) {
     if (!key) return this; // note: extract com var
 
     let {
@@ -283,16 +292,16 @@ class Gsc {
     } = this;
     let last; // note: get name list
 
-    key = key.split(option.splitChar); // note: get last name
+    const nss = key.split(option.splitChar); // note: get last name
 
-    last = key[key.length - 1]; // note: get prev data
+    last = nss[nss.length - 1]; // note: get prev data
 
     const {
       length
-    } = key;
+    } = nss;
 
-    for (let index = 0; index < length - 1; index++) {
-      const name = key[index]; // note: ini data in key when not dedfining
+    for (let index = 0; index < length - 1; index += 1) {
+      const name = nss[index]; // note: ini data in key when not dedfining
 
       if (!data[name]) {
         data[name] = {};
@@ -303,7 +312,7 @@ class Gsc {
     // feat: get val
 
 
-    if (val == undefined) {
+    if (val === undefined) {
       return data[last];
     } // feat: set val
 
@@ -338,7 +347,7 @@ function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
   // data = rc.load()
   // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
 
-  for (let index = 0; index < cnfLocList.length; index++) {
+  for (let index = 0; index < cnfLocList.length; index += 1) {
     const cnfLoc = cnfLocList[index];
     rc.use(readJson(cnfLoc));
   }
@@ -349,6 +358,7 @@ function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
 new Ujc();
 new Gsc();
 
+/* eslint-disable consistent-return */
 const {
   log: log$2
 } = console; // idea:
@@ -363,10 +373,10 @@ class Jcm {
     this.tool = {};
   }
   /**
-     *
-     * @param {string} name
-     * @returns {string}
-     */
+   *
+   * @param {string} name
+   * @returns {string}
+   */
 
 
   getFileLoc(name) {
@@ -396,14 +406,14 @@ class Jcm {
     return filename;
   }
   /**
-     *
-     * @param {string} name
-     * @returns {string[]}
-     * @description
-     * ```
-     * user-path-> project-path -> des-path
-     * ```
-     */
+   *
+   * @param {string} name
+   * @returns {string[]}
+   * @description
+   * ```
+   * user-path-> project-path -> des-path
+   * ```
+   */
 
 
   getFileLocList(name) {
@@ -417,7 +427,7 @@ class Jcm {
       let uVal;
       let flag;
 
-      for (let index = 0; index < keys.length; index++) {
+      for (let index = 0; index < keys.length; index += 1) {
         const key = keys[index];
 
         if (option[key]) {
@@ -442,15 +452,15 @@ class Jcm {
     return loclist;
   }
   /**
-     * read config
-     * @param {string} name
-     * @returns {[]|{}}
-     * @description
-     * ```
-     * user-path -> project-path -> des-path
-     * read-conf -> read-json
-     * ```
-     */
+   * read config
+   * @param {string} name
+   * @returns {[]|{}}
+   * @description
+   * ```
+   * user-path -> project-path -> des-path
+   * read-conf -> read-json
+   * ```
+   */
 
 
   magicReadConfig(name = '.ymcrc.json') {
@@ -461,18 +471,18 @@ class Jcm {
     return readConf(loclist, tool.readJson);
   }
   /**
-     * @param {{}} data
-     * @param {string} key
-     * @param {string} val
-     * @returns {{}}
-     * @description
-     * ```
-     * ## why use?
-     * - [x] easy to write json config in node.js
-     *
-     * - [x] idea: bind-cache-data -> define-json-data
-     * ```
-     */
+   * @param {{}} data
+   * @param {string} key
+   * @param {string} val
+   * @returns {{}}
+   * @description
+   * ```
+   * ## why use?
+   * - [x] easy to write json config in node.js
+   *
+   * - [x] idea: bind-cache-data -> define-json-data
+   * ```
+   */
 
 
   magicDefineConfig(data, key, val) {
@@ -485,15 +495,15 @@ class Jcm {
     return gsc.data;
   }
   /**
-     * get val with key
-     * @param {string} key
-     * @param {string} val
-     * @returns {string}
-     * @sample
-     * ```
-     * getJsonVal(data,'key','val')
-     * ```
-     */
+   * get val with key
+   * @param {string} key
+   * @param {string} val
+   * @returns {string}
+   * @sample
+   * ```
+   * getJsonVal(data,'key','val')
+   * ```
+   */
 
 
   getJsonVal(key = 'key', val = 'val') {
@@ -515,10 +525,10 @@ class Jcm {
     }
   }
   /**
-     *
-     * @param {string} key
-     * @param {string} val
-     */
+   *
+   * @param {string} key
+   * @param {string} val
+   */
 
 
   setJsonVal(key, val, hasval) {
@@ -560,16 +570,16 @@ class Jcm {
     this.data = data;
   }
   /**
-     *
-     * @param {string} cmd
-     * @returns {{}}
-     * @description
-     * ```
-     * idea:genreate config to des dir
-     * make dir
-     * mgnt cnf
-     * ```
-     */
+   *
+   * @param {string} cmd
+   * @returns {{}}
+   * @description
+   * ```
+   * idea:genreate config to des dir
+   * make dir
+   * mgnt cnf
+   * ```
+   */
 
 
   comEntry(cmd) {
@@ -586,8 +596,9 @@ class Jcm {
     let key;
     let val;
     let hasval;
+    let cmdn = cmd;
 
-    if (cmd == 'cnf') {
+    if (cmd === 'cnf') {
       // eg.jcm cnf --org=ymc
       // eg.jcm cnf --org
       const arglist = Object.keys(option);
@@ -597,9 +608,9 @@ class Jcm {
       hasval = key in option;
 
       if (hasval) {
-        cmd = 'add';
+        cmdn = 'add';
       } else {
-        cmd = 'get';
+        cmdn = 'get';
       }
     } else {
       // eg.jcm add --key=org --val=ymc
@@ -609,7 +620,7 @@ class Jcm {
       hasval = valname in option;
     }
 
-    switch (cmd) {
+    switch (cmdn) {
       case 'add':
         // add
         this.setJsonVal(key, val, hasval);
@@ -639,6 +650,8 @@ class Jcm {
 }
 
 const jcm = new Jcm(); // jcm.tool = {
+
+/* eslint-disable consistent-return */
 
 /**
  * make dirs sync
@@ -714,9 +727,10 @@ function saveJson(jsonLoc, data) {
 
 
 function getUserHome() {
-  return process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME'];
+  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
 }
 
+/* eslint-disable no-unused-expressions,consistent-return */
 const {
   log: log$1
 } = console; // idea: define usage likes below
@@ -797,7 +811,7 @@ const defFun = (cmd = 'add') => (cliFlags = {}) => {
     getUserHome
   };
 
-  if (cmd == 'loc') {
+  if (cmd === 'loc') {
     const file = jcm.getFileLocList(); // jcm.getFileLoc()
 
     log$1('[info] cnf file list:');
@@ -871,6 +885,7 @@ entrys.debug = true;
 // node script/jcm-cli.js user.name --des=packages/noop -c -u -w --name=.ymcrc.json --debugArgs
 // node script/jcm-cli.js user.name ymc --des=packages/noop -c -u -w --name=.ymcrc.json --debugArgs
 
+/* eslint-disable no-restricted-syntax,max-len,no-use-before-define */
 function nanoargs(input) {
   let extras = [];
   let args = input;
@@ -883,7 +898,7 @@ function nanoargs(input) {
 
   const newArgs = [];
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i += 1) {
     const previous = args[i - 1];
     const curr = args[i];
     const next = args[i + 1];
@@ -965,6 +980,7 @@ const parseValue = thing => {
   return thing;
 };
 
+/* eslint-disable no-param-reassign */
 const defOption = () => ({
   helpmsg: 'usage:ns option',
   argvIndexS: 2,
@@ -1005,6 +1021,7 @@ const installEntrys = (entrys = {}) => ycs => {
   return ycs;
 };
 
+/* eslint-disable  consistent-return,prefer-const */
 // idea: extract function to class
 // it.ns().version().entry().autosubcmd().autosubns().run()
 
@@ -1077,7 +1094,7 @@ class Ycs {
 
     if (enbaleSubNs) {
       subns = input[argvIndexS];
-      argvIndexS++;
+      argvIndexS += 1;
       helpmsg = helpmsg.replace(/option$/, 'subns option');
     } // feat: auto check sub cmd enable
 
@@ -1091,7 +1108,7 @@ class Ycs {
     if (enbaleSubCmd) {
       // subcmd = input[2]
       subcmd = input[argvIndexS];
-      argvIndexS++; // helpmsg=`usage:ns subcmd option`
+      argvIndexS += 1; // helpmsg=`usage:ns subcmd option`
 
       helpmsg = helpmsg.replace(/option$/, 'subcmd option');
     } // feat: get usage,entry,version

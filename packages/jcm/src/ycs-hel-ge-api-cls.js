@@ -15,7 +15,7 @@
  * ```
  */
 class GE {
-  constructor() {}
+  // constructor() {}
 
   /**
    * set or get entry
@@ -50,6 +50,8 @@ class GE {
         case 'call':
           // feat: support call then bind entry
           entry = defFun(cmd)
+          break
+        default:
           break
       }
       // feat: support bind entry

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import {
   existsSync as _existsSync,
   mkdirSync as _mkdirSync,

@@ -1,4 +1,5 @@
-import GE from './ycs-hel-ge-api.js'
+/* eslint-disable no-param-reassign */
+import GE from './ycs-hel-ge-api'
 
 const { log } = console
 // idea: define usage likes below
@@ -62,14 +63,15 @@ const builtinFlags = {
 // idea:cli-fy api to cli with ymc style
 const entrys = (flags = {}) => {
   // log nano parser result 's flags (flags vs _ vs extras)
-  // log(flags)
+  log(flags)
 }
 // 1. gen cmd fun
 const defFun =
   (cmd = 'add') =>
   (flags = {}) => {
-    // flags = { ...builtinFlags, ...flags }
+    flags = { ...builtinFlags, ...flags }
     // comEntry(cmd, flags)
+    log(flags)
     log(`hello ${cmd}`)
   }
 // 2. bind cmd fun

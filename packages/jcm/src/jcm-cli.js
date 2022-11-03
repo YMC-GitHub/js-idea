@@ -1,8 +1,8 @@
 // #!/usr/bin/env node
 
-import entrys from './jcm-clify.js'
-import Ycs from './ycs-api.js'
-import { installEntrys } from './ycs-too.js'
+import entrys from './jcm-clify'
+import Ycs from './ycs-api'
+import { installEntrys } from './ycs-too'
 // ycs is short for YmcStyleCli(YSC)
 
 // idea: use with cli

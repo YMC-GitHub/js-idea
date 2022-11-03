@@ -1,1 +1,1 @@
-import './jcm-cli.js'
+import './jcm-cli'

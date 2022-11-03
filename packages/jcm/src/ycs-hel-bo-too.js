@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring,prefer-const */
 export const { log } = console
 
 /**
@@ -21,15 +22,16 @@ export const getOptName = (s = '', t = 'l') => {
   keys = s
     .split(' ')[0]
     .split(',')
-    .map(v => v.replace(/^\-*/gi, ''))
+    .map(v => v.replace(/^-*/gi, ''))
 
   switch (t.toLowerCase()) {
     case 's':
     case 'short':
-      keys = keys[0]
+      ;[keys] = keys
       break
     case 'l':
     case 'long':
+    default:
       // feat: if not l , use s
       if (!keys[1]) {
         keys = keys[0]
@@ -53,8 +55,9 @@ export const getOptName = (s = '', t = 'l') => {
  * ```
  */
 export const getMapPathValue = (map, ns, def = {}) => {
-  map[ns] = map[ns] ? map[ns] : def
-  return map[ns]
+  let res
+  res = map[ns] ? map[ns] : def
+  return res
 }
 
 /**
@@ -99,6 +102,6 @@ export const getMap = (optionMap, ns = '', cmd = '') => {
  * ```
  */
 export const getFormatOptStr = (opts, s = '', num = 2) => {
-  opts = Array.isArray(opts) ? opts : [opts]
-  return opts.join('\n').replace(/^/gim, Array(num).fill(s).join(''))
+  const res = Array.isArray(opts) ? opts : [opts]
+  return res.join('\n').replace(/^/gim, Array(num).fill(s).join(''))
 }

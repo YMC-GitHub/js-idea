@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax,max-len,no-use-before-define */
 export default function nanoargs(input) {
   let extras = []
   let args = input
@@ -10,7 +11,7 @@ export default function nanoargs(input) {
 
   const newArgs = []
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i += 1) {
     const previous = args[i - 1]
     const curr = args[i]
     const next = args[i + 1]

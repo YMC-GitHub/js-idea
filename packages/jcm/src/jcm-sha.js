@@ -1,5 +1,11 @@
 // import { readJson, saveJson, getUserHome } from './jcm-too.js'
 
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars,prefer-destructuring */
+/* eslint-disable default-param-last */
+/* eslint-disable max-classes-per-file */
+/* eslint-disable prefer-const */
+
 const { log } = console
 /**
  * @description
@@ -28,8 +34,8 @@ class Ujc {
     const useIndex = !order
 
     // feat: auto increase index
-    if (useIndex || index == order) {
-      index++
+    if (useIndex || index === order) {
+      index += 1
     } else if (index < order) {
       index = order
     }
@@ -56,7 +62,7 @@ class Ujc {
   load() {
     const { list } = this
     let res = {}
-    for (let index = 0; index < list.length; index++) {
+    for (let index = 0; index < list.length; index += 1) {
       const config = list[index]
       if (config) {
         // res=Object.assign(res,config)
@@ -122,22 +128,22 @@ class Gsc {
    * ```
    * ```
    */
-  conf(key = '', val) {
+  conf(key, val) {
     if (!key) return this
     // note: extract com var
     let { data, option } = this
     let last
 
     // note: get name list
-    key = key.split(option.splitChar)
+    const nss = key.split(option.splitChar)
 
     // note: get last name
-    last = key[key.length - 1]
+    last = nss[nss.length - 1]
 
     // note: get prev data
-    const { length } = key
-    for (let index = 0; index < length - 1; index++) {
-      const name = key[index]
+    const { length } = nss
+    for (let index = 0; index < length - 1; index += 1) {
+      const name = nss[index]
       // note: ini data in key when not dedfining
       if (!data[name]) {
         data[name] = {}
@@ -148,7 +154,7 @@ class Gsc {
     // log(key,data)
 
     // feat: get val
-    if (val == undefined) {
+    if (val === undefined) {
       return data[last]
     }
     // feat: set val
@@ -180,7 +186,7 @@ function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
   // rc.use(readJson(joinPath(wkd,name)))
   // data = rc.load()
   // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
-  for (let index = 0; index < cnfLocList.length; index++) {
+  for (let index = 0; index < cnfLocList.length; index += 1) {
     const cnfLoc = cnfLocList[index]
     rc.use(readJson(cnfLoc))
   }
@@ -188,4 +194,4 @@ function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
 }
 const ujc = new Ujc()
 const gsc = new Gsc()
-export { Ujc, ujc, Gsc, readConf }
+export { Ujc, ujc, Gsc, gsc, readConf }

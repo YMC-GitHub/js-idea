@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-
-import Ycs from './ycs-api.js'
-import entrys from './ycs-ins.js'
+/* eslint-disable max-len */
+import Ycs from './ycs-api'
+import entrys from './ycs-ins'
 
 const run = () => {
   const ycs = new Ycs()

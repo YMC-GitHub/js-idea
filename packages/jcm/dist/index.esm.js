@@ -23,39 +23,39 @@ import { dirname, parse, join } from 'node:path';
  * ```
  */
 class GE {
-  constructor() {}
+  // constructor() {}
 
   /**
-     * set or get entry
-     * @param {{}} entry
-     * @returns {this|entry}
-     */
+   * set or get entry
+   * @param {{}} entry
+   * @returns {this|entry}
+   */
   entrys(entry) {
     // set
     if (entry) {
       this.context = entry;
-      return this;
+      return this
     }
     // get
-    return this.context;
+    return this.context
   }
 
   /**
-     * bind ns or subcmd with handle fun
-     * @param {string} subcmd
-     * @param {function} defFun
-     * @param {string} bindType call handle fun
-     */
+   * bind ns or subcmd with handle fun
+   * @param {string} subcmd
+   * @param {function} defFun
+   * @param {string} bindType call handle fun
+   */
   bind(subcmd = '', defFun = () => {}, bindType = '') {
     const entrys = this.entrys();
 
-    subcmd.split('|').forEach((cmd) => {
+    subcmd.split('|').forEach(cmd => {
       let entry;
       switch (bindType.toLowerCase()) {
         case 'call':
           // feat: support call then bind entry
           entry = defFun(cmd);
-          break;
+          break
       }
       // feat: support bind entry
       entrys[cmd] = entry;
@@ -83,9 +83,9 @@ const getTxtFromUsage = (s, usage = '') => {
   const regexp = new RegExp(` *${s}:.*`, 'ig');
   const match = usage.match(regexp);
   if (match) {
-    return match[0].replace(new RegExp(` *${s}:`, 'i'), '');
+    return match[0].replace(new RegExp(` *${s}:`, 'i'), '')
   }
-  return '';
+  return ''
 };
 
 /**
@@ -110,13 +110,19 @@ const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
       version,
       ns,
       autoSubCmd: getTxtFromUsage('subcmd', usage),
-      autoSubNs: getTxtFromUsage('subns', usage),
-    },
+      autoSubNs: getTxtFromUsage('subns', usage)
+    }
   };
-  return option;
+  return option
 };
 
 // import { readJson, saveJson, getUserHome } from './jcm-too.js'
+
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars,prefer-destructuring */
+/* eslint-disable default-param-last */
+/* eslint-disable max-classes-per-file */
+/* eslint-disable prefer-const */
 
 const { log: log$3 } = console;
 /**
@@ -134,11 +140,11 @@ class Ujc {
   }
 
   /**
-     * add config to config list by order
-     * @param {{}} config
-     * @param {numbber} order
-     * @returns {this} why ? to chain
-     */
+   * add config to config list by order
+   * @param {{}} config
+   * @param {numbber} order
+   * @returns {this} why ? to chain
+   */
   use(config = {}, order) {
     let { list, index } = this;
 
@@ -146,8 +152,8 @@ class Ujc {
     const useIndex = !order;
 
     // feat: auto increase index
-    if (useIndex || index == order) {
-      index++;
+    if (useIndex || index === order) {
+      index += 1;
     } else if (index < order) {
       index = order;
     }
@@ -158,23 +164,23 @@ class Ujc {
     if (config) {
       list[index] = config;
     }
-    return this;
+    return this
   }
 
   /**
-     *
-     * @returns {{}}
-     * @description
-     * ```
-     * - [x] get config by index in config list
-     * - [x] simple merge config
-     * - [x] freeze result optionally
-     * ```
-     */
+   *
+   * @returns {{}}
+   * @description
+   * ```
+   * - [x] get config by index in config list
+   * - [x] simple merge config
+   * - [x] freeze result optionally
+   * ```
+   */
   load() {
     const { list } = this;
     let res = {};
-    for (let index = 0; index < list.length; index++) {
+    for (let index = 0; index < list.length; index += 1) {
       const config = list[index];
       if (config) {
         // res=Object.assign(res,config)
@@ -183,9 +189,9 @@ class Ujc {
     }
     const { freeze } = this;
     if (freeze) {
-      return Object.freeze(res);
+      return Object.freeze(res)
     }
-    return res;
+    return res
     // return Object.freeze(Object.assign({}, config, dotenv, node_env, argv))
   }
 }
@@ -202,60 +208,60 @@ class Gsc {
   constructor() {
     this.data = {};
     this.option = {
-      splitChar: '.',
+      splitChar: '.'
     };
   }
 
   /**
-     * bind data to ctx.data
-     * @param {*} data
-     * @returns {this} why ? to chain
-     *
-     */
+   * bind data to ctx.data
+   * @param {*} data
+   * @returns {this} why ? to chain
+   *
+   */
   bind(data) {
     if (data) {
       this.data = data;
     }
-    return this;
+    return this
   }
 
   /**
-     * set split char
-     * @param {string} s
-     * @returns {this} why ? to chain
-     */
+   * set split char
+   * @param {string} s
+   * @returns {this} why ? to chain
+   */
   split(s = '.') {
     if (s) {
       this.option.splitChar = s;
     }
-    return this;
+    return this
   }
 
   /**
-     * get or set value with key
-     * @param {string} key
-     * @param {*} val
-     * @returns {val|this}
-     * @description
-     * ```
-     * ```
-     */
-  conf(key = '', val) {
-    if (!key) return this;
+   * get or set value with key
+   * @param {string} key
+   * @param {*} val
+   * @returns {val|this}
+   * @description
+   * ```
+   * ```
+   */
+  conf(key, val) {
+    if (!key) return this
     // note: extract com var
     let { data, option } = this;
     let last;
 
     // note: get name list
-    key = key.split(option.splitChar);
+    const nss = key.split(option.splitChar);
 
     // note: get last name
-    last = key[key.length - 1];
+    last = nss[nss.length - 1];
 
     // note: get prev data
-    const { length } = key;
-    for (let index = 0; index < length - 1; index++) {
-      const name = key[index];
+    const { length } = nss;
+    for (let index = 0; index < length - 1; index += 1) {
+      const name = nss[index];
       // note: ini data in key when not dedfining
       if (!data[name]) {
         data[name] = {};
@@ -266,14 +272,14 @@ class Gsc {
     // log(key,data)
 
     // feat: get val
-    if (val == undefined) {
-      return data[last];
+    if (val === undefined) {
+      return data[last]
     }
     // feat: set val
     data[last] = val;
     log$3(`set ${last} ${val}`);
     // feat: support chain when setting
-    return this;
+    return this
   }
 }
 
@@ -298,16 +304,16 @@ function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
   // rc.use(readJson(joinPath(wkd,name)))
   // data = rc.load()
   // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
-  for (let index = 0; index < cnfLocList.length; index++) {
+  for (let index = 0; index < cnfLocList.length; index += 1) {
     const cnfLoc = cnfLocList[index];
     rc.use(readJson(cnfLoc));
   }
-  return rc.load();
+  return rc.load()
 }
 new Ujc();
 new Gsc();
 
-// import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
+/* eslint-disable consistent-return */
 
 const { log: log$2 } = console;
 
@@ -323,95 +329,96 @@ class Jcm {
   }
 
   /**
-     *
-     * @param {string} name
-     * @returns {string}
-     */
+   *
+   * @param {string} name
+   * @returns {string}
+   */
   getFileLoc(name) {
     const { option, tool } = this;
     const filename = name || option.name;
     const flags = option;
     if (flags.usd || flags.u) {
       // log(tool.getUserHome(), filename, option)
-      return tool.joinPath(tool.getUserHome(), filename);
+      return tool.joinPath(tool.getUserHome(), filename)
     }
     if (flags.crd || flags.c) {
-      return filename;
+      return filename
     }
     if (flags.wkd /* || flags.w */) {
       log$2(filename, option);
-      return tool.joinPath(flags.wkd, filename);
+      return tool.joinPath(flags.wkd, filename)
     }
-    return filename;
+    return filename
   }
 
   /**
-     *
-     * @param {string} name
-     * @returns {string[]}
-     * @description
-     * ```
-     * user-path-> project-path -> des-path
-     * ```
-     */
+   *
+   * @param {string} name
+   * @returns {string[]}
+   * @description
+   * ```
+   * user-path-> project-path -> des-path
+   * ```
+   */
   getFileLocList(name) {
     let loclist = [];
     const { option } = this;
     const list = [['usd', 'u'], ['crd', 'c'], ['wkd']];
     loclist = list
-      .map((keys) => {
-        let ukey; let uVal; let
-          flag;
-        for (let index = 0; index < keys.length; index++) {
+      .map(keys => {
+        let ukey;
+        let uVal;
+        let flag;
+        for (let index = 0; index < keys.length; index += 1) {
           const key = keys[index];
           if (option[key]) {
             uVal = option[key];
             ukey = key;
             flag = true;
-            break;
+            break
           }
         }
 
         if (flag) {
           this.option = { [`${ukey}`]: uVal, name: option.name };
-          return this.getFileLoc(name);
+          return this.getFileLoc(name)
         }
-        return false;
+        return false
       })
-      .filter((v) => v);
+      .filter(v => v);
     this.option = option;
-    return loclist;
+    return loclist
   }
 
   /**
-     * read config
-     * @param {string} name
-     * @returns {[]|{}}
-     * @description
-     * ```
-     * user-path -> project-path -> des-path
-     * read-conf -> read-json
-     * ```
-     */
+   * read config
+   * @param {string} name
+   * @returns {[]|{}}
+   * @description
+   * ```
+   * user-path -> project-path -> des-path
+   * read-conf -> read-json
+   * ```
+   */
   magicReadConfig(name = '.ymcrc.json') {
     const { tool } = this;
     const loclist = this.getFileLocList(name);
-    return readConf(loclist, tool.readJson);
+    return readConf(loclist, tool.readJson)
   }
 
   /**
-     * @param {{}} data
-     * @param {string} key
-     * @param {string} val
-     * @returns {{}}
-     * @description
-     * ```
-     * ## why use?
-     * - [x] easy to write json config in node.js
-     *
-     * - [x] idea: bind-cache-data -> define-json-data
-     * ```
-     */
+   * @param {{}} data
+   * @param {string} key
+   * @param {string} val
+   * @returns {{}}
+   * @description
+   * ```
+   * ## why use?
+   * - [x] easy to write json config in node.js
+   *
+   * - [x] idea: bind-cache-data -> define-json-data
+   * ```
+   */
   magicDefineConfig(data, key, val) {
     const gsc = new Gsc();
     gsc.bind(data);
@@ -419,19 +426,19 @@ class Jcm {
     gsc.split('/');
     // gsc.conf('npm.user', 'hualei')
     gsc.conf(key, val);
-    return gsc.data;
+    return gsc.data
   }
 
   /**
-     * get val with key
-     * @param {string} key
-     * @param {string} val
-     * @returns {string}
-     * @sample
-     * ```
-     * getJsonVal(data,'key','val')
-     * ```
-     */
+   * get val with key
+   * @param {string} key
+   * @param {string} val
+   * @returns {string}
+   * @sample
+   * ```
+   * getJsonVal(data,'key','val')
+   * ```
+   */
   getJsonVal(key = 'key', val = 'val') {
     const { data } = this;
     let res;
@@ -445,15 +452,15 @@ class Jcm {
       // case:get key eg. jcm get --key=username
       res = data[val];
       log$2(res);
-      return res;
+      return res
     }
   }
 
   /**
-     *
-     * @param {string} key
-     * @param {string} val
-     */
+   *
+   * @param {string} key
+   * @param {string} val
+   */
   setJsonVal(key, val, hasval) {
     const { option, tool } = this;
     const self = this;
@@ -485,36 +492,38 @@ class Jcm {
   }
 
   /**
-     *
-     * @param {string} cmd
-     * @returns {{}}
-     * @description
-     * ```
-     * idea:genreate config to des dir
-     * make dir
-     * mgnt cnf
-     * ```
-     */
+   *
+   * @param {string} cmd
+   * @returns {{}}
+   * @description
+   * ```
+   * idea:genreate config to des dir
+   * make dir
+   * mgnt cnf
+   * ```
+   */
   comEntry(cmd) {
     const { option, tool } = this;
     const { name } = option;
     let data = {};
     const keyname = 'key';
     const valname = 'val';
-    let key; let val; let
-      hasval;
-    if (cmd == 'cnf') {
+    let key;
+    let val;
+    let hasval;
+    let cmdn = cmd;
+    if (cmd === 'cnf') {
       // eg.jcm cnf --org=ymc
       // eg.jcm cnf --org
       const arglist = Object.keys(option);
       const builtinlist = 'name|wkd|usd|crd|w|u|c'.split('|');
-      key = arglist.filter((v) => !builtinlist.includes(v))[0];
+      key = arglist.filter(v => !builtinlist.includes(v))[0];
       val = option[key];
       hasval = key in option;
       if (hasval) {
-        cmd = 'add';
+        cmdn = 'add';
       } else {
-        cmd = 'get';
+        cmdn = 'get';
       }
     } else {
       // eg.jcm add --key=org --val=ymc
@@ -523,15 +532,15 @@ class Jcm {
       val = option[valname];
       hasval = valname in option;
     }
-    switch (cmd) {
+    switch (cmdn) {
       case 'add':
         // add
         this.setJsonVal(key, val, hasval);
-        break;
+        break
       case 'del':
         // del
         // todo:it.deleteConfFile(flags)
-        break;
+        break
       case 'get':
       default:
         data = this.magicReadConfig(name);
@@ -539,9 +548,9 @@ class Jcm {
         // case:get key eg. jcm get
         log$2('[info] info data:');
         log$2(data);
-        break;
+        break
     }
-    return data;
+    return data
     // key,val
     // jcm get --key=username
     // key=option[keyname]
@@ -549,6 +558,8 @@ class Jcm {
   }
 }
 const jcm = new Jcm();
+
+/* eslint-disable consistent-return */
 
 // curd diretory sync
 /**
@@ -571,17 +582,18 @@ const jcm = new Jcm();
  */
 function mkdirsSync(dirPath) {
   if (existsSync(dirPath)) {
-    return true;
+    return true
   }
   if (mkdirsSync(dirname(dirPath))) {
     mkdirSync(dirPath);
-    return true;
+    return true
   }
 }
 
 const makeDirs = mkdirsSync;
 const rmDirs = rmdirSync;
 
+// const { log } = console
 /**
  * read json sync
  * @param {string} jsonLoc
@@ -596,7 +608,7 @@ function readJson(jsonLoc, def = {}) {
   } catch (error) {
     data = def;
   }
-  return data;
+  return data
 }
 /**
  * write json sync
@@ -615,8 +627,10 @@ function saveJson(jsonLoc, data) {
  * ```
  */
 function getUserHome() {
-  return process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME'];
+  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']
 }
+
+/* eslint-disable no-unused-expressions,consistent-return */
 
 const { log: log$1 } = console;
 // idea: define usage likes below
@@ -640,12 +654,15 @@ const defUsage = (ns = 'ns') => {
     -h,--help get help
     -v,--version get version
 `;
-  return msg;
+  return msg
 };
 
 // feat: use built in flags
 const builtinFlags = {
-  name: '.ymcrc.json', wkd: 'packages/noop', usd: false, crd: true,
+  name: '.ymcrc.json',
+  wkd: 'packages/noop',
+  usd: false,
+  crd: true
 };
 
 // idea:cli-fy api to cli with ymc style
@@ -659,48 +676,50 @@ const entrys = (flags = {}) => {
   entrys.debug && log$1(flags);
 };
 // 1. gen cmd fun
-const defFun = (cmd = 'add') => (cliFlags = {}) => {
-  entrys.debug && log$1(`[info] run cmd with: ns ${cmd}`);
-  entrys.debug && log$1(`[info] hello ${cmd}`);
+const defFun =
+  (cmd = 'add') =>
+  (cliFlags = {}) => {
+    entrys.debug && log$1(`[info] run cmd with: ns ${cmd}`);
+    entrys.debug && log$1(`[info] hello ${cmd}`);
 
-  // do sth. here
-  // log(`[info] log cli option:`)
-  // log(cliFlags)
+    // do sth. here
+    // log(`[info] log cli option:`)
+    // log(cliFlags)
 
-  // let nowFlags = { ...builtinFlags, ...cliFlags }
-  let nowFlags;
-  builtinFlags.wkd = '';
-  if (entrys.notOnlyFlags) {
-    nowFlags = { ...builtinFlags, ...cliFlags.flags };
-  } else {
-    nowFlags = { ...builtinFlags, ...cliFlags };
-  }
+    // let nowFlags = { ...builtinFlags, ...cliFlags }
+    let nowFlags;
+    builtinFlags.wkd = '';
+    if (entrys.notOnlyFlags) {
+      nowFlags = { ...builtinFlags, ...cliFlags.flags };
+    } else {
+      nowFlags = { ...builtinFlags, ...cliFlags };
+    }
 
-  // comEntry(cmd, nowFlags)
-  entrys.debug && log$1('[info] log now flags:');
-  entrys.debug && log$1(nowFlags);
-  jcm.option = nowFlags;
-  jcm.tool = {
-    parsePath: parse,
-    joinPath: join,
-    addDirs: makeDirs,
-    delDirs: rmDirs,
-    readJson,
-    saveJson,
-    getUserHome,
+    // comEntry(cmd, nowFlags)
+    entrys.debug && log$1('[info] log now flags:');
+    entrys.debug && log$1(nowFlags);
+    jcm.option = nowFlags;
+    jcm.tool = {
+      parsePath: parse,
+      joinPath: join,
+      addDirs: makeDirs,
+      delDirs: rmDirs,
+      readJson,
+      saveJson,
+      getUserHome
+    };
+
+    if (cmd === 'loc') {
+      const file = jcm.getFileLocList(); // jcm.getFileLoc()
+      log$1('[info] cnf file list:');
+      log$1(file);
+      log$1('[info] the last file:');
+      log$1(file[file.length - 1]);
+      // log(jcm.tool.parsePath(file[file.length - 1]))
+      return
+    }
+    return jcm.comEntry(cmd)
   };
-
-  if (cmd == 'loc') {
-    const file = jcm.getFileLocList(); // jcm.getFileLoc()
-    log$1('[info] cnf file list:');
-    log$1(file);
-    log$1('[info] the last file:');
-    log$1(file[file.length - 1]);
-    // log(jcm.tool.parsePath(file[file.length - 1]))
-    return;
-  }
-  return jcm.comEntry(cmd);
-};
 // 2. bind cmd fun
 const ge = new GE();
 // let subcmd = getTxtFromUsage('subcmd', usage)
@@ -771,6 +790,7 @@ entrys.debug = true;
 // node script/jcm-cli.js user.name --des=packages/noop -c -u -w --name=.ymcrc.json --debugArgs
 // node script/jcm-cli.js user.name ymc --des=packages/noop -c -u -w --name=.ymcrc.json --debugArgs
 
+/* eslint-disable no-restricted-syntax,max-len,no-use-before-define */
 function nanoargs(input) {
   let extras = [];
   let args = input;
@@ -783,14 +803,14 @@ function nanoargs(input) {
 
   const newArgs = [];
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i += 1) {
     const previous = args[i - 1];
     const curr = args[i];
     const next = args[i + 1];
 
     const nextIsValue = next && !/^--.+/.test(next) && !/^-.+/.test(next);
 
-    const pushWithNext = (x) => {
+    const pushWithNext = x => {
       newArgs.push([x, nextIsValue ? next : true]);
     };
 
@@ -816,11 +836,11 @@ function nanoargs(input) {
     } else if (/^--.+/.test(curr) || /^-.+/.test(curr)) {
       pushWithNext(curr);
     } else {
-      let valueTaken = newArgs.find((arg) => arg[0] === previous);
+      let valueTaken = newArgs.find(arg => arg[0] === previous);
 
       if (!valueTaken && /^-./.test(previous)) {
         const previousChar = previous[previous.length - 1];
-        valueTaken = newArgs.find((arg) => arg[0] === previousChar);
+        valueTaken = newArgs.find(arg => arg[0] === previousChar);
       }
 
       if (!valueTaken) {
@@ -843,25 +863,26 @@ function nanoargs(input) {
     flags[key] = parseValue(value);
   }
 
-  return { flags, _: _.map((value) => parseValue(value)), extras: extras.map((value) => parseValue(value)) };
+  return { flags, _: _.map(value => parseValue(value)), extras: extras.map(value => parseValue(value)) }
 }
 
-const parseValue = (thing) => {
+const parseValue = thing => {
   if (['true', true].includes(thing)) {
-    return true;
+    return true
   }
 
   if (['false', false].includes(thing)) {
-    return false;
+    return false
   }
 
   if (Number(thing)) {
-    return Number(thing);
+    return Number(thing)
   }
 
-  return thing;
+  return thing
 };
 
+/* eslint-disable no-param-reassign */
 const defOption = () => ({
   helpmsg: 'usage:ns option',
   argvIndexS: 2, // argv index start position
@@ -875,35 +896,38 @@ const defOption = () => ({
   enbaleSubNs: false,
   subns: '',
   allowAutoSubNs: true,
-  autoSubNs: '',
+  autoSubNs: ''
 });
 
-const installEntrys = (entrys = {}) => (ycs) => {
-  // const ycs = new Ycs()
-  // let input =process.argv
-  // ycs.entry(entrys).run(input)
-  // ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys)
+const installEntrys =
+  (entrys = {}) =>
+  ycs => {
+    // const ycs = new Ycs()
+    // let input =process.argv
+    // ycs.entry(entrys).run(input)
+    // ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys)
 
-  // idea: bind entrys.option to ysc.option
-  if (entrys.option) {
-    ycs.option = {
-      ...ycs.option,
-      ...entrys.option,
-    };
-  }
-
-  // idea: bind entrys.xx to ysc.option
-  // xx is some of version,ns,autoSubCmd,autoSubNs
-  'version,ns,autoSubCmd,autoSubNs'.split(',').forEach((item) => {
-    if (entrys[item]) {
-      ycs.option[item] = entrys[item];
+    // idea: bind entrys.option to ysc.option
+    if (entrys.option) {
+      ycs.option = {
+        ...ycs.option,
+        ...entrys.option
+      };
     }
-  });
-  ycs.entry(entrys);
-  // ysc.run(input)
-  return ycs;
-};
 
+    // idea: bind entrys.xx to ysc.option
+    // xx is some of version,ns,autoSubCmd,autoSubNs
+    'version,ns,autoSubCmd,autoSubNs'.split(',').forEach(item => {
+      if (entrys[item]) {
+        ycs.option[item] = entrys[item];
+      }
+    });
+    ycs.entry(entrys);
+    // ysc.run(input)
+    return ycs
+  };
+
+/* eslint-disable  consistent-return,prefer-const */
 // feat: support subcmd alias (todo)
 
 // idea: extract function to class
@@ -918,32 +942,32 @@ class Ycs {
 
   ns(s = 'ns') {
     this.option.ns = s;
-    return this;
+    return this
   }
 
   version(s = '1.0.0') {
     this.option.version = s;
-    return this;
+    return this
   }
 
   entry(o = {}) {
     this.option.entrys = o;
-    return this;
+    return this
   }
 
   autosubcmd(s = '') {
     this.option.autoSubCmd = s;
-    return this;
+    return this
   }
 
   autosubns(s = '') {
     this.option.autoSubNs = s;
-    return this;
+    return this
   }
 
   nanoparse(f = () => {}) {
     this.option.nanoparse = f;
-    return this;
+    return this
   }
 
   run(input) {
@@ -964,7 +988,7 @@ class Ycs {
       enbaleSubNs,
       subns,
       allowAutoSubNs,
-      autoSubNs,
+      autoSubNs
     } = this.option;
 
     // idea: input format is 'ns [subcmd] [option]'
@@ -979,7 +1003,7 @@ class Ycs {
     // feat: support sub ns
     if (enbaleSubNs) {
       subns = input[argvIndexS];
-      argvIndexS++;
+      argvIndexS += 1;
       helpmsg = helpmsg.replace(/option$/, 'subns option');
     }
 
@@ -993,7 +1017,7 @@ class Ycs {
     if (enbaleSubCmd) {
       // subcmd = input[2]
       subcmd = input[argvIndexS];
-      argvIndexS++;
+      argvIndexS += 1;
       // helpmsg=`usage:ns subcmd option`
       helpmsg = helpmsg.replace(/option$/, 'subcmd option');
     }
@@ -1008,7 +1032,7 @@ class Ycs {
         log(`${helpmsg}`);
         log(`todo:subns:${subns}`);
         // process.exit(1)
-        return;
+        return
       }
       // log(`run subns ${subns}`)
       helpmsg = entry[subns].usage ? entry[subns].usage : helpmsg;
@@ -1021,7 +1045,7 @@ class Ycs {
         log(`${helpmsg}`);
         log(`todo:subcmd:${subcmd}`);
         // process.exit(1)
-        return;
+        return
       }
       // log(`run subcmd ${subcmd}`)
       helpmsg = entry[subcmd].usage ? entry[subcmd].usage : helpmsg;
@@ -1053,7 +1077,7 @@ class Ycs {
     if (invalidArgvLength) {
       log(`${helpmsg}`);
       log('error:invalid argv length');
-      return;
+      return
     }
 
     // feat: parse nano argv
@@ -1078,13 +1102,13 @@ class Ycs {
     // feat: support out version
     if (option.version || option.v) {
       log(`${ns} version:${version}`);
-      return;
+      return
     }
 
     // feat: support out help
     if (option.help || option.h) {
       log(`${helpmsg}`);
-      return;
+      return
     }
 
     // feat: support run main
@@ -1096,9 +1120,9 @@ class Ycs {
     // flags,_,extras
     // option is alias of flags
     if (entrys.notOnlyFlags || entry.notOnlyFlags) {
-      return entry(argv);
+      return entry(argv)
     }
-    return entry(option);
+    return entry(option)
   }
 }
 

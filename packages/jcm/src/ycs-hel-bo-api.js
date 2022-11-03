@@ -1,4 +1,5 @@
-import { log, getOptName, getMapPathValue, getMap, getFormatOptStr } from './ycs-hel-bo-too.js'
+/* eslint-disable no-unused-vars */
+import { log, getOptName, getMapPathValue, getMap, getFormatOptStr } from './ycs-hel-bo-too'
 
 /**
  * @description

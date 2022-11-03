@@ -1,4 +1,4 @@
-import { defOption } from './ycs-too.js'
+import { defOption } from './ycs-too'
 
 const { log } = console
 
@@ -58,4 +58,5 @@ option = {
   }
 }
 // entrys.option = defOption()
+entrys.option = option
 export default entrys

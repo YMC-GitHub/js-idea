@@ -1,5 +1,8 @@
-import { Ujc, Gsc, readConf } from './jcm-sha.js'
-// import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome } from './jcm-too.js'
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars,prefer-destructuring */
+/* eslint-disable class-methods-use-this */
+
+import { Gsc, readConf } from './jcm-sha'
 
 const { log } = console
 
@@ -55,7 +58,7 @@ class Jcm {
         let ukey
         let uVal
         let flag
-        for (let index = 0; index < keys.length; index++) {
+        for (let index = 0; index < keys.length; index += 1) {
           const key = keys[index]
           if (option[key]) {
             uVal = option[key]
@@ -199,7 +202,8 @@ class Jcm {
     let key
     let val
     let hasval
-    if (cmd == 'cnf') {
+    let cmdn = cmd
+    if (cmd === 'cnf') {
       // eg.jcm cnf --org=ymc
       // eg.jcm cnf --org
       const arglist = Object.keys(option)
@@ -208,9 +212,9 @@ class Jcm {
       val = option[key]
       hasval = key in option
       if (hasval) {
-        cmd = 'add'
+        cmdn = 'add'
       } else {
-        cmd = 'get'
+        cmdn = 'get'
       }
     } else {
       // eg.jcm add --key=org --val=ymc
@@ -219,7 +223,7 @@ class Jcm {
       val = option[valname]
       hasval = valname in option
     }
-    switch (cmd) {
+    switch (cmdn) {
       case 'add':
         // add
         this.setJsonVal(key, val, hasval)

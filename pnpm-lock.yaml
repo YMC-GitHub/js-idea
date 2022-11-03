@@ -170,6 +170,28 @@ importers:
   packages/color-log:
     specifiers: {}
 
+  packages/get-loc-in-different-os:
+    specifiers:
+      '@ymc/get-os-name': workspace:^1.0.0
+    dependencies:
+      '@ymc/get-os-name': link:../get-os-name
+
+  packages/git-commit-msg-read:
+    specifiers:
+      '@ymc/git-commit-msg-parse': workspace:^1.0.0
+      '@ymc/render-tpl': workspace:^1.0.0
+      '@ymc/run-bash': workspace:^0.0.3
+    dependencies:
+      '@ymc/git-commit-msg-parse': link:../git-commit-msg-parse
+      '@ymc/render-tpl': link:../render-tpl
+      '@ymc/run-bash': link:../run-bash
+
+  packages/git-commit-msg-write:
+    specifiers:
+      '@ymc/render-tpl': workspace:^1.0.0
+    dependencies:
+      '@ymc/render-tpl': link:../render-tpl
+
   packages/github:
     specifiers: {}
 

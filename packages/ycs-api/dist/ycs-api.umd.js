@@ -1,3 +1,8 @@
+/**
+  * ycsApi v0.0.2
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :

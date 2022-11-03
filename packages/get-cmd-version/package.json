@@ -1,37 +1,37 @@
 {
-    "name": "@ymc/get-cmd-version",
-    "version": "1.0.0",
-    "description": "get cmd version in node.js, run-bash is custom-able",
-    "keywords": [
-        "ymc",
-        "get-cmd-version"
-    ],
-    "author": {
-        "name": "yemiancheng",
-        "email": "ymc.github@gmail.com",
-        "url": "https://github.com/ymc-github"
-    },
-    "main": "dist/index.js",
-    "module": "dist/index.esm.js",
-    "type": "module",
-    "typings": "dist/index.d.ts",
-    "unpkg": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ymc-github/js-idea.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ymc-github/js-idea/issues"
-    },
-    "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/get-cmd-version#readme",
-    "license": "MIT",
-    "scripts": {
-        "doc:js": "jsdoc2md dist/index.esm.js",
-        "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
-        "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
-        "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
-        "pac:js": "rm -rf dist/* && rollup -c",
-        "test": "exit 0"
-    },
-    "private": false
+  "name": "@ymc/get-cmd-version",
+  "version": "1.0.0",
+  "description": "ymc package get-cmd-version",
+  "keywords": [
+    "ymc",
+    "get-cmd-version"
+  ],
+  "author": {
+    "name": "yemiancheng",
+    "email": "ymc.github@gmail.com",
+    "url": "https://github.com/ymc-github"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "unpkg": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymc-github/js-idea.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ymc-github/js-idea/issues"
+  },
+  "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/get-cmd-version#readme",
+  "license": "MIT",
+  "scripts": {
+    "doc:js": "jsdoc2md dist/index.esm.js",
+    "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
+    "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+    "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
+    "pac:js": "rm -rf dist/* && rollup -c",
+    "test": "exit 0"
+  },
+  "private": false
 }

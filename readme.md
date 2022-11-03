@@ -24,7 +24,7 @@ name|description|created_at
 [@ymc/get-os-name](packages/get-os-name)|get os name in node.js through process.platform|2022-11-03
 [@ymc/git-commit-type-lang](packages/git-commit-type-lang)|write , parse git-commit-type for multi-language|2022-11-03
 [@ymc/i18n](packages/i18n)|ymc package i18n|2022-11-03
-[@ymc/get-cmd-version](packages/get-cmd-version)|ymc package get-cmd-version|2022-11-02
+[@ymc/get-cmd-version](packages/get-cmd-version)|get cmd version|2022-11-02
 [@ymc/git-commit-msg-read](packages/git-commit-msg-read)|read git-commit-msg from git log|2022-11-02
 [@ymc/git-commit-msg-parse](packages/git-commit-msg-parse)|parse git-commit-msg to json - parse angular style msg|2022-11-02
 [@ymc/git-commit-msg-write](packages/git-commit-msg-write)|write git-commit-msg tpl and data , and render tpl to data|2022-11-02
@@ -63,9 +63,9 @@ name|description|created_at
 [@ymc/extend-date](packages/extend-date)|extend node.js date, extend Date.prototype is optional|2022-10-26
 [@ymc/copy-file](packages/copy-file)|async copy file with stream|2022-10-11
 [@ymc/nano-parse](packages/nano-parse)|parse commandline args - process.argv|2022-10-10
-[@ymc/read-diretory](packages/read-diretory)|ymc package read-diretory|2022-10-02
-[@ymc/jcm](packages/jcm)|ymc package jcm|2022-10-02
-[@ymc/run-bash](packages/run-bash)|ymc package run-bash|2022-10-02
+[@ymc/read-diretory](packages/read-diretory)|get file or dir in some diretory with match-reg |2022-10-02
+[@ymc/jcm](packages/jcm)|manage .ymcrc.json file or other json-format file|2022-10-02
+[@ymc/run-bash](packages/run-bash)|run bash cmd in node.js - like execa|2022-10-02
 [@ymc/ycs-help-usage-to-option](packages/ycs-help-usage-to-option)|ycs plugin - get txt from usage and gen entry option|2022-10-02
 [@ymc/ycs-help-generate-entry](packages/ycs-help-generate-entry)|ycs plugin - gen entry for test or other case|2022-10-02
 [@ymc/ycs-help-bind-option](packages/ycs-help-bind-option)|ycs plugin - bind option to cmd or ns|2022-10-02

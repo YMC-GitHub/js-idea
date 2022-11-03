@@ -1,4 +1,4 @@
-# pkg copy-file
+# pkg @ymc/copy-file
 
 ## desc
 async copy file with stream

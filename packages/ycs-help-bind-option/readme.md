@@ -1,4 +1,4 @@
-# pkg ycs-help-bind-option
+# pkg @ymc/ycs-help-bind-option
 
 ## desc
 ycs plugin - bind option to cmd or ns

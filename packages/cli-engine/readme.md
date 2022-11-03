@@ -1,4 +1,4 @@
-# pkg cli-engine
+# pkg @ymc/cli-engine
 
 ## desc
 ymc package cli-engine
@@ -6,13 +6,13 @@ ymc package cli-engine
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 32.74kb | 7.90kb | 7.10kb
-dist/index.cjs.min.js | 8.82kb | 3.02kb | 2.76kb
-dist/index.esm.js | 32.68kb | 7.87kb | 7.07kb
-dist/index.esm.min.js | 8.75kb | 2.98kb | 2.74kb
-dist/index.js | 32.68kb | 7.87kb | 7.07kb
-dist/index.umd.js | 35.36kb | 8.15kb | 7.28kb
-dist/index.umd.min.js | 9.11kb | 3.11kb | 2.85kb
+dist/index.cjs.js | 33.01kb | 7.93kb | 7.12kb
+dist/index.cjs.min.js | 9.09kb | 3.04kb | 2.78kb
+dist/index.esm.js | 2.39kb | 0.81kb | 0.73kb
+dist/index.esm.min.js | 1.14kb | 0.52kb | 0.49kb
+dist/index.js | 2.39kb | 0.81kb | 0.73kb
+dist/index.umd.js | 35.67kb | 8.18kb | 7.31kb
+dist/index.umd.min.js | 9.41kb | 3.13kb | 2.87kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

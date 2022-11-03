@@ -12,6 +12,12 @@
   */
 
 /**
+  * getOsName v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+
+/**
  * one-line text to object set
  * @param {string} s one-line text or other
  * @param {string} si the char to split text to array

@@ -1,4 +1,4 @@
-# pkg i18n
+# pkg @ymc/i18n
 
 ## desc
 ymc package i18n

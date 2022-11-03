@@ -1,4 +1,4 @@
-# pkg extend-date
+# pkg @ymc/extend-date
 
 ## desc
 extend node.js date, extend Date.prototype is optional

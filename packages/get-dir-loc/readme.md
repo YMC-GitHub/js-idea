@@ -1,4 +1,4 @@
-# pkg get-dir-loc
+# pkg @ymc/get-dir-loc
 
 ## desc
 get parent dir loc

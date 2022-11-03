@@ -1,4 +1,4 @@
-# pkg cli-entry
+# pkg @ymc/cli-entry
 
 ## desc
 define entry , bind cmd or ns and run

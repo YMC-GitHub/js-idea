@@ -1,4 +1,4 @@
-# pkg git-commit-msg-parse
+# pkg @ymc/git-commit-msg-parse
 
 ## desc
 parse git-commit-msg to json - parse angular style msg

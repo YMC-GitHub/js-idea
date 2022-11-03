@@ -1,7 +1,7 @@
-# pkg get-cmd-version
+# pkg @ymc/get-cmd-version
 
 ## desc
-get cmd version in node.js, run-bash is custom-able
+ymc package get-cmd-version
 
 ## lib size  
 file | size | gzip | brotli

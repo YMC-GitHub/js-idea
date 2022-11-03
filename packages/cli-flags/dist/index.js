@@ -3,55 +3,7 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/**
-  * extendString v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-
-/**
- *
- * @param {*} s
- * @returns {string}
- * @sample
- * ```
- * humanize('per_page')// Per page
- * humanize('per-page')// Per page
- * ```
- * @description
- * ```
- * ## idea
- * - [x] replace multi - or _ to one space
- * - [x] add space to the char that is uppercase and is not the first index
- * - [x] the first char to upper ,other lowercase
- * ```
- */
-function humanize(s) {
-  return s
-    .replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-      let res = '';
-      // log(word, index); //desc: for debug
-      // feat: replace multi - or _ to one space
-      res = word.replace(/[-_]+/g, ' ');
-      // feat: add space to the char that is uppercase and is not the first index
-      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res;
-      // feat: the first char to upper ,other lowercase
-      return index === 0 ? res.toUpperCase() : res.toLowerCase()
-    })
-    .replace(/\s+/g, ' ')
-}
-
-function camelize(s) {
-  return humanize(s)
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
-    .replace(/\s+/g, '')
-}
-
-function underscoped(s) {
-  return humanize(s)
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toLowerCase())
-    .replace(/\s+/g, '_')
-}
+import { camelize, underscoped } from '@ymc/extend-string';
 
 /* eslint-disable no-param-reassign */
 

@@ -1,4 +1,4 @@
-# pkg extend-function
+# pkg @ymc/extend-function
 
 ## desc
 extend node.js function, extend Function.prototype is optional

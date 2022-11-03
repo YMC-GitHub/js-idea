@@ -1,4 +1,4 @@
-# pkg limit-async-handle
+# pkg @ymc/limit-async-handle
 
 ## desc
 run async function with limited-max number

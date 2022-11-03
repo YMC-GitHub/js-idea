@@ -1,4 +1,4 @@
-# pkg cli-preset-param
+# pkg @ymc/cli-preset-param
 
 ## desc
 cli param preset - base, token and other

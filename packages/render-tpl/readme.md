@@ -1,4 +1,4 @@
-# pkg render-tpl
+# pkg @ymc/render-tpl
 
 ## desc
 write or render tempalte - a small and simple template engine

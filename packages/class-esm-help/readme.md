@@ -1,4 +1,4 @@
-# pkg class-esm-help
+# pkg @ymc/class-esm-help
 
 ## desc
 ymc package class-esm-help

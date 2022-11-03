@@ -1,4 +1,4 @@
-# pkg ycs-help-usage-to-option
+# pkg @ymc/ycs-help-usage-to-option
 
 ## desc
 ycs plugin - get txt from usage and gen entry option

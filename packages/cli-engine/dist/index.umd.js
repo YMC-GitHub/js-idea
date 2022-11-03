@@ -16,6 +16,12 @@
     */
 
   /**
+    * cliOption v1.0.0
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
+
+  /**
     * cliParam v1.0.0
     * (c) 2018-2022 ymc
     * @license MIT
@@ -722,17 +728,10 @@
   new CliOptionHelp();
 
   /**
-    * cliParam v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
-  /**
     * extendString v1.0.0
     * (c) 2018-2022 ymc
     * @license MIT
     */
-
   /**
    *
    * @param {*} s
@@ -750,6 +749,8 @@
    * - [x] the first char to upper ,other lowercase
    * ```
    */
+
+
   function humanize(s) {
     return s.replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
       let res = ''; // log(word, index); //desc: for debug
@@ -766,6 +767,12 @@
   function camelize(s) {
     return humanize(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
   }
+
+  /**
+    * cliParam v1.0.0
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
   /**
    * camelize param-json - nano-parser-flags
    * @param {object} flags
@@ -818,13 +825,19 @@
     * @license MIT
     */
 
+  /**
+    * nanoParse v0.0.1
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
+
   /* eslint-disable no-use-before-define,no-restricted-syntax */
   // docs(core): add docs comment
 
   /**
    * parse cli cmd string
    * @param {string} input
-   * @returns {{args:string[],extras:string[],_:string[]}}
+   * @returns {{flags:string[],extras:string[],_:string[]}}
    * @sample
    * ```
    * nanoargs(`ns cmd -a -b -c -- -a -b -c`)
@@ -936,6 +949,12 @@
 
     return thing;
   }
+
+  /**
+    * cliRunner v1.0.0
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
 
   /**
     * cliRunner v1.0.0
@@ -1275,6 +1294,12 @@
   }
 
   new YcsRunner();
+
+  /**
+    * cliEntry v1.0.0
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
 
   /**
     * cliEntry v1.0.0

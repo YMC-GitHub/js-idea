@@ -1,4 +1,4 @@
-# pkg run-bash
+# pkg @ymc/run-bash
 
 ## desc
 ymc package run-bash

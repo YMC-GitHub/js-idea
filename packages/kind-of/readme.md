@@ -1,4 +1,4 @@
-# pkg kind-of
+# pkg @ymc/kind-of
 
 ## desc
 get type of val - enhance typeof

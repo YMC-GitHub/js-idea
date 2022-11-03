@@ -1,4 +1,4 @@
-# pkg stream-io
+# pkg @ymc/stream-io
 
 ## desc
 async read or write data with stream

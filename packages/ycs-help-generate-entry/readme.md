@@ -1,4 +1,4 @@
-# pkg ycs-help-generate-entry
+# pkg @ymc/ycs-help-generate-entry
 
 ## desc
 ycs plugin - gen entry for test or other case

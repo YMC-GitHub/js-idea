@@ -1,4 +1,4 @@
-# pkg class-es5-help
+# pkg @ymc/class-es5-help
 
 ## desc
 help to define es5 class - set constructor ,method ,method alias and so on

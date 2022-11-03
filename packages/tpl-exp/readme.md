@@ -1,4 +1,4 @@
-# pkg tpl-exp
+# pkg @ymc/tpl-exp
 
 ## desc
 define simple template text expression , get tpl regexp , custom tpl label

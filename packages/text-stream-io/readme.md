@@ -1,4 +1,4 @@
-# pkg text-stream-io
+# pkg @ymc/text-stream-io
 
 ## desc
 async read or write text file with stream

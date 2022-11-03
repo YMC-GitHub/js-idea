@@ -1,4 +1,4 @@
-# pkg bump-version
+# pkg @ymc/bump-version
 
 ## desc
 ymc package bump-version

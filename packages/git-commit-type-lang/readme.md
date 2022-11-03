@@ -1,4 +1,4 @@
-# pkg git-commit-type-lang
+# pkg @ymc/git-commit-type-lang
 
 ## desc
 write , parse git-commit-type for multi-language

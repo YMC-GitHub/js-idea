@@ -1,4 +1,4 @@
-# pkg read-diretory
+# pkg @ymc/read-diretory
 
 ## desc
 ymc package read-diretory

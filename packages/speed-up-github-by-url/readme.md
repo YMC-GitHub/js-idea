@@ -1,4 +1,4 @@
-# pkg speed-up-github-by-url
+# pkg @ymc/speed-up-github-by-url
 
 ## desc
 speedup github - add prefix url to matched url

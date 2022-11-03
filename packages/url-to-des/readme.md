@@ -1,4 +1,4 @@
-# pkg url-to-des
+# pkg @ymc/url-to-des
 
 ## desc
 get target file loc by url

@@ -1,4 +1,4 @@
-# pkg switch-option
+# pkg @ymc/switch-option
 
 ## desc
 swicth option for different case, update option easily in a string

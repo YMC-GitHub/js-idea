@@ -5,6 +5,8 @@
   */
 'use strict';
 
+/* eslint-disable prefer-const */
+
 /**
  * one-line text to object set
  * @param {string} s one-line text or other
@@ -40,7 +42,7 @@ function getKWByVal(map, val, useKeyWord = true) {
   let res;
   const keys = Object.keys(map);
 
-  for (let index = 0; index < keys.length; index++) {
+  for (let index = 0; index < keys.length; index += 1) {
     const kw = keys[index];
     const kwVal = map[kw];
 
@@ -77,7 +79,8 @@ function getKWByVal(map, val, useKeyWord = true) {
  */
 
 function getOsName(customNames) {
-  const nameMap = customNames ? customNames : 'mac=darwin;win=win32;linux=linux;android=android';
+  const osName = process.platform;
+  const nameMap = customNames || 'mac=darwin;win=win32;linux=linux;android=android';
   const osMap = toObjectSet(nameMap);
   return getKWByVal(osMap, osName, true);
 }

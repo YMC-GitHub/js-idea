@@ -1,4 +1,4 @@
-# pkg chain-task
+# pkg @ymc/chain-task
 
 ## desc
 chain async task

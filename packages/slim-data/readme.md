@@ -1,4 +1,4 @@
-# pkg slim-data
+# pkg @ymc/slim-data
 
 ## desc
 slim data by keys

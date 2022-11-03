@@ -1,4 +1,4 @@
-# pkg is-type-of
+# pkg @ymc/is-type-of
 
 ## desc
 check type of val - enhance-typeof

@@ -1,4 +1,4 @@
-# pkg common-type
+# pkg @ymc/common-type
 
 ## desc
 ymc package common-type of jsdoc

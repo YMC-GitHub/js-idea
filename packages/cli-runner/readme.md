@@ -1,4 +1,4 @@
-# pkg cli-runner
+# pkg @ymc/cli-runner
 
 ## desc
 ymc(y) cli(c) style(s) runner

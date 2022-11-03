@@ -8,17 +8,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 /**
-  * cliParam v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-
-/**
   * extendString v1.0.0
   * (c) 2018-2022 ymc
   * @license MIT
   */
-
 /**
  *
  * @param {*} s
@@ -36,6 +29,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * - [x] the first char to upper ,other lowercase
  * ```
  */
+
+
 function humanize(s) {
   return s.replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
     let res = ''; // log(word, index); //desc: for debug
@@ -52,6 +47,20 @@ function humanize(s) {
 function camelize(s) {
   return humanize(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
 }
+
+function padEndString(number, len = 0, prefix = ' ') {
+  if (number.length >= len) {
+    return String(number);
+  }
+
+  return padEndString(number + prefix, len, prefix);
+} // node lib/extend-string.js
+
+/**
+  * cliParam v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 /* eslint-disable no-unused-vars */
 // const { log } = console;
 
@@ -83,7 +92,6 @@ function camelize(s) {
  * @param {{modeStyle:string}} options
  * @returns {string}
  */
-
 
 function paramJsonToString(json, options) {
   const option = {
@@ -151,7 +159,8 @@ function getValFromParam(param, options = {}) {
       // feat: auto camelize
       if (!option.noAutoCamelize) {
         // res[camelize(thelong.replace(/-+/gi, " "))] = value;
-        res[thelong.camelize()] = value;
+        // res[thelong.camelize()] = value
+        res[camelize(thelong)] = value;
       } // feat: slim them
 
       /* eslint-disable no-continue */
@@ -204,20 +213,6 @@ function camelizeFlags(flags = {}, options = {}) {
   });
   return flags;
 }
-
-/**
-  * extendString v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-
-function padEndString(number, len = 0, prefix = ' ') {
-  if (number.length >= len) {
-    return String(number);
-  }
-
-  return padEndString(number + prefix, len, prefix);
-} // node lib/extend-string.js
 
 /* eslint-disable no-unused-vars,prefer-destructuring,prefer-const,class-methods-use-this */
 const {

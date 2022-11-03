@@ -1,4 +1,4 @@
-# pkg extend-string
+# pkg @ymc/extend-string
 
 ## desc
 extend node.js string, extend String.prototype is optional

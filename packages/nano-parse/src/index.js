@@ -2,7 +2,7 @@
 // docs(core): add docs comment
 /**
  * parse cli cmd string
- * @param {string} input
+ * @param {string|string[]} input
  * @returns {{flags:string[],extras:string[],_:string[]}}
  * @sample
  * ```
@@ -12,14 +12,16 @@
  * ```
  */
 export default function nanoargs(input) {
+  const handledInput = Array.isArray(input) ? input : input.split(/ +/)
+
   let extras = []
-  let args = input
+  let args = handledInput
   const _ = []
 
   // feat(nano-parse): support extras when '--' bind to ouput.extras
-  if (input.includes('--')) {
-    extras = input.slice(input.indexOf('--') + 1)
-    args = input.slice(0, input.indexOf('--'))
+  if (handledInput.includes('--')) {
+    extras = handledInput.slice(handledInput.indexOf('--') + 1)
+    args = handledInput.slice(0, handledInput.indexOf('--'))
   }
 
   const newArgs = []

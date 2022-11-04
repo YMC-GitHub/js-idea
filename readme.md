@@ -19,6 +19,10 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/cli-param-plugin-mdtable](packages/cli-param-plugin-mdtable)|param-json gen markdown table|2022-11-04
+[@ymc/cli-param-plugin-tsdoc](packages/cli-param-plugin-tsdoc)|param-json gen tsdoc interface|2022-11-04
+[@ymc/cli-param-plugin-usage](packages/cli-param-plugin-usage)|param-json gen cli usage msg|2022-11-04
+[@ymc/cli-param-plugin-jsdoc](packages/cli-param-plugin-jsdoc)|param-json gen jsdoc typedef|2022-11-04
 [@ymc/get-user-home](packages/get-user-home)|get user home diretory in node.js through process.env and process.platform|2022-11-03
 [@ymc/get-loc-in-different-os](packages/get-loc-in-different-os)|get file location or others in different os|2022-11-03
 [@ymc/get-os-name](packages/get-os-name)|get os name in node.js through process.platform|2022-11-03

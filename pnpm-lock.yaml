@@ -167,6 +167,30 @@ importers:
       '@ymc/common-type': link:../common-type
       '@ymc/extend-string': link:../extend-string
 
+  packages/cli-param-plugin-jsdoc:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
+  packages/cli-param-plugin-mdtable:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
+  packages/cli-param-plugin-tsdoc:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
+  packages/cli-param-plugin-usage:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
   packages/color-log:
     specifiers: {}
 

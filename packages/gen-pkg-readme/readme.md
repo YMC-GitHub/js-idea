@@ -11,10 +11,10 @@
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=dep&message=done&color=ff69b4&style=flat-square" />
   </a>
   <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=done&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=fail&color=ff69b4&style=flat-square" />
   </a>
     <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message={tes_state}&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message=fail&color=ff69b4&style=flat-square" />
   </a>
       <a href="https://github.com/YMC-GitHub">
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=pro&message=done&color=ff69b4&style=flat-square" />
@@ -35,9 +35,9 @@ file | size | gzip | brotli
 :---- | :---- | :---- | :----
 dist/index.cjs.js | 7.64kb | 2.40kb | 2.17kb
 dist/index.cjs.min.js | 2.34kb | 1.13kb | 1.02kb
-dist/index.esm.js | 7.00kb | 2.17kb | 1.95kb
+dist/index.esm.js | 6.93kb | 2.17kb | 1.95kb
 dist/index.esm.min.js | 2.15kb | 1.06kb | 0.95kb
-dist/index.js | 7.00kb | 2.17kb | 1.95kb
+dist/index.js | 6.93kb | 2.17kb | 1.95kb
 dist/index.umd.js | 8.55kb | 2.57kb | 2.32kb
 dist/index.umd.min.js | 2.58kb | 1.23kb | 1.12kb
 

@@ -68,9 +68,9 @@ function getPackagesLocFromPath(wkd) {
  */
 function getFailOrDone(cond, done = 'done', fail = 'fail') {
   // get fail or done
-  let state = done;
+  let state = fail;
   if (cond) {
-    state = fail;
+    state = done;
   }
   return state
 }
@@ -90,7 +90,17 @@ async function runeslint(cmd, execOpts) {
     log(stderr);
   }
   log(stdout);
-  return getFailOrDone(stderr || stdout, 'done', 'fail')
+
+  //   let labels = 'todo,passing,fail'.split(',')
+  let label;
+  if (stderr === '') {
+    label = 'passing';
+  } else {
+    label = 'fail';
+  }
+  log(`[info] lint files ${label}`);
+  return getFailOrDone(true, label)
+  //   return getFailOrDone(stderr === '', 'passing', 'fail')
 }
 /* eslint-enable no-shadow */
 

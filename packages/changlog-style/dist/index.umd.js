@@ -15,12 +15,6 @@
     * @license MIT
     */
 
-  /**
-    * renderTpl v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
   /** @typedef {{[string]:string|boolean|number|undefined}} data */
 
   /**

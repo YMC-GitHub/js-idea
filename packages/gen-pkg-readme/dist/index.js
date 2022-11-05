@@ -291,7 +291,6 @@ function main(wkd) {
   log('[info] load pkgs state data');
   let pkgsstate = readJsonSync('pkgs-info.json');
   pkgsstate = pkgsstate.filter(v => v.name === packagejson.name)
-  //   log(pkgsstate)
   ;[pkgsstate] = pkgsstate;
   // let keys='lin_state,tes_state'
   log('[info] load pkg-state tpl');
@@ -299,7 +298,7 @@ function main(wkd) {
   log(`[info] loc: ${loc}`);
   tpl = readTextSync(loc);
   tpl = writeTpl(tpl, pkgsstate);
-  res = `${tpl}\n${res}`;
+  res = `${tpl}\n\n${res}`;
   writeTextSync(`${wkd}/readme.md`, res);
 }
 

@@ -14,12 +14,6 @@
     * (c) 2018-2022 ymc
     * @license MIT
     */
-
-  /**
-    * streamIo v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
   function readStream(stream) {
     return new Promise((resolve, reject) => {
       let data = '';

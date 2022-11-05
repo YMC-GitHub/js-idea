@@ -15,11 +15,7 @@
     * @license MIT
     */
 
-  /**
-    * getOsName v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
+  /* eslint-disable prefer-const */
 
   /**
    * one-line text to object set
@@ -56,7 +52,7 @@
     let res;
     const keys = Object.keys(map);
 
-    for (let index = 0; index < keys.length; index++) {
+    for (let index = 0; index < keys.length; index += 1) {
       const kw = keys[index];
       const kwVal = map[kw];
 
@@ -93,7 +89,8 @@
 
 
   function getOsName(customNames) {
-    const nameMap = customNames ? customNames : 'mac=darwin;win=win32;linux=linux;android=android';
+    const osName = process.platform;
+    const nameMap = customNames || 'mac=darwin;win=win32;linux=linux;android=android';
     const osMap = toObjectSet(nameMap);
     return getKWByVal(osMap, osName, true);
   }

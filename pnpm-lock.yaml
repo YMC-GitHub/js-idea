@@ -194,6 +194,14 @@ importers:
   packages/color-log:
     specifiers: {}
 
+  packages/gen-pkg-readme:
+    specifiers:
+      '@ymc/render-tpl': workspace:^1.0.0
+      '@ymc/tpl-exp': workspace:^1.0.0
+    dependencies:
+      '@ymc/render-tpl': link:../render-tpl
+      '@ymc/tpl-exp': link:../tpl-exp
+
   packages/get-loc-in-different-os:
     specifiers:
       '@ymc/get-os-name': workspace:^1.0.0
@@ -228,6 +236,26 @@ importers:
     dependencies:
       '@ymc/stream-io': link:../stream-io
 
+  packages/lin-pkg-file:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+      '@ymc/run-bash': workspace:^0.0.3
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+      '@ymc/json-stream-io': link:../json-stream-io
+      '@ymc/run-bash': link:../run-bash
+
+  packages/pkgs-info:
+    specifiers:
+      '@ymc/chain-task': workspace:^1.0.0
+      '@ymc/extend-string': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+    dependencies:
+      '@ymc/chain-task': link:../chain-task
+      '@ymc/extend-string': link:../extend-string
+      '@ymc/json-stream-io': link:../json-stream-io
+
   packages/promise-all:
     specifiers:
       '@ymc/kind-of': workspace:^1.0.0
@@ -247,6 +275,24 @@ importers:
       '@ymc/extend-string': workspace:^1.0.0
     dependencies:
       '@ymc/extend-string': link:../extend-string
+
+  packages/tes-pkg-file:
+    specifiers:
+      '@ymc/cli-option': workspace:^1.0.0
+      '@ymc/cli-param': workspace:^1.0.0
+      '@ymc/cli-preset-param': workspace:^1.0.0
+      '@ymc/cli-runner': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
+      '@ymc/run-bash': workspace:^0.0.3
+    dependencies:
+      '@ymc/cli-option': link:../cli-option
+      '@ymc/cli-param': link:../cli-param
+      '@ymc/cli-preset-param': link:../cli-preset-param
+      '@ymc/cli-runner': link:../cli-runner
+      '@ymc/json-stream-io': link:../json-stream-io
+      '@ymc/nano-parse': link:../nano-parse
+      '@ymc/run-bash': link:../run-bash
 
   packages/text-stream-io:
     specifiers:

@@ -18,9 +18,9 @@ const { log } = console;
  */
 function getFailOrDone(cond, done = 'done', fail = 'fail') {
   // get fail or done
-  let state = done;
+  let state = fail;
   if (cond) {
-    state = fail;
+    state = done;
   }
   return state
 }
@@ -39,8 +39,20 @@ async function runcmdWithState(cmd, execOpts) {
   if (stderr) {
     log(stderr);
   }
+  // log([stdout])
   log(stdout);
-  return getFailOrDone(stderr || stdout, 'done', 'fail')
+  const labels = 'todo,passing,fail'.split(',');
+  let [, label] = labels;
+  // log([stderr])
+  // log([stdout])
+
+  if (stderr && /FAIL/g.test(stderr)) {
+[, , label] = labels;
+  } else if (stdout.indexOf('No tests found, exiting with code 0') >= 0) {
+[label] = labels;
+  }
+  log(`[info] ${label} unit test`);
+  return getFailOrDone(true, label, 'fail')
 }
 /* eslint-enable no-shadow */
 

@@ -11,10 +11,10 @@
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=dep&message=done&color=ff69b4&style=flat-square" />
   </a>
   <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=done&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=passing&color=ff69b4&style=flat-square" />
   </a>
     <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message=fail&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message=passing&color=ff69b4&style=flat-square" />
   </a>
       <a href="https://github.com/YMC-GitHub">
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=pro&message=done&color=ff69b4&style=flat-square" />
@@ -25,6 +25,7 @@
   <!-- https://img.shields.io/static/v1?label=<LABEL>&message=<MESSAGE>&color=<COLOR> -->
 <!-- github workflow stat:e -->
 </p>
+
 # pkg @ymc/tes-pkg-file
 
 ## desc
@@ -33,13 +34,13 @@ ymc package tes-pkg-file
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 14.99kb | 4.57kb | 4.12kb
-dist/index.cjs.min.js | 4.90kb | 1.95kb | 1.78kb
-dist/index.esm.js | 3.70kb | 1.37kb | 1.28kb
-dist/index.esm.min.js | 1.57kb | 0.81kb | 0.76kb
-dist/index.js | 3.70kb | 1.37kb | 1.28kb
-dist/index.umd.js | 16.43kb | 4.78kb | 4.28kb
-dist/index.umd.min.js | 5.29kb | 2.08kb | 1.90kb
+dist/index.cjs.js | 15.30kb | 4.69kb | 4.22kb
+dist/index.cjs.min.js | 5.05kb | 2.04kb | 1.87kb
+dist/index.esm.js | 4.01kb | 1.49kb | 1.38kb
+dist/index.esm.min.js | 1.72kb | 0.90kb | 0.83kb
+dist/index.js | 4.01kb | 1.49kb | 1.38kb
+dist/index.umd.js | 16.76kb | 4.91kb | 4.40kb
+dist/index.umd.min.js | 5.44kb | 2.17kb | 1.98kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

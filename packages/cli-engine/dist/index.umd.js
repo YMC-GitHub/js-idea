@@ -10,29 +10,10 @@
 })(this, (function (exports) { 'use strict';
 
   /**
-    * cliOption v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
-  /**
-    * cliOption v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
-  /**
-    * cliParam v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
-  /**
     * extendString v1.0.0
     * (c) 2018-2022 ymc
     * @license MIT
     */
-
   /**
    *
    * @param {*} s
@@ -50,7 +31,9 @@
    * - [x] the first char to upper ,other lowercase
    * ```
    */
-  function humanize$1(s) {
+
+
+  function humanize(s) {
     return s.replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
       let res = ''; // log(word, index); //desc: for debug
       // feat: replace multi - or _ to one space
@@ -63,9 +46,23 @@
     }).replace(/\s+/g, ' ');
   }
 
-  function camelize$1(s) {
-    return humanize$1(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
+  function camelize(s) {
+    return humanize(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
   }
+
+  function padEndString(number, len = 0, prefix = ' ') {
+    if (number.length >= len) {
+      return String(number);
+    }
+
+    return padEndString(number + prefix, len, prefix);
+  } // node lib/extend-string.js
+
+  /**
+    * cliParam v1.0.0
+    * (c) 2018-2022 ymc
+    * @license MIT
+    */
   /* eslint-disable no-unused-vars */
   // const { log } = console;
 
@@ -97,7 +94,6 @@
    * @param {{modeStyle:string}} options
    * @returns {string}
    */
-
 
   function paramJsonToString(json, options) {
     const option = {
@@ -165,7 +161,8 @@
         // feat: auto camelize
         if (!option.noAutoCamelize) {
           // res[camelize(thelong.replace(/-+/gi, " "))] = value;
-          res[thelong.camelize()] = value;
+          // res[thelong.camelize()] = value
+          res[camelize(thelong)] = value;
         } // feat: slim them
 
         /* eslint-disable no-continue */
@@ -196,7 +193,7 @@
    */
 
 
-  function camelizeFlags$1(flags = {}, options = {}) {
+  function camelizeFlags(flags = {}, options = {}) {
     // let res = {}
     const option = {
       slim: true,
@@ -204,7 +201,7 @@
     };
     if (option.noAutoCamelize) return flags;
     Object.keys(flags).forEach(k => {
-      const ck = camelize$1(k); // res[ck]=flags[k]
+      const ck = camelize(k); // res[ck]=flags[k]
 
       if (ck !== k) {
         flags[ck] = flags[k]; // eslint-disable-line no-param-reassign
@@ -218,22 +215,28 @@
     });
     return flags;
   }
+
+  function getCliFlags(flags, options = {}) {
+    let cliFlags;
+    const {
+      entrys
+    } = options;
+
+    if (flags.flags || entrys && entrys.notOnlyFlags) {
+      cliFlags = flags.flags;
+    } else {
+      cliFlags = flags;
+    }
+
+    return camelizeFlags(cliFlags, options);
+  }
+
   /**
-    * extendString v1.0.0
+    * cliOption v1.0.0
     * (c) 2018-2022 ymc
     * @license MIT
     */
-
-
-  function padEndString(number, len = 0, prefix = ' ') {
-    if (number.length >= len) {
-      return String(number);
-    }
-
-    return padEndString(number + prefix, len, prefix);
-  }
   /* eslint-disable no-unused-vars,prefer-destructuring,prefer-const,class-methods-use-this */
-
 
   const {
     log: log$1
@@ -675,7 +678,7 @@
         cliFlags = flags;
       }
 
-      return camelizeFlags$1(cliFlags, options);
+      return camelizeFlags(cliFlags, options);
     }
 
     getCurrentFlags(flags, options = {}) {
@@ -685,7 +688,7 @@
       nowFlags = { ...builtinFlags,
         ...cliFlags
       };
-      nowFlags = camelizeFlags$1(nowFlags, options);
+      nowFlags = camelizeFlags(nowFlags, options);
       return nowFlags;
     }
     /**
@@ -698,7 +701,7 @@
 
     camelizeFlags(flags = {}, options = {}) {
       // return camelizeFlags(...args);
-      return camelizeFlags$1(flags, options);
+      return camelizeFlags(flags, options);
     }
     /**
      * update entry-option by ctx.usagemsg - call updateEntryOption
@@ -728,104 +731,6 @@
   new CliOptionHelp();
 
   /**
-    * extendString v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-  /**
-   *
-   * @param {*} s
-   * @returns {string}
-   * @sample
-   * ```
-   * humanize('per_page')// Per page
-   * humanize('per-page')// Per page
-   * ```
-   * @description
-   * ```
-   * ## idea
-   * - [x] replace multi - or _ to one space
-   * - [x] add space to the char that is uppercase and is not the first index
-   * - [x] the first char to upper ,other lowercase
-   * ```
-   */
-
-
-  function humanize(s) {
-    return s.replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-      let res = ''; // log(word, index); //desc: for debug
-      // feat: replace multi - or _ to one space
-
-      res = word.replace(/[-_]+/g, ' '); // feat: add space to the char that is uppercase and is not the first index
-
-      res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res; // feat: the first char to upper ,other lowercase
-
-      return index === 0 ? res.toUpperCase() : res.toLowerCase();
-    }).replace(/\s+/g, ' ');
-  }
-
-  function camelize(s) {
-    return humanize(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
-  }
-
-  /**
-    * cliParam v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-  /**
-   * camelize param-json - nano-parser-flags
-   * @param {object} flags
-   * @param {camelizeFlagsOption} options
-   * @returns
-   */
-
-
-  function camelizeFlags(flags = {}, options = {}) {
-    // let res = {}
-    const option = {
-      slim: true,
-      ...options
-    };
-    if (option.noAutoCamelize) return flags;
-    Object.keys(flags).forEach(k => {
-      const ck = camelize(k); // res[ck]=flags[k]
-
-      if (ck !== k) {
-        flags[ck] = flags[k]; // eslint-disable-line no-param-reassign
-        // Assignment to property of function parameter
-
-        if (option.slim) {
-          delete flags[k]; // eslint-disable-line no-param-reassign
-          // Assignment to property of function parameter
-        }
-      }
-    });
-    return flags;
-  }
-
-  function getCliFlags(flags, options = {}) {
-    let cliFlags;
-    const {
-      entrys
-    } = options;
-
-    if (flags.flags || entrys && entrys.notOnlyFlags) {
-      cliFlags = flags.flags;
-    } else {
-      cliFlags = flags;
-    }
-
-    return camelizeFlags(cliFlags, options);
-  }
-
-  /**
-    * nanoParse v0.0.1
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
-
-  /**
     * nanoParse v0.0.1
     * (c) 2018-2022 ymc
     * @license MIT
@@ -836,7 +741,7 @@
 
   /**
    * parse cli cmd string
-   * @param {string} input
+   * @param {string|string[]} input
    * @returns {{flags:string[],extras:string[],_:string[]}}
    * @sample
    * ```
@@ -846,13 +751,14 @@
    * ```
    */
   function nanoargs(input) {
+    const handledInput = Array.isArray(input) ? input : input.split(/ +/);
     let extras = [];
-    let args = input;
+    let args = handledInput;
     const _ = []; // feat(nano-parse): support extras when '--' bind to ouput.extras
 
-    if (input.includes('--')) {
-      extras = input.slice(input.indexOf('--') + 1);
-      args = input.slice(0, input.indexOf('--'));
+    if (handledInput.includes('--')) {
+      extras = handledInput.slice(handledInput.indexOf('--') + 1);
+      args = handledInput.slice(0, handledInput.indexOf('--'));
     }
 
     const newArgs = [];
@@ -949,12 +855,6 @@
 
     return thing;
   }
-
-  /**
-    * cliRunner v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
 
   /**
     * cliRunner v1.0.0
@@ -1294,12 +1194,6 @@
   }
 
   new YcsRunner();
-
-  /**
-    * cliEntry v1.0.0
-    * (c) 2018-2022 ymc
-    * @license MIT
-    */
 
   /**
     * cliEntry v1.0.0

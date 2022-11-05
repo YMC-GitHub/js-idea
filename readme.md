@@ -19,6 +19,11 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/tes-pkg-file](./packages/tes-pkg-file)|ymc package tes-pkg-file|2022-11-05
+[@ymc/gen-pkg-readme](./packages/gen-pkg-readme)|ymc package gen-pkg-readme|2022-11-05
+[@ymc/lin-pkg-file](./packages/lin-pkg-file)|ymc package lin-pkg-file|2022-11-05
+[@ymc/pkgs-info](./packages/pkgs-info)|ymc package pkgs-info|2022-11-05
+[@ymc/runbash-plugin-spawn](./packages/runbash-plugin-spawn)|ymc package runbash-plugin-spawn|2022-11-05
 [@ymc/cli-param-plugin-mdtable](packages/cli-param-plugin-mdtable)|param-json gen markdown table|2022-11-04
 [@ymc/cli-param-plugin-tsdoc](packages/cli-param-plugin-tsdoc)|param-json gen tsdoc interface|2022-11-04
 [@ymc/cli-param-plugin-usage](packages/cli-param-plugin-usage)|param-json gen cli usage msg|2022-11-04

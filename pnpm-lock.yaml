@@ -104,6 +104,18 @@ importers:
       '@ymc/promise-all': link:../promise-all
       '@ymc/run-bash': link:../run-bash
 
+  packages/add-pkg-dep:
+    specifiers:
+      '@ymc/get-file-list': workspace:^1.0.0
+      '@ymc/get-node-builtin-modules': workspace:^1.0.0
+      '@ymc/render-tpl': workspace:^1.0.0
+      '@ymc/run-bash': workspace:^0.0.3
+    dependencies:
+      '@ymc/get-file-list': link:../get-file-list
+      '@ymc/get-node-builtin-modules': link:../get-node-builtin-modules
+      '@ymc/render-tpl': link:../render-tpl
+      '@ymc/run-bash': link:../run-bash
+
   packages/ansi-color:
     specifiers: {}
 
@@ -202,6 +214,24 @@ importers:
       '@ymc/render-tpl': link:../render-tpl
       '@ymc/tpl-exp': link:../tpl-exp
 
+  packages/get-custom-prop:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
+  packages/get-file-dep:
+    specifiers:
+      '@ymc/text-stream-io': workspace:^1.0.0
+    dependencies:
+      '@ymc/text-stream-io': link:../text-stream-io
+
+  packages/get-file-list:
+    specifiers:
+      '@ymc/get-custom-prop': workspace:^1.0.0
+    dependencies:
+      '@ymc/get-custom-prop': link:../get-custom-prop
+
   packages/get-loc-in-different-os:
     specifiers:
       '@ymc/get-os-name': workspace:^1.0.0
@@ -265,7 +295,14 @@ importers:
       '@ymc/limit-async-handle': link:../limit-async-handle
 
   packages/read-diretory:
-    specifiers: {}
+    specifiers:
+      '@ymc/cli-param': workspace:^1.0.0
+      '@ymc/cli-preset-param': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
+    dependencies:
+      '@ymc/cli-param': link:../cli-param
+      '@ymc/cli-preset-param': link:../cli-preset-param
+      '@ymc/nano-parse': link:../nano-parse
 
   packages/run-bash:
     specifiers: {}

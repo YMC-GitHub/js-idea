@@ -19,6 +19,9 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/devopv-cmd-plugin-runlist](./packages/devopv-cmd-plugin-runlist)|wrap run-bash to run list - in multi-line text or in cmds-array|2022-11-06
+[@ymc/devopv-cmd-preset-js](./packages/devopv-cmd-preset-js)|devopv-cmd preset xx_sam_js|2022-11-06
+[@ymc/devopv-cmd-preset-store](./packages/devopv-cmd-preset-store)|store devopv-cmd preset in json-object|2022-11-06
 [@ymc/tes-pkg-file](./packages/tes-pkg-file)|ymc package tes-pkg-file|2022-11-05
 [@ymc/gen-pkg-readme](./packages/gen-pkg-readme)|ymc package gen-pkg-readme|2022-11-05
 [@ymc/lin-pkg-file](./packages/lin-pkg-file)|ymc package lin-pkg-file|2022-11-05

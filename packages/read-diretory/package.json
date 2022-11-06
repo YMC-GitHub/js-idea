@@ -33,5 +33,10 @@
     "pac:js": "rm -rf dist/* && rollup -c",
     "test": "exit 0"
   },
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@ymc/cli-param": "workspace:^1.0.0",
+    "@ymc/cli-preset-param": "workspace:^1.0.0",
+    "@ymc/nano-parse": "workspace:^0.0.1"
+  }
 }

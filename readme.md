@@ -19,6 +19,9 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/get-file-list](./packages/get-file-list)|ymc package get-file-list|2022-11-06
+[@ymc/get-custom-prop](./packages/get-custom-prop)|get custom prop from context or option and other - easier to custom method for different env|2022-11-06
+[@ymc/get-node-builtin-modules](./packages/get-node-builtin-modules)|ymc package get-node-builtin-modules|2022-11-06
 [@ymc/devopv-cmd-plugin-runlist](./packages/devopv-cmd-plugin-runlist)|wrap run-bash to run list - in multi-line text or in cmds-array|2022-11-06
 [@ymc/devopv-cmd-preset-js](./packages/devopv-cmd-preset-js)|devopv-cmd preset xx_sam_js|2022-11-06
 [@ymc/devopv-cmd-preset-store](./packages/devopv-cmd-preset-store)|store devopv-cmd preset in json-object|2022-11-06

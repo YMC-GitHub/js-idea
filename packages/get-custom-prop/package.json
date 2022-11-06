@@ -1,7 +1,7 @@
 {
   "name": "@ymc/get-custom-prop",
   "version": "1.0.0",
-  "description": "get custom prop from context or option and other",
+  "description": "get custom prop from context or option and other - easier to custom method for different env",
   "keywords": [
     "ymc",
     "get-custom-prop"

@@ -1,7 +1,7 @@
 {
   "name": "@ymc/get-node-builtin-modules",
   "version": "1.0.0",
-  "description": "ymc package get-node-builtin-modules",
+  "description": "get node.js builtin modules",
   "keywords": [
     "ymc",
     "get-node-builtin-modules"

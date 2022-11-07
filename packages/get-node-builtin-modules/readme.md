@@ -29,7 +29,7 @@
 # pkg @ymc/get-node-builtin-modules
 
 ## desc
-ymc package get-node-builtin-modules
+get node.js builtin modules
 
 ## lib size  
 file | size | gzip | brotli

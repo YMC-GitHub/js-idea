@@ -94,7 +94,10 @@ function delRequriesExpPath(list) {
     if (res.match(/^@/)) {
       to += 1;
     }
-    res = res.split(/\//).slice(0, to).join('/');
+    // feat: set inner file disable ./xx/xx
+    if (!res.match(/^.\//)) {
+      res = res.split(/\//).slice(0, to).join('/');
+    }
     return res
   })
 }

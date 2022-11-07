@@ -262,9 +262,13 @@
 
       if (res.match(/^@/)) {
         to += 1;
+      } // feat: set inner file disable ./xx/xx
+
+
+      if (!res.match(/^.\//)) {
+        res = res.split(/\//).slice(0, to).join('/');
       }
 
-      res = res.split(/\//).slice(0, to).join('/');
       return res;
     });
   } // @ymc/get-requires-exp,@ymc/requires-exp-preset-js,@ymc/requires-exp-preset-hbs

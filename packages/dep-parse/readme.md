@@ -34,13 +34,13 @@ requires exp parser
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 13.10kb | 3.75kb | 3.38kb
-dist/index.cjs.min.js | 3.96kb | 1.58kb | 1.43kb
-dist/index.esm.js | 10.15kb | 2.94kb | 2.66kb
-dist/index.esm.min.js | 3.08kb | 1.24kb | 1.12kb
-dist/index.js | 10.15kb | 2.94kb | 2.66kb
-dist/index.umd.js | 14.48kb | 3.92kb | 3.53kb
-dist/index.umd.min.js | 4.21kb | 1.68kb | 1.52kb
+dist/index.cjs.js | 13.18kb | 3.78kb | 3.40kb
+dist/index.cjs.min.js | 3.98kb | 1.59kb | 1.45kb
+dist/index.esm.js | 10.23kb | 2.96kb | 2.68kb
+dist/index.esm.min.js | 3.10kb | 1.25kb | 1.13kb
+dist/index.js | 10.23kb | 2.96kb | 2.68kb
+dist/index.umd.js | 14.56kb | 3.95kb | 3.56kb
+dist/index.umd.min.js | 4.23kb | 1.69kb | 1.54kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

@@ -29,7 +29,7 @@
 # pkg @ymc/tes-pkg-file
 
 ## desc
-ymc package tes-pkg-file
+tes-pkg-file - automation test pkg's file in mono repo
 
 ## lib size  
 file | size | gzip | brotli

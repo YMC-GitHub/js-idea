@@ -308,6 +308,12 @@ importers:
       '@ymc/json-stream-io': link:../json-stream-io
       '@ymc/run-bash': link:../run-bash
 
+  packages/parse-pkg-loc-exp:
+    specifiers:
+      '@ymc/extend-string': workspace:^1.0.0
+    dependencies:
+      '@ymc/extend-string': link:../extend-string
+
   packages/pkgs-info:
     specifiers:
       '@ymc/chain-task': workspace:^1.0.0

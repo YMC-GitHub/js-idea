@@ -1,7 +1,7 @@
 {
   "name": "@ymc/devopv-cmd-plugin-runlist",
   "version": "1.0.0",
-  "description": "wrap run-bash to run list - in multi-line text or in cmds-array",
+  "description": "wrap run-bash to run cmds-list - in multi-line text or in cmds-array",
   "keywords": [
     "ymc",
     "devopv-cmd-plugin-runlist"

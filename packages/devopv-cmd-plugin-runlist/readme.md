@@ -29,7 +29,7 @@
 # pkg @ymc/devopv-cmd-plugin-runlist
 
 ## desc
-wrap run-bash to run list - in multi-line text or in cmds-array
+wrap run-bash to run cmds-list - in multi-line text or in cmds-array
 
 ## lib size  
 file | size | gzip | brotli

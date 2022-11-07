@@ -29,7 +29,7 @@
 # pkg @ymc/get-file-list
 
 ## desc
-ymc package get-file-list
+get pkg's loc in mono repo and so on
 
 ## lib size  
 file | size | gzip | brotli

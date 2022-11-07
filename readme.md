@@ -19,18 +19,21 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/get-obj-only-selected-keys](./packages/get-obj-only-selected-keys)|get json-object only selected-keys|2022-11-07
+[@ymc/get-obj-only-defined-keys](./packages/get-obj-only-defined-keys)|get json-object only defined-keys|2022-11-07
+[@ymc/parse-pkg-loc-exp](./packages/parse-pkg-loc-exp)|parse package location expression for mono repo|2022-11-07
 [@ymc/dep-tree](./packages/dep-tree)|parse tree , get circular , get leaves , get orphans and other|2022-11-07
 [@ymc/dep-parse](./packages/dep-parse)|requires exp parser|2022-11-07
-[@ymc/add-pkg-dep](./packages/add-pkg-dep)|ymc package add-pkg-dep|2022-11-06
-[@ymc/get-file-list](./packages/get-file-list)|ymc package get-file-list|2022-11-06
+[@ymc/add-pkg-dep](./packages/add-pkg-dep)|dep-pkg-file - automation add pkg's dep in mono repo|2022-11-06
+[@ymc/get-file-list](./packages/get-file-list)|get pkg's loc in mono repo and so on|2022-11-06
 [@ymc/get-custom-prop](./packages/get-custom-prop)|get custom prop from context or option and other - easier to custom method for different env|2022-11-06
-[@ymc/get-node-builtin-modules](./packages/get-node-builtin-modules)|ymc package get-node-builtin-modules|2022-11-06
-[@ymc/devopv-cmd-plugin-runlist](./packages/devopv-cmd-plugin-runlist)|wrap run-bash to run list - in multi-line text or in cmds-array|2022-11-06
+[@ymc/get-node-builtin-modules](./packages/get-node-builtin-modules)|get node.js builtin modules|2022-11-06
+[@ymc/devopv-cmd-plugin-runlist](./packages/devopv-cmd-plugin-runlist)|wrap run-bash to run cmds-list - in multi-line text or in cmds-array|2022-11-06
 [@ymc/devopv-cmd-preset-js](./packages/devopv-cmd-preset-js)|devopv-cmd preset xx_sam_js|2022-11-06
 [@ymc/devopv-cmd-preset-store](./packages/devopv-cmd-preset-store)|store devopv-cmd preset in json-object|2022-11-06
-[@ymc/tes-pkg-file](./packages/tes-pkg-file)|ymc package tes-pkg-file|2022-11-05
-[@ymc/gen-pkg-readme](./packages/gen-pkg-readme)|ymc package gen-pkg-readme|2022-11-05
-[@ymc/lin-pkg-file](./packages/lin-pkg-file)|ymc package lin-pkg-file|2022-11-05
+[@ymc/tes-pkg-file](./packages/tes-pkg-file)|tes-pkg-file - automation test pkg's file in mono repo|2022-11-05
+[@ymc/gen-pkg-readme](./packages/gen-pkg-readme)|gen pkg's readme.md in mono repo - automation|2022-11-05
+[@ymc/lin-pkg-file](./packages/lin-pkg-file)|lin-pkg-file - automation lint pkg's file in mono repo|2022-11-05
 [@ymc/pkgs-info](./packages/pkgs-info)|ymc package pkgs-info|2022-11-05
 [@ymc/runbash-plugin-spawn](./packages/runbash-plugin-spawn)|ymc package runbash-plugin-spawn|2022-11-05
 [@ymc/cli-param-plugin-mdtable](packages/cli-param-plugin-mdtable)|param-json gen markdown table|2022-11-04
@@ -52,7 +55,7 @@ name|description|created_at
 [@ymc/class-es5-help](packages/class-es5-help)|help to define es5 class - set constructor ,method ,method alias and so on|2022-11-01
 [@ymc/class-esm-help](packages/class-esm-help)|ymc package class-esm-help|2022-11-01
 [@ymc/changeset](packages/changeset)|make or parse .changeset/xx.md file|2022-11-01
-[@ymc/bump-version](packages/bump-version)|ymc package bump-version|2022-11-01
+[@ymc/bump-version](packages/bump-version)|bump pkg's version|2022-11-01
 [@ymc/is-type-of](packages/is-type-of)|check type of val - enhance-typeof|2022-10-30
 [@ymc/cli-preset-param](packages/cli-preset-param)|cli param preset - base, token and other|2022-10-29
 [@ymc/cli-engine](packages/cli-engine)|ymc package cli-engine|2022-10-28

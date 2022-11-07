@@ -1,0 +1,51 @@
+{
+    "name": "@ymc/add-pkg-dep",
+    "version": "1.0.0",
+    "description": "add pkg dep for mono repo",
+    "keywords": [
+        "ymc",
+        "add-pkg-dep"
+    ],
+    "author": {
+        "name": "yemiancheng",
+        "email": "ymc.github@gmail.com",
+        "url": "https://github.com/ymc-github"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "type": "module",
+    "typings": "dist/index.d.ts",
+    "unpkg": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ymc-github/js-idea.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ymc-github/js-idea/issues"
+    },
+    "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/add-pkg-dep#readme",
+    "license": "MIT",
+    "scripts": {
+        "doc:js": "jsdoc2md dist/index.esm.js",
+        "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
+        "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+        "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
+        "pac:js": "rm -rf dist/* && rollup -c",
+        "test": "exit 0"
+    },
+    "private": false,
+    "dependencies": {
+        "@ymc/cli-option": "workspace:^1.0.0",
+        "@ymc/cli-param": "workspace:^1.0.0",
+        "@ymc/cli-preset-param": "workspace:^1.0.0",
+        "@ymc/cli-runner": "workspace:^1.0.0",
+        "@ymc/dep-parse": "workspace:^1.0.0",
+        "@ymc/extend-string": "workspace:^1.0.0",
+        "@ymc/get-file-list": "workspace:^1.0.0",
+        "@ymc/get-node-builtin-modules": "workspace:^1.0.0",
+        "@ymc/json-stream-io": "workspace:^1.0.0",
+        "@ymc/nano-parse": "workspace:^0.0.1",
+        "@ymc/render-tpl": "workspace:^1.0.0",
+        "@ymc/run-bash": "workspace:^0.0.3"
+    }
+}

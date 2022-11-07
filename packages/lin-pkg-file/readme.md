@@ -29,7 +29,7 @@
 # pkg @ymc/lin-pkg-file
 
 ## desc
-ymc package lin-pkg-file
+lin-pkg-file - automation lint pkg's file in mono repo
 
 ## lib size  
 file | size | gzip | brotli

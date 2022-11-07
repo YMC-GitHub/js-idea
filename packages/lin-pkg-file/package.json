@@ -1,7 +1,7 @@
 {
   "name": "@ymc/lin-pkg-file",
   "version": "1.0.0",
-  "description": "ymc package lin-pkg-file",
+  "description": "lin-pkg-file - automation lint pkg's file in mono repo",
   "keywords": [
     "ymc",
     "lin-pkg-file"

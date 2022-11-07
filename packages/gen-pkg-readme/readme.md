@@ -29,7 +29,7 @@
 # pkg @ymc/gen-pkg-readme
 
 ## desc
-ymc package gen-pkg-readme
+gen pkg's readme.md in mono repo - automation
 
 ## lib size  
 file | size | gzip | brotli

@@ -1,7 +1,7 @@
 {
   "name": "@ymc/gen-pkg-readme",
   "version": "1.0.0",
-  "description": "ymc package gen-pkg-readme",
+  "description": "gen pkg's readme.md in mono repo - automation",
   "keywords": [
     "ymc",
     "gen-pkg-readme"

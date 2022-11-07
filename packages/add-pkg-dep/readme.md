@@ -29,7 +29,7 @@
 # pkg @ymc/add-pkg-dep
 
 ## desc
-add pkg dep for mono repo
+dep-pkg-file - automation add pkg's dep in mono repo
 
 ## lib size  
 file | size | gzip | brotli

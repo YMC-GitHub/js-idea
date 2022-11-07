@@ -1,7 +1,7 @@
 {
   "name": "@ymc/add-pkg-dep",
   "version": "1.0.0",
-  "description": "ymc package add-pkg-dep",
+  "description": "dep-pkg-file - automation add pkg's dep in mono repo",
   "keywords": [
     "ymc",
     "add-pkg-dep"

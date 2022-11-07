@@ -25,10 +25,11 @@
   <!-- https://img.shields.io/static/v1?label=<LABEL>&message=<MESSAGE>&color=<COLOR> -->
 <!-- github workflow stat:e -->
 </p>
+
 # pkg @ymc/bump-version
 
 ## desc
-ymc package bump-version
+bump pkg's version
 
 ## lib size  
 file | size | gzip | brotli

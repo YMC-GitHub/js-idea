@@ -206,6 +206,22 @@ importers:
   packages/color-log:
     specifiers: {}
 
+  packages/dep-parse:
+    specifiers:
+      '@ymc/get-file-list': workspace:^1.0.0
+      '@ymc/get-node-builtin-modules': workspace:^1.0.0
+      '@ymc/text-stream-io': workspace:^1.0.0
+    dependencies:
+      '@ymc/get-file-list': link:../get-file-list
+      '@ymc/get-node-builtin-modules': link:../get-node-builtin-modules
+      '@ymc/text-stream-io': link:../text-stream-io
+
+  packages/dep-tree:
+    specifiers:
+      '@ymc/dep-parse': workspace:^1.0.0
+    dependencies:
+      '@ymc/dep-parse': link:../dep-parse
+
   packages/gen-pkg-readme:
     specifiers:
       '@ymc/render-tpl': workspace:^1.0.0

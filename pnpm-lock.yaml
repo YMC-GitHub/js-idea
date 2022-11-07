@@ -106,13 +106,29 @@ importers:
 
   packages/add-pkg-dep:
     specifiers:
+      '@ymc/cli-option': workspace:^1.0.0
+      '@ymc/cli-param': workspace:^1.0.0
+      '@ymc/cli-preset-param': workspace:^1.0.0
+      '@ymc/cli-runner': workspace:^1.0.0
+      '@ymc/dep-parse': workspace:^1.0.0
+      '@ymc/extend-string': workspace:^1.0.0
       '@ymc/get-file-list': workspace:^1.0.0
       '@ymc/get-node-builtin-modules': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
       '@ymc/render-tpl': workspace:^1.0.0
       '@ymc/run-bash': workspace:^0.0.3
     dependencies:
+      '@ymc/cli-option': link:../cli-option
+      '@ymc/cli-param': link:../cli-param
+      '@ymc/cli-preset-param': link:../cli-preset-param
+      '@ymc/cli-runner': link:../cli-runner
+      '@ymc/dep-parse': link:../dep-parse
+      '@ymc/extend-string': link:../extend-string
       '@ymc/get-file-list': link:../get-file-list
       '@ymc/get-node-builtin-modules': link:../get-node-builtin-modules
+      '@ymc/json-stream-io': link:../json-stream-io
+      '@ymc/nano-parse': link:../nano-parse
       '@ymc/render-tpl': link:../render-tpl
       '@ymc/run-bash': link:../run-bash
 

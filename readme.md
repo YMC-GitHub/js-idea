@@ -19,6 +19,8 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/dep-tree](./packages/dep-tree)|parse tree , get circular , get leaves , get orphans and other|2022-11-07
+[@ymc/dep-parse](./packages/dep-parse)|requires exp parser|2022-11-07
 [@ymc/get-file-list](./packages/get-file-list)|ymc package get-file-list|2022-11-06
 [@ymc/get-custom-prop](./packages/get-custom-prop)|get custom prop from context or option and other - easier to custom method for different env|2022-11-06
 [@ymc/get-node-builtin-modules](./packages/get-node-builtin-modules)|ymc package get-node-builtin-modules|2022-11-06

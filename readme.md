@@ -19,6 +19,8 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/del-comment](./packages/del-comment)|delete comment , support custom comment reg|2022-11-07
+[@ymc/del-macthed-line](./packages/del-macthed-line)|delete match line with reg|2022-11-07
 [@ymc/get-obj-only-selected-keys](./packages/get-obj-only-selected-keys)|get json-object only selected-keys|2022-11-07
 [@ymc/get-obj-only-defined-keys](./packages/get-obj-only-defined-keys)|get json-object only defined-keys|2022-11-07
 [@ymc/parse-pkg-loc-exp](./packages/parse-pkg-loc-exp)|parse package location expression for mono repo|2022-11-07

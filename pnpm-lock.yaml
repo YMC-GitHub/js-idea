@@ -222,6 +222,12 @@ importers:
   packages/color-log:
     specifiers: {}
 
+  packages/del-comment:
+    specifiers:
+      '@ymc/del-macthed-line': workspace:^1.0.0
+    dependencies:
+      '@ymc/del-macthed-line': link:../del-macthed-line
+
   packages/dep-parse:
     specifiers:
       '@ymc/get-file-list': workspace:^1.0.0

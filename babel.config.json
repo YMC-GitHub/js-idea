@@ -1,35 +1,41 @@
 {
-    "plugins": [
-        [
-            "babel-plugin-module-resolver",
-            {
-                "root": ["node_modules", "./"],
-                "alias": {
-                    "^@ymc/(.+)$": "./packages/\\1",
-                    "^@private-pkgs/(.+)$": "./private-pkgs/\\1"
-                },
-                "transformFunctions": [
-                    "require",
-                    "require.resolve",
-                    "System.import",
-                    "jest.genMockFromModule",
-                    "jest.mock",
-                    "jest.unmock",
-                    "jest.doMock",
-                    "jest.dontMock"
-                ]
-            }
+  "plugins": [
+    [
+      "babel-plugin-module-resolver",
+      {
+        "root": [
+          "node_modules",
+          "./"
         ],
-        ["babel-plugin-transform-import-meta"]
-    ],
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "targets": {
-                    "node": "current"
-                }
-            }
+        "alias": {
+          "^@ymc(.+)$": "./pacakges\\1",
+          "^@provate-pkgs(.+)$": "./private-pkgs\\1",
+          "^@script-pkgs(.+)$": "./scr/lib\\1"
+        },
+        "transformFunctions": [
+          "require",
+          "require.resolve",
+          "System.import",
+          "jest.genMockFromModule",
+          "jest.mock",
+          "jest.unmock",
+          "jest.doMock",
+          "jest.dontMock"
         ]
+      }
+    ],
+    [
+      "babel-plugin-transform-import-meta"
     ]
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ]
 }

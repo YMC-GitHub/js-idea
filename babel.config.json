@@ -19,7 +19,8 @@
                     "jest.dontMock"
                 ]
             }
-        ]
+        ],
+        ["babel-plugin-transform-import-meta"]
     ],
     "presets": [
         [

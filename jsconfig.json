@@ -5,14 +5,14 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@ymc*": [
-        "./pacakges*"
+      "@ymc/*": [
+        "./packages/*"
       ],
-      "@provate-pkgs*": [
-        "./private-pkgs*"
+      "@provate-pkgs/*": [
+        "./private-pkgs/*"
       ],
-      "@script-pkgs*": [
-        "./scr/lib*"
+      "@script-pkgs/*": [
+        "./scr/lib/*"
       ]
     }
   },

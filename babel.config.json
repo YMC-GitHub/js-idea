@@ -8,9 +8,9 @@
           "./"
         ],
         "alias": {
-          "^@ymc(.+)$": "./pacakges\\1",
-          "^@provate-pkgs(.+)$": "./private-pkgs\\1",
-          "^@script-pkgs(.+)$": "./scr/lib\\1"
+          "^@ymc/(.+)$": "./packages/\\1",
+          "^@provate-pkgs/(.+)$": "./private-pkgs/\\1",
+          "^@script-pkgs/(.+)$": "./scr/lib/\\1"
         },
         "transformFunctions": [
           "require",

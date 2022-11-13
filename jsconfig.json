@@ -1,14 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs",
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": "./",
-        "paths": {
-            "@ymc/*": ["./packages/*"],
-            "@provate-pkgs/*": ["./private-pkgs/*"],
-            "@script-pkgs/*": ["./scr/lib/*"]
-        }
-    },
-    "exclude": ["node_modules", "dist"]
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@ymc/*": [
+        "./packages/*"
+      ],
+      "@provate-pkgs/*": [
+        "./private-pkgs/*"
+      ],
+      "@script-pkgs/*": [
+        "./scr/lib/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -13,6 +13,7 @@
 function dirname(wkd) {
     const sep = dirname.sep ? dirname.sep : '/'
     const list = wkd.split(/\/?\\|\//)
+    // if ((list.length = 1)) return list.join(sep)
     return list.slice(0, list.length - 1).join(sep)
 }
 
@@ -28,7 +29,17 @@ function basename(wkd, suffix) {
     if (!suffix) return res
     return res.replace(new RegExp(`${suffix}$`), '')
 }
-
+/**
+ * mock node.js path.extname
+ * @param {string} wkd
+ * @returns {string}
+ */
+function extname(wkd) {
+    const reg = /(.*)?\./gi
+    if (!reg.test(wkd)) return ''
+    const res = wkd.trim().replace(/(.*)?\./gi, '')
+    return res ? `.${res}` : ''
+}
 /**
  * mock node.js path.join (expect join.sep ='/')
  * @param {string[]} likepath
@@ -42,17 +53,7 @@ function join(...likepath) {
         .filter(v => v)
     return list.join(sep)
 }
-/**
- * mock node.js path.extname
- * @param {string} wkd
- * @returns {string}
- */
-function extname(wkd) {
-    const reg = /(.*)?\./gi
-    if (!reg.test(wkd)) return ''
-    const res = wkd.trim().replace(/(.*)?\./gi, '')
-    return res ? `.${res}` : ''
-}
+
 // /**@typedef {string|null|undefined} ps */
 /**
  * mock node.js path.format
@@ -89,10 +90,48 @@ function format(obj) {
  * @returns {boolean}
  */
 function isAbsolute(wkd) {
-    const reg = /^\/|(\\\\)|([A-Z]:)/
+    const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/
+    ///^\/|(\\\\)|([A-Z]:)|([a-z]:)/
     if (!wkd) return false
     return reg.test(wkd)
 }
+/**
+ * mock node.js path.parse
+ * @param {string} wkd
+ * @returns {{root:string,dir:string,base:string,name:string,ext:string}}
+ */
+function parse(wkd) {
+    let root, dir, base, name, ext
+    base = basename(wkd)
+    ext = extname(base)
+    name = ext ? basename(wkd, ext) : base
+    root = getRoot(wkd)
+    dir = wkd.replace(new RegExp(`${base}$`, 'i'), '')
+    // not ends with / for unix when dir.length !==1
+    if (dir.length !== 1) dir = dir.replace(/\/$/, '')
+
+    return { root, dir, base, name, ext }
+    /**
+     *
+     * @param {string} dir
+     * @returns {string}
+     */
+    function getRoot(dir) {
+        if (!isAbsolute(dir)) return ''
+        let res = ''
+        // res = dir.replace(/(\/?\/)|\\.*/gi, '')
+        res = dir.split(/(\/?\/)|\\/)[0]
+        // win
+        if (res) {
+            let tmp = `${res}/`
+            if (dir.indexOf(tmp) === 0) return tmp
+            return `${res}\\`
+        }
+        // unix
+        return '/'
+        // if (!res) return '/'
+    }
+}
 // todo:()
-// normalize,parse,reslove,relative
-export { dirname, basename, extname, format, isAbsolute, join }
+// normalize,reslove,relative
+export { dirname, basename, extname, format, isAbsolute, join, parse }

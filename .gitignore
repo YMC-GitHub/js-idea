@@ -42,6 +42,7 @@ script
 # ignore tmp file
 *.tmp.md
 *.tmp.*
+tmp
 
 .dns
 .app

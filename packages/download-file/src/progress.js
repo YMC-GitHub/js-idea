@@ -21,9 +21,9 @@ function showProgress(file, cur, len, total) {
 
 function showProgressNext(option) {
     const { file, cur, len, total } = option
-    const progress = ((100.0 * cur) / len).toFixed(2)
+    const progress = ((100.0 * cur) / (len === 1 ? cur : len)).toFixed(2)
     const downloadedSize = (cur / 1048576).toFixed(2)
-    const totalSize = total.toFixed(2)
+    const totalSize = len === 1 ? downloadedSize : total.toFixed(2)
     const msg = `[process] downloading ${file} - ${progress} % (${downloadedSize} MB ) of total size: ${totalSize}MB`
     log(msg)
 }

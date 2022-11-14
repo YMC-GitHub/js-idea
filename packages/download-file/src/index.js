@@ -85,7 +85,7 @@ async function downloadFile(url, options = {}) {
             }
 
             const progressOption = initProgressState({
-                len: parseInt(response.headers['content-length'], 10),
+                len: parseInt(response.headers['content-length'] || 1, 10),
                 file: targetFile || response.url
             })
 

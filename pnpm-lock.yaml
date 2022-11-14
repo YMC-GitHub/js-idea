@@ -256,6 +256,20 @@ importers:
 
   packages/esm-loader:
     specifiers:
+      '@ymc/compare-version': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
+      '@ymc/text-stream-io': workspace:^1.0.0
+      esbuild: ^0.15.7
+    dependencies:
+      '@ymc/compare-version': link:../compare-version
+      '@ymc/json-stream-io': link:../json-stream-io
+      '@ymc/nano-parse': link:../nano-parse
+      '@ymc/text-stream-io': link:../text-stream-io
+      esbuild: 0.15.7
+
+  packages/esm-loader-alias:
+    specifiers:
       '@ymc/json-stream-io': workspace:^1.0.0
     dependencies:
       '@ymc/json-stream-io': link:../json-stream-io

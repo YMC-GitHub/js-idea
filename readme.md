@@ -1,6 +1,4 @@
 # pkg @ymc/js-idea
-## Description
-ymc 's daily inspiration
 ## Author
 yemiancheng <ymc.github@gmail.com>
 ## License
@@ -19,6 +17,15 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/download-file](./packages/download-file)|ymc package download-file|2022-11-13
+[@ymc/mock-path](./packages/mock-path)|ymc package mock-path|2022-11-13
+[@ymc/esm-loader-http](./packages/esm-loader-http)|load remote esm pkg with http or https protocol|2022-11-12
+[@ymc/esm-loader-dirs-alias](./packages/esm-loader-alias)|load pkg with dir alias|2022-11-12
+[@ymc/satisfy-version](./packages/satisfy-version)|ymc package satisfy-version|2022-11-12
+[@ymc/module-alias](./packages/module-alias)|ymc package module-alias|2022-11-11
+[@ymc/esm-loader-text-file](./packages/esm-loader-text-file)|load text file as esm module with specified ext|2022-11-10
+[@ymc/create-esm-loader](./packages/create-esm-loader)|ymc package create-esm-loader|2022-11-10
+[@ymc/compare-version](./packages/compare-version)|ymc package compare-version|2022-11-10
 [@ymc/del-comment](./packages/del-comment)|delete comment , support custom comment reg|2022-11-07
 [@ymc/del-macthed-line](./packages/del-macthed-line)|delete match line with reg|2022-11-07
 [@ymc/get-obj-only-selected-keys](./packages/get-obj-only-selected-keys)|get json-object only selected-keys|2022-11-07
@@ -58,6 +65,7 @@ name|description|created_at
 [@ymc/class-esm-help](packages/class-esm-help)|ymc package class-esm-help|2022-11-01
 [@ymc/changeset](packages/changeset)|make or parse .changeset/xx.md file|2022-11-01
 [@ymc/bump-version](packages/bump-version)|bump pkg's version|2022-11-01
+[@ymc/esm-loader](./packages/esm-loader)|ymc package esm-loader|2022-10-31
 [@ymc/is-type-of](packages/is-type-of)|check type of val - enhance-typeof|2022-10-30
 [@ymc/cli-preset-param](packages/cli-preset-param)|cli param preset - base, token and other|2022-10-29
 [@ymc/cli-engine](packages/cli-engine)|ymc package cli-engine|2022-10-28

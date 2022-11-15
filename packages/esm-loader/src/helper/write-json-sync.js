@@ -10,8 +10,8 @@ function noop() {}
 function writeJsonSync(loc, data) {
     try {
         let tmp = data
-        if (typeof data === 'string') {
-            tmp = JSON.parse(data)
+        if (typeof data !== 'string') {
+            tmp = JSON.stringify(data, null, 2)
         }
         writeFileSync(loc, tmp)
     } catch (error) {

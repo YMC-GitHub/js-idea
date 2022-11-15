@@ -1,44 +1,44 @@
 {
-    "name": "@ymc/esm-loader",
-    "version": "1.0.0",
-    "description": "ymc package esm-loader",
-    "keywords": [
-        "ymc",
-        "esm-loader"
-    ],
-    "author": {
-        "name": "yemiancheng",
-        "email": "ymc.github@gmail.com",
-        "url": "https://github.com/ymc-github"
-    },
-    "main": "dist/index.js",
-    "module": "dist/index.esm.js",
-    "type": "module",
-    "typings": "dist/index.d.ts",
-    "unpkg": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ymc-github/js-idea.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ymc-github/js-idea/issues"
-    },
-    "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/esm-loader#readme",
-    "license": "MIT",
-    "scripts": {
-        "doc:js": "jsdoc2md dist/index.esm.js",
-        "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
-        "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
-        "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
-        "pac:js": "rm -rf dist/* && rollup -c",
-        "test": "exit 0"
-    },
-    "private": false,
-    "dependencies": {
-        "@ymc/compare-version": "workspace:^1.0.0",
-        "@ymc/json-stream-io": "workspace:^1.0.0",
-        "@ymc/nano-parse": "workspace:^0.0.1",
-        "@ymc/text-stream-io": "workspace:^1.0.0",
-        "esbuild": "^0.15.7"
-    }
+  "name": "@ymc/esm-loader",
+  "version": "1.0.0",
+  "description": "ymc package esm-loader",
+  "keywords": [
+    "ymc",
+    "esm-loader"
+  ],
+  "author": {
+    "name": "yemiancheng",
+    "email": "ymc.github@gmail.com",
+    "url": "https://github.com/ymc-github"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "unpkg": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymc-github/js-idea.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ymc-github/js-idea/issues"
+  },
+  "homepage": "https://github.com/ymc-github/js-idea/blob/main/packages/esm-loader#readme",
+  "license": "MIT",
+  "scripts": {
+    "doc:js": "jsdoc2md dist/index.esm.js",
+    "fmt:js": "prettier --write 'src/**/*.{js,ts,jsx,tsx,md}' ",
+    "lin:js": "eslint  --no-error-on-unmatched-pattern --ext .js,.ts --fix src test",
+    "min:js": "terser --compress --mangle -o dist/index.min.js -- dist/index.js",
+    "pac:js": "rm -rf dist/* && rollup -c",
+    "test": "exit 0"
+  },
+  "private": false,
+  "dependencies": {
+    "@ymc/compare-version": "workspace:^1.0.0",
+    "@ymc/json-stream-io": "workspace:^1.0.0",
+    "@ymc/nano-parse": "workspace:^0.0.1",
+    "@ymc/text-stream-io": "workspace:^1.0.0",
+    "esbuild": "^0.15.7"
+  }
 }

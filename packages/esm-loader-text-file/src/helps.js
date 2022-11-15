@@ -15,18 +15,18 @@ import { URL, pathToFileURL } from 'url'
  * ```
  */
 async function wrapTextFileToEsmModule(url) {
-  // console.log(new URL(url));
-  // idea: read-file-text -> wrap-esm-expression -> set-module-format
-  const content = await readFile(new URL(url))
-  return {
-    format: 'module',
-    source: `export default ${JSON.stringify(content.toString())};`,
-    shortCircuit: true
-  }
+    // console.log(new URL(url));
+    // idea: read-file-text -> wrap-esm-expression -> set-module-format
+    const content = await readFile(new URL(url))
+    return {
+        format: 'module',
+        source: `export default ${JSON.stringify(content.toString())};`,
+        shortCircuit: true
+    }
 }
 
 function matchExts(url, exts) {
-  return exts.some(ext => url.endsWith(ext))
+    return exts.some(ext => url.endsWith(ext))
 }
 
 function noop() {}

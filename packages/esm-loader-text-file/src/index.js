@@ -20,26 +20,26 @@ const EXTS = ['.md', '.css', '.html', '.htm', '.svg']
  * ```
  */
 export async function load(url, context, defaultLoad) {
-  const checkUrl = url.split('?')[0] // Cutting the possible search parameters
-  // console.log(parsePath(checkUrl));
+    const checkUrl = url.split('?')[0] // Cutting the possible search parameters
+    // console.log(parsePath(checkUrl));
 
-  // default ext
-  // let ext = extname(checkUrl);
-  // if (!ext) {
-  //     checkUrl = `${checkUrl}.js`;
-  // }
-  // if (!ext) {
-  //     return defaultLoad(checkUrl, context, defaultLoad);
-  // }
+    // default ext
+    // let ext = extname(checkUrl);
+    // if (!ext) {
+    //     checkUrl = `${checkUrl}.js`;
+    // }
+    // if (!ext) {
+    //     return defaultLoad(checkUrl, context, defaultLoad);
+    // }
 
-  // feat: run custom load
-  // feat: wrap text file esm module
-  if (matchExts(checkUrl, EXTS)) {
-    // console.log(url);
-    const res = await wrapTextFileToEsmModule(url)
-    return res
-  }
+    // feat: run custom load
+    // feat: wrap text file esm module
+    if (matchExts(checkUrl, EXTS)) {
+        // console.log(url);
+        const res = await wrapTextFileToEsmModule(url)
+        return res
+    }
 
-  // feat: run default load
-  return defaultLoad(url, context, defaultLoad)
+    // feat: run default load
+    return defaultLoad(url, context, defaultLoad)
 }

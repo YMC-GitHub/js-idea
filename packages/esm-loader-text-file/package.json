@@ -1,7 +1,7 @@
 {
   "name": "@ymc/esm-loader-text-file",
   "version": "1.0.0",
-  "description": "ymc package esm-loader-text-file",
+  "description": "load text file as esm module with specified ext",
   "keywords": [
     "ymc",
     "esm-loader-text-file"

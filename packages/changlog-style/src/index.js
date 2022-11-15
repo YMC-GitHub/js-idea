@@ -19,55 +19,55 @@ import pluginMdtable from './style/md-table'
  * ```
  */
 class ChangelogStyle {
-  constructor() {
-    this.init()
-  }
-
-  init() {
-    /** @type {option} */
-    this.option = {}
-    this.data = []
-    this.result = ''
-    this.plugin = []
-    return this
-  }
-
-  /**
-   * bind write tpl to ctx
-   * @param {string} tpl
-   * @param {{}} data
-   * @returns
-   */
-  writeTpl(tpl, data) {
-    return writeTpl(tpl, data)
-  }
-
-  /**
-   * redner with option.style or ctx.plugin
-   * @returns {string}
-   */
-  render() {
-    const ctx = this
-
-    // render with style and built in plugin
-    const { option } = this
-    switch (option.style.toLowerCase()) {
-      case 'list':
-        return pluginMdList({})(ctx)
-      case 'table':
-        return pluginMdtable({})(ctx)
-      default:
-        break
+    constructor() {
+        this.init()
     }
 
-    // render with plugin list
-    const { plugin } = this
-    for (let index = 0; index < plugin.length; index += 1) {
-      const fn = plugin[index]
-      fn(ctx)
+    init() {
+        /** @type {option} */
+        this.option = {}
+        this.data = []
+        this.result = ''
+        this.plugin = []
+        return this
     }
-    return this.result
-  }
+
+    /**
+     * bind write tpl to ctx
+     * @param {string} tpl
+     * @param {{}} data
+     * @returns
+     */
+    writeTpl(tpl, data) {
+        return writeTpl(tpl, data)
+    }
+
+    /**
+     * redner with option.style or ctx.plugin
+     * @returns {string}
+     */
+    render() {
+        const ctx = this
+
+        // render with style and built in plugin
+        const { option } = this
+        switch (option.style.toLowerCase()) {
+            case 'list':
+                return pluginMdList({})(ctx)
+            case 'table':
+                return pluginMdtable({})(ctx)
+            default:
+                break
+        }
+
+        // render with plugin list
+        const { plugin } = this
+        for (let index = 0; index < plugin.length; index += 1) {
+            const fn = plugin[index]
+            fn(ctx)
+        }
+        return this.result
+    }
 }
 
 const changelogstyle = new ChangelogStyle()

@@ -54,7 +54,7 @@ function pluginList(pluginOpt = {}) {
     const {
       data,
       option
-    } = ctx; // tpl,dat
+    } = ctx;
 
     const body = data.map((item, index) => ctx.writeTpl('- {commit} {subject}', item)).join('\n');
     let res = '';
@@ -73,7 +73,6 @@ function pluginList(pluginOpt = {}) {
 }
 
 /* eslint-disable  no-unused-vars,no-param-reassign */
-
 /**
  * get md table head with keys with align
  * @param {string} keys
@@ -84,6 +83,8 @@ function pluginList(pluginOpt = {}) {
  * getHeadByKeys('commit|type|desciption', 'l')
  * ```
  */
+
+
 function getHeadByKeys(keys, align = 'l') {
   let res = '';
   const head = keys;
@@ -112,66 +113,58 @@ function getHeadByKeys(keys, align = 'l') {
   }).join('|');
   res = `${head}\n${hs}`;
   return res;
-} // render issue
-// render body
-// render subject
-// render commit
-// render head
-// [{commit}]({repo}/commit/{hash})|{type}|{subject}({issue})
+} // [{commit}]({repo}/commit/{hash})|{type}|{subject}({issue})
 
 
-function pluginMdtable(pluginOpt = {}) {
+function pluginMarkdowntable(pluginOpt = {}) {
   return ctx => {
     const {
       data,
       option
-    } = ctx; // const github = {
-    //     repo: option.repo
-    // }
-    // render issue for github
-    // render issue with plugin tpl
-    // [issue1,issue] => renderedIssueTxt1,renderedIssueTxt12
-
+    } = ctx;
     let meniefest;
     meniefest = data.map(item => {
+      let obj = { ...item
+      };
       let {
         issue
-      } = item; // console.log(item);
-      // ?. //fix: cannot read properties of undefined
-      // [#{issue}]({repo}/pull/{issue})
+      } = obj;
 
-      if (issue?.length > 0) {
+      if (issue && issue.length > 0) {
         issue = issue.filter(v => v);
-        item.issue = issue.map(ic => ctx.writeTpl('[#{issue}]({repo}/pull/{issue})', {
-          issue: ic.trim().replace(/^#/, '') // ...github,
-
+        obj.issue = issue.map(ic => ctx.writeTpl('[#{issue}]({repo}/pull/{issue})', {
+          issue: ic.trim().replace(/^#/, '')
         })).join(',');
       } else {
-        item.issue = '';
+        obj.issue = '';
       }
 
-      return item;
+      return obj;
     }); // ctx.data = data;
     // render subject
 
     meniefest = meniefest.map((item, index) => {
+      let obj = { ...item
+      };
       const {
         issue
-      } = item;
+      } = obj;
 
       if (issue.length > 0) {
-        item.subject = ctx.writeTpl('{subject}({issue})', item);
+        obj.subject = ctx.writeTpl('{subject}({issue})', obj);
       } else {
-        item.subject = ctx.writeTpl('{subject}', item);
+        obj.subject = ctx.writeTpl('{subject}', obj);
       }
 
-      return item;
+      return obj;
     });
     meniefest = meniefest.map((item, index) => {
-      item.commit = ctx.writeTpl('[{commit}]({repo}/commit/{hash})', { ...item // ...github,
+      let obj = { ...item
+      };
+      obj.commit = ctx.writeTpl('[{commit}]({repo}/commit/{hash})', { ...obj // ...github,
 
       });
-      return item;
+      return obj;
     }); // option.tpl = `{hash}|{type}|{subject}`;
     // let body = ctx.renderLine().join("\n");
 
@@ -180,9 +173,10 @@ function pluginMdtable(pluginOpt = {}) {
     const head = getHeadByKeys('commit|type|desciption', 'l');
     const table = `${head}\n${body}\n\n`;
     let res = '';
+    let whtpl = '<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}';
 
     if (meniefest.length > 0) {
-      res = ctx.writeTpl('<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}', {
+      res = ctx.writeTpl(whtpl, {
         date: meniefest[0].date,
         changes: table
       });
@@ -252,7 +246,7 @@ class ChangelogStyle {
         return pluginList({})(ctx);
 
       case 'table':
-        return pluginMdtable({})(ctx);
+        return pluginMarkdowntable({})(ctx);
     } // render with plugin list
 
 
@@ -271,9 +265,9 @@ class ChangelogStyle {
 }
 
 const changelogstyle = new ChangelogStyle();
-changelogstyle.plugin = [pluginMdtable()];
+changelogstyle.plugin = [pluginMarkdowntable()];
 
 exports.ChangelogStyle = ChangelogStyle;
 exports.changelogstyle = changelogstyle;
 exports.pluginMdList = pluginList;
-exports.pluginMdtable = pluginMdtable;
+exports.pluginMdtable = pluginMarkdowntable;

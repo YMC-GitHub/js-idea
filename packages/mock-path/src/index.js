@@ -1,4 +1,4 @@
-/* eslint-disable prefer-const */
+/* eslint-disable prefer-const,no-use-before-define */
 // https://nodejs.org/api/path.html
 
 // const path = {}
@@ -123,18 +123,19 @@ function parse(wkd) {
     }
     /**
      *
-     * @param {string} dir
+     * @param {string} dirs
      * @returns {string}
      */
-    function getRoot(dir) {
-        if (!isAbsolute(dir)) return ''
+    function getRoot(dirs) {
+        if (!isAbsolute(dirs)) return ''
         let res = ''
         // res = dir.replace(/(\/?\/)|\\.*/gi, '')
-        res = dir.split(/(\/?\/)|\\/)[0]
+        res = dirs.split(/(\/?\/)|\\/)
+        ;[res] = res
         // win
         if (res) {
             let tmp = `${res}/`
-            if (dir.indexOf(tmp) === 0) return tmp
+            if (dirs.indexOf(tmp) === 0) return tmp
             return `${res}\\`
         }
         // unix

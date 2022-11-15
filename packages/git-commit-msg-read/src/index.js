@@ -60,6 +60,7 @@ class Store {
         return this
     }
 
+    /* eslint-disable no-param-reassign */
     getTpl(tpl, options = {}) {
         let option = {
             ...options,
@@ -70,6 +71,7 @@ class Store {
         }
         return tpl
     }
+    /* eslint-enable no-param-reassign */
 
     /**
      * get git commit hash

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { jsonstream } from '@ymc/json-stream-io'
 import { store as gitlog } from './index'
 

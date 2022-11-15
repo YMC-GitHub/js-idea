@@ -35,6 +35,8 @@
   },
   "private": false,
   "dependencies": {
+    "@ymc/git-commit-msg-parse": "workspace:^1.0.0",
+    "@ymc/json-stream-io": "workspace:^1.0.0",
     "@ymc/render-tpl": "workspace:^1.0.0",
     "@ymc/run-bash": "workspace:^0.0.3"
   }

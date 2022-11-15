@@ -11,38 +11,38 @@
 // ge is short for generate-entrys
 
 class GE {
-  //   constructor() {} //fix Useless constructor
+    //   constructor() {} //fix Useless constructor
 
-  entrys(entry) {
-    // set
-    if (entry) {
-      this.context = entry
-      return this
-    }
-    // get
-    return this.context
-  }
-
-  bind(subcmd = '', defFun = () => {}, bindType = '') {
-    const entrys = this.entrys()
-    if (!entrys) {
-      Error('need entrys')
+    entrys(entry) {
+        // set
+        if (entry) {
+            this.context = entry
+            return this
+        }
+        // get
+        return this.context
     }
 
-    subcmd.split('|').forEach(cmd => {
-      let entry
-      switch (bindType.toLowerCase()) {
-        case 'call':
-          // feat: support call then bind entry
-          entry = defFun(cmd)
-          break
-        default:
-          break
-        // fix Expected a default case
-      }
-      // feat: support bind entry
-      entrys[cmd] = entry
-    })
-  }
+    bind(subcmd = '', defFun = () => {}, bindType = '') {
+        const entrys = this.entrys()
+        if (!entrys) {
+            Error('need entrys')
+        }
+
+        subcmd.split('|').forEach(cmd => {
+            let entry
+            switch (bindType.toLowerCase()) {
+                case 'call':
+                    // feat: support call then bind entry
+                    entry = defFun(cmd)
+                    break
+                default:
+                    break
+                // fix Expected a default case
+            }
+            // feat: support bind entry
+            entrys[cmd] = entry
+        })
+    }
 }
 export default GE

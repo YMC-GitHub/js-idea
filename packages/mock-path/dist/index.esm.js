@@ -1,3 +1,8 @@
+/**
+  * mockPath v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
 /* eslint-disable prefer-const */
 // https://nodejs.org/api/path.html
 
@@ -11,8 +16,8 @@
  * @returns {string}
  */
 function dirname(wkd) {
-    const sep = dirname.sep ? dirname.sep : '/'
-    const list = wkd.split(/\/?\\|\//)
+    const sep = dirname.sep ? dirname.sep : '/';
+    const list = wkd.split(/\/?\\|\//);
     // if ((list.length = 1)) return list.join(sep)
     return list.slice(0, list.length - 1).join(sep)
 }
@@ -24,8 +29,8 @@ function dirname(wkd) {
  * @returns {string}
  */
 function basename(wkd, suffix) {
-    const list = wkd.split(/\/?\\|\//)
-    const res = list[list.length - 1]
+    const list = wkd.split(/\/?\\|\//);
+    const res = list[list.length - 1];
     if (!suffix) return res
     return res.replace(new RegExp(`${suffix}$`), '')
 }
@@ -35,9 +40,9 @@ function basename(wkd, suffix) {
  * @returns {string}
  */
 function extname(wkd) {
-    const reg = /(.*)?\./gi
+    const reg = /(.*)?\./gi;
     if (!reg.test(wkd)) return ''
-    const res = wkd.trim().replace(/(.*)?\./gi, '')
+    const res = wkd.trim().replace(/(.*)?\./gi, '');
     return res ? `.${res}` : ''
 }
 /**
@@ -46,11 +51,11 @@ function extname(wkd) {
  * @returns {string}
  */
 function join(...likepath) {
-    const sep = join.sep ? join.sep : '/'
+    const sep = join.sep ? join.sep : '/';
     const list = [...likepath]
         .map(v => v.split(/\/?\\|\//))
         .flat(Infinity)
-        .filter(v => v)
+        .filter(v => v);
     return list.join(sep)
 }
 
@@ -61,8 +66,8 @@ function join(...likepath) {
  * @returns {string}
  */
 function format(obj) {
-    let { root, dir, base, name, ext } = obj
-    const sep = format.sep ? format.sep : '/'
+    let { root, dir, base, name, ext } = obj;
+    const sep = format.sep ? format.sep : '/';
     // add dot when ext
     // if (ext) {
     //     let ext = ext.trim()
@@ -70,10 +75,10 @@ function format(obj) {
     //         ext = `.${ext}`
     //     }
     // }
-    if (ext) ext = ext.replace(/^ ?\.? ?/, '.')
+    if (ext) ext = ext.replace(/^ ?\.? ?/, '.');
 
     if (!base) {
-        base = `${name}${ext}`
+        base = `${name}${ext}`;
     }
     if (dir) {
         return `${dir}${sep}${base}`
@@ -90,8 +95,8 @@ function format(obj) {
  * @returns {boolean}
  */
 function isAbsolute(wkd) {
-    const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/
-    /// ^\/|(\\\\)|([A-Z]:)|([a-z]:)/
+    const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/;
+    ///^\/|(\\\\)|([A-Z]:)|([a-z]:)/
     if (!wkd) return false
     return reg.test(wkd)
 }
@@ -101,26 +106,16 @@ function isAbsolute(wkd) {
  * @returns {{root:string,dir:string,base:string,name:string,ext:string}}
  */
 function parse(wkd) {
-    let root
-    let dir
-    let base
-    let name
-    let ext
-    base = basename(wkd)
-    ext = extname(base)
-    name = ext ? basename(wkd, ext) : base
-    root = getRoot(wkd)
-    dir = wkd.replace(new RegExp(`${base}$`, 'i'), '')
+    let root, dir, base, name, ext;
+    base = basename(wkd);
+    ext = extname(base);
+    name = ext ? basename(wkd, ext) : base;
+    root = getRoot(wkd);
+    dir = wkd.replace(new RegExp(`${base}$`, 'i'), '');
     // not ends with / for unix when dir.length !==1
-    if (dir.length !== 1) dir = dir.replace(/\/$/, '')
+    if (dir.length !== 1) dir = dir.replace(/\/$/, '');
 
-    return {
-        root,
-        dir,
-        base,
-        name,
-        ext
-    }
+    return { root, dir, base, name, ext }
     /**
      *
      * @param {string} dir
@@ -128,12 +123,12 @@ function parse(wkd) {
      */
     function getRoot(dir) {
         if (!isAbsolute(dir)) return ''
-        let res = ''
+        let res = '';
         // res = dir.replace(/(\/?\/)|\\.*/gi, '')
-        res = dir.split(/(\/?\/)|\\/)[0]
+        res = dir.split(/(\/?\/)|\\/)[0];
         // win
         if (res) {
-            let tmp = `${res}/`
+            let tmp = `${res}/`;
             if (dir.indexOf(tmp) === 0) return tmp
             return `${res}\\`
         }
@@ -142,6 +137,5 @@ function parse(wkd) {
         // if (!res) return '/'
     }
 }
-// todo:()
-// normalize,reslove,relative
-export { dirname, basename, extname, format, isAbsolute, join, parse }
+
+export { basename, dirname, extname, format, isAbsolute, join, parse };

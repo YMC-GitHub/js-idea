@@ -1,9 +1,10 @@
 import { parse } from 'path'
+
 const { log } = console
 function main() {
-    let res
-    log(parse('./package/noop')) //{ root: '', dir: './package', base: 'noop', ext: '', name: 'noop' }
-    log(parse('/package/noop')) //{ root: '/', dir: '/package', base: 'noop', ext: '', name: 'noop' }
+    // let res
+    log(parse('./package/noop')) // { root: '', dir: './package', base: 'noop', ext: '', name: 'noop' }
+    log(parse('/package/noop')) // { root: '/', dir: '/package', base: 'noop', ext: '', name: 'noop' }
     log(parse('/h/package/noop/index.js'))
     // res = {
     //     root: '/',
@@ -28,11 +29,11 @@ function main() {
     //     ext: '.js',
     //     name: 'index'
     // }
-    log(parse('.')) //{ root: '', dir: '', base: '.', ext: '', name: '.' }
-    log(parse('/')) //{ root: '/', dir: '/', base: '', ext: '', name: '' }
-    log(parse('C://')) //{ root: 'C:/', dir: 'C:/', base: '', ext: '', name: '' }
-    log(parse('C:\\')) //{ root: 'C:\\', dir: 'C:\\', base: '', ext: '', name: '' }
+    log(parse('.')) // { root: '', dir: '', base: '.', ext: '', name: '.' }
+    log(parse('/')) // { root: '/', dir: '/', base: '', ext: '', name: '' }
+    log(parse('C://')) // { root: 'C:/', dir: 'C:/', base: '', ext: '', name: '' }
+    log(parse('C:\\')) // { root: 'C:\\', dir: 'C:\\', base: '', ext: '', name: '' }
 }
 main()
-//main
+// main
 // node packages/mock-path/src/demo.js

@@ -1,8 +1,10 @@
 <a name="0.0.2"></a>
-# 0.0.2(2022-10-29)
+# 0.0.2(2022-11-05)
 ### @ymc/ycs-help-bind-option
 commit|type|desciption
 :----|:----|:----
+[0daffe53b](https://github.com/ymc-github/js-idea/commit/70daffe53b6c859d4f8694ac9be18997df7407c4)|docs|add pkg shield state
+[7f9816303](https://github.com/ymc-github/js-idea/commit/17f9816303affed7df6cf9d56cf31f4ee2c7cbd5)|docs|add pkg scope at name
 [9fdfc4cdb](https://github.com/ymc-github/js-idea/commit/89fdfc4cdbe66ccc581ebaba915086f77b411358)|chore|update pack preset
 [0b828800e](https://github.com/ymc-github/js-idea/commit/50b828800e5f33851935c859740ab02e65426490)|chore|update pack preset
 [a48c308e7](https://github.com/ymc-github/js-idea/commit/2a48c308e7edcfe10180b6f8f5d2dcce3cde2dd9)|feat|add api function

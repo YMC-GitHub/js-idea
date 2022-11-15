@@ -1,10 +1,13 @@
 <a name="0.0.2"></a>
-# 0.0.2(2022-10-29)
+# 0.0.2(2022-11-05)
 ### @ymc/ycs-help-generate-entry
 commit|type|desciption
 :----|:----|:----
+[7acaecc6f](https://github.com/ymc-github/js-idea/commit/f7acaecc6f408c543c23b049c2eda14473b98e61)|docs|add pkg shield state
+[7f9816303](https://github.com/ymc-github/js-idea/commit/17f9816303affed7df6cf9d56cf31f4ee2c7cbd5)|docs|add pkg scope at name
 [78bd5b082](https://github.com/ymc-github/js-idea/commit/478bd5b082e7007655a8dd9a9f1b3da785335840)|chore|update pack preset
 [48af71014](https://github.com/ymc-github/js-idea/commit/e48af71014c60eefb46427e937a849537d465e08)|chore|update pack preset
+[a4b43d18a](https://github.com/ymc-github/js-idea/commit/1a4b43d18a6bda026b76b078e07cbbb07787d090)|docs|update pkg desc
 [024cf886e](https://github.com/ymc-github/js-idea/commit/4024cf886e9e60543d64ac76b3fef584c1ec054b)|style|lin code
 [f08641387](https://github.com/ymc-github/js-idea/commit/3f08641387ecd32711c9fb5f5f05db0b8acb3b0e)|tool|delete lin ts script
 [aa40eb471](https://github.com/ymc-github/js-idea/commit/3aa40eb4715bcbdd5b209f7f4f9a82acb8218a9b)|tool|delete prettier config in script

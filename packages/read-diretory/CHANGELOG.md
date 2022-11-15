@@ -4,6 +4,9 @@
 commit|type|desciption
 :----|:----|:----
 [eda8b4ac5](https://github.com/ymc-github/js-idea/commit/4eda8b4ac5f05472ffbd031685b15861c817f1ca)|chore|update demo
+[bbe75fca0](https://github.com/ymc-github/js-idea/commit/4bbe75fca07a502f92f5fec23dd0fd1180ea87ed)|docs|add pkg shield state
+[e22b126ee](https://github.com/ymc-github/js-idea/commit/3e22b126eecba5de7a1bdd9ef97a5d524c274ec2)|docs|update pkg desc
+[7f9816303](https://github.com/ymc-github/js-idea/commit/17f9816303affed7df6cf9d56cf31f4ee2c7cbd5)|docs|add pkg scope at name
 [4b260608e](https://github.com/ymc-github/js-idea/commit/f4b260608e98ee33e949034d989a60f651f78b38)|chore|update pack preset
 [4cf90cfd2](https://github.com/ymc-github/js-idea/commit/74cf90cfd2c570898425a8f29116fefee42792b4)|chore|update pack preset
 [fd08cbd71](https://github.com/ymc-github/js-idea/commit/7fd08cbd71e5c257acc606660eff12936afb6331)|feat|get dst dir in loc
@@ -17,5 +20,6 @@ commit|type|desciption
 [5898ec36b](https://github.com/ymc-github/js-idea/commit/35898ec36bdf8856aeff9f61020a22615d4f88f1)|feat|set log output to be optional
 [0fbe8dea2](https://github.com/ymc-github/js-idea/commit/50fbe8dea27fb605c2941affbbca471b214452a1)|feat|enable return to array
 [03e4c6108](https://github.com/ymc-github/js-idea/commit/f03e4c610837416e79620d4a9cf6d45db2fed64b)|feat|set built-in option mode
+[ddcb5a7e3](https://github.com/ymc-github/js-idea/commit/9ddcb5a7e3ccff90f9d465afb4507c7e2380983d)|docs|update usage comment in instance
 [848bc406b](https://github.com/ymc-github/js-idea/commit/a848bc406b22be73b73e8d6f41773988b1b122ce)|fix|fix parse option
 [9cdb90b9d](https://github.com/ymc-github/js-idea/commit/19cdb90b9de0c5b2e5197fcdd6eb7c79200dab05)|tool|ini pkg

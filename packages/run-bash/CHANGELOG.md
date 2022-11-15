@@ -1,8 +1,11 @@
 <a name="0.0.3"></a>
-# 0.0.3(2022-10-29)
+# 0.0.3(2022-11-05)
 ### @ymc/run-bash
 commit|type|desciption
 :----|:----|:----
+[ec6b960c6](https://github.com/ymc-github/js-idea/commit/fec6b960c645807a393c19b0a80dec672e4919a0)|docs|add pkg shield state
+[e22b126ee](https://github.com/ymc-github/js-idea/commit/3e22b126eecba5de7a1bdd9ef97a5d524c274ec2)|docs|update pkg desc
+[7f9816303](https://github.com/ymc-github/js-idea/commit/17f9816303affed7df6cf9d56cf31f4ee2c7cbd5)|docs|add pkg scope at name
 [8de509356](https://github.com/ymc-github/js-idea/commit/58de509356993e5c374258b7fc4a1607a7767b63)|chore|update pack preset
 [8bff9ae4b](https://github.com/ymc-github/js-idea/commit/18bff9ae4b6d039168c91730794683436492a06c)|style|lin code
 [f08641387](https://github.com/ymc-github/js-idea/commit/3f08641387ecd32711c9fb5f5f05db0b8acb3b0e)|tool|delete lin ts script

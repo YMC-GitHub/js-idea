@@ -1,8 +1,10 @@
 <a name="1.0.0"></a>
-# 1.0.0(2022-10-29)
+# 1.0.0(2022-11-05)
 ### @ymc/extend-string
 commit|type|desciption
 :----|:----|:----
+[7deb0c310](https://github.com/ymc-github/js-idea/commit/17deb0c31035c7a9b359522cf36ba8123284fb78)|docs|add pkg shield state
+[7f9816303](https://github.com/ymc-github/js-idea/commit/17f9816303affed7df6cf9d56cf31f4ee2c7cbd5)|docs|add pkg scope at name
 [c272131d2](https://github.com/ymc-github/js-idea/commit/3c272131d2f85ddf32a9ad21f65f00d34b40ca8a)|chore|update pack preset
 [861476d5d](https://github.com/ymc-github/js-idea/commit/9861476d5d955d4f1a59c2958250f6344dbc1544)||use cjs,esm,umd format use min version per format use esm without min as index.js
 [b3333da2c](https://github.com/ymc-github/js-idea/commit/4b3333da2c8b1dee22e949e233e05f73fde33af7)|feat|extend prototype in enhance file

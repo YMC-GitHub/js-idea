@@ -11,14 +11,15 @@ async function main() {
     // jsonstream.init(loc)
     // await jsonstream.write(data)
     // log(`[info] out: ${loc}`)
-
+    log('[task] update gitlog')
     let o
-    log('[task] read gitlog')
+    // log('[info] read gitlog')
+    log('[info] read the last gitlog')
     gitlog.options.n = 1
     const data = await gitlog.parse()
-    log(data)
+    // log(data)
 
-    log('[task] store gitlog')
+    log('[info] store gitlog')
     const loc = 'gitlog-info.shim.tmp.json'
     jsonstream.init(loc)
     o = await jsonstream.read([])

@@ -4,16 +4,16 @@ import Ycs from './ycs-api'
 import entrys from './ycs-ins'
 
 const run = () => {
-  const ycs = new Ycs()
-  const input = process.argv
-  // ycs.entry(entrys).run(input)
-  ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys).run(input)
+    const ycs = new Ycs()
+    const input = process.argv
+    // ycs.entry(entrys).run(input)
+    ycs.version('2.0.0').autosubns('npm|yarn|pnpm').autosubcmd('add|del|get|put').entry(entrys).run(input)
 }
 
 const main = () => {
-  run()
-  // const pc = new PCli()
-  // pc.run()
+    run()
+    // const pc = new PCli()
+    // pc.run()
 }
 main()
 

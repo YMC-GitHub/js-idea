@@ -15,67 +15,67 @@ const { log } = console
  * ```
  */
 class Ujc {
-  constructor() {
-    this.list = []
-    this.index = -1
-    this.freeze = false
-  }
-
-  /**
-   * add config to config list by order
-   * @param {{}} config
-   * @param {numbber} order
-   * @returns {this} why ? to chain
-   */
-  use(config = {}, order) {
-    let { list, index } = this
-
-    // feat: support index and order
-    const useIndex = !order
-
-    // feat: auto increase index
-    if (useIndex || index === order) {
-      index += 1
-    } else if (index < order) {
-      index = order
+    constructor() {
+        this.list = []
+        this.index = -1
+        this.freeze = false
     }
-    // warn: update index in this (when number,string,boolean)
-    this.index = index
 
-    index = useIndex ? index : order
-    if (config) {
-      list[index] = config
-    }
-    return this
-  }
+    /**
+     * add config to config list by order
+     * @param {{}} config
+     * @param {numbber} order
+     * @returns {this} why ? to chain
+     */
+    use(config = {}, order) {
+        let { list, index } = this
 
-  /**
-   *
-   * @returns {{}}
-   * @description
-   * ```
-   * - [x] get config by index in config list
-   * - [x] simple merge config
-   * - [x] freeze result optionally
-   * ```
-   */
-  load() {
-    const { list } = this
-    let res = {}
-    for (let index = 0; index < list.length; index += 1) {
-      const config = list[index]
-      if (config) {
-        // res=Object.assign(res,config)
-        res = { ...res, ...config }
-      }
+        // feat: support index and order
+        const useIndex = !order
+
+        // feat: auto increase index
+        if (useIndex || index === order) {
+            index += 1
+        } else if (index < order) {
+            index = order
+        }
+        // warn: update index in this (when number,string,boolean)
+        this.index = index
+
+        index = useIndex ? index : order
+        if (config) {
+            list[index] = config
+        }
+        return this
     }
-    const { freeze } = this
-    if (freeze) {
-      return Object.freeze(res)
+
+    /**
+     *
+     * @returns {{}}
+     * @description
+     * ```
+     * - [x] get config by index in config list
+     * - [x] simple merge config
+     * - [x] freeze result optionally
+     * ```
+     */
+    load() {
+        const { list } = this
+        let res = {}
+        for (let index = 0; index < list.length; index += 1) {
+            const config = list[index]
+            if (config) {
+                // res=Object.assign(res,config)
+                res = { ...res, ...config }
+            }
+        }
+        const { freeze } = this
+        if (freeze) {
+            return Object.freeze(res)
+        }
+        return res
+        // return Object.freeze(Object.assign({}, config, dotenv, node_env, argv))
     }
-    return res
-    // return Object.freeze(Object.assign({}, config, dotenv, node_env, argv))
-  }
 }
 
 /**
@@ -87,82 +87,82 @@ class Ujc {
  * ```
  */
 class Gsc {
-  constructor() {
-    this.data = {}
-    this.option = {
-      splitChar: '.'
+    constructor() {
+        this.data = {}
+        this.option = {
+            splitChar: '.'
+        }
     }
-  }
 
-  /**
-   * bind data to ctx.data
-   * @param {*} data
-   * @returns {this} why ? to chain
-   *
-   */
-  bind(data) {
-    if (data) {
-      this.data = data
+    /**
+     * bind data to ctx.data
+     * @param {*} data
+     * @returns {this} why ? to chain
+     *
+     */
+    bind(data) {
+        if (data) {
+            this.data = data
+        }
+        return this
     }
-    return this
-  }
 
-  /**
-   * set split char
-   * @param {string} s
-   * @returns {this} why ? to chain
-   */
-  split(s = '.') {
-    if (s) {
-      this.option.splitChar = s
+    /**
+     * set split char
+     * @param {string} s
+     * @returns {this} why ? to chain
+     */
+    split(s = '.') {
+        if (s) {
+            this.option.splitChar = s
+        }
+        return this
     }
-    return this
-  }
 
-  /**
-   * get or set value with key
-   * @param {string} key
-   * @param {*} val
-   * @returns {val|this}
-   * @description
-   * ```
-   * ```
-   */
-  conf(key, val) {
-    if (!key) return this
-    // note: extract com var
-    let { data, option } = this
-    let last
+    /**
+     * get or set value with key
+     * @param {string} key
+     * @param {*} val
+     * @returns {val|this}
+     * @description
+     * ```
+     * ```
+     */
+    conf(key, val) {
+        if (!key) return this
+        // note: extract com var
+        let { data, option } = this
+        let last
 
-    // note: get name list
-    const nss = key.split(option.splitChar)
+        // note: get name list
+        const nss = key.split(option.splitChar)
 
-    // note: get last name
-    last = nss[nss.length - 1]
+        // note: get last name
+        last = nss[nss.length - 1]
 
-    // note: get prev data
-    const { length } = nss
-    for (let index = 0; index < length - 1; index += 1) {
-      const name = nss[index]
-      // note: ini data in key when not dedfining
-      if (!data[name]) {
-        data[name] = {}
-      }
-      data = data[name]
-      // data=data[name]?data[name]:{}
+        // note: get prev data
+        const { length } = nss
+        for (let index = 0; index < length - 1; index += 1) {
+            const name = nss[index]
+            // note: ini data in key when not dedfining
+            if (!data[name]) {
+                data[name] = {}
+            }
+            data = data[name]
+            // data=data[name]?data[name]:{}
+        }
+        // log(key,data)
+
+        // feat: get val
+        if (val === undefined) {
+            return data[last]
+        }
+        // feat: set val
+        data[last] = val
+        log(`set ${last} ${val}`)
+        // feat: support chain when setting
+        return this
     }
-    // log(key,data)
-
-    // feat: get val
-    if (val === undefined) {
-      return data[last]
-    }
-    // feat: set val
-    data[last] = val
-    log(`set ${last} ${val}`)
-    // feat: support chain when setting
-    return this
-  }
 }
 
 /**
@@ -178,19 +178,19 @@ class Gsc {
  * ``
  */
 function readConf(cnfLocList = ['.ymcrc.json'], readJson) {
-  // let name='.ymcrc.json'
-  // let userLoc=joinPath(getUserHome(),name)
-  const rc = new Ujc()
-  // rc.use(readJson(userLoc))
-  // rc.use(readJson(name))
-  // rc.use(readJson(joinPath(wkd,name)))
-  // data = rc.load()
-  // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
-  for (let index = 0; index < cnfLocList.length; index += 1) {
-    const cnfLoc = cnfLocList[index]
-    rc.use(readJson(cnfLoc))
-  }
-  return rc.load()
+    // let name='.ymcrc.json'
+    // let userLoc=joinPath(getUserHome(),name)
+    const rc = new Ujc()
+    // rc.use(readJson(userLoc))
+    // rc.use(readJson(name))
+    // rc.use(readJson(joinPath(wkd,name)))
+    // data = rc.load()
+    // let cnfLocList = [joinPath(getUserHome(),name),name,joinPath(wkd,name)]
+    for (let index = 0; index < cnfLocList.length; index += 1) {
+        const cnfLoc = cnfLocList[index]
+        rc.use(readJson(cnfLoc))
+    }
+    return rc.load()
 }
 const ujc = new Ujc()
 const gsc = new Gsc()

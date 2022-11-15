@@ -9,7 +9,7 @@ import { parsePath, joinPath, addDirs, delDirs, readJson, saveJson, getUserHome 
 const { log } = console
 // idea: define usage likes below
 const defUsage = (ns = 'ns') => {
-  const msg = `cnf gen for ymc repo
+    const msg = `cnf gen for ymc repo
   mgnt cnf file
   usage:ns [subcmd] [option]
     ${ns} -h
@@ -28,72 +28,72 @@ const defUsage = (ns = 'ns') => {
     -h,--help get help
     -v,--version get version
 `
-  return msg
+    return msg
 }
 
 // feat: use built in flags
 const builtinFlags = {
-  name: '.ymcrc.json',
-  wkd: 'packages/noop',
-  usd: false,
-  crd: true
+    name: '.ymcrc.json',
+    wkd: 'packages/noop',
+    usd: false,
+    crd: true
 }
 
 // idea:cli-fy api to cli with ymc style
 const entrys = (flags = {}) => {
-  // log nano parser result 's flags (flags vs _ vs extras)
-  // log(flags)
-  entrys.debug && log('[info] run cmd with: ns')
-  entrys.debug && log('[info] hello ns')
-  // do sth. here
-  entrys.debug && log('[info] log cli option:')
-  entrys.debug && log(flags)
+    // log nano parser result 's flags (flags vs _ vs extras)
+    // log(flags)
+    entrys.debug && log('[info] run cmd with: ns')
+    entrys.debug && log('[info] hello ns')
+    // do sth. here
+    entrys.debug && log('[info] log cli option:')
+    entrys.debug && log(flags)
 }
 // 1. gen cmd fun
 const defFun =
-  (cmd = 'add') =>
-  (cliFlags = {}) => {
-    entrys.debug && log(`[info] run cmd with: ns ${cmd}`)
-    entrys.debug && log(`[info] hello ${cmd}`)
+    (cmd = 'add') =>
+    (cliFlags = {}) => {
+        entrys.debug && log(`[info] run cmd with: ns ${cmd}`)
+        entrys.debug && log(`[info] hello ${cmd}`)
 
-    // do sth. here
-    // log(`[info] log cli option:`)
-    // log(cliFlags)
+        // do sth. here
+        // log(`[info] log cli option:`)
+        // log(cliFlags)
 
-    // let nowFlags = { ...builtinFlags, ...cliFlags }
-    let nowFlags
-    builtinFlags.wkd = ''
-    if (entrys.notOnlyFlags) {
-      nowFlags = { ...builtinFlags, ...cliFlags.flags }
-    } else {
-      nowFlags = { ...builtinFlags, ...cliFlags }
+        // let nowFlags = { ...builtinFlags, ...cliFlags }
+        let nowFlags
+        builtinFlags.wkd = ''
+        if (entrys.notOnlyFlags) {
+            nowFlags = { ...builtinFlags, ...cliFlags.flags }
+        } else {
+            nowFlags = { ...builtinFlags, ...cliFlags }
+        }
+
+        // comEntry(cmd, nowFlags)
+        entrys.debug && log('[info] log now flags:')
+        entrys.debug && log(nowFlags)
+        jcm.option = nowFlags
+        jcm.tool = {
+            parsePath,
+            joinPath,
+            addDirs,
+            delDirs,
+            readJson,
+            saveJson,
+            getUserHome
+        }
+
+        if (cmd === 'loc') {
+            const file = jcm.getFileLocList() // jcm.getFileLoc()
+            log('[info] cnf file list:')
+            log(file)
+            log('[info] the last file:')
+            log(file[file.length - 1])
+            // log(jcm.tool.parsePath(file[file.length - 1]))
+            return
+        }
+        return jcm.comEntry(cmd)
     }
-
-    // comEntry(cmd, nowFlags)
-    entrys.debug && log('[info] log now flags:')
-    entrys.debug && log(nowFlags)
-    jcm.option = nowFlags
-    jcm.tool = {
-      parsePath,
-      joinPath,
-      addDirs,
-      delDirs,
-      readJson,
-      saveJson,
-      getUserHome
-    }
-
-    if (cmd === 'loc') {
-      const file = jcm.getFileLocList() // jcm.getFileLoc()
-      log('[info] cnf file list:')
-      log(file)
-      log('[info] the last file:')
-      log(file[file.length - 1])
-      // log(jcm.tool.parsePath(file[file.length - 1]))
-      return
-    }
-    return jcm.comEntry(cmd)
-  }
 // 2. bind cmd fun
 const ge = new GE()
 // let subcmd = getTxtFromUsage('subcmd', usage)

@@ -10,14 +10,14 @@ import { makeDirs as addDirs, rmDirs as delDirs } from './curd-dirs-sync'
  * @returns {{}|[]}
  */
 function readJson(jsonLoc, def = {}) {
-  let data
-  try {
-    data = readFileSync(jsonLoc)
-    data = JSON.parse(data)
-  } catch (error) {
-    data = def
-  }
-  return data
+    let data
+    try {
+        data = readFileSync(jsonLoc)
+        data = JSON.parse(data)
+    } catch (error) {
+        data = def
+    }
+    return data
 }
 /**
  * write json sync
@@ -25,7 +25,7 @@ function readJson(jsonLoc, def = {}) {
  * @param {{}|[]} data
  */
 function saveJson(jsonLoc, data) {
-  writeFileSync(jsonLoc, JSON.stringify(data, null, 2))
+    writeFileSync(jsonLoc, JSON.stringify(data, null, 2))
 }
 /**
  * get user home dir
@@ -36,6 +36,6 @@ function saveJson(jsonLoc, data) {
  * ```
  */
 function getUserHome() {
-  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']
+    return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']
 }
 export { readJson, saveJson, getUserHome, addDirs, delDirs, parsePath, joinPath }

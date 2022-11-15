@@ -4,7 +4,7 @@ import GE from './ycs-hel-ge-api'
 const { log } = console
 // idea: define usage likes below
 const defUsage = (ns = 'ns') => {
-  const msg = `ini pkg for npm repo
+    const msg = `ini pkg for npm repo
   mgnt des file
   usage:ns [subcmd] [option]
     ${ns} put --key npm-bin --value ./bin/index.js
@@ -22,7 +22,7 @@ const defUsage = (ns = 'ns') => {
     -h,--help get help
     -v,--version get version
 `
-  return msg
+    return msg
 }
 // idea: write usage (todo)
 // it.subcmd().option().bindcmdToOption().makeComUsage().makeCmdUsage().makeNsUsage()
@@ -31,49 +31,49 @@ const defUsage = (ns = 'ns') => {
 
 // idea: usage to option
 const getTxtFromUsage = (s, usage = '') => {
-  const regexp = new RegExp(` *${s}:.*`, 'ig')
-  const match = usage.match(regexp)
-  if (match) {
-    return match[0].replace(new RegExp(` *${s}:`, 'i'), '')
-  }
-  return ''
+    const regexp = new RegExp(` *${s}:.*`, 'ig')
+    const match = usage.match(regexp)
+    if (match) {
+        return match[0].replace(new RegExp(` *${s}:`, 'i'), '')
+    }
+    return ''
 }
 
 const genOptionFromUsage = (ns = 'npm-bin', version = '1.0.0', usage = '') => {
-  let option = {}
-  option = {
-    ...option,
-    ...{
-      version,
-      ns,
-      autoSubCmd: getTxtFromUsage('subcmd', usage),
-      autoSubNs: getTxtFromUsage('subns', usage)
+    let option = {}
+    option = {
+        ...option,
+        ...{
+            version,
+            ns,
+            autoSubCmd: getTxtFromUsage('subcmd', usage),
+            autoSubNs: getTxtFromUsage('subns', usage)
+        }
     }
-  }
-  return option
+    return option
 }
 
 // feat: use built in flags
 const builtinFlags = {
-  key: 'npm-bin',
-  value: 'bin/index.js',
-  loc: 'package.json'
+    key: 'npm-bin',
+    value: 'bin/index.js',
+    loc: 'package.json'
 }
 
 // idea:cli-fy api to cli with ymc style
 const entrys = (flags = {}) => {
-  // log nano parser result 's flags (flags vs _ vs extras)
-  log(flags)
+    // log nano parser result 's flags (flags vs _ vs extras)
+    log(flags)
 }
 // 1. gen cmd fun
 const defFun =
-  (cmd = 'add') =>
-  (flags = {}) => {
-    flags = { ...builtinFlags, ...flags }
-    // comEntry(cmd, flags)
-    log(flags)
-    log(`hello ${cmd}`)
-  }
+    (cmd = 'add') =>
+    (flags = {}) => {
+        flags = { ...builtinFlags, ...flags }
+        // comEntry(cmd, flags)
+        log(flags)
+        log(`hello ${cmd}`)
+    }
 // 2. bind cmd fun
 const ge = new GE()
 // ge.entrys(entrys).bind('add|get|del|put|cls|log',defFun,'call')

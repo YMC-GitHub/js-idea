@@ -3,22 +3,22 @@ import BO from './ycs-hel-bo-api'
 const { log } = console
 
 const main = () => {
-  const bo = new BO()
-  // feat: add option
-  bo.addOpt('-l,--loc the des file location')
-  bo.addOpt('-h,--help get help')
-  bo.addOpt('-v,--version get version')
+    const bo = new BO()
+    // feat: add option
+    bo.addOpt('-l,--loc the des file location')
+    bo.addOpt('-h,--help get help')
+    bo.addOpt('-v,--version get version')
 
-  // feat:bind option to another subns,subcmd
-  bo.getOpt('loc').bindOpt('eslint', 'add')
-  // bo.logOpt('loc')
+    // feat:bind option to another subns,subcmd
+    bo.getOpt('loc').bindOpt('eslint', 'add')
+    // bo.logOpt('loc')
 
-  // logMap()
-  // log(getMap(bo.optionMap))
+    // logMap()
+    // log(getMap(bo.optionMap))
 
-  // feat:option to usage
-  log(bo.usage())
-  // log(bo.usage('eslint','add'))
+    // feat:option to usage
+    log(bo.usage())
+    // log(bo.usage('eslint','add'))
 }
 main()
 

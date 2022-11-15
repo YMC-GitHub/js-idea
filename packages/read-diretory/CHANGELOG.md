@@ -1,11 +1,21 @@
-<a name="1.0.0"></a>
-
-# 1.0.0(2022-09-11)
-
-### read-diretory
-
-| commit                                                                                                  | type | desciption               |
-| :------------------------------------------------------------------------------------------------------ | :--- | :----------------------- |
-| [403ac5b67](https://github.com/ymc-github/js-mono-repo/commit/a403ac5b67ba31710d6b32bd47ddfe39f5eed600) | feat | set built-in option mode |
-| [5d500125b](https://github.com/ymc-github/js-mono-repo/commit/f5d500125b629e3bb5e2b5aa8307b965312950c6) | fix  | fix parse option         |
-| [e59115d1f](https://github.com/ymc-github/js-mono-repo/commit/de59115d1f17614241d2a77e5148746a78f3fc9f) | tool | ini pkg                  |
+<a name="0.0.1"></a>
+# 0.0.1(2022-11-06)
+### @ymc/read-diretory
+commit|type|desciption
+:----|:----|:----
+[eda8b4ac5](https://github.com/ymc-github/js-idea/commit/4eda8b4ac5f05472ffbd031685b15861c817f1ca)|chore|update demo
+[4b260608e](https://github.com/ymc-github/js-idea/commit/f4b260608e98ee33e949034d989a60f651f78b38)|chore|update pack preset
+[4cf90cfd2](https://github.com/ymc-github/js-idea/commit/74cf90cfd2c570898425a8f29116fefee42792b4)|chore|update pack preset
+[fd08cbd71](https://github.com/ymc-github/js-idea/commit/7fd08cbd71e5c257acc606660eff12936afb6331)|feat|get dst dir in loc
+[f08641387](https://github.com/ymc-github/js-idea/commit/3f08641387ecd32711c9fb5f5f05db0b8acb3b0e)|tool|delete lin ts script
+[aa40eb471](https://github.com/ymc-github/js-idea/commit/3aa40eb4715bcbdd5b209f7f4f9a82acb8218a9b)|tool|delete prettier config in script
+[6abe42224](https://github.com/ymc-github/js-idea/commit/96abe4222412dab55af0638b5d656dff16eaafeb)|tool|update main branch for homepage
+[f26224e2b](https://github.com/ymc-github/js-idea/commit/5f26224e2bc70af3b0764c27bff78f5e2f7279bb)|tool|delete and sort script
+[67ddbda0d](https://github.com/ymc-github/js-idea/commit/067ddbda0db83ad5f9ca609cc59e33b6aea4a6c0)|tool|update base url
+[21b4dbbe3](https://github.com/ymc-github/js-idea/commit/e21b4dbbe3059079889abb52be444ddf5c1c9e3c)|tool|clean unused file
+[940f2dac6](https://github.com/ymc-github/js-idea/commit/7940f2dac6a08297f53affb85b9eaa47fd3b55db)|tool|change all thing
+[5898ec36b](https://github.com/ymc-github/js-idea/commit/35898ec36bdf8856aeff9f61020a22615d4f88f1)|feat|set log output to be optional
+[0fbe8dea2](https://github.com/ymc-github/js-idea/commit/50fbe8dea27fb605c2941affbbca471b214452a1)|feat|enable return to array
+[03e4c6108](https://github.com/ymc-github/js-idea/commit/f03e4c610837416e79620d4a9cf6d45db2fed64b)|feat|set built-in option mode
+[848bc406b](https://github.com/ymc-github/js-idea/commit/a848bc406b22be73b73e8d6f41773988b1b122ce)|fix|fix parse option
+[9cdb90b9d](https://github.com/ymc-github/js-idea/commit/19cdb90b9de0c5b2e5197fcdd6eb7c79200dab05)|tool|ini pkg

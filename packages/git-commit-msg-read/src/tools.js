@@ -6,9 +6,9 @@
  * @param {*} def
  */
 function inidata(data, key, def) {
-  if (!data[key]) {
-    data[key] = def
-  }
+    if (!data[key]) {
+        data[key] = def
+    }
 }
 /**
  * bind val from map to list with keyword
@@ -18,15 +18,15 @@ function inidata(data, key, def) {
  * @returns
  */
 function bindVals(list = [], name = 'subject', map = []) {
-  if (map.length !== list.length) return
-  // let map = toArray(s);
-  const len = list.length
-  for (let index = 0; index < len; index += 1) {
-    const line = list[index]
-    line[`${name}`] = map[index]
-  }
+    if (map.length !== list.length) return
+    // let map = toArray(s);
+    const len = list.length
+    for (let index = 0; index < len; index += 1) {
+        const line = list[index]
+        line[`${name}`] = map[index]
+    }
 }
 function toArray(s) {
-  return s.trim().split(/\r?\n/)
+    return s.trim().split(/\r?\n/)
 }
 export { inidata, bindVals, toArray }

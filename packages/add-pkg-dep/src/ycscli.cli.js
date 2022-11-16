@@ -1,4 +1,4 @@
-import ycsRunner from './ycscli.entry'
+import ycsRunner from './ycscli.runner'
 
 ycsRunner.run(process.argv)
 

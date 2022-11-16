@@ -1,5 +1,5 @@
 import { cliOptionHelp } from '@ymc/cli-option'
-import { main, param } from './ycscli'
+import { main, param } from './ycscli.main'
 
 const ns = 'addpkgdep'
 const version = '1.0.0'

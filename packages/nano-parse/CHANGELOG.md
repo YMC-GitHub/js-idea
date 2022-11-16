@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="0.0.1"></a>
 # 0.0.1(2022-11-05)
 ### @ymc/nano-parse
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [2e798e302](https://github.com/ymc-github/js-idea/commit/72e798e302b977caebaaccf983251a3051620b52)|docs|add pkg shield state
@@ -14,3 +29,5 @@ commit|type|desciption
 [df362e65a](https://github.com/ymc-github/js-idea/commit/cdf362e65af455a99d04f5e70e526f42dbc109c5)|docs|update pkg desc
 [d0cebb766](https://github.com/ymc-github/js-idea/commit/5d0cebb76686e9641b43023052ae7f2e4079d85a)|docs|update pkg name style
 [5c5a76781](https://github.com/ymc-github/js-idea/commit/a5c5a767812159ed2b521ea1325b6a5070595082)|feat|ini lib to parse cmd argv
+
+</div>

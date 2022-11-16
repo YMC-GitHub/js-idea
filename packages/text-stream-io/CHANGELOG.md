@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="1.0.0"></a>
 # 1.0.0(2022-11-05)
 ### @ymc/text-stream-io
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [87e31ab80](https://github.com/ymc-github/js-idea/commit/487e31ab80792b33afd608d4854b378aa9653269)|docs|add pkg shield state
@@ -9,3 +24,5 @@ commit|type|desciption
 [c120d14fc](https://github.com/ymc-github/js-idea/commit/6c120d14fcc237d93abb883dc819fd5afd8d809b)|chore|update pack preset
 [16c89ae1b](https://github.com/ymc-github/js-idea/commit/916c89ae1b8ba6ee39e72cb3ffc7f9b8ad3d07b4)|chore|update pack preset
 [53b3e0c62](https://github.com/ymc-github/js-idea/commit/953b3e0c6253897295b308cf1caf0d3f470c59c7)|feat|async read or write data with stream
+
+</div>

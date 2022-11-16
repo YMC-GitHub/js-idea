@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="0.0.3"></a>
 # 0.0.3(2022-11-05)
 ### @ymc/run-bash
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [ec6b960c6](https://github.com/ymc-github/js-idea/commit/fec6b960c645807a393c19b0a80dec672e4919a0)|docs|add pkg shield state
@@ -24,3 +39,5 @@ commit|type|desciption
 [5d25f3b92](https://github.com/ymc-github/js-idea/commit/95d25f3b9254becf73733058af8b0f5ebae578a8)|fix|set exec to be optional in execOpts
 [feabd74a0](https://github.com/ymc-github/js-idea/commit/ffeabd74a0e6ccbb80128f9343f0d776ce8753fa)|feat|overide exec function args
 [c11e06ee5](https://github.com/ymc-github/js-idea/commit/dc11e06ee50443e6aae5a33f5f14779186e28c8a)||bump run-bash to 0.0.2
+
+</div>

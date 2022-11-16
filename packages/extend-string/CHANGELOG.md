@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="1.0.0"></a>
 # 1.0.0(2022-11-05)
 ### @ymc/extend-string
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [7deb0c310](https://github.com/ymc-github/js-idea/commit/17deb0c31035c7a9b359522cf36ba8123284fb78)|docs|add pkg shield state
@@ -11,3 +26,5 @@ commit|type|desciption
 [a602223aa](https://github.com/ymc-github/js-idea/commit/4a602223aa836c1da1f3eb4511b6081f9c03bf04)|feat|extend prototype in enhance file
 [2f36bd551](https://github.com/ymc-github/js-idea/commit/f2f36bd551f16feed0eee9eac91ae86e674c19eb)|feat|extend prototype in enhance file
 [134415f2a](https://github.com/ymc-github/js-idea/commit/1134415f2a879b0fed42bf5a6fe9d22eb8a7ac3a)|feat|add lib to extend string
+
+</div>

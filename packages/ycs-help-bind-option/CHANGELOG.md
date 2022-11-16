@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="0.0.2"></a>
 # 0.0.2(2022-11-05)
 ### @ymc/ycs-help-bind-option
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [0daffe53b](https://github.com/ymc-github/js-idea/commit/70daffe53b6c859d4f8694ac9be18997df7407c4)|docs|add pkg shield state
@@ -16,3 +31,5 @@ commit|type|desciption
 [67ddbda0d](https://github.com/ymc-github/js-idea/commit/067ddbda0db83ad5f9ca609cc59e33b6aea4a6c0)|tool|update base url
 [21b4dbbe3](https://github.com/ymc-github/js-idea/commit/e21b4dbbe3059079889abb52be444ddf5c1c9e3c)|tool|clean unused file
 [1c78d0ac6](https://github.com/ymc-github/js-idea/commit/01c78d0ac6e6db7f91648e04f3f27255897ccb84)||bump ycs-help-bind-option to 0.0.2
+
+</div>

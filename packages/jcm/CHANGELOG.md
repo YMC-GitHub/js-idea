@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="0.0.1"></a>
 # 0.0.1(2022-11-05)
 ### @ymc/jcm
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [cd4afabaa](https://github.com/ymc-github/js-idea/commit/bcd4afabaae016188355139c217f7dc38a116ebd)|docs|add pkg shield state
@@ -17,3 +32,5 @@ commit|type|desciption
 [764208298](https://github.com/ymc-github/js-idea/commit/a764208298d448249f97af6e4e5f7b20c2c90398)|docs|update CHANGELOG.md
 [0788bed64](https://github.com/ymc-github/js-idea/commit/d0788bed64a543171037fdfe79429248a2522d1d)|refactor|change api to too,sha,api,ins,cli
 [b2c2296a7](https://github.com/ymc-github/js-idea/commit/4b2c2296a7d52c8b9cbdf0d3744f8d98f0a5881d)|tool|ini pkg
+
+</div>

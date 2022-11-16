@@ -1,6 +1,21 @@
+
+<style>
+table{
+    display:table;
+    width:100%;
+}
+table th:nth-of-type(1),table th:nth-of-type(2) {
+    width:12%;
+}
+</style>
+
+
 <a name="0.0.1"></a>
 # 0.0.1(2022-11-06)
 ### @ymc/read-diretory
+
+<div align="center" style="margin-left: auto;margin-right: auto;background:white;">
+
 commit|type|desciption
 :----|:----|:----
 [eda8b4ac5](https://github.com/ymc-github/js-idea/commit/4eda8b4ac5f05472ffbd031685b15861c817f1ca)|chore|update demo
@@ -23,3 +38,5 @@ commit|type|desciption
 [ddcb5a7e3](https://github.com/ymc-github/js-idea/commit/9ddcb5a7e3ccff90f9d465afb4507c7e2380983d)|docs|update usage comment in instance
 [848bc406b](https://github.com/ymc-github/js-idea/commit/a848bc406b22be73b73e8d6f41773988b1b122ce)|fix|fix parse option
 [9cdb90b9d](https://github.com/ymc-github/js-idea/commit/19cdb90b9de0c5b2e5197fcdd6eb7c79200dab05)|tool|ini pkg
+
+</div>

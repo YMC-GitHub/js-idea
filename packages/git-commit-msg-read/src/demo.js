@@ -16,7 +16,7 @@ async function main() {
     let o
     // log('[info] read gitlog')
     log('[info] read the last gitlog')
-    gitlog.options.n = 1
+    gitlog.options.n = 30
     const data = await gitlog.parse()
     // log(data)
 

@@ -1,12 +1,10 @@
 
 <style>
-table{
-    display:table;
-    width:100%;
-}
-table th:nth-of-type(1),table th:nth-of-type(2) {
-    width:12%;
-}
+table{display:table;width:100%;}
+table th:nth-of-type(1),table th:nth-of-type(2){width:12%;}
+tr:nth-child(2n){background-color:#fdcee8;}
+tr:nth-child(2n-1){background-color:white;}
+th{background-color:#fdcee8;}
 </style>
 
 

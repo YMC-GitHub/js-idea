@@ -126,7 +126,7 @@
       } = ctx;
       let meniefest;
       meniefest = data.map(item => {
-        let obj = { ...item
+        const obj = { ...item
         };
         let {
           issue
@@ -146,7 +146,7 @@
       // render subject
 
       meniefest = meniefest.map((item, index) => {
-        let obj = { ...item
+        const obj = { ...item
         };
         const {
           issue
@@ -161,7 +161,7 @@
         return obj;
       });
       meniefest = meniefest.map((item, index) => {
-        let obj = { ...item
+        const obj = { ...item
         };
         obj.commit = ctx.writeTpl('[{commit}]({repo}/commit/{hash})', { ...obj // ...github,
 
@@ -175,7 +175,7 @@
       const head = getHeadByKeys('commit|type|desciption', 'l');
       const table = `${head}\n${body}\n\n`;
       let res = '';
-      let whtpl = '<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}';
+      const whtpl = '<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}';
 
       if (meniefest.length > 0) {
         res = ctx.writeTpl(whtpl, {

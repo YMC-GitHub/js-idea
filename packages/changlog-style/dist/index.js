@@ -71,7 +71,7 @@ function pluginMarkdowntable(pluginOpt = {}) {
         const { data, option } = ctx;
         let meniefest;
         meniefest = data.map(item => {
-            let obj = { ...item };
+            const obj = { ...item };
             let { issue } = obj;
             if (issue && issue.length > 0) {
                 issue = issue.filter(v => v);
@@ -91,7 +91,7 @@ function pluginMarkdowntable(pluginOpt = {}) {
 
         // render subject
         meniefest = meniefest.map((item, index) => {
-            let obj = { ...item };
+            const obj = { ...item };
             const { issue } = obj;
             if (issue.length > 0) {
                 obj.subject = ctx.writeTpl('{subject}({issue})', obj);
@@ -102,7 +102,7 @@ function pluginMarkdowntable(pluginOpt = {}) {
         });
 
         meniefest = meniefest.map((item, index) => {
-            let obj = { ...item };
+            const obj = { ...item };
             obj.commit = ctx.writeTpl('[{commit}]({repo}/commit/{hash})', {
                 ...obj
                 // ...github,
@@ -122,7 +122,7 @@ function pluginMarkdowntable(pluginOpt = {}) {
         const table = `${head}\n${body}\n\n`;
 
         let res = '';
-        let whtpl = '<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}';
+        const whtpl = '<a name="{version}"></a>\n# {version}({date})\n### {libname}\n{changes}';
         if (meniefest.length > 0) {
             res = ctx.writeTpl(whtpl, {
                 date: meniefest[0].date,
@@ -153,53 +153,53 @@ function pluginMarkdowntable(pluginOpt = {}) {
  * ```
  */
 class ChangelogStyle {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    /** @type {option} */
-    this.option = {};
-    this.data = [];
-    this.result = '';
-    this.plugin = [];
-    return this
-  }
-
-  /**
-   * bind write tpl to ctx
-   * @param {string} tpl
-   * @param {{}} data
-   * @returns
-   */
-  writeTpl(tpl, data) {
-    return writeTpl(tpl, data)
-  }
-
-  /**
-   * redner with option.style or ctx.plugin
-   * @returns {string}
-   */
-  render() {
-    const ctx = this;
-
-    // render with style and built in plugin
-    const { option } = this;
-    switch (option.style.toLowerCase()) {
-      case 'list':
-        return pluginList({})(ctx)
-      case 'table':
-        return pluginMarkdowntable({})(ctx)
+    constructor() {
+        this.init();
     }
 
-    // render with plugin list
-    const { plugin } = this;
-    for (let index = 0; index < plugin.length; index += 1) {
-      const fn = plugin[index];
-      fn(ctx);
+    init() {
+        /** @type {option} */
+        this.option = {};
+        this.data = [];
+        this.result = '';
+        this.plugin = [];
+        return this
     }
-    return this.result
-  }
+
+    /**
+     * bind write tpl to ctx
+     * @param {string} tpl
+     * @param {{}} data
+     * @returns
+     */
+    writeTpl(tpl, data) {
+        return writeTpl(tpl, data)
+    }
+
+    /**
+     * redner with option.style or ctx.plugin
+     * @returns {string}
+     */
+    render() {
+        const ctx = this;
+
+        // render with style and built in plugin
+        const { option } = this;
+        switch (option.style.toLowerCase()) {
+            case 'list':
+                return pluginList({})(ctx)
+            case 'table':
+                return pluginMarkdowntable({})(ctx)
+        }
+
+        // render with plugin list
+        const { plugin } = this;
+        for (let index = 0; index < plugin.length; index += 1) {
+            const fn = plugin[index];
+            fn(ctx);
+        }
+        return this.result
+    }
 }
 
 const changelogstyle = new ChangelogStyle();

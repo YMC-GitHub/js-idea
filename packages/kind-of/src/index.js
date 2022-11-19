@@ -15,10 +15,15 @@ const { getPrototypeOf } = Object //eslint-disable-line
  * ```
  */
 const kindOf = (cache => thing => {
-  const str = toString.call(thing)
-  return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase()) //eslint-disable-line
-  // Return statement should not contain assignment        no-return-assign
-  // Assignment to property of function parameter 'cache' no-param-reassign
+    const str = toString.call(thing)
+    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase()) //eslint-disable-line
+    // Return statement should not contain assignment        no-return-assign
+    // Assignment to property of function parameter 'cache' no-param-reassign
+})(Object.create(null))
+
+const isTypeOf = (cache => thing => {
+    const str = toString.call(thing)
+    return cache[str] || (cache[str] = str.slice(8, -1)) //eslint-disable-line
 })(Object.create(null))
 
 /**
@@ -41,4 +46,4 @@ const kindOfTest = type => thing => kindOf(thing) === type.toLowerCase()
  */
 const typeOfTest = type => thing => typeof thing === type //eslint-disable-line
 // Typeof comparisons should be to string literals valid-typeof
-export { toString, kindOf, kindOfTest, typeOfTest }
+export { toString, kindOf, kindOfTest, typeOfTest, isTypeOf }

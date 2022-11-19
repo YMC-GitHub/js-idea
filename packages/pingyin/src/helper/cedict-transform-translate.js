@@ -1,4 +1,9 @@
+// style or compact:
+/* eslint-disable  no-unused-vars,prefer-const */
+/* eslint-disable  no-continue */
+
 import cedict from './cedict-transform-find'
+
 export default function load(json) {
     const tool = cedict(json)
     const { find } = tool
@@ -15,14 +20,16 @@ export default function load(json) {
         // let list = typeof text === 'string' ? [text] : text //words(text, / ?/)
         let list = Array.isArray(text) ? text : [text]
         list = list.map(word => {
-            let text, matched, useLasted
-            //use the last or the first when many macth in dictionay
+            let translated
+            let matched
+            let useLasted
+            // use the last or the first when many macth in dictionay
             useLasted = true
-            for (let index = 0; index < res.length; index++) {
+            for (let index = 0; index < res.length; index += 1) {
                 const map = res[index]
                 if (map[from] === word) {
                     // return map[to] ? map[to] : ''
-                    text = map[to] ? map[to] : ''
+                    translated = map[to] ? map[to] : ''
                     matched = true
                     if (useLasted) {
                         continue
@@ -31,7 +38,7 @@ export default function load(json) {
                     }
                 }
             }
-            return text || matched ? text : word
+            return translated || matched ? translated : word
         })
         return list
     }

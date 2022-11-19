@@ -40,7 +40,7 @@ export default function load(json) {
         find
     }
 }
-//todo
+// todo
 // class Dic {
 //     constructor() {
 //         this.data = []

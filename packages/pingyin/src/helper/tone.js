@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /**
  * Create a unicode character from the codepoint of a Chinese character
  * @param {number | string} codepoint codepoint of Chinese character as number or string type
@@ -13,7 +14,7 @@ export const codepointToUnicode = codepoint => {
     if (typeof codepoint === 'string') {
         let codepointStr = codepoint.replace('U+', '')
         if (!/^0x/.test(codepointStr)) {
-            codepointStr = '0x' + codepointStr
+            codepointStr = `0x${codepointStr}`
         }
         return String.fromCodePoint(parseInt(codepointStr))
     }
@@ -39,7 +40,7 @@ export const getToneNumber = text => {
     const matches = text.match(/[a-zü](\d)/i)
     if (matches) return +matches[1]
     // Check for tone mark
-    for (let i = 0; i < toneMarks.length; i++) {
+    for (let i = 0; i < toneMarks.length; i += 1) {
         if (text.normalize('NFD').match(toneMarks[i])) return i + 1
     }
     // Return 5th tone as default
@@ -56,8 +57,9 @@ export const getToneNumber = text => {
  * ```
  */
 export const removeTone = text => {
-    text = text.normalize('NFD').replace(/\u0304|\u0301|\u030c|\u0300/g, '')
-    return text.normalize('NFC').replace(/(\w|ü)[1-5]/gi, '$1')
+    let pure = text
+    pure = pure.normalize('NFD').replace(/\u0304|\u0301|\u030c|\u0300/g, '')
+    return pure.normalize('NFC').replace(/(\w|ü)[1-5]/gi, '$1')
 }
 
 /**
@@ -83,16 +85,14 @@ export function markToNumber(data, fithTone = true) {
         if (text.trim().length === 0) return text
         if (fithTone) {
             return removeTone(text) + getToneNumber(text)
-        } else {
-            const tone = getToneNumber(text)
-            return tone === 5 ? removeTone(text) : removeTone(text) + tone
         }
+        const tone = getToneNumber(text)
+        return tone === 5 ? removeTone(text) : removeTone(text) + tone
     }
     if (Array.isArray(data)) {
         return data.map(process)
-    } else {
-        return process(data)
     }
+    return process(data)
 }
 
 /**
@@ -107,10 +107,11 @@ export function markToNumber(data, fithTone = true) {
 export function numberToMark(data, a) {
     /**
      *
-     * @param {string} text
+     * @param {string} item
      * @returns
      */
-    const process = text => {
+    const process = item => {
+        let text = item
         if (text.trim().length === 0) return text
 
         const tone = getToneNumber(text)
@@ -127,7 +128,7 @@ export function numberToMark(data, a) {
                 if (text.match('ou')) vovel = 'o'
                 if (text.match('a')) vovel = 'a'
                 if (text.match('e')) vovel = 'e'
-                let swa = a && vovel === 'a' ? '\u0251' : vovel
+                const swa = a && vovel === 'a' ? '\u0251' : vovel
                 return text.replace(vovel, swa + toneMarks[tone - 1]).normalize('NFC')
             }
         }
@@ -135,9 +136,8 @@ export function numberToMark(data, a) {
     }
     if (Array.isArray(data)) {
         return data.map(process)
-    } else {
-        return process(data)
     }
+    return process(data)
 }
 /**
  *
@@ -154,14 +154,15 @@ export function containTone(s) {
  * @returns {string}
  */
 export function perfera(l, sw = false) {
-    let a, A
+    let a
+    let A
     a = 'a'
-    A = '\u0251' //'\u0251','ɑ'
+    A = '\u0251' // '\u0251','ɑ'
     if (sw) {
         ;[a, A] = [A, a]
     }
-    //sw
-    let hd = s => {
+    // sw
+    const hd = s => {
         const tone = getToneNumber(s)
         if (tone > 4) return s.replace('a', A)
         return removeTone(s)

@@ -1,22 +1,22 @@
 function convertmap(unimap, options = {}) {
-    let option = {
-        to: 'hex', //'dec'
+    const option = {
+        to: 'hex', // 'dec'
         switchkey: false,
         ...options
     }
-    let numbers = Object.keys(unimap) //[ '1', '2', '3', '4' ]
-    let keys = Object.keys(unimap['1']) //[ 'a', 'e', 'i', 'o', 'u', 'ü' ]
-    let nmap = {}
-    let { to, switchkey } = option
-    numbers.map(v => {
-        let val = unimap[v]
+    const numbers = Object.keys(unimap) // [ '1', '2', '3', '4' ]
+    const keys = Object.keys(unimap['1']) // [ 'a', 'e', 'i', 'o', 'u', 'ü' ]
+    const nmap = {}
+    const { to, switchkey } = option
+    numbers.forEach(v => {
+        const val = unimap[v]
         keys.forEach(kk => {
             // if (!nmap[kk]) nmap[kk] = {}
             // nmap[kk][v] = unimap[v][kk].charCodeAt(0)
 
-            //uni-map to dec-map
+            // uni-map to dec-map
             let res
-            res = unimap[v][kk].charCodeAt(0)
+            res = val[kk].charCodeAt(0)
             if (to === 'dec') {
                 res = `&#${res};`
             }
@@ -37,3 +37,4 @@ function convertmap(unimap, options = {}) {
     // log(nmap)
     return nmap
 }
+export default convertmap

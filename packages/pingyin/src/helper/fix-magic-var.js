@@ -17,7 +17,7 @@ import { fileURLToPath } from 'url'
  * ```
  */
 export default function fixMagicVar() {
-    const __filename = fileURLToPath(import.meta.url)
-    const __dirname = dirname(__filename)
-    return { __dirname, __filename }
+    const name = fileURLToPath(import.meta.url)
+    const dir = dirname(name)
+    return { __dirname: dir, __filename: name }
 }

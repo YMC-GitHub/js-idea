@@ -33,5 +33,8 @@
     "pac:js": "rm -rf dist/* && rollup -c",
     "test": "exit 0"
   },
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@ymc/json-stream-io": "workspace:^1.0.0"
+  }
 }

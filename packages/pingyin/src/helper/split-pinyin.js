@@ -6,8 +6,9 @@ import syllables from '../data/syllables'
  * @returns
  */
 const normalize = text => {
-    text = text.normalize('NFD').replace(/\u0304|\u0301|\u030c|\u0300/g, '')
-    return text
+    let pure = text
+    pure = pure.normalize('NFD').replace(/\u0304|\u0301|\u030c|\u0300/g, '')
+    return pure
         .normalize('NFC')
         .replace(/(\w|ü)[1-5]/gi, '$1')
         .toLowerCase()
@@ -29,7 +30,7 @@ export function split(text, everything = false, wrapInList = false) {
         let count = wordEnd
         let wordFound = false
         while (count > 0) {
-            //idea:get-word,word-in-syllables,add-word-to-list
+            // idea:get-word,word-in-syllables,add-word-to-list
             const word = text.substring(wordEnd - count, wordEnd)
             if (syllables.includes(normalize(word))) {
                 wordFound = true
@@ -37,7 +38,7 @@ export function split(text, everything = false, wrapInList = false) {
                 wordEnd -= count - 1
                 break
             }
-            count--
+            count -= 1
         }
         if (!wordFound && everything) {
             const prevIndex = list.length - 1
@@ -48,7 +49,7 @@ export function split(text, everything = false, wrapInList = false) {
                 list[prevIndex] = text[wordEnd - 1] + prevEntry
             }
         }
-        wordEnd--
+        wordEnd -= 1
         prevWordFound = wordFound
     }
     return list.reverse()

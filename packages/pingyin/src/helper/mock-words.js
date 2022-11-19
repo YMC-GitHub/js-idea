@@ -6,9 +6,9 @@
  */
 function words(s, sc = / +/) {
     if (Array.isArray(s)) return s
-    else if (typeof sc === 'string') return s.split(sc)
-    else if (sc.test(s)) return s.split(sc)
-    else return s
+    if (typeof sc === 'string') return s.split(sc)
+    if (sc.test(s)) return s.split(sc)
+    return s
 }
 /**
  * word array to sentence

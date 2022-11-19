@@ -9,14 +9,17 @@ function getbaseYuanyin(hexmap) {
         .trim()
         .split(/\r?\n/)
         .map(v => v.replace(/\s/gi, ' '))
-    list = list.map(v => {
-        // del &#xxxx;
-        // many space to one
-        // del ends space
-        return v
-            .replace(/&#.{1,4};/gi, '')
-            .replace(/ +/g, ' ')
-            .replace(/ +/g, '') // / +$/ or / +/g ?
-    })
+    // del &#xxxx;
+    // many space to one
+    // del ends space
+    list = list.map(
+        v =>
+            v
+                .replace(/&#.{1,4};/gi, '')
+                .replace(/ +/g, ' ')
+                .replace(/ +/g, '') // / +$/ or / +/g ?
+    )
     return list
 }
+function noop() {}
+export { noop, getbaseYuanyin }

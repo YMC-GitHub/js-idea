@@ -1,6 +1,17 @@
-import { getBase64FromBinary, getBinaryFromBase64 } from './transform/binary'
-import { encodeUnicode, decodeUnicode } from './transform/uri'
+export { getBase64FromBinary, getBinaryFromBase64 } from './transform/binary'
+export { encodeUnicode, decodeUnicode } from './transform/uri'
 // import { encodeUnicode, decodeUnicode } from './transform/unit16'
+
+export { encode as encodeBase64 } from './encode'
+export { decode as decodeBase64 } from './decode'
+import { getBase64Chars, shuffle } from './chore'
+
+export function randomKeys() {
+    let keys = getBase64Chars()
+    keys = shuffle(keys).join('')
+    keys = `${keys}=`
+    return keys
+}
 
 /**
  *

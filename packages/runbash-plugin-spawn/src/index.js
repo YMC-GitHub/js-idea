@@ -2,10 +2,10 @@
 import { spawn } from 'child_process'
 
 function isString(s) {
-  return typeof s === 'string'
+    return typeof s === 'string'
 }
 function str2arr(s, sc = ' ') {
-  return s.split(sc)
+    return s.split(sc)
 }
 
 /**
@@ -20,25 +20,25 @@ function str2arr(s, sc = ' ') {
  * ```
  * */
 async function main(executable, args, opts = {}) {
-  return new Promise((resolve, reject) => {
-    const option = isString(opts) ? str2arr(opts, ' ') : opts
-    const child = spawn(executable, args, {
-      shell: true,
-      // stdio: ["pipe", process.stdout, process.stderr],
-      stdio: 'inherit',
-      ...option
+    return new Promise((resolve, reject) => {
+        const option = isString(opts) ? str2arr(opts, ' ') : opts
+        const child = spawn(executable, args, {
+            shell: true,
+            // stdio: ["pipe", process.stdout, process.stderr],
+            stdio: 'inherit',
+            ...option
+        })
+        child.on('error', reject)
+        child.on('exit', code => {
+            if (code === 0) {
+                resolve(code)
+            } else {
+                const e = new Error(`Process exited with error code ${code}`)
+                e.code = code
+                reject(e)
+            }
+        })
     })
-    child.on('error', reject)
-    child.on('exit', code => {
-      if (code === 0) {
-        resolve(code)
-      } else {
-        const e = new Error(`Process exited with error code ${code}`)
-        e.code = code
-        reject(e)
-      }
-    })
-  })
 }
 
 export default main

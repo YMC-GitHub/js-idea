@@ -9,7 +9,7 @@ import { main, param } from './index'
  * @return {string[]}
  */
 function mockArgv(s) {
-  return s.split(/ +/)
+    return s.split(/ +/)
 }
 
 // desc: get usage with @ycs/cli-option

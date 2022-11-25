@@ -4,6 +4,7 @@
   * @license MIT
   */
 import { camelize } from '@ymc/extend-string';
+import getObjOnlyDefinedKeys from '@ymc/get-obj-only-defined-keys';
 
 /* eslint-disable no-unused-vars */
 
@@ -28,35 +29,35 @@ import { camelize } from '@ymc/extend-string';
  * @returns {string}
  */
 function paramJsonToString(json, options) {
-  const option = {
-    modeStyle: 'cli',
-    ...options
-  };
-  let res = '';
-  // param json to cli string exp
-  if (option.mode === 'string' && option.modeStyle === 'cli') {
-    res = Object.keys(json)
-      .map(v => {
-        if (v.length > 1) {
-          return `--${v}=${json[v]}`
-        }
-        return `-${v}=${json[v]}`
-      })
-      .join(' ');
-  }
-  // param json to httpquery string exp
-  if (option.mode === 'string' && option.modeStyle === 'httpquery') {
-    res = Object.keys(json)
-      .map(v => `${v}=${json[v]}`)
-      .join('&');
-  }
-  // param json to swithoption string exp
-  if (option.mode === 'string' && option.modeStyle === 'swithoption') {
-    res = Object.keys(json)
-      .map(v => `${v}=${json[v]}`)
-      .join(';');
-  }
-  return res
+    const option = {
+        modeStyle: 'cli',
+        ...options
+    };
+    let res = '';
+    // param json to cli string exp
+    if (option.mode === 'string' && option.modeStyle === 'cli') {
+        res = Object.keys(json)
+            .map(v => {
+                if (v.length > 1) {
+                    return `--${v}=${json[v]}`
+                }
+                return `-${v}=${json[v]}`
+            })
+            .join(' ');
+    }
+    // param json to httpquery string exp
+    if (option.mode === 'string' && option.modeStyle === 'httpquery') {
+        res = Object.keys(json)
+            .map(v => `${v}=${json[v]}`)
+            .join('&');
+    }
+    // param json to swithoption string exp
+    if (option.mode === 'string' && option.modeStyle === 'swithoption') {
+        res = Object.keys(json)
+            .map(v => `${v}=${json[v]}`)
+            .join(';');
+    }
+    return res
 }
 /**
  * get value from param-json
@@ -65,46 +66,46 @@ function paramJsonToString(json, options) {
  * @returns {getValFromParamResult}
  */
 function getValFromParam(param, options = {}) {
-  let res = {};
-  const list = Object.keys(param).map(k => param[k]);
-  const option = {
-    slim: true,
-    modeStyle: 'cli',
-    ...options
-  };
-  if (option.mode === 'string') {
-    option.slim = true;
-  }
-  for (let index = 0; index < list.length; index += 1) {
-    const v = list[index];
-
-    const { name, type, value, desc } = v;
-    const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''));
-    // 'hasLong' is assigned a value but never used
-    const thelong = s.length > 1 ? s : l;
-
-    // desc: set value for the long name
-    if (thelong) {
-      // feat: auto camelize
-      if (!option.noAutoCamelize) {
-        // res[camelize(thelong.replace(/-+/gi, " "))] = value;
-        // res[thelong.camelize()] = value
-        res[camelize(thelong)] = value;
-      }
-      // feat: slim them
-      /* eslint-disable no-continue */
-      if (option.slim) continue
-      // Unexpected use of continue statement
-      /* eslint-enable no-continue */
-      res[thelong] = value;
+    let res = {};
+    const list = Object.keys(param).map(k => param[k]);
+    const option = {
+        slim: true,
+        modeStyle: 'cli',
+        ...options
+    };
+    if (option.mode === 'string') {
+        option.slim = true;
     }
-    // desc: set value for the short name
-    res[s] = value;
-  }
-  if (option.mode === 'string') {
-    res = paramJsonToString(res, option);
-  }
-  return res
+    for (let index = 0; index < list.length; index += 1) {
+        const v = list[index];
+
+        const { name, type, value, desc } = v;
+        const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''));
+        // 'hasLong' is assigned a value but never used
+        const thelong = s.length > 1 ? s : l;
+
+        // desc: set value for the long name
+        if (thelong) {
+            // feat: auto camelize
+            if (!option.noAutoCamelize) {
+                // res[camelize(thelong.replace(/-+/gi, " "))] = value;
+                // res[thelong.camelize()] = value
+                res[camelize(thelong)] = value;
+            }
+            // feat: slim them
+            /* eslint-disable no-continue */
+            if (option.slim) continue
+            // Unexpected use of continue statement
+            /* eslint-enable no-continue */
+            res[thelong] = value;
+        }
+        // desc: set value for the short name
+        res[s] = value;
+    }
+    if (option.mode === 'string') {
+        res = paramJsonToString(res, option);
+    }
+    return res
 }
 
 /**
@@ -114,39 +115,67 @@ function getValFromParam(param, options = {}) {
  * @returns
  */
 function camelizeFlags(flags = {}, options = {}) {
-  // let res = {}
-  const option = {
-    slim: true,
-    ...options
-  };
-  if (option.noAutoCamelize) return flags
-  Object.keys(flags).forEach(k => {
-    const ck = camelize(k);
-    // res[ck]=flags[k]
-    if (ck !== k) {
-      flags[ck] = flags[k]; // eslint-disable-line no-param-reassign
-      // Assignment to property of function parameter
-      if (option.slim) {
-        delete flags[k]; // eslint-disable-line no-param-reassign
-        // Assignment to property of function parameter
-      }
-    }
-  });
-  return flags
+    // let res = {}
+    const option = {
+        slim: true,
+        ...options
+    };
+    if (option.noAutoCamelize) return flags
+    Object.keys(flags).forEach(k => {
+        const ck = camelize(k);
+        // res[ck]=flags[k]
+        if (ck !== k) {
+            flags[ck] = flags[k]; // eslint-disable-line no-param-reassign
+            // Assignment to property of function parameter
+            if (option.slim) {
+                delete flags[k]; // eslint-disable-line no-param-reassign
+                // Assignment to property of function parameter
+            }
+        }
+    });
+    return flags
 }
-
+/**
+ * get config from param - call it built-in
+ * @param {cliParam[]} param
+ * @param {{}} options
+ * @returns
+ */
 function getBuiltinConfig(param, options = {}) {
-  return getValFromParam(param, options)
+    return getValFromParam(param, options)
 }
+/**
+ * get config from flags - prefer using nano-parse 's flags
+ * @param {{}} flags
+ * @param {{}} options
+ * @returns {{}}
+ */
 function getCliFlags(flags, options = {}) {
-  let cliFlags;
-  const { entrys } = options;
-  if (flags.flags || (entrys && entrys.notOnlyFlags)) {
-    cliFlags = flags.flags;
-  } else {
-    cliFlags = flags;
-  }
-  return camelizeFlags(cliFlags, options)
+    let cliFlags;
+    const { entrys } = options;
+    if (flags.flags || (entrys && entrys.notOnlyFlags)) {
+        cliFlags = flags.flags;
+    } else {
+        cliFlags = flags;
+    }
+    return camelizeFlags(cliFlags, options)
 }
 
-export { camelizeFlags, getBuiltinConfig, getCliFlags, getValFromParam, paramJsonToString };
+/**
+ * get main options -
+ * @param {cliParam[]} param
+ * @param {{}} options
+ * @returns
+ * @description
+ * ```
+ * getBuiltinConfig -> getCliFlags -> getObjOnlyDefinedKeys
+ * ```
+ */
+function getMainOptions(param, options = {}) {
+    return getObjOnlyDefinedKeys({
+        ...getBuiltinConfig(param),
+        ...getCliFlags(options)
+    })
+}
+
+export { camelizeFlags, getBuiltinConfig, getCliFlags, getMainOptions, getValFromParam, paramJsonToString };

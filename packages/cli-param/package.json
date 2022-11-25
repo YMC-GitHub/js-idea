@@ -36,6 +36,7 @@
   "private": false,
   "dependencies": {
     "@ymc/common-type": "workspace:^1.0.0",
-    "@ymc/extend-string": "workspace:^1.0.0"
+    "@ymc/extend-string": "workspace:^1.0.0",
+    "@ymc/get-obj-only-defined-keys": "workspace:^1.0.0"
   }
 }

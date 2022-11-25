@@ -4,6 +4,7 @@
 // sice it does not support
 // import commomtype from '@ymc/common-type'
 import { camelize } from '@ymc/extend-string'
+import getObjOnlyDefinedKeys from '@ymc/get-obj-only-defined-keys'
 
 // const { log } = console;
 
@@ -137,10 +138,21 @@ function camelizeFlags(flags = {}, options = {}) {
     })
     return flags
 }
-
+/**
+ * get config from param - call it built-in
+ * @param {cliParam[]} param
+ * @param {{}} options
+ * @returns
+ */
 function getBuiltinConfig(param, options = {}) {
     return getValFromParam(param, options)
 }
+/**
+ * get config from flags - prefer using nano-parse 's flags
+ * @param {{}} flags
+ * @param {{}} options
+ * @returns {{}}
+ */
 function getCliFlags(flags, options = {}) {
     let cliFlags
     const { entrys } = options
@@ -152,4 +164,21 @@ function getCliFlags(flags, options = {}) {
     return camelizeFlags(cliFlags, options)
 }
 
-export { paramJsonToString, getValFromParam, camelizeFlags, getBuiltinConfig, getCliFlags }
+/**
+ * get main options -
+ * @param {cliParam[]} param
+ * @param {{}} options
+ * @returns
+ * @description
+ * ```
+ * getBuiltinConfig -> getCliFlags -> getObjOnlyDefinedKeys
+ * ```
+ */
+function getMainOptions(param, options = {}) {
+    return getObjOnlyDefinedKeys({
+        ...getBuiltinConfig(param),
+        ...getCliFlags(options)
+    })
+}
+
+export { paramJsonToString, getValFromParam, camelizeFlags, getBuiltinConfig, getCliFlags, getMainOptions }

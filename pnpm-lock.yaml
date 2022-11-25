@@ -292,19 +292,29 @@ importers:
     specifiers:
       '@ymc/changlog-file-io': workspace:^1.0.0
       '@ymc/changlog-style': workspace:^1.0.0
+      '@ymc/cli-option': workspace:^1.0.0
+      '@ymc/cli-param': workspace:^1.0.0
+      '@ymc/cli-preset-param': workspace:^1.0.0
+      '@ymc/cli-runner': workspace:^1.0.0
       '@ymc/extend-string': workspace:^1.0.0
       '@ymc/git-commit-msg-read': workspace:^1.0.0
       '@ymc/json-stream-io': workspace:^1.0.0
       '@ymc/mock-path': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
       '@ymc/render-tpl': workspace:^1.0.0
       '@ymc/run-bash': workspace:^0.0.3
     dependencies:
       '@ymc/changlog-file-io': link:../changlog-file-io
       '@ymc/changlog-style': link:../changlog-style
+      '@ymc/cli-option': link:../cli-option
+      '@ymc/cli-param': link:../cli-param
+      '@ymc/cli-preset-param': link:../cli-preset-param
+      '@ymc/cli-runner': link:../cli-runner
       '@ymc/extend-string': link:../extend-string
       '@ymc/git-commit-msg-read': link:../git-commit-msg-read
       '@ymc/json-stream-io': link:../json-stream-io
       '@ymc/mock-path': link:../mock-path
+      '@ymc/nano-parse': link:../nano-parse
       '@ymc/render-tpl': link:../render-tpl
       '@ymc/run-bash': link:../run-bash
 
@@ -339,6 +349,28 @@ importers:
       '@ymc/get-os-name': workspace:^1.0.0
     dependencies:
       '@ymc/get-os-name': link:../get-os-name
+
+  packages/git-commit-logs-info:
+    specifiers:
+      '@ymc/cli-option': workspace:^1.0.0
+      '@ymc/cli-param': workspace:^1.0.0
+      '@ymc/cli-preset-param': workspace:^1.0.0
+      '@ymc/cli-runner': workspace:^1.0.0
+      '@ymc/extend-string': workspace:^1.0.0
+      '@ymc/git-commit-msg-read': workspace:^1.0.0
+      '@ymc/json-stream-io': workspace:^1.0.0
+      '@ymc/nano-parse': workspace:^0.0.1
+      '@ymc/run-bash': workspace:^0.0.3
+    dependencies:
+      '@ymc/cli-option': link:../cli-option
+      '@ymc/cli-param': link:../cli-param
+      '@ymc/cli-preset-param': link:../cli-preset-param
+      '@ymc/cli-runner': link:../cli-runner
+      '@ymc/extend-string': link:../extend-string
+      '@ymc/git-commit-msg-read': link:../git-commit-msg-read
+      '@ymc/json-stream-io': link:../json-stream-io
+      '@ymc/nano-parse': link:../nano-parse
+      '@ymc/run-bash': link:../run-bash
 
   packages/git-commit-msg-read:
     specifiers:

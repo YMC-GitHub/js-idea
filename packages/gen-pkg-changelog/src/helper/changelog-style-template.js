@@ -145,10 +145,10 @@ th{background-color:#fdcee8;}
  * @returns {string}
  */
 function setTableCenter(content, options = {}) {
-    //tag,inline style
-    let option = {
-        tag: `p`,
-        style: `background:white;`,
+    // tag,inline style
+    const option = {
+        tag: 'p',
+        style: 'background:white;',
         ...options
     }
     const text = `

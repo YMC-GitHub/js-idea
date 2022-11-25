@@ -1,5 +1,5 @@
-//@ymc/git-commit-msg-template
-//get-git-commit-msg-template
+// @ymc/git-commit-msg-template
+// get-git-commit-msg-template
 /**
  * get angular style commit-msg template
  * @param {{}} data

@@ -104,7 +104,7 @@ function writeJsonSync(file, data) {
     writeFileSync(file, JSON.stringify(data, null, 2))
 }
 
-//@ymc/log-info
+// @ymc/log-info
 /**
  * get loginfo function
  * @param {boolean} enable

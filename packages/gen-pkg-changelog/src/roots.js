@@ -26,6 +26,9 @@ async function main() {
     loc = 'gitlog-info.shim.tmp.json'
     jsonstream.init(loc)
     data = await jsonstream.read([])
+    cmtedmsgs = cmtedmsgs.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date)
+    })
     log(`[info] src: ${loc}`)
 
     log('[info] read pkglog')
@@ -69,8 +72,8 @@ async function main() {
 
     // render(data)
 }
-//@ymc/git-commit-msg-template
-//get-git-commit-msg-template
+// @ymc/git-commit-msg-template
+// get-git-commit-msg-template
 /**
  * get angular style commit-msg template
  * @param {{}} data
@@ -104,7 +107,7 @@ function getAngularStyleTpl(data) {
     }
     return tpl
 }
-//@ymc/render-cmted-msgs-to-pkg-changelog
+// @ymc/render-cmted-msgs-to-pkg-changelog
 /**
  * rendet data to changelog.md text
  * @param {[]} data

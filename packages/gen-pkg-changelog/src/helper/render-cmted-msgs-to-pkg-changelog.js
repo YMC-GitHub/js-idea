@@ -24,7 +24,7 @@ function clihooks2array(s, options = {}) {
     }
     return res
 }
-//@ymc/render-cmted-msgs-to-pkg-changelog
+// @ymc/render-cmted-msgs-to-pkg-changelog
 /**
  * rendet data to changelog.md text
  * @param {[]} data

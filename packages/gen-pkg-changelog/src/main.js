@@ -11,7 +11,7 @@ import { ChangelogStyle } from '@ymc/changlog-style'
 import { changelogfile as changelogio } from '@ymc/changlog-file-io'
 import { jsonstream, writeFileSync, readJsonSync, getLibNameFromPath, getPackagesLocFromPath } from './helps'
 import render from './helper/render-cmted-msgs-to-pkg-changelog'
-
+// import { rmSync } from 'fs'
 const { log } = console
 
 /**
@@ -29,10 +29,9 @@ function getLogInfo(enable) {
 
 async function main(options = {}) {
     const option = {
-        out: `pkgs-cmted.tmp.json`,
-        cmtedMsgsLoc: `gitlog-info.shim.tmp.json`,
-        cmtedPkgsLoc: `pkgs-cmted.tmp.json`,
-        changlogLoc: `CHANGELOG.md`,
+        cmtedMsgsLoc: 'gitlog-info.shim.tmp.json',
+        cmtedPkgsLoc: 'pkgs-cmted.tmp.json',
+        changlogLoc: 'CHANGELOG.md',
         outPkgs: true,
         logInfo: false,
         logTask: false,
@@ -52,6 +51,9 @@ async function main(options = {}) {
     loc = option.cmtedMsgsLoc
     jsonstream.init(loc)
     cmtedmsgs = await jsonstream.read([])
+    cmtedmsgs = cmtedmsgs.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date)
+    })
     loginfo(`[info] src: ${loc}`)
     // log(cmtedmsgs)
 
@@ -82,18 +84,21 @@ async function main(options = {}) {
             // txt = setTableStyle(txt)
             writeFileSync(`${v.loc}/${option.changlogLoc}`, txt)
             log(`[info] out: ${v.loc}/${option.changlogLoc}`)
+            // rmSync(`${v.loc}/CHANGELOD.md`)
         })
     }
     pkgslogs = pkgslogs.filter(v => v)
     // pkgslogs = pkgslogs.join(`\n`)
     // log(pkgslogs)
-    pkgslogs = pkgslogs.join('\n\n')
+    pkgslogs = pkgslogs.map(v => v.data).join('\n\n')
+
     // pkgslogs = setTableStyle(pkgslogs)
     // loginfo('[info] write root changelog')
     loc = option.changlogLoc
     changelogio.init(loc)
     loginfo(`[info] out: ${loc}`)
     await changelogio.write(pkgslogs)
+    // rmSync(`CHANGELOD.md`)
 }
 
 export default main

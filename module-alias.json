@@ -1,0 +1,19 @@
+{
+    "root": ["node_modules", "./"],
+    "alias": {
+        "@ymc/": "./packages/",
+        "@private-pkgs/": "./private-pkgs/",
+        "@script-pkgs/": "./scr/lib/"
+    },
+    "transformFunctions": [
+        "require",
+        "require.resolve",
+        "System.import",
+        "jest.genMockFromModule",
+        "jest.mock",
+        "jest.unmock",
+        "jest.doMock",
+        "jest.dontMock"
+    ],
+    "extensions": [".ts", ".tsx", ".js", ".jsx", ".json", ".vue"]
+}

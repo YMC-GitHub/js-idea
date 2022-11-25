@@ -17,6 +17,8 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/write-json-sync](./packages/write-json-sync/readme.md)|write json file sync|2022-11-15
+[@ymc/read-json-sync](./packages/read-json-sync/readme.md)|read json file sync|2022-11-15
 [@ymc/download-file](./packages/download-file/readme.md)|ymc package download-file|2022-11-13
 [@ymc/mock-path](./packages/mock-path/readme.md)|ymc package mock-path|2022-11-13
 [@ymc/esm-loader-http](./packages/esm-loader-http/readme.md)|load remote esm pkg with http or https protocol|2022-11-12
@@ -100,5 +102,4 @@ name|description|created_at
 [@ymc/ycs-help-generate-entry](packages/ycs-help-generate-entry/readme.md)|ycs plugin - gen entry for test or other case|2022-10-02
 [@ymc/ycs-help-bind-option](packages/ycs-help-bind-option/readme.md)|ycs plugin - bind option to cmd or ns|2022-10-02
 [@ymc/ycs-api](packages/ycs-api/readme.md)|ycs api|2022-10-02
-[@ymc/ycs](packages/ycs/readme.md)|ymc commandline style - short for ycs|2022-08-05
 

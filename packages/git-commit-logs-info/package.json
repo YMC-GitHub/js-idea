@@ -33,5 +33,16 @@
     "pac:js": "rm -rf dist/* && rollup -c",
     "test": "exit 0"
   },
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@ymc/cli-option": "workspace:^1.0.0",
+    "@ymc/cli-param": "workspace:^1.0.0",
+    "@ymc/cli-preset-param": "workspace:^1.0.0",
+    "@ymc/cli-runner": "workspace:^1.0.0",
+    "@ymc/extend-string": "workspace:^1.0.0",
+    "@ymc/git-commit-msg-read": "workspace:^1.0.0",
+    "@ymc/json-stream-io": "workspace:^1.0.0",
+    "@ymc/nano-parse": "workspace:^0.0.1",
+    "@ymc/run-bash": "workspace:^0.0.3"
+  }
 }

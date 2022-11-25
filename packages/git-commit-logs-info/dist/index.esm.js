@@ -3,10 +3,12 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
+import { store } from '@ymc/git-commit-msg-read';
 import '@ymc/run-bash';
 import '@ymc/extend-string';
 import { jsonstream } from '@ymc/json-stream-io';
-import { store } from '@ymc/git-commit-msg-read';
+
+/* eslint-disable  prefer-const,func-names */
 
 const { log } = console;
 
@@ -24,7 +26,7 @@ function getLogInfo(enable) {
 }
 async function main(options = {}) {
     const option = {
-        out: `gitlog-info.shim.tmp.json`,
+        out: 'gitlog-info.shim.tmp.json',
         n: 10,
         logInfo: false,
         logTask: false,
@@ -33,15 +35,15 @@ async function main(options = {}) {
     const loginfo = getLogInfo(option.logInfo);
     const logtask = getLogInfo(option.logTask);
 
-    let loc = option.out;
+    const loc = option.out;
     logtask(`[task] update git commited logs to ${loc}`);
     let o;
     // loginfo('[info] read gitlog')
     if (option.n) {
         loginfo('[info] read the last gitlog');
-        store.options.n = option.n; //1 | 5,10,30 | all
+        store.options.n = option.n; // 1 | 5,10,30 | all
     }
-    //since-day
+    // since-day
     const data = await store.parse();
     // log(data)
 

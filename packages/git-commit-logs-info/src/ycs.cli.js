@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import ycsRunner from './ycs.runner'
 
 ycsRunner.run(process.argv)

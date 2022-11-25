@@ -120,138 +120,6 @@ const execOpts = {
 };
 
 /**
-  * streamIo v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-function readStream(stream) {
-  return new Promise((resolve, reject) => {
-    let data = '';
-    stream.on('data', chunk => {
-      data += chunk.toString();
-    }).on('end', () => {
-      resolve(data);
-    }).on('error', reject);
-  });
-}
-
-function writeStream({
-  stream,
-  data
-}) {
-  return new Promise((resolve, reject) => {
-    // write
-    stream.write(data, 'utf-8'); // fire end
-
-    stream.end(); // desc-x-s: handle event finish and err
-
-    stream.on('finish', () => {
-      resolve(data);
-    }).on('error', reject); // desc-x-e: handle event finish and err
-  });
-}
-
-/**
-  * jsonStreamIo v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-/**
- * @sample
- * ```
- * jsonstream.file.name="package.json"
- * //or
- * jsonstream.init("package.json")
- * await jsonstream.read()
- * await jsonstream.write({})
- * ```
- */
-
-class JsonStream {
-  constructor(name, data) {
-    this.init(name, data);
-  }
-  /**
-   * read file async (stream mode)
-   * @param {{}|[]} def
-   * @returns {Prmosie<json>}
-   */
-
-
-  async read(def = {}) {
-    const {
-      file
-    } = this;
-    let reader;
-    let res;
-
-    try {
-      reader = node_fs.createReadStream(file.name);
-      res = await readStream(reader);
-      res = JSON.parse(res);
-    } catch (error) {
-      // console.log(error);
-      res = def;
-    }
-
-    file.data = res;
-    return res;
-  }
-  /**
-   * write file async (stream mode)
-   * @param {{}|[]|undefined} data
-   * @returns {Prmosie<void>}
-   */
-
-
-  async write(data) {
-    // no-param-reassign data
-    // no-unused-vars option
-
-    /* eslint-disable no-unused-vars */
-    const {
-      file,
-      option
-    } = this; // eslint-disable-line
-
-    let writer;
-    let content = data;
-
-    try {
-      writer = node_fs.createWriteStream(file.name);
-
-      if (data) {
-        file.data = data;
-      } else {
-        content = file.data;
-      }
-
-      await writeStream({
-        stream: writer,
-        data: JSON.stringify(content, null, 2)
-      });
-    } catch (error) {}
-  }
-
-  init(name = 'package.json', data = {}) {
-    this.file = {
-      name,
-      data
-    };
-    this.option = {};
-  }
-  /* eslint-disable class-methods-use-this */
-
-
-  new(...option) {
-    return new JsonStream(...option);
-  }
-
-}
-
-const jsonstream = new JsonStream();
-
-/**
   * renderTpl v1.0.0
   * (c) 2018-2022 ymc
   * @license MIT
@@ -529,7 +397,7 @@ function parse(msg, msgb, allowTypes) {
     // get subject and body (rough)
     const list = fixmsg(msg);
     [subject] = list;
-    body = list.slice(1).join('\n'); // feat:set body = subject when no body or body in subject
+    body = list.slice(1).join('\n'); // feat: set subject as body when no body or body in subject
 
     if (!body) body = subject;
   } // get type,scope,subject,body,foot (detail)
@@ -657,15 +525,16 @@ class Store {
   }
 
   getTpl(tpl, options = {}) {
+    let res = tpl;
     let option = { ...options,
       ...this.options
     };
 
     if (option.n) {
-      tpl = `${tpl} -n ${option.n}`;
+      res = `${tpl} -n ${option.n}`;
     }
 
-    return tpl;
+    return res;
   }
   /**
    * get git commit hash
@@ -764,8 +633,8 @@ class Store {
 
   async getFile(list, tpl) {
     // let { infojson } = this;
-    let defalutTpl = 'git show --pretty="" --name-only {commit}';
-    defalutTpl = this.getTpl(defalutTpl);
+    let defalutTpl = 'git show --pretty="" --name-only {commit}'; // defalutTpl = this.getTpl(defalutTpl)
+
     const res = [];
 
     for (let index = 0; index < list.length; index += 1) {
@@ -912,6 +781,139 @@ class Store {
 
 const store = new Store();
 
+/**
+  * streamIo v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+function readStream(stream) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    stream.on('data', chunk => {
+      data += chunk.toString();
+    }).on('end', () => {
+      resolve(data);
+    }).on('error', reject);
+  });
+}
+
+function writeStream({
+  stream,
+  data
+}) {
+  return new Promise((resolve, reject) => {
+    // write
+    stream.write(data, 'utf-8'); // fire end
+
+    stream.end(); // desc-x-s: handle event finish and err
+
+    stream.on('finish', () => {
+      resolve(data);
+    }).on('error', reject); // desc-x-e: handle event finish and err
+  });
+}
+
+/**
+  * jsonStreamIo v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+/**
+ * @sample
+ * ```
+ * jsonstream.file.name="package.json"
+ * //or
+ * jsonstream.init("package.json")
+ * await jsonstream.read()
+ * await jsonstream.write({})
+ * ```
+ */
+
+class JsonStream {
+  constructor(name, data) {
+    this.init(name, data);
+  }
+  /**
+   * read file async (stream mode)
+   * @param {{}|[]} def
+   * @returns {Prmosie<json>}
+   */
+
+
+  async read(def = {}) {
+    const {
+      file
+    } = this;
+    let reader;
+    let res;
+
+    try {
+      reader = node_fs.createReadStream(file.name);
+      res = await readStream(reader);
+      res = JSON.parse(res);
+    } catch (error) {
+      // console.log(error);
+      res = def;
+    }
+
+    file.data = res;
+    return res;
+  }
+  /**
+   * write file async (stream mode)
+   * @param {{}|[]|undefined} data
+   * @returns {Prmosie<void>}
+   */
+
+
+  async write(data) {
+    // no-param-reassign data
+    // no-unused-vars option
+
+    /* eslint-disable no-unused-vars */
+    const {
+      file,
+      option
+    } = this; // eslint-disable-line
+
+    let writer;
+    let content = data;
+
+    try {
+      writer = node_fs.createWriteStream(file.name);
+
+      if (data) {
+        file.data = data;
+      } else {
+        content = file.data;
+      }
+
+      await writeStream({
+        stream: writer,
+        data: JSON.stringify(content, null, 2)
+      });
+    } catch (error) {}
+  }
+
+  init(name = 'package.json', data = {}) {
+    this.file = {
+      name,
+      data
+    };
+    this.option = {};
+  }
+  /* eslint-disable class-methods-use-this */
+
+
+  new(...option) {
+    return new JsonStream(...option);
+  }
+
+}
+
+const jsonstream = new JsonStream();
+
+/* eslint-disable  prefer-const,func-names */
 const {
   log
 } = console;
@@ -931,7 +933,7 @@ function getLogInfo(enable) {
 
 async function main(options = {}) {
   const option = {
-    out: `gitlog-info.shim.tmp.json`,
+    out: 'gitlog-info.shim.tmp.json',
     n: 10,
     logInfo: false,
     logTask: false,
@@ -939,14 +941,14 @@ async function main(options = {}) {
   };
   const loginfo = getLogInfo(option.logInfo);
   const logtask = getLogInfo(option.logTask);
-  let loc = option.out;
+  const loc = option.out;
   logtask(`[task] update git commited logs to ${loc}`);
   let o; // loginfo('[info] read gitlog')
 
   if (option.n) {
     loginfo('[info] read the last gitlog');
-    store.options.n = option.n; //1 | 5,10,30 | all
-  } //since-day
+    store.options.n = option.n; // 1 | 5,10,30 | all
+  } // since-day
 
 
   const data = await store.parse(); // log(data)

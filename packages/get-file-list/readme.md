@@ -36,9 +36,9 @@ file | size | gzip | brotli
 :---- | :---- | :---- | :----
 dist/index.cjs.js | 4.92kb | 1.35kb | 1.19kb
 dist/index.cjs.min.js | 1.36kb | 0.61kb | 0.54kb
-dist/index.esm.js | 2.77kb | 0.91kb | 0.82kb
+dist/index.esm.js | 2.83kb | 0.92kb | 0.83kb
 dist/index.esm.min.js | 0.77kb | 0.46kb | 0.41kb
-dist/index.js | 2.77kb | 0.91kb | 0.82kb
+dist/index.js | 2.83kb | 0.92kb | 0.83kb
 dist/index.umd.js | 5.58kb | 1.51kb | 1.31kb
 dist/index.umd.min.js | 1.60kb | 0.72kb | 0.65kb
 

@@ -16,10 +16,10 @@ import { toObjectSet, getKWByVal } from './helps'
  * ```
  */
 function getOsName(customNames) {
-  const osName = process.platform
-  const nameMap = customNames || 'mac=darwin;win=win32;linux=linux;android=android'
-  const osMap = toObjectSet(nameMap)
-  return getKWByVal(osMap, osName, true)
+    const osName = process.platform
+    const nameMap = customNames || 'mac=darwin;win=win32;linux=linux;android=android'
+    const osMap = toObjectSet(nameMap)
+    return getKWByVal(osMap, osName, true)
 }
 
 export default getOsName

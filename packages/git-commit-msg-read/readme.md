@@ -34,13 +34,13 @@ read git-commit-msg from git log
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 15.93kb | 4.78kb | 4.33kb
-dist/index.cjs.min.js | 4.33kb | 1.87kb | 1.69kb
-dist/index.esm.js | 7.99kb | 2.21kb | 2.02kb
-dist/index.esm.min.js | 2.27kb | 1.02kb | 0.93kb
-dist/index.js | 7.99kb | 2.21kb | 2.02kb
-dist/index.umd.js | 17.55kb | 4.99kb | 4.50kb
-dist/index.umd.min.js | 4.61kb | 1.99kb | 1.79kb
+dist/index.cjs.js | 15.95kb | 4.78kb | 4.32kb
+dist/index.cjs.min.js | 4.34kb | 1.87kb | 1.69kb
+dist/index.esm.js | 8.01kb | 2.21kb | 2.02kb
+dist/index.esm.min.js | 2.28kb | 1.02kb | 0.93kb
+dist/index.js | 8.01kb | 2.21kb | 2.02kb
+dist/index.umd.js | 17.57kb | 4.99kb | 4.49kb
+dist/index.umd.min.js | 4.62kb | 1.99kb | 1.79kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

@@ -11,16 +11,16 @@ const versions = ['major', 'minor', 'patch'] // M.m.p
  * ```
  */
 const getVersionType = (type = 'patch') => {
-  const store = {
-    M: 'major',
-    m: 'minor',
-    p: 'patch',
-    major: 'major',
-    minor: 'minor',
-    patch: 'patch'
-  }
+    const store = {
+        M: 'major',
+        m: 'minor',
+        p: 'patch',
+        major: 'major',
+        minor: 'minor',
+        patch: 'patch'
+    }
 
-  return store[type]
+    return store[type]
 }
 
 /**
@@ -30,28 +30,28 @@ const getVersionType = (type = 'patch') => {
  * @returns {string}
  */
 const incrementVersion = (version, type) => {
-  const index = versions.indexOf(type)
-  const versionArr = version.split('.')
-  const currentValue = Number(versionArr[index])
-  const updatedValue = currentValue + 1
-  const updatedVersionArr = [].concat(versionArr)
+    const index = versions.indexOf(type)
+    const versionArr = version.split('.')
+    const currentValue = Number(versionArr[index])
+    const updatedValue = currentValue + 1
+    const updatedVersionArr = [].concat(versionArr)
 
-  switch (type) {
-    case 'major':
-      return `${updatedValue}.0.0`
+    switch (type) {
+        case 'major':
+            return `${updatedValue}.0.0`
 
-    case 'minor':
-      updatedVersionArr[1] = updatedValue
-      updatedVersionArr[2] = 0
-      return updatedVersionArr.join('.')
+        case 'minor':
+            updatedVersionArr[1] = updatedValue
+            updatedVersionArr[2] = 0
+            return updatedVersionArr.join('.')
 
-    case 'patch':
-      updatedVersionArr[2] = updatedValue
-      return updatedVersionArr.join('.')
+        case 'patch':
+            updatedVersionArr[2] = updatedValue
+            return updatedVersionArr.join('.')
 
-    default:
-      throw new Error(`Provide one of: ${versions.join(', ')}`)
-  }
+        default:
+            throw new Error(`Provide one of: ${versions.join(', ')}`)
+    }
 }
 /**
  * bum version
@@ -60,9 +60,9 @@ const incrementVersion = (version, type) => {
  * @returns {string}
  */
 const bumpVersion = (currentVersion, type) => {
-  const versionType = getVersionType(type)
-  const updatedVersion = incrementVersion(currentVersion, versionType)
-  return updatedVersion
+    const versionType = getVersionType(type)
+    const updatedVersion = incrementVersion(currentVersion, versionType)
+    return updatedVersion
 }
 
 export { getVersionType, incrementVersion, bumpVersion }

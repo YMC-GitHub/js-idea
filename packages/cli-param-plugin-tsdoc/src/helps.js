@@ -6,8 +6,8 @@
  * @returns {string}
  */
 function formatText(text, prefix = '', count = 2) {
-  const res = Array.isArray(text) ? text : [text]
-  return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
+    const res = Array.isArray(text) ? text : [text]
+    return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
 }
 /**
  *  get param name - short or long - in name
@@ -15,11 +15,11 @@ function formatText(text, prefix = '', count = 2) {
  * @returns {string}
  */
 function getParamName(name) {
-  const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
-  // 'hasLong' is assigned a value but never used
-  const thelong = s.length > 1 ? s : l
-  // thelong = camelize(thelong)
-  return thelong
+    const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
+    // 'hasLong' is assigned a value but never used
+    const thelong = s.length > 1 ? s : l
+    // thelong = camelize(thelong)
+    return thelong
 }
 
 function noop() {}

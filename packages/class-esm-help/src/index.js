@@ -14,19 +14,19 @@
  * ```
  */
 function inherits(constructor, superConstructor, props, descriptors) {
-  // set constructor.prototype
-  constructor.prototype = Object.create(superConstructor.prototype, descriptors)
+    // set constructor.prototype
+    constructor.prototype = Object.create(superConstructor.prototype, descriptors)
 
-  // set constructor.prototype.constructor
-  constructor.prototype.constructor = constructor
+    // set constructor.prototype.constructor
+    constructor.prototype.constructor = constructor
 
-  // set constructor.super
-  Object.defineProperty(constructor, 'super', {
-    value: superConstructor.prototype
-  })
+    // set constructor.super
+    Object.defineProperty(constructor, 'super', {
+        value: superConstructor.prototype
+    })
 
-  // set constructor.prototype.xx method or property
-  props && Object.assign(constructor.prototype, props)
+    // set constructor.prototype.xx method or property
+    props && Object.assign(constructor.prototype, props)
 }
 
 export { inherits }

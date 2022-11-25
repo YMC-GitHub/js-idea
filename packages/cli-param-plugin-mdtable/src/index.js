@@ -13,48 +13,48 @@ import { getParamName, getAlignByKeys, getBodyByKeys, getTable } from './helps'
  * ```
  */
 function main(param, title = '## param', options = {}) {
-  let res = []
-  const option = {
-    keys: 'name,type,value,desc,optional',
-    align: ':--',
-    slimName: true,
-    camelizeName: true,
-    ...options
-  }
-
-  res = param.map(item => {
-    let { name, type, value, desc, optional } = item
-    let mname = option.slimName ? getParamName(name) : name
-    mname = option.camelizeName ? camelize(mname) : mname
-    if (!optional) {
-      optional = ''
+    let res = []
+    const option = {
+        keys: 'name,type,value,desc,optional',
+        align: ':--',
+        slimName: true,
+        camelizeName: true,
+        ...options
     }
-    return {
-      name: mname,
-      type,
-      value,
-      desc,
-      optional
-    }
-  })
 
-  let keys
-  let head
-  let thAlign
-  let body
-  keys = option.keys.split(',').map(v => v.trim())
-  // get head by keys
-  head = keys.join('|')
-  // get th-align by keys
-  thAlign = getAlignByKeys(option.align, keys)
-  // get body by keys
-  body = getBodyByKeys(res, keys)
-  res = getTable({
-    title,
-    head,
-    thAlign,
-    body
-  })
-  return res
+    res = param.map(item => {
+        let { name, type, value, desc, optional } = item
+        let mname = option.slimName ? getParamName(name) : name
+        mname = option.camelizeName ? camelize(mname) : mname
+        if (!optional) {
+            optional = ''
+        }
+        return {
+            name: mname,
+            type,
+            value,
+            desc,
+            optional
+        }
+    })
+
+    let keys
+    let head
+    let thAlign
+    let body
+    keys = option.keys.split(',').map(v => v.trim())
+    // get head by keys
+    head = keys.join('|')
+    // get th-align by keys
+    thAlign = getAlignByKeys(option.align, keys)
+    // get body by keys
+    body = getBodyByKeys(res, keys)
+    res = getTable({
+        title,
+        head,
+        thAlign,
+        body
+    })
+    return res
 }
 export default main

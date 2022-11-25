@@ -9,13 +9,13 @@ import { isString, validString } from './tools'
  * @returns {ctx|string}
  */
 function magicc(ctx, key, val) {
-  const { data } = ctx
-  if (!validString(key)) return ctx
-  if (isString(val)) {
-    data[key] = val
-    return ctx
-  }
-  return data[key]
+    const { data } = ctx
+    if (!validString(key)) return ctx
+    if (isString(val)) {
+        data[key] = val
+        return ctx
+    }
+    return data[key]
 }
 
 // wmd.type().scope().subject().body().foot().issue()
@@ -32,42 +32,42 @@ function magicc(ctx, key, val) {
  * ```
  */
 class WriteMsgData {
-  constructor() {
-    this.data = {}
-    // auto register on new class
-    // for (let method in dataBase) {
-    //   this.registerMethod(method);
+    constructor() {
+        this.data = {}
+        // auto register on new class
+        // for (let method in dataBase) {
+        //   this.registerMethod(method);
+        // }
+    }
+
+    registerMethod(name) {
+        const fnBody = `let ctx = this ; return ctx.magicc("${name}", msg)`
+        this[`${name}`] = new Function('msg', fnBody)
+    }
+
+    // body(msg) {
+    //   let ctx = this;
+    //   return magicc(ctx, "body", msg);
     // }
-  }
-
-  registerMethod(name) {
-    const fnBody = `let ctx = this ; return ctx.magicc("${name}", msg)`
-    this[`${name}`] = new Function('msg', fnBody)
-  }
-
-  // body(msg) {
-  //   let ctx = this;
-  //   return magicc(ctx, "body", msg);
-  // }
-  // scope(msg) {
-  //   let ctx = this;
-  //   return magicc(ctx, "scope", msg);
-  // }
-  /**
-   * get or set val by key in ctx.data
-   * @param {string} key
-   * @param {string} val
-   * @returns {this|string}
-   */
-  magicc(key, val) {
-    const ctx = this
-    return magicc(ctx, key, val)
-  }
+    // scope(msg) {
+    //   let ctx = this;
+    //   return magicc(ctx, "scope", msg);
+    // }
+    /**
+     * get or set val by key in ctx.data
+     * @param {string} key
+     * @param {string} val
+     * @returns {this|string}
+     */
+    magicc(key, val) {
+        const ctx = this
+        return magicc(ctx, key, val)
+    }
 }
 
 const msgdata = new WriteMsgData()
 // idea:it.type().scope().subject().body().foot().issue()
 'type|scope|subject|body|foot|issue'.split('|').forEach(method => {
-  msgdata.registerMethod(method)
+    msgdata.registerMethod(method)
 })
 export { WriteMsgData, msgdata }

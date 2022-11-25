@@ -11,7 +11,7 @@
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=dep&message=done&color=ff69b4&style=flat-square" />
   </a>
   <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=done&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=passing&color=ff69b4&style=flat-square" />
   </a>
     <a href="https://github.com/YMC-GitHub">
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message=fail&color=ff69b4&style=flat-square" />
@@ -25,6 +25,7 @@
   <!-- https://img.shields.io/static/v1?label=<LABEL>&message=<MESSAGE>&color=<COLOR> -->
 <!-- github workflow stat:e -->
 </p>
+
 # pkg @ymc/cli-param-plugin-mdtable
 
 ## desc

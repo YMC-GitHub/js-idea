@@ -36,19 +36,21 @@ async function main(options = {}) {
     }
     //since-day
     const data = await gitlog.parse()
-    log(data)
+    // log(data)
 
     loginfo('[info] store gitlog')
     jsonstream.init(loc)
     o = await jsonstream.read([])
+    let count = 0
     data.forEach(v => {
         if (!o.some(nv => nv.hash === v.hash)) {
             o.unshift(v)
+            count += 1
         }
     })
-
     await jsonstream.write(o)
     loginfo(`[info] out: ${loc}`)
+    log(`[info] update count: ${count}`)
 }
 
 export default main

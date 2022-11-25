@@ -26,40 +26,40 @@ import { writemsgdata } from './write-msg-data'
  * ```
  */
 function writemsgtpl(options = {}) {
-  // gen default tpl with option
-  const option = {
-    // type: false,
-    // scope: false,
-    // body: false,
-    // foot: false,
-    eof: '\n',
-    ...options
-  }
-  const { eof } = option
-  const res = []
-  let tpl = ''
-  // set head
-  if (option.type) {
-    tpl = `${tpl}{type}`
-  }
-  if (option.scope) {
-    tpl = `${tpl}({scope})`
-  }
-  if (option.colon || option.scope) {
-    tpl = `${tpl}:`
-  }
-  tpl = tpl ? `${tpl} {subject}` : '{subject}'
-  res.push(tpl)
+    // gen default tpl with option
+    const option = {
+        // type: false,
+        // scope: false,
+        // body: false,
+        // foot: false,
+        eof: '\n',
+        ...options
+    }
+    const { eof } = option
+    const res = []
+    let tpl = ''
+    // set head
+    if (option.type) {
+        tpl = `${tpl}{type}`
+    }
+    if (option.scope) {
+        tpl = `${tpl}({scope})`
+    }
+    if (option.colon || option.scope) {
+        tpl = `${tpl}:`
+    }
+    tpl = tpl ? `${tpl} {subject}` : '{subject}'
+    res.push(tpl)
 
-  // body
-  if (option.body) {
-    res.push(`${eof}{body}`)
-  }
-  // foot
-  if (option.foot) {
-    res.push(`${eof}{foot}`)
-  }
-  return res.join(eof)
+    // body
+    if (option.body) {
+        res.push(`${eof}{body}`)
+    }
+    // foot
+    if (option.foot) {
+        res.push(`${eof}{foot}`)
+    }
+    return res.join(eof)
 }
 /**
  * define msg tpl or render tpl
@@ -68,6 +68,6 @@ function writemsgtpl(options = {}) {
  * @returns
  */
 function writemsg(tpl, data) {
-  return writeTpl(tpl, data)
+    return writeTpl(tpl, data)
 }
 export { writemsgtpl, writemsg, writemsgdata }

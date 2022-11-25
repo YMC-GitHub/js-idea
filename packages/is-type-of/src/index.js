@@ -17,8 +17,8 @@ const { getPrototypeOf } = Object
  * ```
  */
 const kindOf = (cache => thing => {
-  const str = toString.call(thing)
-  return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase())
+    const str = toString.call(thing)
+    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase())
 })(Object.create(null))
 /* eslint-enable  no-return-assign,no-param-reassign */
 
@@ -108,14 +108,14 @@ const isBoolean = thing => thing === true || thing === false
  * @returns {boolean} True if value is a Buffer, otherwise false
  */
 function isBuffer(val) {
-  return (
-    val !== null &&
-    !isUndefined(val) &&
-    val.constructor !== null &&
-    !isUndefined(val.constructor) &&
-    isFunction(val.constructor.isBuffer) &&
-    val.constructor.isBuffer(val)
-  )
+    return (
+        val !== null &&
+        !isUndefined(val) &&
+        val.constructor !== null &&
+        !isUndefined(val.constructor) &&
+        isFunction(val.constructor.isBuffer) &&
+        val.constructor.isBuffer(val)
+    )
 }
 
 /**
@@ -135,13 +135,13 @@ const isArrayBuffer = kindOfTest('ArrayBuffer')
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
  */
 function isArrayBufferView(val) {
-  let result
-  if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) {
-    result = ArrayBuffer.isView(val)
-  } else {
-    result = val && val.buffer && isArrayBuffer(val.buffer)
-  }
-  return result
+    let result
+    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) {
+        result = ArrayBuffer.isView(val)
+    } else {
+        result = val && val.buffer && isArrayBuffer(val.buffer)
+    }
+    return result
 }
 
 /**
@@ -152,12 +152,12 @@ function isArrayBufferView(val) {
  * @returns {boolean} True if value is a plain Object, otherwise false
  */
 const isPlainObject = val => {
-  if (kindOf(val) !== 'object') {
-    return false
-  }
+    if (kindOf(val) !== 'object') {
+        return false
+    }
 
-  const prototype = getPrototypeOf(val)
-  return prototype === null || prototype === Object.prototype
+    const prototype = getPrototypeOf(val)
+    return prototype === null || prototype === Object.prototype
 }
 
 /**
@@ -213,13 +213,13 @@ const isStream = val => isObject(val) && isFunction(val.pipe)
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 const isFormData = thing => {
-  const pattern = '[object FormData]'
-  return (
-    thing &&
-    ((typeof FormData === 'function' && thing instanceof FormData) ||
-      toString.call(thing) === pattern ||
-      (isFunction(thing.toString) && thing.toString() === pattern))
-  )
+    const pattern = '[object FormData]'
+    return (
+        thing &&
+        ((typeof FormData === 'function' && thing instanceof FormData) ||
+            toString.call(thing) === pattern ||
+            (isFunction(thing.toString) && thing.toString() === pattern))
+    )
 }
 
 /**
@@ -251,8 +251,8 @@ const isRegExp = kindOfTest('RegExp')
  */
 
 const isTypedArray = (
-  TypedArray => thing =>
-    TypedArray && thing instanceof TypedArray
+    TypedArray => thing =>
+        TypedArray && thing instanceof TypedArray
 )(typeof Uint8Array !== 'undefined' && getPrototypeOf(Uint8Array))
 /** eslint-enable func-names */
 
@@ -260,28 +260,28 @@ const isTypedArray = (
 const isHTMLForm = kindOfTest('HTMLFormElement')
 
 export default {
-  kindOf,
-  kindOfTest,
-  typeOfTest,
-  isArray,
-  isArrayBuffer,
-  isBuffer,
-  isFormData,
-  isArrayBufferView,
-  isString,
-  isNumber,
-  isBoolean,
-  isObject,
-  isPlainObject,
-  isUndefined,
-  isDate,
-  isFile,
-  isBlob,
-  isRegExp,
-  isFunction,
-  isStream,
-  isURLSearchParams,
-  isTypedArray,
-  isFileList,
-  isHTMLForm
+    kindOf,
+    kindOfTest,
+    typeOfTest,
+    isArray,
+    isArrayBuffer,
+    isBuffer,
+    isFormData,
+    isArrayBufferView,
+    isString,
+    isNumber,
+    isBoolean,
+    isObject,
+    isPlainObject,
+    isUndefined,
+    isDate,
+    isFile,
+    isBlob,
+    isRegExp,
+    isFunction,
+    isStream,
+    isURLSearchParams,
+    isTypedArray,
+    isFileList,
+    isHTMLForm
 }

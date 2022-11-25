@@ -2,7 +2,7 @@ import main from './index'
 import { shOneLineCommentReg, jsOneLineCommentReg, jsMultiLineCommentReg, jsCommentReg } from './helps'
 
 test(`del-js-comment`, () => {
-  let input = `
+    let input = `
 s:
 ad
 // js one line comment
@@ -29,15 +29,15 @@ abc # -
 # -
 e:
 `
-  let res
+    let res
 
-  //del sh-line comment
-  res = main({ text: input, commentReg: shOneLineCommentReg })
-  expect(res.indexOf('#') >= 0).toBe(false)
-  expect(res.indexOf('//') >= 0).toBe(true)
-  // console.log(res)
-  //del js-line comment
-  res = main({ text: input, commentReg: jsCommentReg })
-  expect(res.indexOf('#') >= 0).toBe(true)
-  expect(res.indexOf('//') >= 0).toBe(false)
+    //del sh-line comment
+    res = main({ text: input, commentReg: shOneLineCommentReg })
+    expect(res.indexOf('#') >= 0).toBe(false)
+    expect(res.indexOf('//') >= 0).toBe(true)
+    // console.log(res)
+    //del js-line comment
+    res = main({ text: input, commentReg: jsCommentReg })
+    expect(res.indexOf('#') >= 0).toBe(true)
+    expect(res.indexOf('//') >= 0).toBe(false)
 })

@@ -16,11 +16,11 @@ const { log } = console
  * @returns
  */
 function getMapPathValue(map, ns, def = {}) {
-  // fix no-param-reassign
-  let res
-  //   map[ns] = map[ns] ? map[ns] : def
-  res = map[ns] ? map[ns] : def
-  return res
+    // fix no-param-reassign
+    let res
+    //   map[ns] = map[ns] ? map[ns] : def
+    res = map[ns] ? map[ns] : def
+    return res
 }
 
 /**
@@ -38,20 +38,20 @@ function getMapPathValue(map, ns, def = {}) {
  * ```
  */
 function getMap(optionMap, ns = '', cmd = '') {
-  let map = optionMap
-  if (ns && cmd) {
-    map = getMapPathValue(map, ns)
-    map = getMapPathValue(map, cmd)
-    // optionMap[ns]=optionMap[ns]?optionMap[ns]:{}
-    // optionMap=[ns]
-    // optionMap[cmd]=optionMap[cmd]?optionMap[cmd]:{}
-    // optionMap=[cmd]
-  } else if (ns) {
-    map = getMapPathValue(map, ns)
-  } else if (cmd) {
-    map = getMapPathValue(map, cmd)
-  }
-  return map
+    let map = optionMap
+    if (ns && cmd) {
+        map = getMapPathValue(map, ns)
+        map = getMapPathValue(map, cmd)
+        // optionMap[ns]=optionMap[ns]?optionMap[ns]:{}
+        // optionMap=[ns]
+        // optionMap[cmd]=optionMap[cmd]?optionMap[cmd]:{}
+        // optionMap=[cmd]
+    } else if (ns) {
+        map = getMapPathValue(map, ns)
+    } else if (cmd) {
+        map = getMapPathValue(map, cmd)
+    }
+    return map
 }
 
 /**
@@ -61,7 +61,7 @@ function getMap(optionMap, ns = '', cmd = '') {
  * @returns {string}
  */
 function wrapOptionNameDesc(name, desc) {
-  return `${name} ${desc}`
+    return `${name} ${desc}`
 }
 
 /**
@@ -71,30 +71,30 @@ function wrapOptionNameDesc(name, desc) {
  * @returns {string}
  */
 function getCliOptionName(desc = '', nameType = 'l') {
-  // idea: get l or loc as name
-  // get -l,--loc
-  // get l or loc
-  let keys = ''
-  keys = desc
-    .split(' ')[0]
-    .split(',')
-    .map(v => v.replace(/^-*/gi, '')) // Unnecessary escape character: \-
+    // idea: get l or loc as name
+    // get -l,--loc
+    // get l or loc
+    let keys = ''
+    keys = desc
+        .split(' ')[0]
+        .split(',')
+        .map(v => v.replace(/^-*/gi, '')) // Unnecessary escape character: \-
 
-  switch (nameType.toLowerCase()) {
-    case 's':
-      keys = keys[0]
-      break
-    case 'l':
-    default:
-      // feat: if not l , use s
-      if (!keys[1]) {
-        keys = keys[0]
-      } else {
-        keys = keys[1]
-      }
-      break
-  }
-  return keys
+    switch (nameType.toLowerCase()) {
+        case 's':
+            keys = keys[0]
+            break
+        case 'l':
+        default:
+            // feat: if not l , use s
+            if (!keys[1]) {
+                keys = keys[0]
+            } else {
+                keys = keys[1]
+            }
+            break
+    }
+    return keys
 }
 
 /**
@@ -105,9 +105,9 @@ function getCliOptionName(desc = '', nameType = 'l') {
  * @returns {string}
  */
 function formatOptionText(text, prefix = '', count = 2) {
-  let res
-  res = Array.isArray(text) ? text : [text]
-  return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
+    let res
+    res = Array.isArray(text) ? text : [text]
+    return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
 }
 
 /**
@@ -116,20 +116,20 @@ function formatOptionText(text, prefix = '', count = 2) {
  * @returns {string[]}
  */
 function beautyOptionText(text) {
-  let list = Array.isArray(text) ? text : [text]
+    let list = Array.isArray(text) ? text : [text]
 
-  // get option name length
-  const max = Math.max(...list.map(line => line.split(' ')[0].length))
-  list = list.map(line => {
-    const arr = line.split(' ')
-    let name = arr[0]
-    const desc = arr.slice(1)
-    name = padEndString(name, max + 6, ' ')
-    return `${name}${desc.join(' ')}`
-  })
-  // log(max)
-  return list
-  // padding suffix space
+    // get option name length
+    const max = Math.max(...list.map(line => line.split(' ')[0].length))
+    list = list.map(line => {
+        const arr = line.split(' ')
+        let name = arr[0]
+        const desc = arr.slice(1)
+        name = padEndString(name, max + 6, ' ')
+        return `${name}${desc.join(' ')}`
+    })
+    // log(max)
+    return list
+    // padding suffix space
 }
 
 /**
@@ -139,12 +139,12 @@ function beautyOptionText(text) {
  * @returns {string}
  */
 function getTxtFromUsage(keyword, usage = '') {
-  const regexp = new RegExp(` *${keyword}:.*`, 'ig')
-  const match = usage.match(regexp)
-  if (match) {
-    return match[0].replace(new RegExp(` *${keyword}:`, 'i'), '')
-  }
-  return ''
+    const regexp = new RegExp(` *${keyword}:.*`, 'ig')
+    const match = usage.match(regexp)
+    if (match) {
+        return match[0].replace(new RegExp(` *${keyword}:`, 'i'), '')
+    }
+    return ''
 }
 
 /**
@@ -163,24 +163,24 @@ function getTxtFromUsage(keyword, usage = '') {
  * ```
  */
 function updateEntryOption(entryOption = {}, ns = 'npm-bin', version = '1.0.0', usage = '') {
-  let option = {}
-  option = {
-    ...entryOption,
-    ...{
-      version,
-      ns
-    }
-  }
-  // set auto sub ns or cmd with usage
-  if (usage) {
+    let option = {}
     option = {
-      ...{
-        autoSubCmd: getTxtFromUsage('subcmd', usage),
-        autoSubNs: getTxtFromUsage('subns', usage)
-      }
+        ...entryOption,
+        ...{
+            version,
+            ns
+        }
     }
-  }
-  return option
+    // set auto sub ns or cmd with usage
+    if (usage) {
+        option = {
+            ...{
+                autoSubCmd: getTxtFromUsage('subcmd', usage),
+                autoSubNs: getTxtFromUsage('subns', usage)
+            }
+        }
+    }
+    return option
 }
 
 // idea:easier,faster to write ycs-cli usage when you clify your lib to ycs-cli
@@ -219,265 +219,265 @@ function updateEntryOption(entryOption = {}, ns = 'npm-bin', version = '1.0.0', 
  * ```
  */
 class CliOptionHelp {
-  constructor() {
-    this.init()
-  }
-
-  init() {
-    this.optionMap = {}
-    this.opt = ''
-    this.relationMap = {}
-    this.cmd = new Set()
-    this.ns = new Set()
-    this.paramMap = {}
-    return this
-  }
-
-  // get(name,ns='',cmd=''){
-  //   this.opt=getOpt(name,ns,cmd)
-  //   return this
-  // }
-  /**
-   * add option
-   * @param {string} text
-   * @param {string} ns
-   * @param {string} cmd
-   * @returns {this}
-   * @description
-   * ```
-   * ## task
-   * - [ ] add option to global scope ns when no ns and cmd
-   * - [ ] add option to ns scope when ns and no cmd
-   * - [ ] add option to cmd scope when ns and cmd
-   * - [x] add option store and set relation
-   * - [x] add ns and cmd to store
-   * ```
-   */
-  addOpt(text = '', ns = '', cmd = '') {
-    const { optionMap, relationMap } = this
-    const name = getCliOptionName(text)
-
-    // log(`add option ${name}`)
-    let map = optionMap
-    map[name] = text
-
-    // log(`add relation ${name}`)
-    map = getMap(relationMap, ns, cmd)
-    map[name] = true
-
-    // log(`label ns and cmd`)
-    this.cmd.add(cmd)
-    this.ns.add(ns)
-    return this
-  }
-
-  /**
-   * set current option with option name  - bind to ctx.opt
-   * @param {string} name
-   * @param {string} ns
-   * @param {string} cmd
-   * @returns {this} return this to chain
-   */
-  getOpt(name, ns = '', cmd = '') {
-    const { optionMap, relationMap } = this
-    const map = optionMap
-    // map = getMap(optionMap,ns,cmd);
-    this.opt = map[name]
-    return this
-  }
-
-  /**
-   * log current option
-   * @returns {this} return this to chain
-   */
-  logOpt() {
-    log(this.opt)
-    return this
-  }
-
-  /**
-   * bind current option to ns and cmd - call ctx.addOpt
-   * @param {string} ns
-   * @param {string} cmd
-   * @returns {this} return this to chain
-   */
-  bindOpt(ns = '', cmd = '') {
-    // log(`bind option to ns or cmd`)
-    this.addOpt(this.opt, ns, cmd)
-    return this
-  }
-
-  // {ns:string,cmd:string,beauty:boolean}
-  /**
-   * get option usage text for root ,ns or cmd
-   * @param {string} ns
-   * @param {string} cmd
-   * @returns {string}
-   * @description
-   * ```
-   * ## task
-   * - [x] get gloal scope option text when no ns and no cmd
-   * - [x] get ns scope option text when only ns
-   * - [x] get cmd scope option text when ns and cmd
-   * ```
-   */
-  usage(ns = '', cmd = '') {
-    const { optionMap, relationMap } = this
-    let map
-    // log(`get relation`)
-    map = getMap(relationMap, ns, cmd)
-
-    // log(`get option name`)
-
-    let optNameList
-    optNameList = Object.keys(map)
-    // feat: filter cmd
-    optNameList = optNameList.filter(name => !this.cmd.has(name))
-    // feat: filter ns
-    optNameList = optNameList.filter(name => !this.ns.has(name))
-    // optNameList=optNameList.join(`\n`)
-
-    // idea: option part
-    let opts
-    map = optionMap
-    opts = Object.keys(map)
-      .filter(name => optNameList.includes(name))
-      .map(name => map[name])
-
-    // log(`[info] info option usage`)
-    opts = beautyOptionText(opts)
-    // log(opts)
-
-    opts = formatOptionText(opts, ' ', 2)
-    opts = `option:\n${opts}`
-    // opts=getFormatOptStr(opts,' ',2)
-
-    let subns = [...this.ns].filter(v => v.trim()).join('|')
-    subns = subns ? `subns:${subns}` : ''
-
-    // log([...this.cmd].filter(v=>v.trim()))
-    let subcmd = [...this.cmd].filter(v => v.trim()).join('|')
-    subcmd = subcmd ? `subcmd:${subcmd}` : ''
-
-    let usage = 'usage:{ns} [option]'
-    if (subns) {
-      usage = usage.replace(/\[option\]$/, '[subns] [option]')
-    }
-    if (subcmd) {
-      usage = usage.replace(/\[option\]$/, '[subcmd] [option]')
+    constructor() {
+        this.init()
     }
 
-    if (subcmd) {
-      opts = `${subcmd}\n${opts}`
+    init() {
+        this.optionMap = {}
+        this.opt = ''
+        this.relationMap = {}
+        this.cmd = new Set()
+        this.ns = new Set()
+        this.paramMap = {}
+        return this
     }
-    if (subns) {
-      opts = `${subns}\n${opts}`
+
+    // get(name,ns='',cmd=''){
+    //   this.opt=getOpt(name,ns,cmd)
+    //   return this
+    // }
+    /**
+     * add option
+     * @param {string} text
+     * @param {string} ns
+     * @param {string} cmd
+     * @returns {this}
+     * @description
+     * ```
+     * ## task
+     * - [ ] add option to global scope ns when no ns and cmd
+     * - [ ] add option to ns scope when ns and no cmd
+     * - [ ] add option to cmd scope when ns and cmd
+     * - [x] add option store and set relation
+     * - [x] add ns and cmd to store
+     * ```
+     */
+    addOpt(text = '', ns = '', cmd = '') {
+        const { optionMap, relationMap } = this
+        const name = getCliOptionName(text)
+
+        // log(`add option ${name}`)
+        let map = optionMap
+        map[name] = text
+
+        // log(`add relation ${name}`)
+        map = getMap(relationMap, ns, cmd)
+        map[name] = true
+
+        // log(`label ns and cmd`)
+        this.cmd.add(cmd)
+        this.ns.add(ns)
+        return this
     }
-    opts = formatOptionText(opts, ' ', 2)
-    if (usage) {
-      opts = `${usage}\n${opts}`
+
+    /**
+     * set current option with option name  - bind to ctx.opt
+     * @param {string} name
+     * @param {string} ns
+     * @param {string} cmd
+     * @returns {this} return this to chain
+     */
+    getOpt(name, ns = '', cmd = '') {
+        const { optionMap, relationMap } = this
+        const map = optionMap
+        // map = getMap(optionMap,ns,cmd);
+        this.opt = map[name]
+        return this
     }
-    // opts=getFormatOptStr(opts,' ',2)
-    // this.usagemsg =opts
-    return opts
-  }
 
-  // name,type,value,desc
-  /**
-   * add option by param (json-param) - call ctx.addOpt
-   * @param {{name:string,type:string,value:*,desc:string}[]} list
-   * @param {string} ns
-   * @param {string} cmd
-   * @description
-   * ```
-   * ## task
-   * - [x] save param to param store
-   * - [x] call ctx.addOpt
-   * ```
-   */
-  param(list, ns = '', cmd = '') {
-    const { paramMap } = this
-    list.forEach(v => {
-      // store param item
-      if (!paramMap[v.name]) paramMap[v.name] = v
-      // to option item
-      const { name, type, value, desc } = v
-      this.addOpt(`${name} ${desc}`, ns, cmd)
-      // to builtIn confg
-    })
-    return this
-  }
-
-  /**
-   * get built in config - by param - get val from param
-   * @param {getBuiltinFlagsOption} options
-   * @returns {{[string]:string|number|boolean}}
-   */
-  getBuiltinConfig(options = {}) {
-    const { paramMap } = this
-    return getValFromParam(paramMap, options)
-  }
-
-  getCliFlags(flags, options = {}) {
-    let cliFlags
-    const { entrys } = options
-    if (flags.flags || (entrys && entrys.notOnlyFlags)) {
-      cliFlags = flags.flags
-    } else {
-      cliFlags = flags
+    /**
+     * log current option
+     * @returns {this} return this to chain
+     */
+    logOpt() {
+        log(this.opt)
+        return this
     }
-    return camelizeFlags(cliFlags, options)
-  }
 
-  getCurrentFlags(flags, options = {}) {
-    const builtinFlags = this.getBuiltinFlags()
-    let nowFlags
-    const cliFlags = this.getCliFlags(flags, options)
-    nowFlags = { ...builtinFlags, ...cliFlags }
-    nowFlags = camelizeFlags(nowFlags, options)
-    return nowFlags
-  }
+    /**
+     * bind current option to ns and cmd - call ctx.addOpt
+     * @param {string} ns
+     * @param {string} cmd
+     * @returns {this} return this to chain
+     */
+    bindOpt(ns = '', cmd = '') {
+        // log(`bind option to ns or cmd`)
+        this.addOpt(this.opt, ns, cmd)
+        return this
+    }
 
-  /**
-   * camelize param-json - nano-parser-flags
-   * @param {object} flags
-   * @param {camelizeFlagsOption} options
-   * @returns
-   */
-  camelizeFlags(flags = {}, options = {}) {
-    // return camelizeFlags(...args);
-    return camelizeFlags(flags, options)
-  }
+    // {ns:string,cmd:string,beauty:boolean}
+    /**
+     * get option usage text for root ,ns or cmd
+     * @param {string} ns
+     * @param {string} cmd
+     * @returns {string}
+     * @description
+     * ```
+     * ## task
+     * - [x] get gloal scope option text when no ns and no cmd
+     * - [x] get ns scope option text when only ns
+     * - [x] get cmd scope option text when ns and cmd
+     * ```
+     */
+    usage(ns = '', cmd = '') {
+        const { optionMap, relationMap } = this
+        let map
+        // log(`get relation`)
+        map = getMap(relationMap, ns, cmd)
 
-  /**
-   * update entry-option by ctx.usagemsg - call updateEntryOption
-   * @param {{}} entryOption
-   * @param {string} ns
-   * @param {string} version
-   * @returns {{}}
-   * @description
-   * ```
-   * ## task
-   * - [x] set entry 's ns
-   * - [x] set entry 's version
-   * - [x] set entry 's autoSubns and autoSubCmd
-   * ```
-   */
-  updateEntryOption(entryOption, ns = 'npm-bin', version = '1.0.0') {
-    const { usagemsg } = this
-    return updateEntryOption(entryOption, ns, version, usagemsg)
-  }
+        // log(`get option name`)
+
+        let optNameList
+        optNameList = Object.keys(map)
+        // feat: filter cmd
+        optNameList = optNameList.filter(name => !this.cmd.has(name))
+        // feat: filter ns
+        optNameList = optNameList.filter(name => !this.ns.has(name))
+        // optNameList=optNameList.join(`\n`)
+
+        // idea: option part
+        let opts
+        map = optionMap
+        opts = Object.keys(map)
+            .filter(name => optNameList.includes(name))
+            .map(name => map[name])
+
+        // log(`[info] info option usage`)
+        opts = beautyOptionText(opts)
+        // log(opts)
+
+        opts = formatOptionText(opts, ' ', 2)
+        opts = `option:\n${opts}`
+        // opts=getFormatOptStr(opts,' ',2)
+
+        let subns = [...this.ns].filter(v => v.trim()).join('|')
+        subns = subns ? `subns:${subns}` : ''
+
+        // log([...this.cmd].filter(v=>v.trim()))
+        let subcmd = [...this.cmd].filter(v => v.trim()).join('|')
+        subcmd = subcmd ? `subcmd:${subcmd}` : ''
+
+        let usage = 'usage:{ns} [option]'
+        if (subns) {
+            usage = usage.replace(/\[option\]$/, '[subns] [option]')
+        }
+        if (subcmd) {
+            usage = usage.replace(/\[option\]$/, '[subcmd] [option]')
+        }
+
+        if (subcmd) {
+            opts = `${subcmd}\n${opts}`
+        }
+        if (subns) {
+            opts = `${subns}\n${opts}`
+        }
+        opts = formatOptionText(opts, ' ', 2)
+        if (usage) {
+            opts = `${usage}\n${opts}`
+        }
+        // opts=getFormatOptStr(opts,' ',2)
+        // this.usagemsg =opts
+        return opts
+    }
+
+    // name,type,value,desc
+    /**
+     * add option by param (json-param) - call ctx.addOpt
+     * @param {{name:string,type:string,value:*,desc:string}[]} list
+     * @param {string} ns
+     * @param {string} cmd
+     * @description
+     * ```
+     * ## task
+     * - [x] save param to param store
+     * - [x] call ctx.addOpt
+     * ```
+     */
+    param(list, ns = '', cmd = '') {
+        const { paramMap } = this
+        list.forEach(v => {
+            // store param item
+            if (!paramMap[v.name]) paramMap[v.name] = v
+            // to option item
+            const { name, type, value, desc } = v
+            this.addOpt(`${name} ${desc}`, ns, cmd)
+            // to builtIn confg
+        })
+        return this
+    }
+
+    /**
+     * get built in config - by param - get val from param
+     * @param {getBuiltinFlagsOption} options
+     * @returns {{[string]:string|number|boolean}}
+     */
+    getBuiltinConfig(options = {}) {
+        const { paramMap } = this
+        return getValFromParam(paramMap, options)
+    }
+
+    getCliFlags(flags, options = {}) {
+        let cliFlags
+        const { entrys } = options
+        if (flags.flags || (entrys && entrys.notOnlyFlags)) {
+            cliFlags = flags.flags
+        } else {
+            cliFlags = flags
+        }
+        return camelizeFlags(cliFlags, options)
+    }
+
+    getCurrentFlags(flags, options = {}) {
+        const builtinFlags = this.getBuiltinFlags()
+        let nowFlags
+        const cliFlags = this.getCliFlags(flags, options)
+        nowFlags = { ...builtinFlags, ...cliFlags }
+        nowFlags = camelizeFlags(nowFlags, options)
+        return nowFlags
+    }
+
+    /**
+     * camelize param-json - nano-parser-flags
+     * @param {object} flags
+     * @param {camelizeFlagsOption} options
+     * @returns
+     */
+    camelizeFlags(flags = {}, options = {}) {
+        // return camelizeFlags(...args);
+        return camelizeFlags(flags, options)
+    }
+
+    /**
+     * update entry-option by ctx.usagemsg - call updateEntryOption
+     * @param {{}} entryOption
+     * @param {string} ns
+     * @param {string} version
+     * @returns {{}}
+     * @description
+     * ```
+     * ## task
+     * - [x] set entry 's ns
+     * - [x] set entry 's version
+     * - [x] set entry 's autoSubns and autoSubCmd
+     * ```
+     */
+    updateEntryOption(entryOption, ns = 'npm-bin', version = '1.0.0') {
+        const { usagemsg } = this
+        return updateEntryOption(entryOption, ns, version, usagemsg)
+    }
 }
 const cliOptionHelp = new CliOptionHelp()
 export {
-  //   getMapPathValue,
-  //   getMap,
-  //   wrapOptionNameDesc,
-  getCliOptionName,
-  formatOptionText,
-  beautyOptionText,
-  getTxtFromUsage,
-  updateEntryOption,
-  CliOptionHelp,
-  cliOptionHelp
+    //   getMapPathValue,
+    //   getMap,
+    //   wrapOptionNameDesc,
+    getCliOptionName,
+    formatOptionText,
+    beautyOptionText,
+    getTxtFromUsage,
+    updateEntryOption,
+    CliOptionHelp,
+    cliOptionHelp
 }

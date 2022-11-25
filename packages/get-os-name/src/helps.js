@@ -12,18 +12,18 @@
  * ```
  */
 function toObjectSet(s, si = ';', skv = '=', svs = ',') {
-  const res = {}
-  const list = s
-    .trim()
-    .split(si)
-    .map(v => v.trim())
-    .filter(v => v)
-  list.forEach(item => {
-    let [key, vals] = item.split(skv)
-    vals = vals.trim().split(svs)
-    res[key] = vals
-  })
-  return res
+    const res = {}
+    const list = s
+        .trim()
+        .split(si)
+        .map(v => v.trim())
+        .filter(v => v)
+    list.forEach(item => {
+        let [key, vals] = item.split(skv)
+        vals = vals.trim().split(svs)
+        res[key] = vals
+    })
+    return res
 }
 
 /**
@@ -34,20 +34,20 @@ function toObjectSet(s, si = ';', skv = '=', svs = ',') {
  * @returns {string|undefined}
  */
 function getKWByVal(map, val, useKeyWord = true) {
-  let res
-  const keys = Object.keys(map)
-  for (let index = 0; index < keys.length; index += 1) {
-    const kw = keys[index]
-    const kwVal = map[kw]
-    if (kwVal.includes(val)) {
-      res = val
-      if (useKeyWord) {
-        res = kw
-      }
-      // log(key, val);
-      break
+    let res
+    const keys = Object.keys(map)
+    for (let index = 0; index < keys.length; index += 1) {
+        const kw = keys[index]
+        const kwVal = map[kw]
+        if (kwVal.includes(val)) {
+            res = val
+            if (useKeyWord) {
+                res = kw
+            }
+            // log(key, val);
+            break
+        }
     }
-  }
-  return res
+    return res
 }
 export { toObjectSet, getKWByVal }

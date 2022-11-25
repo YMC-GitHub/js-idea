@@ -15,10 +15,10 @@ const { log } = console
  * ```
  */
 const getValidOpvCmds = (list = '') =>
-  list
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .filter(line => line.replace(/^\/\/.*/gi, ''))
+    list
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(line => line.replace(/^\/\/.*/gi, ''))
 
 /**
  * run opv-cmds with cmds-array
@@ -33,22 +33,22 @@ const getValidOpvCmds = (list = '') =>
  * ```
  */
 const runOpvCmds = async (cmds, quit, exec, execOpts) => {
-  const list = Array.isArray(cmds) ? cmds : [cmds]
-  // queue with index
-  /* eslint-disable no-await-in-loop */
+    const list = Array.isArray(cmds) ? cmds : [cmds]
+    // queue with index
+    /* eslint-disable no-await-in-loop */
 
-  for (let index = 0; index < list.length; index += 1) {
-    const cmd = list[index]
-    const { stdout, stderr } = await exec(cmd, execOpts)
-    if (stderr) {
-      log(stderr)
-      if (quit) return
-      // process.exit(0) vs return vs process.exit(1)
+    for (let index = 0; index < list.length; index += 1) {
+        const cmd = list[index]
+        const { stdout, stderr } = await exec(cmd, execOpts)
+        if (stderr) {
+            log(stderr)
+            if (quit) return
+            // process.exit(0) vs return vs process.exit(1)
+        }
+        if (stdout) {
+            log(stdout)
+        }
     }
-    if (stdout) {
-      log(stdout)
-    }
-  }
-  /* eslint-enable no-await-in-loop */
+    /* eslint-enable no-await-in-loop */
 }
 export { log, getValidOpvCmds, runOpvCmds }

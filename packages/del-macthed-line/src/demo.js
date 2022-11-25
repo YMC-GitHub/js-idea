@@ -32,19 +32,19 @@ const otherReg = [/(?:abc.*)/gim]
 //
 // /((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/gim
 function task(regs) {
-  let res = input
-  const list = Array.isArray(regs) ? regs : [regs]
-  for (let index = 0; index < list.length; index += 1) {
-    const reg = list[index]
-    log('[info] match line comment in multi-line text')
-    const match = res.match(reg)
-    log(match)
-    if (match) {
-      log('[info] delete it')
-      res = main({ text: res, reg })
+    let res = input
+    const list = Array.isArray(regs) ? regs : [regs]
+    for (let index = 0; index < list.length; index += 1) {
+        const reg = list[index]
+        log('[info] match line comment in multi-line text')
+        const match = res.match(reg)
+        log(match)
+        if (match) {
+            log('[info] delete it')
+            res = main({ text: res, reg })
+        }
     }
-  }
-  log(res)
+    log(res)
 }
 log(input)
 task(shLineCommentReg)

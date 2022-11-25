@@ -5,7 +5,7 @@
  * @returns {string}
  */
 function renderns(tpl, ns) {
-  return tpl.replace(/\{ns\}/gi, ns)
+    return tpl.replace(/\{ns\}/gi, ns)
 }
 function donothing() {}
 export { renderns, donothing }

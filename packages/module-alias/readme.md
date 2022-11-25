@@ -34,9 +34,13 @@ ymc package module-alias
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
+dist/index.cjs.js | 13.96kb | 3.46kb | 3.12kb
+dist/index.cjs.min.js | 4.92kb | 1.75kb | 1.57kb
 dist/index.esm.js | 11.20kb | 2.73kb | 2.47kb
 dist/index.esm.min.js | 4.01kb | 1.42kb | 1.30kb
 dist/index.js | 11.20kb | 2.73kb | 2.47kb
+dist/index.umd.js | 15.37kb | 3.65kb | 3.27kb
+dist/index.umd.min.js | 5.09kb | 1.86kb | 1.67kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

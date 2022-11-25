@@ -14,8 +14,8 @@ import getOsName from '@ymc/get-os-name'
  * ```
  */
 function getLocInDifferentOs(option = {}) {
-  const defaulOsName = 'mac=darwin;win=win32;linux=linux;android=android'
-  return option[getOsName(option.name ? option.name : defaulOsName)]
+    const defaulOsName = 'mac=darwin;win=win32;linux=linux;android=android'
+    return option[getOsName(option.name ? option.name : defaulOsName)]
 }
 
 export default getLocInDifferentOs

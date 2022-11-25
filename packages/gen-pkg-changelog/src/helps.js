@@ -104,6 +104,20 @@ function writeJsonSync(file, data) {
     writeFileSync(file, JSON.stringify(data, null, 2))
 }
 
+//@ymc/log-info
+/**
+ * get loginfo function
+ * @param {boolean} enable
+ * @returns {()=>void} a function to log info
+ */
+function getLogInfo(enable) {
+    return function (...msg) {
+        if (enable) {
+            log(...msg)
+        }
+    }
+}
+
 export {
     log,
     getLibNameFromPath,
@@ -116,5 +130,6 @@ export {
     getObjOnlyDefinedKeys,
     writeFileSync,
     readJsonSync,
-    writeJsonSync
+    writeJsonSync,
+    getLogInfo
 }

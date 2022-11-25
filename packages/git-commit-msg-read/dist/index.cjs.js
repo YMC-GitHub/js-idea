@@ -398,7 +398,7 @@ function parse(msg, msgb, allowTypes) {
     // get subject and body (rough)
     const list = fixmsg(msg);
     [subject] = list;
-    body = list.slice(1).join('\n'); // feat:set body = subject when no body or body in subject
+    body = list.slice(1).join('\n'); // feat: set subject as body when no body or body in subject
 
     if (!body) body = subject;
   } // get type,scope,subject,body,foot (detail)
@@ -519,15 +519,16 @@ class Store {
   }
 
   getTpl(tpl, options = {}) {
+    let res = tpl;
     let option = { ...options,
       ...this.options
     };
 
     if (option.n) {
-      tpl = `${tpl} -n ${option.n}`;
+      res = `${tpl} -n ${option.n}`;
     }
 
-    return tpl;
+    return res;
   }
   /**
    * get git commit hash

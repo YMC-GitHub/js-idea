@@ -241,6 +241,76 @@ export function countHanzi(text) {
 }
 // \u0251\u0251\u0304\u0251\u0301\u0251\u030c\u0251\u0300
 
+/**
+ *
+ * @param {string} text
+ * @returns
+ */
+export function countDigit(text) {
+    let count = 0
+    const reg = /[0-9]/
+    for (const char of text) {
+        if (char.match(reg)) {
+            count += 1
+        }
+    }
+    return count
+}
+/**
+ *
+ * @param {string} text
+ * @returns
+ */
+export function countByteType(text) {
+    let exts = 0
+    let base = 0
+
+    const reg = /[^\x00-\xff]/
+    for (const char of text) {
+        if (char.match(reg)) {
+            //no-two-byte
+            exts += 1
+        } else {
+            base + -1
+        }
+    }
+    return [base, exts]
+}
+
+export function countChars(val) {
+    // https://zhuanlan.zhihu.com/p/370558760
+    let bo = 0
+    let b2 = 0
+    let digit = 0
+    let hanzi = 0
+    for (let i = 0; i < val.length; i++) {
+        const c = val.charAt(i)
+        if (c.match(/[\u2E80-\u2FD5\u3190-\u319f\u3400-\u4DBF\u4E00-\u9FCC\uF900-\uFAAD]/)) {
+            hanzi++
+        }
+        if (c.match(/[^\x00-\xff]/)) {
+            // no-2-byte char
+            bo += 1
+        } else {
+            // hanzi
+            b2 += 1
+        }
+        if (c.match(/[0-9]/)) {
+            // number 0-9
+            digit += 1
+        }
+    }
+    return {
+        // englishLetter: ec,
+        zishu: digit + hanzi,
+        hanzi: hanzi,
+        biaodian: bo - hanzi,
+        zimu: b2 - digit,
+        zifu: hanzi * 2 + (bo - hanzi) * 2 + b2 // length
+    }
+    // return len
+}
+
 // base hanzi
 // 4E00-9FA5
 // base hanzi extend

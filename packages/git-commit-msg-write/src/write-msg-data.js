@@ -12,7 +12,7 @@ import { isString, validString } from './tools'
  * ```
  */
 function extendClass(cls, name, fun) {
-  cls.prototype[name] = fun
+    cls.prototype[name] = fun
 }
 
 /**
@@ -24,15 +24,15 @@ function extendClass(cls, name, fun) {
  * @returns
  */
 function magincAccess(ctx, ns, key, val) {
-  // let store = ctx.data
-  // let data = store[ns]
-  const data = ctx[ns]
-  if (!validString(key)) return ctx
-  if (val || isString(val)) {
-    data[key] = val
-    return ctx
-  }
-  return data[key]
+    // let store = ctx.data
+    // let data = store[ns]
+    const data = ctx[ns]
+    if (!validString(key)) return ctx
+    if (val || isString(val)) {
+        data[key] = val
+        return ctx
+    }
+    return data[key]
 }
 
 // wmd.type().scope().subject().body().foot().issue()
@@ -43,16 +43,16 @@ function magincAccess(ctx, ns, key, val) {
 
 // define class constructor
 class WriteMsgData {
-  constructor() {
-    this.data = {}
-  }
+    constructor() {
+        this.data = {}
+    }
 }
 
 // define class method
 'type|scope|subject|body|foot|issue'.split('|').forEach(method => {
-  extendClass(WriteMsgData, method, function (...args) {
-    return magincAccess(this, 'data', method, ...args)
-  })
+    extendClass(WriteMsgData, method, function (...args) {
+        return magincAccess(this, 'data', method, ...args)
+    })
 })
 const writemsgdata = new WriteMsgData()
 export { WriteMsgData, writemsgdata }

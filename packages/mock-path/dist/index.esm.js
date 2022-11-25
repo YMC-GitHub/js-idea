@@ -3,7 +3,7 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/* eslint-disable prefer-const */
+/* eslint-disable prefer-const,no-use-before-define */
 // https://nodejs.org/api/path.html
 
 // const path = {}
@@ -96,7 +96,7 @@ function format(obj) {
  */
 function isAbsolute(wkd) {
     const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/;
-    ///^\/|(\\\\)|([A-Z]:)|([a-z]:)/
+    /// ^\/|(\\\\)|([A-Z]:)|([a-z]:)/
     if (!wkd) return false
     return reg.test(wkd)
 }
@@ -106,7 +106,11 @@ function isAbsolute(wkd) {
  * @returns {{root:string,dir:string,base:string,name:string,ext:string}}
  */
 function parse(wkd) {
-    let root, dir, base, name, ext;
+    let root;
+    let dir;
+    let base;
+    let name;
+    let ext;
     base = basename(wkd);
     ext = extname(base);
     name = ext ? basename(wkd, ext) : base;
@@ -115,21 +119,28 @@ function parse(wkd) {
     // not ends with / for unix when dir.length !==1
     if (dir.length !== 1) dir = dir.replace(/\/$/, '');
 
-    return { root, dir, base, name, ext }
+    return {
+        root,
+        dir,
+        base,
+        name,
+        ext
+    }
     /**
      *
-     * @param {string} dir
+     * @param {string} dirs
      * @returns {string}
      */
-    function getRoot(dir) {
-        if (!isAbsolute(dir)) return ''
+    function getRoot(dirs) {
+        if (!isAbsolute(dirs)) return ''
         let res = '';
         // res = dir.replace(/(\/?\/)|\\.*/gi, '')
-        res = dir.split(/(\/?\/)|\\/)[0];
+        res = dirs.split(/(\/?\/)|\\/)
+        ;[res] = res;
         // win
         if (res) {
             let tmp = `${res}/`;
-            if (dir.indexOf(tmp) === 0) return tmp
+            if (dirs.indexOf(tmp) === 0) return tmp
             return `${res}\\`
         }
         // unix

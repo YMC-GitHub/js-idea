@@ -13,15 +13,15 @@ import main from './index'
  * ```
  */
 function getArgs(def = './packages/noop') {
-  const args = process.argv.slice(2)
-  if (args.length === 0) args[0] = def
-  return args
+    const args = process.argv.slice(2)
+    if (args.length === 0) args[0] = def
+    return args
 }
 
 const run = async () => {
-  const args = getArgs('./packages/noop')
-  const wkd = args[0]
-  main(wkd)
+    const args = getArgs('./packages/noop')
+    const wkd = args[0]
+    main(wkd)
 }
 run()
 

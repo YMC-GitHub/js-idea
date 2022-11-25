@@ -5,13 +5,13 @@ import handle from './main'
 import { log, getObjOnlyDefinedKeys } from './helps'
 
 async function main(options = {}) {
-  const option = getObjOnlyDefinedKeys({
-    ...getBuiltinConfig(param()),
-    ...getCliFlags(options)
-  })
-  // log(option, options)
-  // process.exit(0)
-  return handle(option)
+    const option = getObjOnlyDefinedKeys({
+        ...getBuiltinConfig(param()),
+        ...getCliFlags(options)
+    })
+    // log(option, options)
+    // process.exit(0)
+    return handle(option)
 }
 export { param, main }
 // xx -> xx.main -> xx.cli

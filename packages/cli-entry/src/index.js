@@ -16,24 +16,24 @@ const { log } = console
  * ```
  */
 function defEntry(handle = () => {}, options = {}) {
-  const opts = {
-    enableZeroOption: true,
-    notOnlyFlags: true,
-    ...options
-  }
-  /* eslint-disable no-param-reassign */
-  // fix no-param-reassign
-  handle.usage = opts.usage
-  handle.option = opts.option
-  // entrys.autoSubCmd= usage.match(/subcmd:.*/ig)[0]
+    const opts = {
+        enableZeroOption: true,
+        notOnlyFlags: true,
+        ...options
+    }
+    /* eslint-disable no-param-reassign */
+    // fix no-param-reassign
+    handle.usage = opts.usage
+    handle.option = opts.option
+    // entrys.autoSubCmd= usage.match(/subcmd:.*/ig)[0]
 
-  // feat: enable zero option
-  // entrys.log.enableZeroOption=true
-  // entrys.cls.enableZeroOption=true
-  handle.enableZeroOption = opts.enableZeroOption
-  handle.notOnlyFlags = opts.notOnlyFlags
-  return handle
-  /* eslint-enable no-param-reassign */
+    // feat: enable zero option
+    // entrys.log.enableZeroOption=true
+    // entrys.cls.enableZeroOption=true
+    handle.enableZeroOption = opts.enableZeroOption
+    handle.notOnlyFlags = opts.notOnlyFlags
+    return handle
+    /* eslint-enable no-param-reassign */
 }
 
 // /**
@@ -51,46 +51,46 @@ function defEntry(handle = () => {}, options = {}) {
  * @param {*} entrys
  */
 function runEntry(engine, entrys) {
-  engine.entry(entrys).run(process.argv)
+    engine.entry(entrys).run(process.argv)
 }
 
 class BindEntry {
-  //   constructor() {} //fix no-empty-function,no-useless-constructor
+    //   constructor() {} //fix no-empty-function,no-useless-constructor
 
-  entrys(entry) {
-    // set
-    if (entry) {
-      this.context = entry
-      return this
+    entrys(entry) {
+        // set
+        if (entry) {
+            this.context = entry
+            return this
+        }
+        // get
+        return this.context
     }
-    // get
-    return this.context
-  }
 
-  bind(subcmd = '', defFun = () => {}, bindType = '') {
-    const entrys = this.entrys()
+    bind(subcmd = '', defFun = () => {}, bindType = '') {
+        const entrys = this.entrys()
 
-    subcmd.split('|').forEach(cmd => {
-      let entry
-      switch (bindType.toLowerCase()) {
-        case 'call':
-          // feat: support call then bind entry
-          entry = defFun(cmd)
-          break
-      }
-      // feat: support bind entry
-      entrys[cmd] = entry
-    })
-  }
+        subcmd.split('|').forEach(cmd => {
+            let entry
+            switch (bindType.toLowerCase()) {
+                case 'call':
+                    // feat: support call then bind entry
+                    entry = defFun(cmd)
+                    break
+            }
+            // feat: support bind entry
+            entrys[cmd] = entry
+        })
+    }
 }
 /**
  * bind subns or subcmd to entry
  * @param {{entrys:()=>{},subcmd:string,defFun:() => {},bindType:string}} option
  */
 function bindCmdToEntry(option) {
-  const { subcmd, defFun, bindType } = option
-  const be = new BindEntry()
-  be.entrys(option.entrys)
-  be.bind(subcmd, defFun, bindType)
+    const { subcmd, defFun, bindType } = option
+    const be = new BindEntry()
+    be.entrys(option.entrys)
+    be.bind(subcmd, defFun, bindType)
 }
 export { defEntry, bindCmdToEntry, runEntry }

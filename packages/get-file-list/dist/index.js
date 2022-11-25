@@ -14,16 +14,16 @@ import { camelize } from '@ymc/extend-string';
  * @returns
  */
 function getPrefixedProp(prop, option) {
-  let prefixedProp = prop;
-  if (option.prefix) {
-    prefixedProp = `${option.prefix}${prop}`;
-  }
+    let prefixedProp = prop;
+    if (option.prefix) {
+        prefixedProp = `${option.prefix}${prop}`;
+    }
 
-  if (option.camelize) {
-    prefixedProp = `${option.prefix}-${prop}`;
-    prefixedProp = camelize(prefixedProp);
-  }
-  return prefixedProp
+    if (option.camelize) {
+        prefixedProp = `${option.prefix}-${prop}`;
+        prefixedProp = camelize(prefixedProp);
+    }
+    return prefixedProp
 }
 
 /**
@@ -42,19 +42,19 @@ function getPrefixedProp(prop, option) {
  * ```
  */
 function setCustomProp(context, prop, def, options = {}) {
-  const option = {
-    prefix: 'custom',
-    camelize: true,
-    override: false,
-    ...options
-  };
-  // over ride native
-  if (option.override) {
-    context[prop] = def;
-    return
-  }
-  const prefixedProp = getPrefixedProp(prop, option);
-  context[prefixedProp] = def;
+    const option = {
+        prefix: 'custom',
+        camelize: true,
+        override: false,
+        ...options
+    };
+    // over ride native
+    if (option.override) {
+        context[prop] = def;
+        return
+    }
+    const prefixedProp = getPrefixedProp(prop, option);
+    context[prefixedProp] = def;
 }
 
 const handles = {};

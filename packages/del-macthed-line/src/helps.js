@@ -13,21 +13,21 @@ const { log } = console
  * ```
  */
 function getHashCode(str, caseSensitive) {
-  let txt = str
-  if (!caseSensitive) {
-    txt = txt.toLowerCase()
-  }
-  // 1315423911=b'1001110011001111100011010100111'
-  let hash = 1315423911
-  let i
-  let ch
-  for (i = txt.length - 1; i >= 0; i -= 1) {
-    ch = txt.charCodeAt(i)
-    // right-move-5-pos , left-move-2-pos
-    hash ^= (hash << 5) + ch + (hash >> 2)
-  }
+    let txt = str
+    if (!caseSensitive) {
+        txt = txt.toLowerCase()
+    }
+    // 1315423911=b'1001110011001111100011010100111'
+    let hash = 1315423911
+    let i
+    let ch
+    for (i = txt.length - 1; i >= 0; i -= 1) {
+        ch = txt.charCodeAt(i)
+        // right-move-5-pos , left-move-2-pos
+        hash ^= (hash << 5) + ch + (hash >> 2)
+    }
 
-  return hash & 0x7fffffff
+    return hash & 0x7fffffff
 }
 /* eslint-enable no-bitwise */
 

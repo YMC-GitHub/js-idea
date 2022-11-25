@@ -34,12 +34,12 @@ ymc package create-esm-loader
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 13.00kb | 4.21kb | 3.66kb
+dist/index.cjs.js | 15.07kb | 4.81kb | 4.22kb
 dist/index.cjs.min.js | 3.38kb | 1.49kb | 1.35kb
-dist/index.esm.js | 12.28kb | 3.91kb | 3.42kb
+dist/index.esm.js | 15.91kb | 4.65kb | 4.06kb
 dist/index.esm.min.js | 3.03kb | 1.33kb | 1.20kb
-dist/index.js | 12.28kb | 3.91kb | 3.42kb
-dist/index.umd.js | 13.62kb | 4.16kb | 3.60kb
+dist/index.js | 15.91kb | 4.65kb | 4.06kb
+dist/index.umd.js | 15.83kb | 4.77kb | 4.15kb
 dist/index.umd.min.js | 3.27kb | 1.43kb | 1.29kb
 
 ## Author

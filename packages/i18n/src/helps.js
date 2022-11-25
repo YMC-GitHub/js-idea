@@ -5,16 +5,16 @@
  * @returns
  */
 function validString(s) {
-  return isString(s) && !isEmpty(s)
+    return isString(s) && !isEmpty(s)
 }
 function isString(s) {
-  return typeof s === 'string'
+    return typeof s === 'string'
 }
 function isEmpty(s) {
-  return s === '' || s === null || s === undefined
+    return s === '' || s === null || s === undefined
 }
 function isArray(s) {
-  return Array.isArray(s)
+    return Array.isArray(s)
 }
 
 /**
@@ -27,7 +27,7 @@ function isArray(s) {
  * ```
  */
 function isObject(s) {
-  return typeof s === 'object'
+    return typeof s === 'object'
 }
 /**
  *
@@ -35,7 +35,7 @@ function isObject(s) {
  * @returns
  */
 function isDefine(s) {
-  return s !== undefined
+    return s !== undefined
 }
 function doNothing() {}
 export { isArray, isString, isObject, isDefine, isEmpty, validString, doNothing }

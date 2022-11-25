@@ -9,13 +9,13 @@
  * ```
  */
 function deletemulti(exp, reg = /\(.*\)/gi) {
-  let res = exp
-  const match = res.match(reg)
-  // log(reg, many, reg.test(exp));
-  if (match && match[0]) {
-    res = res.replace(match[0], '')
-  }
-  return res
+    let res = exp
+    const match = res.match(reg)
+    // log(reg, many, reg.test(exp));
+    if (match && match[0]) {
+        res = res.replace(match[0], '')
+    }
+    return res
 }
 
 /**
@@ -29,12 +29,12 @@ function deletemulti(exp, reg = /\(.*\)/gi) {
  * ```
  */
 function validType(entype, sc = '|') {
-  let res = ''
-  res = entype
-    .split(sc)
-    .map(exp => deletemulti(exp))
-    .join(sc)
-  return res
+    let res = ''
+    res = entype
+        .split(sc)
+        .map(exp => deletemulti(exp))
+        .join(sc)
+    return res
 }
 
 /**
@@ -48,9 +48,9 @@ function validType(entype, sc = '|') {
  * ```
  */
 function toArray(entype, sc = '|') {
-  return validType(entype, sc)
-    .split(sc)
-    .map(exp => [exp, exp])
+    return validType(entype, sc)
+        .split(sc)
+        .map(exp => [exp, exp])
 }
 
 /**
@@ -60,13 +60,13 @@ function toArray(entype, sc = '|') {
  * @returns {{[string]:string}}
  */
 function toJson(entype, sc = '|') {
-  const json = {}
-  validType(entype, sc)
-    .split(sc)
-    .forEach(exp => {
-      json[exp] = exp
-    })
-  return json
+    const json = {}
+    validType(entype, sc)
+        .split(sc)
+        .forEach(exp => {
+            json[exp] = exp
+        })
+    return json
 }
 
 /**
@@ -78,20 +78,20 @@ function toJson(entype, sc = '|') {
  * @returns {[string,string][]} [['en','zh']]
  */
 function linkMap(en, otherlang, valid, sc = '|') {
-  let kw
-  let val
+    let kw
+    let val
 
-  switch (valid) {
-    case true:
-      kw = validType(en).split(sc)
-      val = validType(otherlang).split(sc)
-      break
-    default:
-      kw = en
-      val = otherlang
-      break
-  }
-  return kw.map((exp, index) => [exp, val[index]])
+    switch (valid) {
+        case true:
+            kw = validType(en).split(sc)
+            val = validType(otherlang).split(sc)
+            break
+        default:
+            kw = en
+            val = otherlang
+            break
+    }
+    return kw.map((exp, index) => [exp, val[index]])
 }
 /**
  * split multi-line text to array
@@ -99,7 +99,7 @@ function linkMap(en, otherlang, valid, sc = '|') {
  * @returns {string[]}
  */
 function multiLineTextToArray(s) {
-  return s.split(/\r?\n/)
+    return s.split(/\r?\n/)
 }
 
 /**
@@ -119,22 +119,22 @@ function multiLineTextToArray(s) {
  * ```
  */
 function parseMap(s, sc = '|') {
-  // trim text , ignore js line comment
-  const list = multiLineTextToArray(s.trim()).filter(line => !/^\/\//.test(line))
-  const resEn = []
-  const resOt = []
-  for (let index = 0; index < list.length; index += 2) {
-    const en = list[index]
-    const ot = list[index + 1]
-    resEn.push(...en.split(sc))
-    resOt.push(...ot.split(sc))
-  }
-  return [resEn, resOt]
-  // {{en:string,ot:string}}
-  // return {
-  //   en: res_en,
-  //   ot: res_ot,
-  // };
+    // trim text , ignore js line comment
+    const list = multiLineTextToArray(s.trim()).filter(line => !/^\/\//.test(line))
+    const resEn = []
+    const resOt = []
+    for (let index = 0; index < list.length; index += 2) {
+        const en = list[index]
+        const ot = list[index + 1]
+        resEn.push(...en.split(sc))
+        resOt.push(...ot.split(sc))
+    }
+    return [resEn, resOt]
+    // {{en:string,ot:string}}
+    // return {
+    //   en: res_en,
+    //   ot: res_ot,
+    // };
 }
 
 export { validType, toArray, toJson, linkMap, parseMap }

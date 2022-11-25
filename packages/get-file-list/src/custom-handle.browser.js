@@ -12,12 +12,12 @@ const { log } = console
  * @returns
  */
 function todo(prop, env = 'browser', exit = true) {
-  return () => {
-    log(`[info] todo cutrom prop ${prop} at ${env}`)
-    if (exit) {
-      process.exit(0)
+    return () => {
+        log(`[info] todo cutrom prop ${prop} at ${env}`)
+        if (exit) {
+            process.exit(0)
+        }
     }
-  }
 }
 setCustomProp(handles, 'readdirSync', todo('readdirSync'), { override: true })
 setCustomProp(handles, 'statSync', todo('statSync'), { override: true })

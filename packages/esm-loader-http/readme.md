@@ -29,7 +29,7 @@
 # pkg @ymc/esm-loader-http
 
 ## desc
-ymc package esm-loader-http
+load remote esm pkg with http or https protocol
 
 ## lib size  
 file | size | gzip | brotli

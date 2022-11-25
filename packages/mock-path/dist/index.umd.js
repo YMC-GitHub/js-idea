@@ -9,7 +9,7 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["mock-path"] = {}));
 })(this, (function (exports) { 'use strict';
 
-    /* eslint-disable prefer-const */
+    /* eslint-disable prefer-const,no-use-before-define */
     // https://nodejs.org/api/path.html
     // const path = {}
     // path.sep = '/'
@@ -113,7 +113,7 @@
 
 
     function isAbsolute(wkd) {
-      const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/; ///^\/|(\\\\)|([A-Z]:)|([a-z]:)/
+      const reg = /^\/|(\\\\)|([A-Z]:)|([a-z]:)/; /// ^\/|(\\\\)|([A-Z]:)|([a-z]:)/
 
       if (!wkd) return false;
       return reg.test(wkd);
@@ -126,7 +126,11 @@
 
 
     function parse(wkd) {
-      let root, dir, base, name, ext;
+      let root;
+      let dir;
+      let base;
+      let name;
+      let ext;
       base = basename(wkd);
       ext = extname(base);
       name = ext ? basename(wkd, ext) : base;
@@ -143,19 +147,20 @@
       };
       /**
        *
-       * @param {string} dir
+       * @param {string} dirs
        * @returns {string}
        */
 
-      function getRoot(dir) {
-        if (!isAbsolute(dir)) return '';
+      function getRoot(dirs) {
+        if (!isAbsolute(dirs)) return '';
         let res = ''; // res = dir.replace(/(\/?\/)|\\.*/gi, '')
 
-        res = dir.split(/(\/?\/)|\\/)[0]; // win
+        res = dirs.split(/(\/?\/)|\\/);
+        [res] = res; // win
 
         if (res) {
           let tmp = `${res}/`;
-          if (dir.indexOf(tmp) === 0) return tmp;
+          if (dirs.indexOf(tmp) === 0) return tmp;
           return `${res}\\`;
         } // unix
 

@@ -3,10 +3,10 @@ import getCustomProp from './index'
 const { log } = console
 function statSync() {}
 function main() {
-  const option = { hi: 'hi', statSync }
-  const customstatSync = getCustomProp(option, 'statSync', statSync)
-  log(option)
-  log(customstatSync)
+    const option = { hi: 'hi', statSync }
+    const customstatSync = getCustomProp(option, 'statSync', statSync)
+    log(option)
+    log(customstatSync)
 }
 main()
 

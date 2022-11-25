@@ -34,12 +34,12 @@ ymc package mock-path
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 3.42kb | 1.24kb | 1.11kb
-dist/index.cjs.min.js | 1.20kb | 0.64kb | 0.57kb
-dist/index.esm.js | 3.37kb | 1.15kb | 1.04kb
-dist/index.esm.min.js | 1.11kb | 0.61kb | 0.57kb
-dist/index.js | 3.37kb | 1.15kb | 1.04kb
-dist/index.umd.js | 4.29kb | 1.39kb | 1.24kb
+dist/index.cjs.js | 3.49kb | 1.27kb | 1.13kb
+dist/index.cjs.min.js | 1.20kb | 0.65kb | 0.57kb
+dist/index.esm.js | 3.48kb | 1.21kb | 1.09kb
+dist/index.esm.min.js | 1.11kb | 0.62kb | 0.55kb
+dist/index.js | 3.48kb | 1.21kb | 1.09kb
+dist/index.umd.js | 4.37kb | 1.42kb | 1.27kb
 dist/index.umd.min.js | 1.38kb | 0.74kb | 0.66kb
 
 ## Author

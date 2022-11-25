@@ -2,18 +2,18 @@
 /* eslint-disable no-unused-vars,import/extensions */
 // fix no-unused-vars test,expectString
 import {
-  extendStringPrototype,
-  humanize,
-  slugify,
-  camelize,
-  underscoped,
-  classify,
-  swapCase,
-  capitialize,
-  sentence,
-  titleize,
-  padStartString,
-  padEndString
+    extendStringPrototype,
+    humanize,
+    slugify,
+    camelize,
+    underscoped,
+    classify,
+    swapCase,
+    capitialize,
+    sentence,
+    titleize,
+    padStartString,
+    padEndString
 } from './base.js'
 
 extendStringPrototype('humanize', humanize)
@@ -42,19 +42,19 @@ extendStringPrototype('padEndString', padEndString)
 extendStringPrototype('padEnd', padEndString)
 
 export {
-  extendStringPrototype,
-  humanize,
-  slugify,
-  slugify as dasherize,
-  camelize,
-  underscoped,
-  classify,
-  swapCase,
-  capitialize,
-  sentence,
-  titleize,
-  padStartString,
-  padStartString as padStart,
-  padEndString,
-  padEndString as padEnd
+    extendStringPrototype,
+    humanize,
+    slugify,
+    slugify as dasherize,
+    camelize,
+    underscoped,
+    classify,
+    swapCase,
+    capitialize,
+    sentence,
+    titleize,
+    padStartString,
+    padStartString as padStart,
+    padEndString,
+    padEndString as padEnd
 }

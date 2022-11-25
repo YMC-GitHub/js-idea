@@ -69,8 +69,10 @@ async function main() {
 
     // render(data)
 }
+//@ymc/git-commit-msg-template
+//get-git-commit-msg-template
 /**
- *
+ * get angular style commit-msg template
  * @param {{}} data
  * @returns {string}
  */
@@ -102,6 +104,7 @@ function getAngularStyleTpl(data) {
     }
     return tpl
 }
+//@ymc/render-cmted-msgs-to-pkg-changelog
 /**
  * rendet data to changelog.md text
  * @param {[]} data
@@ -134,7 +137,8 @@ function render(data, options = {}) {
     // cache = gitlog.filterIgnoreScope(cache, docsReg);
 
     log('[info] ignore docs commits')
-    // cache = cache.filter(v => v.type != 'docs')
+    let ignores = 'docs,style,chore,tool'.split(',')
+    cache = cache.filter(v => !ignores.some(ig => ig === v.type))
     // only the latest
     // if (cache.length > 0) cache = cache[0];
 

@@ -13,27 +13,27 @@ import { camelize, underscoped } from '@ymc/extend-string'
  * @returns
  */
 function stylizeFlags(flags = {}, options = {}) {
-  // let res = {}
-  const option = {
-    slim: true,
-    style: 'camelize', // get more infomation on extend-string
-    styleHandle: camelize,
-    ...options
-  }
-  const stylize = option.styleHandle
-  if (option[camelize(`noAuto-${options.style}`)]) return flags
-  // typeof ''[options.style]==="function"
-  Object.keys(flags).forEach(str => {
-    const ck = stylize(str)
-    // res[ck]=flags[k]
-    if (ck !== str) {
-      flags[ck] = flags[str]
-      if (option.slim) {
-        delete flags[str]
-      }
+    // let res = {}
+    const option = {
+        slim: true,
+        style: 'camelize', // get more infomation on extend-string
+        styleHandle: camelize,
+        ...options
     }
-  })
-  return flags
+    const stylize = option.styleHandle
+    if (option[camelize(`noAuto-${options.style}`)]) return flags
+    // typeof ''[options.style]==="function"
+    Object.keys(flags).forEach(str => {
+        const ck = stylize(str)
+        // res[ck]=flags[k]
+        if (ck !== str) {
+            flags[ck] = flags[str]
+            if (option.slim) {
+                delete flags[str]
+            }
+        }
+    })
+    return flags
 }
 /**
  * camelize param-json - nano-parser-flags
@@ -42,23 +42,23 @@ function stylizeFlags(flags = {}, options = {}) {
  * @returns
  */
 function camelizeFlags(flags = {}, options = {}) {
-  // let res = {}
-  const option = {
-    slim: true,
-    ...options
-  }
-  if (option.noAutoCamelize) return flags
-  Object.keys(flags).forEach(k => {
-    const ck = camelize(k)
-    // res[ck]=flags[k]
-    if (ck !== k) {
-      flags[ck] = flags[k]
-      if (option.slim) {
-        delete flags[k]
-      }
+    // let res = {}
+    const option = {
+        slim: true,
+        ...options
     }
-  })
-  return flags
+    if (option.noAutoCamelize) return flags
+    Object.keys(flags).forEach(k => {
+        const ck = camelize(k)
+        // res[ck]=flags[k]
+        if (ck !== k) {
+            flags[ck] = flags[k]
+            if (option.slim) {
+                delete flags[k]
+            }
+        }
+    })
+    return flags
 }
 /**
  * underscoped param-json - nano-parser-flags
@@ -67,7 +67,7 @@ function camelizeFlags(flags = {}, options = {}) {
  * @returns
  */
 function underscopedFlags(flags = {}, options = {}) {
-  return stylizeFlags(flags, { ...options, style: 'underscoped', styleHandle: underscoped })
+    return stylizeFlags(flags, { ...options, style: 'underscoped', styleHandle: underscoped })
 }
 
 export { stylizeFlags, camelizeFlags, underscopedFlags }

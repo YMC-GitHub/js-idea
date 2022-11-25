@@ -6,27 +6,27 @@ import parse from './index'
  * @return {string[]}
  */
 function mockArgv(s) {
-  return s.split(/ +/)
+    return s.split(/ +/)
 }
 test(`like-argv`, () => {
-  let input, output
-  output = parse(mockArgv(`ns cmd`))
-  expect(output).toHaveProperty('flags', {})
-  expect(output).toHaveProperty('_', ['ns', 'cmd'])
-  expect(output).toHaveProperty('extras', [])
+    let input, output
+    output = parse(mockArgv(`ns cmd`))
+    expect(output).toHaveProperty('flags', {})
+    expect(output).toHaveProperty('_', ['ns', 'cmd'])
+    expect(output).toHaveProperty('extras', [])
 
-  output = parse(mockArgv(`ns cmd -a -b -c`))
-  expect(output).toHaveProperty('flags', { a: true, b: true, c: true })
-  expect(output).toHaveProperty('_', ['ns', 'cmd'])
-  expect(output).toHaveProperty('extras', [])
+    output = parse(mockArgv(`ns cmd -a -b -c`))
+    expect(output).toHaveProperty('flags', { a: true, b: true, c: true })
+    expect(output).toHaveProperty('_', ['ns', 'cmd'])
+    expect(output).toHaveProperty('extras', [])
 
-  output = parse(mockArgv(`ns cmd -a -b -c -- -a -b -c`))
-  expect(output).toHaveProperty('flags', { a: true, b: true, c: true })
-  expect(output).toHaveProperty('_', ['ns', 'cmd'])
-  expect(output).toHaveProperty('extras', [`-a`, `-b`, `-c`])
-  // output = parse(mockArgv(`ns cmd -a -b -c -- -a -b -c`))
-  // output = parse(mockArgv(`ns subns cmd -a -b -c -- -a -b -c`))
-  // output = parse(mockArgv(`ns subns subcmd -a -b -c -- -a -b -c`))
+    output = parse(mockArgv(`ns cmd -a -b -c -- -a -b -c`))
+    expect(output).toHaveProperty('flags', { a: true, b: true, c: true })
+    expect(output).toHaveProperty('_', ['ns', 'cmd'])
+    expect(output).toHaveProperty('extras', [`-a`, `-b`, `-c`])
+    // output = parse(mockArgv(`ns cmd -a -b -c -- -a -b -c`))
+    // output = parse(mockArgv(`ns subns cmd -a -b -c -- -a -b -c`))
+    // output = parse(mockArgv(`ns subns subcmd -a -b -c -- -a -b -c`))
 })
 
 // console.log(process.argv)

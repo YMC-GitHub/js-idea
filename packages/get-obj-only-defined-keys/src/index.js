@@ -5,12 +5,12 @@
  * @return {{}}
  */
 function getObjOnlyDefinedKeys(option = {}) {
-  const res = {}
-  Object.keys(option).forEach(v => {
-    if (option[v] !== undefined) {
-      res[v] = option[v]
-    }
-  })
-  return res
+    const res = {}
+    Object.keys(option).forEach(v => {
+        if (option[v] !== undefined) {
+            res[v] = option[v]
+        }
+    })
+    return res
 }
 export default getObjOnlyDefinedKeys

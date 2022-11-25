@@ -6,11 +6,11 @@ import { camelize } from '@ymc/extend-string'
  * @returns {string}
  */
 function getParamName(name) {
-  const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
-  // 'hasLong' is assigned a value but never used
-  const thelong = s.length > 1 ? s : l
-  // thelong = camelize(thelong)
-  return thelong
+    const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
+    // 'hasLong' is assigned a value but never used
+    const thelong = s.length > 1 ? s : l
+    // thelong = camelize(thelong)
+    return thelong
 }
 
 /**
@@ -24,25 +24,25 @@ function getParamName(name) {
  * ```
  */
 function long(tname, param) {
-  let res = []
-  res = param.map(item => {
-    // @property {string?} version - cli version
-    const { name, type, desc, value } = item
-    const mname = camelize(getParamName(name))
-    if (item.optional) {
-      if (type === 'string' && value) {
-        return ` * @property {${type}} [${mname}="${value}"] - ${desc}`
-      }
-      if (type === 'number' && value) {
-        return ` * @property {${type}} [${mname}=${value}] - ${desc}`
-      }
-      return ` * @property {${type}} [${mname}] - ${desc}`
-    }
-    return ` * @property {${type}} ${mname} - ${desc}`
-  })
-  res = res.join('\n')
-  res = `/**\n * @typedef {object} ${tname}\n${res}\n */`
-  return res
+    let res = []
+    res = param.map(item => {
+        // @property {string?} version - cli version
+        const { name, type, desc, value } = item
+        const mname = camelize(getParamName(name))
+        if (item.optional) {
+            if (type === 'string' && value) {
+                return ` * @property {${type}} [${mname}="${value}"] - ${desc}`
+            }
+            if (type === 'number' && value) {
+                return ` * @property {${type}} [${mname}=${value}] - ${desc}`
+            }
+            return ` * @property {${type}} [${mname}] - ${desc}`
+        }
+        return ` * @property {${type}} ${mname} - ${desc}`
+    })
+    res = res.join('\n')
+    res = `/**\n * @typedef {object} ${tname}\n${res}\n */`
+    return res
 }
 
 /**
@@ -57,18 +57,18 @@ function long(tname, param) {
  * ```
  */
 function main(tname, param, options = {}) {
-  if (options.long) {
-    return long(tname, param)
-  }
-  let res = []
-  res = param.map(iten => {
-    const { name, type } = iten
-    const mname = camelize(getParamName(name))
-    return `${mname}:${type}`
-  })
-  res = res.join(',')
-  res = `/** @typedef {${res}} ${tname}*/`
-  return res
+    if (options.long) {
+        return long(tname, param)
+    }
+    let res = []
+    res = param.map(iten => {
+        const { name, type } = iten
+        const mname = camelize(getParamName(name))
+        return `${mname}:${type}`
+    })
+    res = res.join(',')
+    res = `/** @typedef {${res}} ${tname}*/`
+    return res
 }
 
 export default main

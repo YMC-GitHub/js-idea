@@ -29,7 +29,7 @@
 # pkg @ymc/get-custom-prop
 
 ## desc
-get custom prop from context or option and other
+get custom prop from context or option and other - easier to custom method for different env
 
 ## lib size  
 file | size | gzip | brotli

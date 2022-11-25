@@ -6,16 +6,16 @@ import { camelize } from '@ymc/extend-string'
  * @returns
  */
 function getPrefixedProp(prop, option) {
-  let prefixedProp = prop
-  if (option.prefix) {
-    prefixedProp = `${option.prefix}${prop}`
-  }
+    let prefixedProp = prop
+    if (option.prefix) {
+        prefixedProp = `${option.prefix}${prop}`
+    }
 
-  if (option.camelize) {
-    prefixedProp = `${option.prefix}-${prop}`
-    prefixedProp = camelize(prefixedProp)
-  }
-  return prefixedProp
+    if (option.camelize) {
+        prefixedProp = `${option.prefix}-${prop}`
+        prefixedProp = camelize(prefixedProp)
+    }
+    return prefixedProp
 }
 /**
  * get custom prop from context
@@ -32,15 +32,15 @@ function getPrefixedProp(prop, option) {
  * ```
  */
 function getCustomProp(context, prop, def, options = {}) {
-  const option = {
-    prefix: 'custom',
-    camelize: true,
-    ...options
-  }
-  const prefixedProp = getPrefixedProp(prop, option)
-  // idea:get-custom-if-presence -> get-native-if-presence -> get-default-if-presence
-  const native = context[prop] ? context[prop] : def
-  return context[prefixedProp] ? context[prefixedProp] : native
+    const option = {
+        prefix: 'custom',
+        camelize: true,
+        ...options
+    }
+    const prefixedProp = getPrefixedProp(prop, option)
+    // idea:get-custom-if-presence -> get-native-if-presence -> get-default-if-presence
+    const native = context[prop] ? context[prop] : def
+    return context[prefixedProp] ? context[prefixedProp] : native
 }
 
 /**
@@ -59,18 +59,18 @@ function getCustomProp(context, prop, def, options = {}) {
  * ```
  */
 function setCustomProp(context, prop, def, options = {}) {
-  const option = {
-    prefix: 'custom',
-    camelize: true,
-    override: false,
-    ...options
-  }
-  // over ride native
-  if (option.override) {
-    context[prop] = def
-    return
-  }
-  const prefixedProp = getPrefixedProp(prop, option)
-  context[prefixedProp] = def
+    const option = {
+        prefix: 'custom',
+        camelize: true,
+        override: false,
+        ...options
+    }
+    // over ride native
+    if (option.override) {
+        context[prop] = def
+        return
+    }
+    const prefixedProp = getPrefixedProp(prop, option)
+    context[prefixedProp] = def
 }
 export { getCustomProp, setCustomProp }

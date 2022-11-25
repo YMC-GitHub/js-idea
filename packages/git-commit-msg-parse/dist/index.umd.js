@@ -239,7 +239,7 @@
       // get subject and body (rough)
       const list = fixmsg(msg);
       [subject] = list;
-      body = list.slice(1).join('\n'); // feat:set body = subject when no body or body in subject
+      body = list.slice(1).join('\n'); // feat: set subject as body when no body or body in subject
 
       if (!body) body = subject;
     } // get type,scope,subject,body,foot (detail)

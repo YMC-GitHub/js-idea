@@ -2,12 +2,12 @@
 
 import { join } from './mock'
 test(`mock-path-join`, () => {
-  expect(join('../', 'helo')).toStrictEqual(`../helo`)
-  expect(join('../', '../helo')).toStrictEqual(`../../helo`)
+    expect(join('../', 'helo')).toStrictEqual(`../helo`)
+    expect(join('../', '../helo')).toStrictEqual(`../../helo`)
 
-  join.sep = '\\'
-  expect(join('../', 'helo')).toStrictEqual(`..\\helo`)
-  expect(join('../', '../helo')).toStrictEqual(`..\\..\\helo`)
+    join.sep = '\\'
+    expect(join('../', 'helo')).toStrictEqual(`..\\helo`)
+    expect(join('../', '../helo')).toStrictEqual(`..\\..\\helo`)
 })
 // const { log } = console
 // node.js

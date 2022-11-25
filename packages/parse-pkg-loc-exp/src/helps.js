@@ -7,18 +7,18 @@ import { dirname, basename } from './mock'
  * @returns
  */
 function getLibNameFromPath(wkd, option = {}) {
-  let res = basename(wkd)
-  const opt = {
-    trim: true,
-    ...option
-  }
-  if (opt.trim) {
-    res = res.trim()
-  }
-  if (opt.camelize) {
-    res = camelize(res)
-  }
-  return res
+    let res = basename(wkd)
+    const opt = {
+        trim: true,
+        ...option
+    }
+    if (opt.trim) {
+        res = res.trim()
+    }
+    if (opt.camelize) {
+        res = camelize(res)
+    }
+    return res
 }
 
 /**
@@ -27,7 +27,7 @@ function getLibNameFromPath(wkd, option = {}) {
  * @returns
  */
 function getPackagesLocFromPath(wkd) {
-  return dirname(wkd)
+    return dirname(wkd)
 }
 /**
  * parse pkg loc exp
@@ -35,7 +35,7 @@ function getPackagesLocFromPath(wkd) {
  * @returns {string[]}
  */
 function parse(loc) {
-  return [dirname(loc), basename(loc)]
+    return [dirname(loc), basename(loc)]
 }
 
 export { getLibNameFromPath, getPackagesLocFromPath, parse }

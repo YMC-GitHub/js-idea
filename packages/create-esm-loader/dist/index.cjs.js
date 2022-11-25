@@ -174,6 +174,12 @@ function satisfiesVersion(ve1, ve2) {
 // to specify explicitly that we're
 // short-circuiting, which is what this function does.
 
+/**
+ * cache a function -  set result.shortCircuit=true and run fn and pre-construt its result
+ * @param {()=>{}} fn
+ * @returns
+ */
+
 function shortCircuit(fn) {
   /**
    * @return {{shortCircuit:boolean}}
@@ -243,15 +249,25 @@ function noop() {}
  * normalize a loader definition
  * @param {loader} loader
  * @returns
+ * @description
+ * ```
+ * ## task
+ * - [x] string -> {loader:string,options:{}} //1.
+ * - [x] {loader:string,options:{}} -> {loader:string,options:{}}
+ * - [x] x -> {loader:string,options:{}}
+ * - [x] {hooks:any,options:{}} -> {hooks:any,options:{}}
+ * ```
  */
 
 function normalize(loader) {
+  //1
   if (typeof loader === 'string') {
     return {
       loader,
       options: {}
     };
-  }
+  } //2
+
 
   if (hasOwnProperty(loader, 'loader')) {
     return {
@@ -259,14 +275,16 @@ function normalize(loader) {
       options: { ...loader.options
       }
     };
-  }
+  } //3
+
 
   if (!hasOwnProperty(loader, 'hooks')) {
     return {
       hooks: loader,
       options: {}
     };
-  }
+  } //4
+
 
   return loader;
 }
@@ -281,8 +299,7 @@ const keys = ['resolve', 'format', 'fetch', 'transform'];
 
 function createEmptyStack() {
   return createStack(keys);
-} //
-
+}
 /* eslint-disable no-async-promise-executor */
 
 
@@ -293,6 +310,7 @@ class Loader {
   // options object separately.
   constructor(loaders = {}, options = {}) {
     /* eslint-disable no-param-reassign */
+    //idea: ressign loaders and options
     if (hasOwnProperty(loaders, 'loaders')) {
       ({
         loaders,
@@ -301,11 +319,14 @@ class Loader {
     }
 
     this.options = options;
-    this.stack = null;
+    this.stack = null; //idea: loading
+    //build-stack -> resolve-this
+
     const loading = new Promise(async resolve => {
       this.stack = await this.buildStack(loaders);
       resolve(this);
-    });
+    }); //idea: ready
+    // return-loading
 
     this.ready = () => loading;
     /* eslint-enable no-param-reassign */
@@ -314,12 +335,27 @@ class Loader {
   // Loops all functions in the given stack and returns the first one that
   // returns something truthy.
 
+  /**
+   *
+   * @param {string} id - one of reslove,format,fetch,translorm
+   * @param {string} resource
+   * @param {{}} ctx
+   * @param {()=>any} defaultFunction
+   * @returns
+   */
+
 
   async handleStack(id, resource, ctx, defaultFunction) {
     // Our stack might still be building from the configuration objct, so
     // make sure to await it.
 
     /* eslint-disable no-restricted-syntax,no-await-in-loop */
+    //idea:
+    // get-fns,get-global-options
+    // get-fn,get-fn-options,get-final-options
+    // run-fn,return-fn-result-if-exists,run-default-fn-and-return
+
+    /**@type fns */
     const fns = this.stack[id] || [];
     const baseOptions = { ...this.options
     };
@@ -351,14 +387,43 @@ class Loader {
   hooks() {
     // For backwards compatibility purposes, we will manually compose
     // `format()`, `fetch()` and `transform()` into a `load()` function.
+    // idea: compose format,fetch,transform to load manually
+    // get-resolve-hook,short-circuit
+    // get-format-hook,get-fetch-hook
+    // advance: cache args in it
     const hook = id => (...args) => this.handleStack(id, ...args);
+    /**
+     * @param {}
+     * @returns {{url:string,format:string|null|undefined,shortCircuit:boolean|undefined}}
+     */
+
 
     const resolve = shortCircuit(hook('resolve'));
+    /**
+     * @type {()=>Promise<{format:string|null|undefined}>}
+     */
+
     const getFormat = hook('format');
+    /**
+     * @type {()=>Promise<{source:any}>}
+     */
+
     const getSource = hook('fetch');
     /* eslint-disable no-restricted-syntax,no-await-in-loop */
     // Handling transformation is fundamentally different as we have to
     // chain results here.
+    //idea:
+    // get-fns-of-transform,get-global-options
+    // get-fn,get-fn-options,get-final-options
+    // run-fn,return-fn-result-if-exsits,run-default-fn-and-return
+
+    /**
+     *
+     * @param {string} source
+     * @param {{}} ctx
+     * @param {()=>Promise} node
+     * @returns {{source:string|unknow}|next}
+     */
 
     const transformSource = async (source, ctx, node) => {
       const fns = this.stack.transform || [];
@@ -386,7 +451,8 @@ class Loader {
             mem = result.source;
           }
         }
-      }
+      } // run default fn
+
 
       if (flag) {
         return node(source, ctx, node);
@@ -432,6 +498,13 @@ class Loader {
       } = ctx; // Mock the default `getSource` function. What's important here is
       // that if we the default getSource is used, we'll also set it as
       // default format!
+
+      /**
+       *
+       * @param {string} url
+       * @param {{}} ctx
+       * @returns {{format:string}}
+       */
 
       const defaultGetSource = async (url, ctx) => {
         const result = await defaultLoad(url, {
@@ -495,6 +568,7 @@ class Loader {
           const hook = stack[key];
           hook.push(dummy[key]);
         } // Now start loading.
+        //import module  -> to-loader-definition -> normailize-definition
 
 
         wait.push((async () => {
@@ -508,13 +582,12 @@ class Loader {
         continue;
         /* eslint-disable-line no-continue */
       } else {
-        // The default way of specifying a loader is by using an
-        // object.
         this.fill(def, stack);
       }
     } // Await everything that's still being loaded. Once that is done we'll
     // need to flatten everything in the stack again as the dynamically
     // loaded configurations might be arrays as well.
+    // idea: promise-all-wait -> flatten-stack-each-key
 
 
     await Promise.all(wait);
@@ -524,11 +597,20 @@ class Loader {
     }
 
     return stack;
-  } // ## fill(loader, stack)
-  // Fills in the loader hooks in our stack.
+  }
+  /**
+   * fill loader to stack
+   * @param {{hooks:{[string]:[()=>{}]},options:{}}} loader
+   * @param {{[string]:[()=>{}]}} stack
+   */
 
 
   fill(loader, stack) {
+    // get hooks and options from loader,
+    // get stack hook by key for each key
+    // get loader hooks by key
+    // stack-hook add handle and options for each loader-hook
+    // hook exp = {fn,option}
     const {
       hooks,
       options

@@ -22,30 +22,30 @@ import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs'
  * ```
  */
 const copyFile = (src, des) =>
-  new Promise((resolve, reject) => {
-    if (!src || !existsSync(src)) resolve()
-    if (!des) resolve()
-    if (existsSync(des)) resolve()
+    new Promise((resolve, reject) => {
+        if (!src || !existsSync(src)) resolve()
+        if (!des) resolve()
+        if (existsSync(des)) resolve()
 
-    // desc-x-s: add dir if no exsits
-    const dir = getDirLoc(des)
-    if (dir && (dir !== './' || dir !== '.')) {
-      mkdirSync(dir, { recursive: true })
-    }
-    // mkdirSync(parsePath(des).dir, { recursive: true })
-    // desc-x-e: add dir if no exsits
+        // desc-x-s: add dir if no exsits
+        const dir = getDirLoc(des)
+        if (dir && (dir !== './' || dir !== '.')) {
+            mkdirSync(dir, { recursive: true })
+        }
+        // mkdirSync(parsePath(des).dir, { recursive: true })
+        // desc-x-e: add dir if no exsits
 
-    const reader = createReadStream(src)
-    const writer = createWriteStream(des)
-    // desc-x-s: handle event finish and err
-    writer
-      .on('finish', () => {
-        resolve(des)
-      })
-      .on('error', reject)
-    // desc-x-e: handle event finish and err
-    reader.pipe(writer)
-  })
+        const reader = createReadStream(src)
+        const writer = createWriteStream(des)
+        // desc-x-s: handle event finish and err
+        writer
+            .on('finish', () => {
+                resolve(des)
+            })
+            .on('error', reject)
+        // desc-x-e: handle event finish and err
+        reader.pipe(writer)
+    })
 
 // const copyFile = (src, des) => {
 //     if (!src || !existsSync(src)) return
@@ -61,20 +61,20 @@ const copyFile = (src, des) =>
  * @param {{splitReg:regexp,split:string}} option
  */
 function getDirLoc(likepath, option = {}) {
-  const { split, splitReg } = {
-    splitReg: /\/|\\/,
-    split: '/',
-    ...option
-  }
+    const { split, splitReg } = {
+        splitReg: /\/|\\/,
+        split: '/',
+        ...option
+    }
 
-  let list = likepath.split(splitReg || split)
-  const { length } = list
-  if (length > 1) {
-    list = list.slice(0, length - 1)
-    list = list.join(split)
-  } else {
-    list = ''
-  }
-  return list
+    let list = likepath.split(splitReg || split)
+    const { length } = list
+    if (length > 1) {
+        list = list.slice(0, length - 1)
+        list = list.join(split)
+    } else {
+        list = ''
+    }
+    return list
 }
 export default copyFile

@@ -12,18 +12,18 @@ const { log } = console
  * @returns
  */
 function getLibNameFromPath(wkd, option = {}) {
-  let res = basename(wkd)
-  const opt = {
-    trim: true,
-    ...option
-  }
-  if (opt.trim) {
-    res = res.trim()
-  }
-  if (opt.camelize) {
-    res = camelize(res)
-  }
-  return res
+    let res = basename(wkd)
+    const opt = {
+        trim: true,
+        ...option
+    }
+    if (opt.trim) {
+        res = res.trim()
+    }
+    if (opt.camelize) {
+        res = camelize(res)
+    }
+    return res
 }
 
 /**
@@ -32,7 +32,7 @@ function getLibNameFromPath(wkd, option = {}) {
  * @returns
  */
 function getPackagesLocFromPath(wkd) {
-  return dirname(wkd)
+    return dirname(wkd)
 }
 
 /**
@@ -43,12 +43,12 @@ function getPackagesLocFromPath(wkd) {
  * @returns {string}
  */
 function getFailOrDone(cond, done = 'done', fail = 'fail') {
-  // get fail or done
-  let state = fail
-  if (cond) {
-    state = done
-  }
-  return state
+    // get fail or done
+    let state = fail
+    if (cond) {
+        state = done
+    }
+    return state
 }
 
 /* eslint-disable no-shadow */
@@ -60,23 +60,23 @@ function getFailOrDone(cond, done = 'done', fail = 'fail') {
  * @returns {string}
  */
 async function runeslint(cmd, execOpts) {
-  log(`[info] run cmd: ${cmd}`)
-  const { stderr, stdout } = await exec(cmd, execOpts)
-  if (stderr) {
-    log(stderr)
-  }
-  log(stdout)
+    log(`[info] run cmd: ${cmd}`)
+    const { stderr, stdout } = await exec(cmd, execOpts)
+    if (stderr) {
+        log(stderr)
+    }
+    log(stdout)
 
-  //   let labels = 'todo,passing,fail'.split(',')
-  let label
-  if (stderr === '') {
-    label = 'passing'
-  } else {
-    label = 'fail'
-  }
-  log(`[info] lint files ${label}`)
-  return getFailOrDone(true, label)
-  //   return getFailOrDone(stderr === '', 'passing', 'fail')
+    //   let labels = 'todo,passing,fail'.split(',')
+    let label
+    if (stderr === '') {
+        label = 'passing'
+    } else {
+        label = 'fail'
+    }
+    log(`[info] lint files ${label}`)
+    return getFailOrDone(true, label)
+    //   return getFailOrDone(stderr === '', 'passing', 'fail')
 }
 /* eslint-enable no-shadow */
 
@@ -89,19 +89,19 @@ async function runeslint(cmd, execOpts) {
  * @returns {pkginfo[]}
  */
 function putPkgsInfo(name, key, state, store) {
-  const added = store.some(v => v.name === name)
-  if (!added) {
-    store.push({ name, [`${key}`]: state })
-  } else {
-    /* eslint-disable no-param-reassign */
-    store.forEach(v => {
-      if (v.name === name) {
-        v[key] = state
-      }
-    })
-    /* eslint-enable no-param-reassign */
-  }
-  return store
+    const added = store.some(v => v.name === name)
+    if (!added) {
+        store.push({ name, [`${key}`]: state })
+    } else {
+        /* eslint-disable no-param-reassign */
+        store.forEach(v => {
+            if (v.name === name) {
+                v[key] = state
+            }
+        })
+        /* eslint-enable no-param-reassign */
+    }
+    return store
 }
 
 /**
@@ -109,35 +109,35 @@ function putPkgsInfo(name, key, state, store) {
  * @param {{pkgLoc:string,storeAt:string,key:string,state:string}} options
  */
 async function setLinState(options = {}) {
-  // loc, key = 'lin_state', state = 'todo'
-  const option = {
-    key: 'lin_state',
-    state: 'todo',
-    storeAt: 'pkgs-info.json',
-    ...options
-  }
-  let loc = option.pkgLoc
+    // loc, key = 'lin_state', state = 'todo'
+    const option = {
+        key: 'lin_state',
+        state: 'todo',
+        storeAt: 'pkgs-info.json',
+        ...options
+    }
+    let loc = option.pkgLoc
 
-  log('[info] set lint state in store')
-  jsonstream.init(`${option.pkgLoc}/package.json`)
-  const pkgjson = await jsonstream.read({})
+    log('[info] set lint state in store')
+    jsonstream.init(`${option.pkgLoc}/package.json`)
+    const pkgjson = await jsonstream.read({})
 
-  loc = option.storeAt
-  jsonstream.init(`${loc}`)
-  const data = await jsonstream.read([])
-  putPkgsInfo(pkgjson.name, option.key, option.state, data)
-  await jsonstream.write(data)
-  log(`[info] out: ${loc}`)
+    loc = option.storeAt
+    jsonstream.init(`${loc}`)
+    const data = await jsonstream.read([])
+    putPkgsInfo(pkgjson.name, option.key, option.state, data)
+    await jsonstream.write(data)
+    log(`[info] out: ${loc}`)
 }
 
 export {
-  getLibNameFromPath,
-  getPackagesLocFromPath,
-  exec,
-  execOpts,
-  jsonstream,
-  getFailOrDone,
-  putPkgsInfo,
-  runeslint,
-  setLinState
+    getLibNameFromPath,
+    getPackagesLocFromPath,
+    exec,
+    execOpts,
+    jsonstream,
+    getFailOrDone,
+    putPkgsInfo,
+    runeslint,
+    setLinState
 }

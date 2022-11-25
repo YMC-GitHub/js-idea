@@ -11,22 +11,22 @@
  * ```
  */
 function split(flag, verExp) {
-  const input = `${verExp}`
+    const input = `${verExp}`
 
-  let result = []
-  if (flag) {
-    // get ver and tail
-    let tail = input.split('-')[1]
-    const version = input.split('-')[0]
+    let result = []
+    if (flag) {
+        // get ver and tail
+        let tail = input.split('-')[1]
+        const version = input.split('-')[0]
 
-    // get result
-    result = version.split('.')
-    tail = tail.split('.')
-    result = result.concat(tail)
-  } else {
-    result = input.split('.')
-  }
-  return result
+        // get result
+        result = version.split('.')
+        tail = tail.split('.')
+        result = result.concat(tail)
+    } else {
+        result = input.split('.')
+    }
+    return result
 }
 
 /* eslint-disable radix */
@@ -41,7 +41,7 @@ function split(flag, verExp) {
  * ```
  */
 function convertToNumber(arr) {
-  return arr.map(el => (Number.isNaN(el) ? el : parseInt(el)))
+    return arr.map(el => (Number.isNaN(el) ? el : parseInt(el)))
 }
 /* eslint-enable radix */
 

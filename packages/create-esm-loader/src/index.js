@@ -5,8 +5,8 @@ import { Loader } from './Loader'
  * @returns
  */
 async function createLoader(...args) {
-  const loader = await new Loader(...args).ready()
-  return loader.hooks()
+    const loader = await new Loader(...args).ready()
+    return loader.hooks()
 }
 
 export default createLoader

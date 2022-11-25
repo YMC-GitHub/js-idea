@@ -12,22 +12,22 @@ import { getParamName, formatText } from './helps'
  * ```
  */
 function main(param, head = 'baseOptions', options = {}) {
-  let res = []
-  const option = {
-    indentSize: 2,
-    ...options
-  }
-  res = param.map(item => {
-    const { name, type } = item
-    const mname = camelize(getParamName(name))
-    if (item.optional) {
-      return `${mname}?:${type};`
+    let res = []
+    const option = {
+        indentSize: 2,
+        ...options
     }
-    return `${mname}:${type};`
-  })
-  res = res.join('\n')
-  res = formatText(res, ' ', option.indentSize)
-  res = `interface ${head} {\n${res}\n}`
-  return res
+    res = param.map(item => {
+        const { name, type } = item
+        const mname = camelize(getParamName(name))
+        if (item.optional) {
+            return `${mname}?:${type};`
+        }
+        return `${mname}:${type};`
+    })
+    res = res.join('\n')
+    res = formatText(res, ' ', option.indentSize)
+    res = `interface ${head} {\n${res}\n}`
+    return res
 }
 export default main

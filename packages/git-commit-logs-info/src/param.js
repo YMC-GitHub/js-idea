@@ -10,7 +10,7 @@ function param() {
             desc: 'the file path of output'
         },
         {
-            name: '--',
+            name: '--n',
             type: 'number',
             value: 1,
             desc: 'the number of git log'

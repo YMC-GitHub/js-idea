@@ -6,8 +6,8 @@
  * @returns {string}
  */
 function formatText(text, prefix = '', count = 2) {
-  const res = Array.isArray(text) ? text : [text]
-  return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
+    const res = Array.isArray(text) ? text : [text]
+    return res.join('\n').replace(/^/gim, Array(count).fill(prefix).join(''))
 }
 /**
  *  get param name - short or long - in name
@@ -15,11 +15,11 @@ function formatText(text, prefix = '', count = 2) {
  * @returns {string}
  */
 function getParamName(name) {
-  const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
-  // 'hasLong' is assigned a value but never used
-  const thelong = s.length > 1 ? s : l
-  // thelong = camelize(thelong)
-  return thelong
+    const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, ''))
+    // 'hasLong' is assigned a value but never used
+    const thelong = s.length > 1 ? s : l
+    // thelong = camelize(thelong)
+    return thelong
 }
 
 /**
@@ -29,7 +29,7 @@ function getParamName(name) {
  * @returns {string}
  */
 function getAlignByKeys(align, keys) {
-  return keys.map(() => align).join('|')
+    return keys.map(() => align).join('|')
 }
 
 /**
@@ -39,7 +39,7 @@ function getAlignByKeys(align, keys) {
  * @returns {string}
  */
 function getBodyByKeys(data, keys) {
-  return data.map(v => keys.map(k => v[k]).join('|')).join('\n')
+    return data.map(v => keys.map(k => v[k]).join('|')).join('\n')
 }
 /**
  * get table
@@ -47,12 +47,12 @@ function getBodyByKeys(data, keys) {
  * @returns
  */
 function getTable(data) {
-  const { title, head, thAlign, body } = data
-  let res
-  res = `${title}\n${head}\n${thAlign}\n${body}`
-  res = res.trim()
-  res = `${res}\n\n`
-  return res
+    const { title, head, thAlign, body } = data
+    let res
+    res = `${title}\n${head}\n${thAlign}\n${body}`
+    res = res.trim()
+    res = `${res}\n\n`
+    return res
 }
 
 function noop() {}

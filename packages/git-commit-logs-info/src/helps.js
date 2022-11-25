@@ -12,18 +12,18 @@ const { log } = console
  * @returns
  */
 function getLibNameFromPath(wkd, option = {}) {
-  let res = basename(wkd)
-  const opt = {
-    trim: true,
-    ...option
-  }
-  if (opt.trim) {
-    res = res.trim()
-  }
-  if (opt.camelize) {
-    res = camelize(res)
-  }
-  return res
+    let res = basename(wkd)
+    const opt = {
+        trim: true,
+        ...option
+    }
+    if (opt.trim) {
+        res = res.trim()
+    }
+    if (opt.camelize) {
+        res = camelize(res)
+    }
+    return res
 }
 
 /**
@@ -32,7 +32,7 @@ function getLibNameFromPath(wkd, option = {}) {
  * @returns
  */
 function getPackagesLocFromPath(wkd) {
-  return dirname(wkd)
+    return dirname(wkd)
 }
 
 /**
@@ -43,18 +43,18 @@ function getPackagesLocFromPath(wkd) {
  * @returns {string}
  */
 function getFailOrDone(cond, done = 'done', fail = 'fail') {
-  // get fail or done
-  let state = fail
-  if (cond) {
-    state = done
-  }
-  return state
+    // get fail or done
+    let state = fail
+    if (cond) {
+        state = done
+    }
+    return state
 }
 
 /* eslint-disable no-shadow */
 async function pnpm(cmd, execOpts) {
-  const { stdout } = await exec(cmd, execOpts)
-  return stdout
+    const { stdout } = await exec(cmd, execOpts)
+    return stdout
 }
 /* eslint-enable no-shadow */
 
@@ -64,22 +64,22 @@ async function pnpm(cmd, execOpts) {
  * @param {{}} option
  */
 function getObjOnlyDefinedKeys(option = {}) {
-  const res = {}
-  Object.keys(option).forEach(v => {
-    if (option[v] !== undefined) {
-      res[v] = option[v]
-    }
-  })
-  return res
+    const res = {}
+    Object.keys(option).forEach(v => {
+        if (option[v] !== undefined) {
+            res[v] = option[v]
+        }
+    })
+    return res
 }
 export {
-  log,
-  getLibNameFromPath,
-  getPackagesLocFromPath,
-  exec,
-  execOpts,
-  jsonstream,
-  getFailOrDone,
-  pnpm,
-  getObjOnlyDefinedKeys
+    log,
+    getLibNameFromPath,
+    getPackagesLocFromPath,
+    exec,
+    execOpts,
+    jsonstream,
+    getFailOrDone,
+    pnpm,
+    getObjOnlyDefinedKeys
 }

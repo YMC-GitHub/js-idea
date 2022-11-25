@@ -1,29 +1,29 @@
 /* eslint-disable no-unused-vars,import/extensions */
 import {
-  extendStringPrototype,
-  humanize,
-  slugify,
-  dasherize,
-  camelize,
-  underscoped,
-  classify,
-  swapCase,
-  capitialize,
-  sentence,
-  titleize,
-  padStartString,
-  padStart,
-  padEndString,
-  padEnd
+    extendStringPrototype,
+    humanize,
+    slugify,
+    dasherize,
+    camelize,
+    underscoped,
+    classify,
+    swapCase,
+    capitialize,
+    sentence,
+    titleize,
+    padStartString,
+    padStart,
+    padEndString,
+    padEnd
 } from './enhance.js'
 
 const { log } = console
 let test = log
 function expectString(input, ouput) {
-  // log(`actual:${input} expect:${ouput} : ${input===ouput}`)
-  if (input !== ouput) {
-    log(`actual:${input} expect:${ouput} : ${input === ouput}`)
-  }
+    // log(`actual:${input} expect:${ouput} : ${input===ouput}`)
+    if (input !== ouput) {
+        log(`actual:${input} expect:${ouput} : ${input === ouput}`)
+    }
 }
 expectString(humanize('per_page'), 'Per page')
 expectString(humanize('per-page'), 'Per page')

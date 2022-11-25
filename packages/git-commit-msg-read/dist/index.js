@@ -94,14 +94,15 @@ class Store {
     }
 
     getTpl(tpl, options = {}) {
+        let res = tpl;
         let option = {
             ...options,
             ...this.options
         };
         if (option.n) {
-            tpl = `${tpl} -n ${option.n}`;
+            res = `${tpl} -n ${option.n}`;
         }
-        return tpl
+        return res
     }
 
     /**

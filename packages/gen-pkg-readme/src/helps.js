@@ -4,7 +4,7 @@ import { writeFileSync, readFileSync } from 'fs'
 import { magicGetTagRegexp } from '@ymc/tpl-exp/src/help'
 
 function isString(s) {
-  return typeof s === 'string'
+    return typeof s === 'string'
 }
 function donothing() {}
 const { log } = console
@@ -16,14 +16,14 @@ const { log } = console
  * @returns {string}
  */
 function readTextSync(loc, def = '') {
-  let text
-  try {
-    text = readFileSync(loc)
-    text = text.toString()
-  } catch (error) {
-    text = def
-  }
-  return text
+    let text
+    try {
+        text = readFileSync(loc)
+        text = text.toString()
+    } catch (error) {
+        text = def
+    }
+    return text
 }
 /**
  * write text file sync
@@ -31,11 +31,11 @@ function readTextSync(loc, def = '') {
  * @param {string} def
  */
 function writeTextSync(loc, def = '') {
-  try {
-    writeFileSync(loc, def)
-  } catch (error) {
-    donothing()
-  }
+    try {
+        writeFileSync(loc, def)
+    } catch (error) {
+        donothing()
+    }
 }
 // @ymc/write-text-sync
 
@@ -47,14 +47,14 @@ function writeTextSync(loc, def = '') {
  * @returns
  */
 function readJsonSync(loc, def = {}) {
-  let data
-  try {
-    data = readFileSync(loc)
-    data = JSON.parse(data)
-  } catch (error) {
-    data = def
-  }
-  return data
+    let data
+    try {
+        data = readFileSync(loc)
+        data = JSON.parse(data)
+    } catch (error) {
+        data = def
+    }
+    return data
 }
 
 // @ymc/load-tpl
@@ -72,7 +72,7 @@ const getTmpLocByName = (name = 'readme', loc = '.') => `${loc}/${name}.tmp.md`
  * @returns {regexp}
  */
 function getTplExpRegByName(name, openLabel = '{{', closeLabel = '}}') {
-  return magicGetTagRegexp(name, { openLabel, closeLabel })
+    return magicGetTagRegexp(name, { openLabel, closeLabel })
 }
 
 // @ymc/readme-render-help,@ymc/define-readme-render
@@ -83,37 +83,37 @@ function getTplExpRegByName(name, openLabel = '{{', closeLabel = '}}') {
  * @returns {(text:string,data:{})=>string}
  */
 function defineRender(name, options = {}) {
-  return (text = '', data = '') => {
-    const opt = isString(options) ? { tpl: options } : options
-    const option = {
-      tpl: '',
-      joinMode: 'foot',
-      ...opt
-    }
-    let res = text
-    const reg = getTplExpRegByName(name)
-    const hasExpInTpl = reg.test(res)
+    return (text = '', data = '') => {
+        const opt = isString(options) ? { tpl: options } : options
+        const option = {
+            tpl: '',
+            joinMode: 'foot',
+            ...opt
+        }
+        let res = text
+        const reg = getTplExpRegByName(name)
+        const hasExpInTpl = reg.test(res)
 
-    if (!hasExpInTpl) {
-      // if (option.joinMode.toLowerCase() === 'head') {
-      //     res = `${option.tpl}\n${res}\n`
-      // } else {
-      //     res = `${res}\n${option.tpl}`
-      // }
-      res = option.tpl
+        if (!hasExpInTpl) {
+            // if (option.joinMode.toLowerCase() === 'head') {
+            //     res = `${option.tpl}\n${res}\n`
+            // } else {
+            //     res = `${res}\n${option.tpl}`
+            // }
+            res = option.tpl
+        }
+        res = res.replace(reg, data)
+        return res
     }
-    res = res.replace(reg, data)
-    return res
-  }
 }
 
 export {
-  log,
-  readTextSync,
-  writeTextSync,
-  readJsonSync,
-  getTplLocByName,
-  getTmpLocByName,
-  getTplExpRegByName,
-  defineRender
+    log,
+    readTextSync,
+    writeTextSync,
+    readJsonSync,
+    getTplLocByName,
+    getTmpLocByName,
+    getTplExpRegByName,
+    defineRender
 }

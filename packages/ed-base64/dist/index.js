@@ -105,19 +105,6 @@ function shuffle(array) {
     return cache
 }
 
-/**
- * binary-format to base64-format - with Buffer.from
- * @param {string} text
- * @returns
- */
-const btoa = text => Buffer.from(text, 'binary').toString('base64');
-/**
- * base64-format to binary-format - with Buffer.from
- * @param {string} base64
- * @returns
- */
-const atob = base64 => Buffer.from(base64, 'base64').toString('binary');
-
 const CODE_EXPRESSION = /%([0-9A-F]{2})/g;
 
 /**
@@ -229,7 +216,7 @@ function getUnit16FromUnit8(text) {
 
 /*eslint-disable */
 
-function encode$2(string) {
+function encodeUtf8(string) {
     let utftext = '';
     string = string.replace(/\r\n/g, '\n');
     // idea:
@@ -252,7 +239,7 @@ function encode$2(string) {
     return utftext
 }
 
-function decode$2(utftext) {
+function decodeUtf8(utftext) {
     let string = '';
     let i = 0;
     let c;
@@ -292,7 +279,7 @@ const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
  * @param {string} map
  * @returns
  */
-function encode$1(text, map) {
+function encodeBase64(text, map) {
     const base64Code = map || chars;
     let res = '';
     let i = 0;
@@ -339,7 +326,7 @@ function encode$1(text, map) {
  * @param {string} map
  * @returns
  */
-function decode$1(text, map) {
+function decodeBase64(text, map) {
     let output = '';
     let chr1;
     let chr2;
@@ -392,7 +379,7 @@ function randomKeys() {
  */
 function encode(text) {
     // return getBase64FromBinary(encodeUri(text))
-    return encode$1(encodeUri(text))
+    return encodeBase64(encodeUri(text))
 }
 /**
  *
@@ -401,7 +388,7 @@ function encode(text) {
  */
 function decode(base64) {
     // return decodeUri(getBinaryFromBase64(base64))
-    return decodeUri(decode$1(base64))
+    return decodeUri(decodeBase64(base64))
 }
 
-export { decode, decode$1 as decodeBase64, getUnit8FromUnit16 as decodeUnit16, decodeUri, decode$2 as decodeUtf8, encode, encode$1 as encodeBase64, getUnit16FromUnit8 as encodeUnit16, encodeUri, encode$2 as encodeUtf8, btoa as getBase64FromBinary, atob as getBinaryFromBase64, randomKeys };
+export { decode, decodeBase64, getUnit8FromUnit16 as decodeUnit16, decodeUri, decodeUtf8, encode, encodeBase64, getUnit16FromUnit8 as encodeUnit16, encodeUri, encodeUtf8, randomKeys };

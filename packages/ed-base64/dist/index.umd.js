@@ -112,21 +112,6 @@
       return cache;
     }
 
-    /**
-     * binary-format to base64-format - with Buffer.from
-     * @param {string} text
-     * @returns
-     */
-    const btoa = text => Buffer.from(text, 'binary').toString('base64');
-    /**
-     * base64-format to binary-format - with Buffer.from
-     * @param {string} base64
-     * @returns
-     */
-
-
-    const atob = base64 => Buffer.from(base64, 'base64').toString('binary');
-
     const CODE_EXPRESSION = /%([0-9A-F]{2})/g;
     /**
      * get char from hex code
@@ -251,7 +236,7 @@
     } // method alias
 
     /*eslint-disable */
-    function encode$2(string) {
+    function encodeUtf8(string) {
       let utftext = '';
       string = string.replace(/\r\n/g, '\n'); // idea:
       // put-eol
@@ -274,7 +259,7 @@
       return utftext;
     }
 
-    function decode$2(utftext) {
+    function decodeUtf8(utftext) {
       let string = '';
       let i = 0;
       let c;
@@ -314,7 +299,7 @@
      * @returns
      */
 
-    function encode$1(text, map) {
+    function encodeBase64(text, map) {
       const base64Code = map || chars;
       let res = '';
       let i = 0;
@@ -366,7 +351,7 @@
      * @returns
      */
 
-    function decode$1(text, map) {
+    function decodeBase64(text, map) {
       let output = '';
       let chr1;
       let chr2;
@@ -426,7 +411,7 @@
 
     function encode(text) {
       // return getBase64FromBinary(encodeUri(text))
-      return encode$1(encodeUri(text));
+      return encodeBase64(encodeUri(text));
     }
     /**
      *
@@ -437,21 +422,19 @@
 
     function decode(base64) {
       // return decodeUri(getBinaryFromBase64(base64))
-      return decodeUri(decode$1(base64));
+      return decodeUri(decodeBase64(base64));
     }
 
     exports.decode = decode;
-    exports.decodeBase64 = decode$1;
+    exports.decodeBase64 = decodeBase64;
     exports.decodeUnit16 = getUnit8FromUnit16;
     exports.decodeUri = decodeUri;
-    exports.decodeUtf8 = decode$2;
+    exports.decodeUtf8 = decodeUtf8;
     exports.encode = encode;
-    exports.encodeBase64 = encode$1;
+    exports.encodeBase64 = encodeBase64;
     exports.encodeUnit16 = getUnit16FromUnit8;
     exports.encodeUri = encodeUri;
-    exports.encodeUtf8 = encode$2;
-    exports.getBase64FromBinary = btoa;
-    exports.getBinaryFromBase64 = atob;
+    exports.encodeUtf8 = encodeUtf8;
     exports.randomKeys = randomKeys;
 
     Object.defineProperty(exports, '__esModule', { value: true });

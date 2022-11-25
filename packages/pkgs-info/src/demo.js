@@ -13,24 +13,24 @@ const { log } = console
  * ```
  */
 function getArgs(def = './packages/noop') {
-  const args = process.argv.slice(2)
-  if (args.length === 0) args[0] = def
-  return args
+    const args = process.argv.slice(2)
+    if (args.length === 0) args[0] = def
+    return args
 }
 
 async function main() {
-  const args = getArgs()
-  const wkd = args[0] ? args[0] : './packages,./private-pkgs'
+    const args = getArgs()
+    const wkd = args[0] ? args[0] : './packages,./private-pkgs'
 
-  const option = { packagesLoc: wkd, storeAt: './pkgs-info.json' }
-  // log('[task] pull pkgs data')
-  // await pullPkgsInfo(option)
-  log('[task] code pkgs data')
+    const option = { packagesLoc: wkd, storeAt: './pkgs-info.json' }
+    // log('[task] pull pkgs data')
+    // await pullPkgsInfo(option)
+    log('[task] code pkgs data')
 
-  await codePkgsInfo(option)
-  log('[task] push pkgs data')
+    await codePkgsInfo(option)
+    log('[task] push pkgs data')
 
-  await pushPkgsInfo({ storeAt: option.storeAt })
+    await pushPkgsInfo({ storeAt: option.storeAt })
 }
 main()
 

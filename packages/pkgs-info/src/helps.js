@@ -17,18 +17,18 @@ const { log } = console
  * @returns
  */
 function getLibNameFromPath(wkd, option = {}) {
-  let res = basename(wkd)
-  const opt = {
-    trim: true,
-    ...option
-  }
-  if (opt.trim) {
-    res = res.trim()
-  }
-  if (opt.camelize) {
-    res = camelize(res)
-  }
-  return res
+    let res = basename(wkd)
+    const opt = {
+        trim: true,
+        ...option
+    }
+    if (opt.trim) {
+        res = res.trim()
+    }
+    if (opt.camelize) {
+        res = camelize(res)
+    }
+    return res
 }
 
 /**
@@ -37,7 +37,7 @@ function getLibNameFromPath(wkd, option = {}) {
  * @returns
  */
 function getPackagesLocFromPath(wkd) {
-  return dirname(wkd)
+    return dirname(wkd)
 }
 
 /**
@@ -46,22 +46,22 @@ function getPackagesLocFromPath(wkd) {
  * @returns {{modifiedAt:string,createdAt}}
  */
 function getFileDatedAt(loc) {
-  // log(`[info] get created_at, modified_at`)
-  const stat = statSync(loc)
-  const { birthtime: created, mtime: modifedData_at, ctime: modifiedStat_at } = stat
-  let modified = [modifedData_at, modifiedStat_at]
-  // https://futurestud.io/tutorials/node-js-get-a-files-created-date
-  modified = modified.sort((a, b) => new Date(b) - new Date(a))
+    // log(`[info] get created_at, modified_at`)
+    const stat = statSync(loc)
+    const { birthtime: created, mtime: modifedData_at, ctime: modifiedStat_at } = stat
+    let modified = [modifedData_at, modifiedStat_at]
+    // https://futurestud.io/tutorials/node-js-get-a-files-created-date
+    modified = modified.sort((a, b) => new Date(b) - new Date(a))
 
-  // .formatDate(`yyyy-MM-dd`)
+    // .formatDate(`yyyy-MM-dd`)
 
-  // log(
-  //     `b:${formatDate('yyyy-MM-dd', new Date(created))} m:${formatDate(
-  //         'yyyy-MM-dd',
-  //         new Date(modifedData_at)
-  //     )} c:${formatDate('yyyy-MM-dd', new Date(modifiedStat_at))} loc:${loc}`
-  // )
-  return { modifiedAt: modified[0], createdAt: created }
+    // log(
+    //     `b:${formatDate('yyyy-MM-dd', new Date(created))} m:${formatDate(
+    //         'yyyy-MM-dd',
+    //         new Date(modifedData_at)
+    //     )} c:${formatDate('yyyy-MM-dd', new Date(modifiedStat_at))} loc:${loc}`
+    // )
+    return { modifiedAt: modified[0], createdAt: created }
 }
 
 /**
@@ -69,46 +69,44 @@ function getFileDatedAt(loc) {
  * @returns {pkginfo}
  */
 async function getPkgInfo(options = {}) {
-  const option = {
-    wkd: './private-pkgs/noop',
-    ...options
-  }
-  const libname = getLibNameFromPath(option.wkd)
-  const libdir = getPackagesLocFromPath(option.wkd)
+    const option = {
+        wkd: './private-pkgs/noop',
+        ...options
+    }
+    const libname = getLibNameFromPath(option.wkd)
+    const libdir = getPackagesLocFromPath(option.wkd)
 
-  const loc = `${libdir}/${libname}/package.json`
-  jsonstream.init(loc)
-  const data = await jsonstream.read({})
+    const loc = `${libdir}/${libname}/package.json`
+    jsonstream.init(loc)
+    const data = await jsonstream.read({})
 
-  // log(`[info] get name,desciption`)
-  const { name, description } = data
-  // log(libname, libdir)
-  // log(data)
-  let modified_at = []
-  let created_at = []
+    // log(`[info] get name,desciption`)
+    const { name, description } = data
+    // log(libname, libdir)
+    // log(data)
+    let modified_at = []
+    let created_at = []
 
-  const list = [`${libdir}/${libname}/package.json`, `${libdir}/${libname}/src/index.js`]
-  list
-    .filter(v => existsSync(v))
-    .forEach(v => {
-      const { modifiedAt, createdAt } = getFileDatedAt(v)
-      modified_at.push(modifiedAt)
-      created_at.push(createdAt)
+    const list = [`${libdir}/${libname}/package.json`, `${libdir}/${libname}/src/index.js`]
+    list.filter(v => existsSync(v)).forEach(v => {
+        const { modifiedAt, createdAt } = getFileDatedAt(v)
+        modified_at.push(modifiedAt)
+        created_at.push(createdAt)
     })
-  // .flat(Infinity)
+    // .flat(Infinity)
 
-  modified_at = modified_at.sort((a, b) => new Date(b) - new Date(a))
-  created_at = created_at.sort((a, b) => new Date(a) - new Date(b))
-  ;[modified_at] = modified_at
-  ;[created_at] = created_at
+    modified_at = modified_at.sort((a, b) => new Date(b) - new Date(a))
+    created_at = created_at.sort((a, b) => new Date(a) - new Date(b))
+    ;[modified_at] = modified_at
+    ;[created_at] = created_at
 
-  return {
-    name,
-    description,
-    created_at,
-    modified_at,
-    loc
-  }
+    return {
+        name,
+        description,
+        created_at,
+        modified_at,
+        loc
+    }
 }
 
 /**
@@ -117,28 +115,28 @@ async function getPkgInfo(options = {}) {
  * @returns {{wkd:stirng,libname:string,packagesLoc:string}[]}
  */
 async function getPkgLocListInDir(options = {}) {
-  const option = {
-    packagesLoc: ['packages'],
-    split: ',',
-    ...options
-  }
-  // log(`[info] get pkg loc list`)
+    const option = {
+        packagesLoc: ['packages'],
+        split: ',',
+        ...options
+    }
+    // log(`[info] get pkg loc list`)
 
-  // feat: split string to array when packagesLoc is string
-  const dirs = Array.isArray(option.packagesLoc) ? option.packagesLoc : option.packagesLoc.split(option.split)
-  let list = dirs
-    .map(dir =>
-      readdirSync(dir).map(name => ({
-        wkd: `${dir}/${name}`,
-        libname: name,
-        packagesLoc: dir
-        // libdir: dir
-      }))
-    )
-    .flat(Infinity)
-  // feat: only diretory
-  list = list.filter(opt => statSync(opt.wkd).isDirectory())
-  return list
+    // feat: split string to array when packagesLoc is string
+    const dirs = Array.isArray(option.packagesLoc) ? option.packagesLoc : option.packagesLoc.split(option.split)
+    let list = dirs
+        .map(dir =>
+            readdirSync(dir).map(name => ({
+                wkd: `${dir}/${name}`,
+                libname: name,
+                packagesLoc: dir
+                // libdir: dir
+            }))
+        )
+        .flat(Infinity)
+    // feat: only diretory
+    list = list.filter(opt => statSync(opt.wkd).isDirectory())
+    return list
 }
 
 export { log, jsonstream, chaintask, getPkgInfo, getPkgLocListInDir }

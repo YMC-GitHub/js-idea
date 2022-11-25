@@ -2,7 +2,7 @@
 import './type'
 
 function oneOf(s, list) {
-  return list.some(v => v === s)
+    return list.some(v => v === s)
 }
 /**
  * get special char regexp with special str
@@ -15,19 +15,19 @@ function oneOf(s, list) {
  * ```
  */
 const getSpecialCharsReg = (s, o = 'ig') => {
-  let list = s.split('')
-  list = list.map(v => {
-    if (oneOf(v, ['{', '}'])) {
-      return v
-    }
-    if (oneOf(v, '[]()'.split(''))) {
-      return `\\${v}`
-    }
-    return v
-  })
-  list = list.map(v => `(${v})`).join('|')
-  list = new RegExp(`${list}`, o)
-  return list
+    let list = s.split('')
+    list = list.map(v => {
+        if (oneOf(v, ['{', '}'])) {
+            return v
+        }
+        if (oneOf(v, '[]()'.split(''))) {
+            return `\\${v}`
+        }
+        return v
+    })
+    list = list.map(v => `(${v})`).join('|')
+    list = new RegExp(`${list}`, o)
+    return list
 }
 
 const specialCharsReg = /({|})|(\[|\])|(\(|\))/gi // ok
@@ -56,19 +56,19 @@ const excapeSpecialChar = (s, scr = specialCharsReg) => s.replace(scr, '\\$&')
  * @returns {regexp}
  */
 const getTagRegexp = (name, options = {}) => {
-  const option = {
-    regexpOption: 'ig',
-    // excapeSpecialChars: true,
-    // specialCharsReg: specialCharsReg,
-    ...options
-  }
-  let { openLabel: s, closeLabel: e, regexpOption: o } = option
-  if (option.excapeSpecialChars) {
-    // let scr = option.specialCharsReg ? option.specialCharsReg : 'ig'
-    s = excapeSpecialChar(s, option.specialCharsReg)
-    e = excapeSpecialChar(e, option.specialCharsReg)
-  }
-  return new RegExp(`${s}${name}${e}`, o)
+    const option = {
+        regexpOption: 'ig',
+        // excapeSpecialChars: true,
+        // specialCharsReg: specialCharsReg,
+        ...options
+    }
+    let { openLabel: s, closeLabel: e, regexpOption: o } = option
+    if (option.excapeSpecialChars) {
+        // let scr = option.specialCharsReg ? option.specialCharsReg : 'ig'
+        s = excapeSpecialChar(s, option.specialCharsReg)
+        e = excapeSpecialChar(e, option.specialCharsReg)
+    }
+    return new RegExp(`${s}${name}${e}`, o)
 }
 
 /**
@@ -78,12 +78,12 @@ const getTagRegexp = (name, options = {}) => {
  * @returns {regexp}
  */
 const magicGetTagRegexp = (name, options = {}) => {
-  const option = {
-    excapeSpecialChars: true,
-    specialCharsReg,
-    ...options
-  }
-  return getTagRegexp(name, option)
+    const option = {
+        excapeSpecialChars: true,
+        specialCharsReg,
+        ...options
+    }
+    return getTagRegexp(name, option)
 }
 /**
  * get tpl expression

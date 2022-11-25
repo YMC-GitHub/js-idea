@@ -1,6 +1,6 @@
 /*eslint-disable */
 
-function encode(string) {
+function encodeUtf8(string) {
     let utftext = ''
     string = string.replace(/\r\n/g, '\n')
     // idea:
@@ -23,7 +23,7 @@ function encode(string) {
     return utftext
 }
 
-function decode(utftext) {
+function decodeUtf8(utftext) {
     let string = ''
     let i = 0
     let c
@@ -52,4 +52,5 @@ function decode(utftext) {
 
     return string
 }
-export { encode, decode, encode as encodeUtf8, decode as decodeUtf8 }
+
+export { encodeUtf8, decodeUtf8, encodeUtf8 as encode, decodeUtf8 as decode }

@@ -1,6 +1,6 @@
 import { getBase64Chars, shuffle } from './chore'
 
-import { getBase64FromBinary, getBinaryFromBase64 } from './transform/binary'
+// import { getBase64FromBinary, getBinaryFromBase64 } from './transform/binary'
 import { encodeUri, decodeUri } from './transform/uri'
 import { encodeUnit16, decodeUnit16 } from './transform/unit16'
 import { encodeUtf8, decodeUtf8 } from './transform/utf8'
@@ -41,8 +41,8 @@ export {
     decodeUnit16,
     encodeUtf8,
     decodeUtf8,
-    getBase64FromBinary,
-    getBinaryFromBase64,
+    // getBase64FromBinary,
+    // getBinaryFromBase64,
     randomKeys,
     encodeBase64,
     decodeBase64,

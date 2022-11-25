@@ -8,7 +8,7 @@ import { chars } from './bas64-chars'
  * @param {string} map
  * @returns
  */
-function decode(text, map) {
+function decodeBase64(text, map) {
     let output = ''
     let chr1
     let chr2
@@ -46,4 +46,4 @@ function decode(text, map) {
     } while (i < text.length)
     return output
 }
-export { decode, decode as decodeBase64 }
+export { decodeBase64, decodeBase64 as decode }

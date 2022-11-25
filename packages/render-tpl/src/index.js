@@ -5,12 +5,12 @@
  * @returns {Stringimport("typescript").LiteralLike}
  */
 function renderTpl(tpl, data) {
-  let res = tpl
-  Object.keys(data).forEach(key => {
-    const value = data[key]
-    res = res.replace(new RegExp(`{${key}}`, 'ig'), value)
-  })
-  return res
+    let res = tpl
+    Object.keys(data).forEach(key => {
+        const value = data[key]
+        res = res.replace(new RegExp(`{${key}}`, 'ig'), value)
+    })
+    return res
 }
 
 /**
@@ -24,10 +24,10 @@ function renderTpl(tpl, data) {
  * ```
  */
 function writeTpl(tpl, data) {
-  if (data) {
-    return renderTpl(tpl, data)
-  }
-  return v => renderTpl(tpl, v)
+    if (data) {
+        return renderTpl(tpl, data)
+    }
+    return v => renderTpl(tpl, v)
 }
 
 export { renderTpl, writeTpl }

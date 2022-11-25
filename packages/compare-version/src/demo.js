@@ -1,4 +1,5 @@
 import compare from './index'
+
 const { log } = console
 
 function infoPrefer(nodeversion, ver = '16.12.0') {
@@ -11,9 +12,10 @@ function infoPrefer(nodeversion, ver = '16.12.0') {
 
 function satisfies(ve1, ve2) {
     // let cps = `=,>,<,`
-    let cpsReg = /=|>|</
-    let matched = ve2.match(cpsReg)
-    let cp, v2
+    const cpsReg = /=|>|</
+    const matched = ve2.match(cpsReg)
+    let cp
+    let v2
     if (matched) {
         cp = matched[0]
         v2 = ve2.split(cpsReg)[1]
@@ -32,7 +34,7 @@ function satisfies(ve1, ve2) {
     return compare(ve1, ve2) >= 0
 }
 
-let nodeversion = process.version
+const nodeversion = process.version
 log(`[info] node version ${nodeversion}`)
 infoPrefer(nodeversion, '16.12.0')
 infoPrefer(nodeversion, '<16.12.0')

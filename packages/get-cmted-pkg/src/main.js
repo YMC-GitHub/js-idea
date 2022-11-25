@@ -16,7 +16,7 @@ function getLogInfo(enable) {
 }
 async function main(options = {}) {
     const option = {
-        out: `pkgs-cmted.tmp.json`,
+        out: 'pkgs-cmted.tmp.json',
         packageslocReg: /^packages\//,
         logInfo: false,
         logTask: false,
@@ -27,17 +27,17 @@ async function main(options = {}) {
     const loginfo = getLogInfo(option.logInfo)
     const logtask = getLogInfo(option.logTask)
 
-    logtask(`[task] read commited pkgs from gitlog`)
-    loginfo(`[info] read commited pkgs`)
+    logtask('[task] read commited pkgs from gitlog')
+    loginfo('[info] read commited pkgs')
     let pkgcmt
     pkgcmt = await rumcmd('git ls-tree --full-tree --name-only -r HEAD', execOpts)
     pkgcmt = pkgcmt.split(/\r?\n/).filter(v => v)
     pkgcmt = await getCmtedVcPkgNameInLoc({ files: pkgcmt, for: 'pkg-loc', packageslocReg })
     log(pkgcmt.join('\n'))
 
-    loginfo(`[info] save commited pkgs`)
+    loginfo('[info] save commited pkgs')
 
-    let loc = option.out
+    const loc = option.out
     jsonstream.init(loc)
     await jsonstream.write(pkgcmt)
     loginfo(`[info] out: ${loc}`)

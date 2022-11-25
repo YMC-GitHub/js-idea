@@ -6,7 +6,7 @@ function param() {
         {
             name: '--packages-loc-reg',
             type: 'regexp',
-            value: undefined, ///^packages\//,
+            value: undefined, /// ^packages\//,
             desc: 'the regexp of packages location'
         },
         {

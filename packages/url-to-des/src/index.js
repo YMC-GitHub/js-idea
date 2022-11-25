@@ -10,9 +10,9 @@
  * ```
  */
 function url2des(url, option = {}) {
-  let res = url
-  const { prefix } = option
-  if (prefix) res = res.replace(new RegExp(`.*${prefix}`), '')
-  return res
+    let res = url
+    const { prefix } = option
+    if (prefix) res = res.replace(new RegExp(`.*${prefix}`), '')
+    return res
 }
 export default url2des

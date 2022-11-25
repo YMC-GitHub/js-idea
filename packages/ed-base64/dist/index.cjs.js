@@ -7,6 +7,109 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+/* eslint-disable no-unused-vars,no-restricted-syntax */
+/**
+ * get text from asii range
+ * @param {number[]} range
+ * @returns {string[]}
+ * @sample
+ * ```
+ * fromCharCode([48,57])//0-9
+ * fromCharCode([65,90])//A-Z
+ * fromCharCode([97,121])//a-z
+ * ```
+ */
+
+function fromCharCode(range) {
+  const res = [];
+  const [s, e] = range;
+
+  for (let i = s; i <= e; i += 1) {
+    res.push(String.fromCharCode(i));
+  }
+
+  return res;
+} // bin,oct,dec,hex,..
+// base64
+
+/**
+ *
+ * @param {range[]} ranges
+ * @returns {string[]}
+ * @sample
+ * ```
+ * getCharsInRanges([[48,57],[65,90]],[97,121])
+ * ```
+ */
+
+function getCharsInRanges(ranges) {
+  const res = [];
+  ranges.forEach(range => {
+    res.push(fromCharCode(range));
+  });
+  return res.flat(Infinity);
+}
+/**
+ *
+ * @param {number[]} list
+ * @returns
+ */
+
+function getCharsInDiscrete(list) {
+  return list.map(v => String.fromCharCode(v));
+}
+/**
+ * get base64 chars - table
+ * @returns
+ * @sample
+ * ```
+ * getBase64Chars().join('')
+ * //ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./
+ * ```
+ */
+
+function getBase64Chars() {
+  // https://base64.guru/learn/base64-characters
+  // https://www.iana.org/assignments/character-sets/character-sets.xhtml
+  // letters,digits,symbols
+  // A-Z: [65,90]
+  // a-z: [97,122]
+  // 0-9: [48,57]
+  // +,/: 43,47
+  // .,/:46,47
+  const res = getCharsInRanges([[65, 90], [97, 122], [48, 57]]); // res.push(...getCharsInDiscrete([43, 47]))
+
+  res.push(...getCharsInDiscrete([46, 47]));
+  return res;
+}
+/**
+ * shuffle array - vs array.sort+Math.random
+ * @param {[]} array
+ * @returns {[]}
+ */
+
+function shuffle(array) {
+  const cache = [...array]; // Fisher–Yates
+
+  let j;
+  let x;
+  let i;
+  const len = cache.length;
+  const {
+    floor,
+    random
+  } = Math;
+
+  for (i = len; i; i -= 1) {
+    j = floor(random() * i);
+    x = cache[i - 1];
+    cache[i - 1] = cache[j];
+    cache[j] = x;
+  }
+
+  return cache;
+}
+
 /**
  * binary-format to base64-format - with Buffer.from
  * @param {string} text
@@ -19,10 +122,8 @@ const btoa = text => Buffer.from(text, 'binary').toString('base64');
  * @returns
  */
 
-const atob = base64 => Buffer.from(base64, 'base64').toString('binary'); // method alias
 
-const getBase64FromBinary$1 = btoa;
-const getBinaryFromBase64$1 = atob;
+const atob = base64 => Buffer.from(base64, 'base64').toString('binary');
 
 const CODE_EXPRESSION = /%([0-9A-F]{2})/g;
 /**
@@ -50,6 +151,7 @@ const encodeUri = text => {
  * @returns
  */
 
+
 const decodeUri = text => {
   let result = '';
 
@@ -67,8 +169,137 @@ const decodeUri = text => {
   return decodeURIComponent(result);
 }; // method alias
 
-const encodeUnicode$1 = encodeUri;
-const decodeUnicode$1 = decodeUri;
+// https://developer.mozilla.org/zh-CN/docs/Web/API/btoa
+// transfrom unit-16 text and unit8 text
+// convert a Unicode string to a string in which
+// each 16-bit unit occupies only one byte
+
+/**
+ *
+ * @param {string} text
+ * @returns
+ * @sample
+ * ```
+ * btoa(getUnit8FromUnit16("☸☹☺☻☼☾☿"))
+ * getBase64FromUnicode(getUnit8FromUnit16("☸☹☺☻☼☾☿"))
+ * ```
+ * @decsiption
+ * ```
+ * convert a Unicode string to a string in which
+ * each 16-bit unit occupies only one byte
+ * ## why?
+ * - [x] encode unit-16 text to unit8 text
+ * ## idea:
+ * - [x] unit-16 text -> Uint16Array -> Uint8Array -> unit-8 text
+ * ```
+ */
+function getUnit8FromUnit16(text) {
+  const codeUnits = new Uint16Array(text.length);
+
+  for (let i = 0; i < codeUnits.length; i += 1) {
+    codeUnits[i] = text.charCodeAt(i);
+  }
+
+  const charCodes = new Uint8Array(codeUnits.buffer);
+  let result = '';
+
+  for (let i = 0; i < charCodes.byteLength; i += 1) {
+    result += String.fromCharCode(charCodes[i]);
+  }
+
+  return result;
+}
+/**
+ *
+ * @param {string} text
+ * @returns
+ * @sample
+ * ```
+ * let encoded = btoa(getUnit8FromUnit16("☸☹☺☻☼☾☿")
+ * getUnit16FromUnit8(atob(encoded))
+ *
+ * encoded = getUnicodeFromBase64(getUnit8FromUnit16("☸☹☺☻☼☾☿")
+ * getUnit16FromUnit8(getUnicodeFromBase64(encoded))
+ * ```
+ * @decsiption
+ * ```
+ * ## why?
+ * - [x] decode unit-16 text from unit8 text
+ * ## idea:
+ * - [x] unit8-text -> Uint8Array -> Uint16Array -> unit-16 text
+ * ```
+ */
+
+
+function getUnit16FromUnit8(text) {
+  const bytes = new Uint8Array(text.length);
+
+  for (let i = 0; i < bytes.length; i += 1) {
+    bytes[i] = text.charCodeAt(i);
+  }
+
+  const charCodes = new Uint16Array(bytes.buffer);
+  let result = '';
+
+  for (let i = 0; i < charCodes.length; i += 1) {
+    result += String.fromCharCode(charCodes[i]);
+  }
+
+  return result;
+} // method alias
+
+/*eslint-disable */
+function encode$2(string) {
+  let utftext = '';
+  string = string.replace(/\r\n/g, '\n'); // idea:
+  // put-eol
+
+  for (let n = 0; n < string.length; n++) {
+    const c = string.charCodeAt(n);
+
+    if (c < 128) {
+      utftext += String.fromCharCode(c);
+    } else if (c > 127 && c < 2048) {
+      utftext += String.fromCharCode(c >> 6 | 192);
+      utftext += String.fromCharCode(c & 63 | 128);
+    } else {
+      utftext += String.fromCharCode(c >> 12 | 224);
+      utftext += String.fromCharCode(c >> 6 & 63 | 128);
+      utftext += String.fromCharCode(c & 63 | 128);
+    }
+  }
+
+  return utftext;
+}
+
+function decode$2(utftext) {
+  let string = '';
+  let i = 0;
+  let c;
+  let c2;
+  let c3;
+  c = c2 = 0;
+
+  while (i < utftext.length) {
+    c = utftext.charCodeAt(i);
+
+    if (c < 128) {
+      string += String.fromCharCode(c);
+      i++;
+    } else if (c > 191 && c < 224) {
+      c2 = utftext.charCodeAt(i + 1);
+      string += String.fromCharCode((c & 31) << 6 | c2 & 63);
+      i += 2;
+    } else {
+      c2 = utftext.charCodeAt(i + 1);
+      c3 = utftext.charCodeAt(i + 2);
+      string += String.fromCharCode((c & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+      i += 3;
+    }
+  }
+
+  return string;
+}
 
 /* eslint-disable  import/prefer-default-export */
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -178,109 +409,6 @@ function decode$1(text, map) {
   return output;
 }
 
-/* eslint-disable no-unused-vars,no-restricted-syntax */
-/**
- * get text from asii range
- * @param {number[]} range
- * @returns {string[]}
- * @sample
- * ```
- * fromCharCode([48,57])//0-9
- * fromCharCode([65,90])//A-Z
- * fromCharCode([97,121])//a-z
- * ```
- */
-
-function fromCharCode(range) {
-  const res = [];
-  const [s, e] = range;
-
-  for (let i = s; i <= e; i += 1) {
-    res.push(String.fromCharCode(i));
-  }
-
-  return res;
-} // bin,oct,dec,hex,..
-// base64
-
-/**
- *
- * @param {range[]} ranges
- * @returns {string[]}
- * @sample
- * ```
- * getCharsInRanges([[48,57],[65,90]],[97,121])
- * ```
- */
-
-function getCharsInRanges(ranges) {
-  const res = [];
-  ranges.forEach(range => {
-    res.push(fromCharCode(range));
-  });
-  return res.flat(Infinity);
-}
-/**
- *
- * @param {number[]} list
- * @returns
- */
-
-function getCharsInDiscrete(list) {
-  return list.map(v => String.fromCharCode(v));
-}
-/**
- * get base64 chars - table
- * @returns
- * @sample
- * ```
- * getBase64Chars().join('')
- * //ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./
- * ```
- */
-
-function getBase64Chars() {
-  // https://base64.guru/learn/base64-characters
-  // https://www.iana.org/assignments/character-sets/character-sets.xhtml
-  // letters,digits,symbols
-  // A-Z: [65,90]
-  // a-z: [97,122]
-  // 0-9: [48,57]
-  // +,/: 43,47
-  // .,/:46,47
-  const res = getCharsInRanges([[65, 90], [97, 122], [48, 57]]); // res.push(...getCharsInDiscrete([43, 47]))
-
-  res.push(...getCharsInDiscrete([46, 47]));
-  return res;
-}
-/**
- * shuffle array - vs array.sort+Math.random
- * @param {[]} array
- * @returns {[]}
- */
-
-function shuffle(array) {
-  const cache = [...array]; // Fisher–Yates
-
-  let j;
-  let x;
-  let i;
-  const len = cache.length;
-  const {
-    floor,
-    random
-  } = Math;
-
-  for (i = len; i; i -= 1) {
-    j = floor(random() * i);
-    x = cache[i - 1];
-    cache[i - 1] = cache[j];
-    cache[j] = x;
-  }
-
-  return cache;
-}
-
 function randomKeys() {
   let keys = getBase64Chars();
   keys = shuffle(keys).join('');
@@ -293,8 +421,10 @@ function randomKeys() {
  * @returns
  */
 
+
 function encode(text) {
-  return getBase64FromBinary(encodeUnicode(text));
+  // return getBase64FromBinary(encodeUri(text))
+  return encode$1(encodeUri(text));
 }
 /**
  *
@@ -302,16 +432,22 @@ function encode(text) {
  * @returns
  */
 
+
 function decode(base64) {
-  return decodeUnicode(getBinaryFromBase64(base64));
+  // return decodeUri(getBinaryFromBase64(base64))
+  return decodeUri(decode$1(base64));
 }
 
 exports.decode = decode;
 exports.decodeBase64 = decode$1;
-exports.decodeUnicode = decodeUnicode$1;
+exports.decodeUnit16 = getUnit8FromUnit16;
+exports.decodeUri = decodeUri;
+exports.decodeUtf8 = decode$2;
 exports.encode = encode;
 exports.encodeBase64 = encode$1;
-exports.encodeUnicode = encodeUnicode$1;
-exports.getBase64FromBinary = getBase64FromBinary$1;
-exports.getBinaryFromBase64 = getBinaryFromBase64$1;
+exports.encodeUnit16 = getUnit16FromUnit8;
+exports.encodeUri = encodeUri;
+exports.encodeUtf8 = encode$2;
+exports.getBase64FromBinary = btoa;
+exports.getBinaryFromBase64 = atob;
 exports.randomKeys = randomKeys;

@@ -1,6 +1,6 @@
 import { getBase64FromBinary, getBinaryFromBase64 } from './transform/binary'
-import { encodeUnicode, decodeUnicode } from './transform/uri'
-// import { encodeUnicode, decodeUnicode } from './transform/unit16'
+import { encodeUri, decodeUri } from './transform/uri'
+// import { encodeUnit16, decodeUnit16 } from './transform/unit16'
 
 /**
  *
@@ -8,7 +8,7 @@ import { encodeUnicode, decodeUnicode } from './transform/uri'
  * @returns
  */
 export function encode(text) {
-    return getBase64FromBinary(encodeUnicode(text))
+    return getBase64FromBinary(encodeUri(text))
 }
 /**
  *
@@ -16,5 +16,5 @@ export function encode(text) {
  * @returns
  */
 export function decode(base64) {
-    return decodeUnicode(getBinaryFromBase64(base64))
+    return decodeUri(getBinaryFromBase64(base64))
 }

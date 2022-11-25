@@ -10,7 +10,7 @@ import { chars } from './bas64-chars'
  * @param {string} map
  * @returns
  */
-export function encode(text, map) {
+function encode(text, map) {
     const base64Code = map || chars
     let res = ''
     let i = 0
@@ -49,3 +49,4 @@ export function encode(text, map) {
 
     return res
 }
+export { encode, encode as encodeBase64 }

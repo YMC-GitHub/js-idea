@@ -34,13 +34,13 @@ encode , decode base64
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 6.51kb | 2.25kb | 1.98kb
-dist/index.cjs.min.js | 2.02kb | 0.98kb | 0.87kb
-dist/index.esm.js | 6.77kb | 2.21kb | 1.94kb
-dist/index.esm.min.js | 1.93kb | 0.94kb | 0.86kb
-dist/index.js | 6.77kb | 2.21kb | 1.94kb
-dist/index.umd.js | 7.86kb | 2.44kb | 2.13kb
-dist/index.umd.min.js | 2.19kb | 1.08kb | 0.98kb
+dist/index.cjs.js | 9.54kb | 2.96kb | 2.58kb
+dist/index.cjs.min.js | 3.04kb | 1.25kb | 1.13kb
+dist/index.esm.js | 9.93kb | 2.90kb | 2.53kb
+dist/index.esm.min.js | 2.95kb | 1.22kb | 1.12kb
+dist/index.js | 9.93kb | 2.90kb | 2.53kb
+dist/index.umd.js | 11.34kb | 3.17kb | 2.76kb
+dist/index.umd.min.js | 3.19kb | 1.35kb | 1.23kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

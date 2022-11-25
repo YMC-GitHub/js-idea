@@ -13,7 +13,7 @@ const getCharFromHexCode = (part, hex) => String.fromCharCode(parseInt(hex, 16))
  * @param {string} text
  * @returns
  */
-export const encodeUri = text => {
+const encodeUri = text => {
     const safeText = encodeURIComponent(text)
     return safeText.replace(CODE_EXPRESSION, getCharFromHexCode)
 }
@@ -23,7 +23,7 @@ export const encodeUri = text => {
  * @param {string} text
  * @returns
  */
-export const decodeUri = text => {
+const decodeUri = text => {
     let result = ''
     for (let i = 0; i < text.length; i += 1) {
         const code = text.charCodeAt(i)
@@ -37,8 +37,9 @@ export const decodeUri = text => {
 }
 
 // method alias
-export const encodeUnicode = encodeUri
-export const decodeUnicode = decodeUri
+// export const encodeUnicode = encodeUri
+// export const decodeUnicode = decodeUri
 
-export const encode = encodeUri
-export const decode = encodeUri
+// export const encode = encodeUri
+// export const decode = encodeUri
+export { encodeUri, decodeUri, encodeUri as encode, decodeUri as decode }

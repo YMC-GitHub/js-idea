@@ -23,7 +23,7 @@
  * - [x] unit-16 text -> Uint16Array -> Uint8Array -> unit-8 text
  * ```
  */
-export function getUnit8FromUnit16(text) {
+function getUnit8FromUnit16(text) {
     const codeUnits = new Uint16Array(text.length)
     for (let i = 0; i < codeUnits.length; i += 1) {
         codeUnits[i] = text.charCodeAt(i)
@@ -56,7 +56,7 @@ export function getUnit8FromUnit16(text) {
  * - [x] unit8-text -> Uint8Array -> Uint16Array -> unit-16 text
  * ```
  */
-export function getUnit16FromUnit8(text) {
+function getUnit16FromUnit8(text) {
     const bytes = new Uint8Array(text.length)
     for (let i = 0; i < bytes.length; i += 1) {
         bytes[i] = text.charCodeAt(i)
@@ -70,8 +70,16 @@ export function getUnit16FromUnit8(text) {
 }
 
 // method alias
-export const encodeUnicode = getUnit8FromUnit16
-export const decodeUnicode = getUnit16FromUnit8
+// export const encodeUnicode = getUnit8FromUnit16
+// export const decodeUnicode = getUnit16FromUnit8
 
-export const encode = getUnit8FromUnit16
-export const decode = getUnit16FromUnit8
+// export const encode = getUnit8FromUnit16
+// export const decode = getUnit16FromUnit8
+export {
+    getUnit16FromUnit8,
+    getUnit8FromUnit16,
+    getUnit16FromUnit8 as encodeUnit16,
+    getUnit8FromUnit16 as decodeUnit16,
+    getUnit16FromUnit8 as encode,
+    getUnit8FromUnit16 as decode
+}

@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable max-len */
 /* eslint-disable no-use-before-define */
-
+/* eslint-disable  no-shadow */
 import { exec, execOpts } from '@ymc/run-bash'
 import { writeTpl } from '@ymc/render-tpl'
 import { store as gitlog } from '@ymc/git-commit-msg-read'
@@ -16,6 +16,7 @@ const { log } = console
 async function main() {
     let data
     let loc
+    let cmtedmsgs
 
     log('[task] filter msg for pkg')
     log('[task] make changelog with tpl')
@@ -26,9 +27,7 @@ async function main() {
     loc = 'gitlog-info.shim.tmp.json'
     jsonstream.init(loc)
     data = await jsonstream.read([])
-    cmtedmsgs = cmtedmsgs.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date)
-    })
+    cmtedmsgs = cmtedmsgs.sort((a, b) => new Date(b.date) - new Date(a.date))
     log(`[info] src: ${loc}`)
 
     log('[info] read pkglog')

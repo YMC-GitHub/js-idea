@@ -624,7 +624,7 @@
     * @license MIT
     */
 
-  /* eslint-disable prefer-const */
+  /* eslint-disable prefer-const,no-use-before-define */
   // https://nodejs.org/api/path.html
   // const path = {}
   // path.sep = '/'
@@ -656,6 +656,7 @@
     return res.replace(new RegExp(`${suffix}$`), '');
   }
 
+  /* eslint-disable func-names */
   const {
     log: log$1
   } = console;
@@ -733,8 +734,8 @@
     };
   }
 
-  //@ymc/git-commit-msg-template
-  //get-git-commit-msg-template
+  // @ymc/git-commit-msg-template
+  // get-git-commit-msg-template
 
   /**
    * get angular style commit-msg template
@@ -774,6 +775,8 @@
 
     return tpl;
   }
+
+  /* eslint-disable no-unused-vars */
 
   function pluginRootList(pluginOpt = {}) {
     return ctx => {
@@ -1061,7 +1064,7 @@
     }
 
     return res;
-  } //@ymc/render-cmted-msgs-to-pkg-changelog
+  } // @ymc/render-cmted-msgs-to-pkg-changelog
 
   /**
    * rendet data to changelog.md text
@@ -1150,7 +1153,8 @@
     return text.trim();
   }
 
-  /* eslint-disable no-unused-vars */
+  /* eslint-disable func-names */
+
   const {
     log
   } = console;
@@ -1170,10 +1174,9 @@
 
   async function main(options = {}) {
     const option = {
-      out: `pkgs-cmted.tmp.json`,
-      cmtedMsgsLoc: `gitlog-info.shim.tmp.json`,
-      cmtedPkgsLoc: `pkgs-cmted.tmp.json`,
-      changlogLoc: `CHANGELOG.md`,
+      cmtedMsgsLoc: 'gitlog-info.shim.tmp.json',
+      cmtedPkgsLoc: 'pkgs-cmted.tmp.json',
+      changlogLoc: 'CHANGELOG.md',
       outPkgs: true,
       logInfo: false,
       logTask: false,
@@ -1189,6 +1192,25 @@
     loc = option.cmtedMsgsLoc;
     jsonstream.init(loc);
     cmtedmsgs = await jsonstream.read([]);
+    cmtedmsgs = cmtedmsgs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    if (option.ignoreTypes) {
+      let ignoretypes = 'chore,tool,docs,style';
+      ignoretypes = option.ignoreTypes;
+      ignoretypes = ignoretypes.split(',');
+      cmtedmsgs = cmtedmsgs.filter(v => !ignoretypes.some(it => it === v.type));
+    }
+
+    if (option.ignoreSubjects) {
+      let ignoresubjects = 'put changelog,dbg markdown list';
+      ignoresubjects = option.ignoreSubjects;
+      ignoresubjects = ignoresubjects.split(','); // ignoresubjects.push('dbg markdown list')
+
+      cmtedmsgs = cmtedmsgs.filter(v => !ignoresubjects.some(it => it === v.subject));
+    } // put changelog
+    // dbg markdown list
+
+
     loginfo(`[info] src: ${loc}`); // log(cmtedmsgs)
 
     let cmtedpkgs;
@@ -1199,7 +1221,15 @@
     loginfo(`[info] src: ${loc}`);
     cmtedpkgs = cmtedpkgs.map(v => ({
       loc: v
-    })); // log(cmtedpkgs)
+    }));
+
+    if (option.onlyPkgs) {
+      let onlyPkgs = '';
+      onlyPkgs = option.onlyPkgs;
+      onlyPkgs = onlyPkgs.split(',');
+      cmtedpkgs = cmtedpkgs.filter(v => onlyPkgs.some(it => v.loc.indexOf(it) >= 0));
+    } // log(cmtedpkgs)
+
 
     loginfo('[info] write changelog');
     let pkgslogs = [];
@@ -1222,20 +1252,20 @@
         let txt = v.data; // txt = setTableStyle(txt)
 
         node_fs.writeFileSync(`${v.loc}/${option.changlogLoc}`, txt);
-        log(`[info] out: ${v.loc}/${option.changlogLoc}`);
+        log(`[info] out: ${v.loc}/${option.changlogLoc}`); // rmSync(`${v.loc}/CHANGELOD.md`)
       });
     }
 
     pkgslogs = pkgslogs.filter(v => v); // pkgslogs = pkgslogs.join(`\n`)
     // log(pkgslogs)
 
-    pkgslogs = pkgslogs.join('\n\n'); // pkgslogs = setTableStyle(pkgslogs)
+    pkgslogs = pkgslogs.map(v => v.data).join('\n\n'); // pkgslogs = setTableStyle(pkgslogs)
     // loginfo('[info] write root changelog')
 
     loc = option.changlogLoc;
     changelogfile.init(loc);
-    loginfo(`[info] out: ${loc}`);
-    await changelogfile.write(pkgslogs);
+    log(`[info] out: ${loc}`);
+    await changelogfile.write(pkgslogs); // rmSync(`CHANGELOD.md`)
   }
 
   return main;

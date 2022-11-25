@@ -34,13 +34,13 @@ ymc package gen-pkg-changelog
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 26.11kb | 6.03kb | 5.38kb
-dist/index.cjs.min.js | 10.40kb | 2.90kb | 2.63kb
-dist/index.esm.js | 16.22kb | 3.79kb | 3.38kb
-dist/index.esm.min.js | 5.45kb | 1.93kb | 1.77kb
-dist/index.js | 16.22kb | 3.79kb | 3.38kb
-dist/index.umd.js | 28.50kb | 6.27kb | 5.57kb
-dist/index.umd.min.js | 10.73kb | 3.01kb | 2.72kb
+dist/index.cjs.js | 27.10kb | 6.26kb | 5.58kb
+dist/index.cjs.min.js | 10.80kb | 3.03kb | 2.75kb
+dist/index.esm.js | 17.30kb | 4.04kb | 3.60kb
+dist/index.esm.min.js | 5.85kb | 2.07kb | 1.89kb
+dist/index.js | 17.30kb | 4.04kb | 3.60kb
+dist/index.umd.js | 29.53kb | 6.50kb | 5.77kb
+dist/index.umd.min.js | 11.13kb | 3.14kb | 2.85kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

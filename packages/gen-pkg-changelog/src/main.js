@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
 /* eslint-disable max-len */
@@ -51,9 +53,23 @@ async function main(options = {}) {
     loc = option.cmtedMsgsLoc
     jsonstream.init(loc)
     cmtedmsgs = await jsonstream.read([])
-    cmtedmsgs = cmtedmsgs.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date)
-    })
+    cmtedmsgs = cmtedmsgs.sort((a, b) => new Date(b.date) - new Date(a.date))
+    if (option.ignoreTypes) {
+        let ignoretypes = 'chore,tool,docs,style'
+        ignoretypes = option.ignoreTypes
+        ignoretypes = ignoretypes.split(',')
+        cmtedmsgs = cmtedmsgs.filter(v => !ignoretypes.some(it => it === v.type))
+    }
+    if (option.ignoreSubjects) {
+        let ignoresubjects = 'put changelog,dbg markdown list'
+        ignoresubjects = option.ignoreSubjects
+        ignoresubjects = ignoresubjects.split(',')
+        // ignoresubjects.push('dbg markdown list')
+        cmtedmsgs = cmtedmsgs.filter(v => !ignoresubjects.some(it => it === v.subject))
+    }
+
+    // put changelog
+    // dbg markdown list
     loginfo(`[info] src: ${loc}`)
     // log(cmtedmsgs)
 
@@ -66,6 +82,13 @@ async function main(options = {}) {
     cmtedpkgs = cmtedpkgs.map(v => ({
         loc: v
     }))
+    if (option.onlyPkgs) {
+        let onlyPkgs = ''
+        onlyPkgs = option.onlyPkgs
+        onlyPkgs = onlyPkgs.split(',')
+        cmtedpkgs = cmtedpkgs.filter(v => onlyPkgs.some(it => v.loc.indexOf(it) >= 0))
+    }
+
     // log(cmtedpkgs)
 
     loginfo('[info] write changelog')
@@ -96,7 +119,7 @@ async function main(options = {}) {
     // loginfo('[info] write root changelog')
     loc = option.changlogLoc
     changelogio.init(loc)
-    loginfo(`[info] out: ${loc}`)
+    log(`[info] out: ${loc}`)
     await changelogio.write(pkgslogs)
     // rmSync(`CHANGELOD.md`)
 }

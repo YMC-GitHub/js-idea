@@ -13,6 +13,8 @@ import { jsonstream } from '@ymc/json-stream-io';
 import { basename, dirname } from '@ymc/mock-path';
 import { readFileSync, writeFileSync } from 'node:fs';
 
+/* eslint-disable func-names */
+
 const { log: log$1 } = console;
 /**
  * get lib name with working dir
@@ -64,7 +66,7 @@ function readJsonSync(loc, def = {}) {
     return data
 }
 
-//@ymc/log-info
+// @ymc/log-info
 /**
  * get loginfo function
  * @param {boolean} enable
@@ -78,8 +80,8 @@ function getLogInfo$1(enable) {
     }
 }
 
-//@ymc/git-commit-msg-template
-//get-git-commit-msg-template
+// @ymc/git-commit-msg-template
+// get-git-commit-msg-template
 /**
  * get angular style commit-msg template
  * @param {{}} data
@@ -113,6 +115,8 @@ function getAngularStyleTpl(data) {
     }
     return tpl
 }
+
+/* eslint-disable no-unused-vars */
 
 function pluginRootList(pluginOpt = {}) {
     return ctx => {
@@ -399,7 +403,7 @@ function clihooks2array(s, options = {}) {
     }
     return res
 }
-//@ymc/render-cmted-msgs-to-pkg-changelog
+// @ymc/render-cmted-msgs-to-pkg-changelog
 /**
  * rendet data to changelog.md text
  * @param {[]} data
@@ -477,8 +481,8 @@ function render(data, options = {}) {
     return text.trim()
 }
 
-/* eslint-disable no-unused-vars */
-
+/* eslint-disable func-names */
+// import { rmSync } from 'fs'
 const { log } = console;
 
 /**
@@ -496,10 +500,9 @@ function getLogInfo(enable) {
 
 async function main(options = {}) {
     const option = {
-        out: `pkgs-cmted.tmp.json`,
-        cmtedMsgsLoc: `gitlog-info.shim.tmp.json`,
-        cmtedPkgsLoc: `pkgs-cmted.tmp.json`,
-        changlogLoc: `CHANGELOG.md`,
+        cmtedMsgsLoc: 'gitlog-info.shim.tmp.json',
+        cmtedPkgsLoc: 'pkgs-cmted.tmp.json',
+        changlogLoc: 'CHANGELOG.md',
         outPkgs: true,
         logInfo: false,
         logTask: false,
@@ -519,6 +522,23 @@ async function main(options = {}) {
     loc = option.cmtedMsgsLoc;
     jsonstream.init(loc);
     cmtedmsgs = await jsonstream.read([]);
+    cmtedmsgs = cmtedmsgs.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (option.ignoreTypes) {
+        let ignoretypes = 'chore,tool,docs,style';
+        ignoretypes = option.ignoreTypes;
+        ignoretypes = ignoretypes.split(',');
+        cmtedmsgs = cmtedmsgs.filter(v => !ignoretypes.some(it => it === v.type));
+    }
+    if (option.ignoreSubjects) {
+        let ignoresubjects = 'put changelog,dbg markdown list';
+        ignoresubjects = option.ignoreSubjects;
+        ignoresubjects = ignoresubjects.split(',');
+        // ignoresubjects.push('dbg markdown list')
+        cmtedmsgs = cmtedmsgs.filter(v => !ignoresubjects.some(it => it === v.subject));
+    }
+
+    // put changelog
+    // dbg markdown list
     loginfo(`[info] src: ${loc}`);
     // log(cmtedmsgs)
 
@@ -531,6 +551,13 @@ async function main(options = {}) {
     cmtedpkgs = cmtedpkgs.map(v => ({
         loc: v
     }));
+    if (option.onlyPkgs) {
+        let onlyPkgs = '';
+        onlyPkgs = option.onlyPkgs;
+        onlyPkgs = onlyPkgs.split(',');
+        cmtedpkgs = cmtedpkgs.filter(v => onlyPkgs.some(it => v.loc.indexOf(it) >= 0));
+    }
+
     // log(cmtedpkgs)
 
     loginfo('[info] write changelog');
@@ -549,18 +576,21 @@ async function main(options = {}) {
             // txt = setTableStyle(txt)
             writeFileSync(`${v.loc}/${option.changlogLoc}`, txt);
             log(`[info] out: ${v.loc}/${option.changlogLoc}`);
+            // rmSync(`${v.loc}/CHANGELOD.md`)
         });
     }
     pkgslogs = pkgslogs.filter(v => v);
     // pkgslogs = pkgslogs.join(`\n`)
     // log(pkgslogs)
-    pkgslogs = pkgslogs.join('\n\n');
+    pkgslogs = pkgslogs.map(v => v.data).join('\n\n');
+
     // pkgslogs = setTableStyle(pkgslogs)
     // loginfo('[info] write root changelog')
     loc = option.changlogLoc;
     changelogfile.init(loc);
-    loginfo(`[info] out: ${loc}`);
+    log(`[info] out: ${loc}`);
     await changelogfile.write(pkgslogs);
+    // rmSync(`CHANGELOD.md`)
 }
 
 export { main as default };

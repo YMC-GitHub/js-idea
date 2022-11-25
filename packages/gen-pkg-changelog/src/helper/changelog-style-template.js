@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-const */
+/* eslint-disable max-len */
+/* eslint-disable no-shadow */
 import getMsgTemplate from './get-git-commit-msg-template'
 
 function pluginRootList(pluginOpt = {}) {

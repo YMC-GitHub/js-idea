@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+
 import { exec, execOpts } from '@ymc/run-bash'
 import { camelize } from '@ymc/extend-string'
 import { jsonstream } from '@ymc/json-stream-io'

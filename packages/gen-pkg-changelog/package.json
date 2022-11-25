@@ -37,10 +37,15 @@
   "dependencies": {
     "@ymc/changlog-file-io": "workspace:^1.0.0",
     "@ymc/changlog-style": "workspace:^1.0.0",
+    "@ymc/cli-option": "workspace:^1.0.0",
+    "@ymc/cli-param": "workspace:^1.0.0",
+    "@ymc/cli-preset-param": "workspace:^1.0.0",
+    "@ymc/cli-runner": "workspace:^1.0.0",
     "@ymc/extend-string": "workspace:^1.0.0",
     "@ymc/git-commit-msg-read": "workspace:^1.0.0",
     "@ymc/json-stream-io": "workspace:^1.0.0",
     "@ymc/mock-path": "workspace:^1.0.0",
+    "@ymc/nano-parse": "workspace:^0.0.1",
     "@ymc/render-tpl": "workspace:^1.0.0",
     "@ymc/run-bash": "workspace:^0.0.3"
   }

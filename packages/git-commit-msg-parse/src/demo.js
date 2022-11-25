@@ -1,29 +1,30 @@
-/*eslint-disable max-len */
-import { parse, getIssueInFoot } from './index'
+/* eslint-disable max-len */
 import { jsonstream } from '@ymc/json-stream-io'
+import { parse, getIssueInFoot } from './index'
 
 const { log } = console
 async function main() {
-    let data, loc
+    let data
+    let loc
 
-    log(`[task] load gitlog`)
-    loc = `gitlog-info.tmp.json`
+    log('[task] load gitlog')
+    loc = 'gitlog-info.tmp.json'
     log(`[info] src: ${loc}`)
     jsonstream.init(loc)
     data = await jsonstream.read(data)
 
-    log(`[task] parse gitlog`)
+    log('[task] parse gitlog')
     data = data.map((item, index) => {
-        let { subject, body } = item
+        const { subject, body } = item
         const menifest = parse(subject[index], body[index])
-        let issue = getIssueInFoot(menifest.foot)
+        const issue = getIssueInFoot(menifest.foot)
         return {
             ...item,
             ...menifest,
             issue
         }
     })
-    loc = `gitlog-info.shim.tmp.json`
+    loc = 'gitlog-info.shim.tmp.json'
     jsonstream.init(loc)
     await jsonstream.write(data)
     log(`[info] out: ${loc}`)

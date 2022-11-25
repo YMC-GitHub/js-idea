@@ -13,27 +13,27 @@ const { log } = console
  * @returns {string}
  */
 function speedUpGithubByUrl(url, option = {}) {
-  let { map } = option
-  if (!map) {
-    map = [
-      ['https://github.com', 'https://hub.fastgit.xyz'],
-      ['https://raw.githubusercontent.com', 'https://raw.fastgit.org']
-    ]
-  }
-  if (option.infoProxy) {
-    log('[info] add prefix to matched url')
-    infoProxyDomainMap(map)
-  }
+    let { map } = option
+    if (!map) {
+        map = [
+            ['https://github.com', 'https://hub.fastgit.xyz'],
+            ['https://raw.githubusercontent.com', 'https://raw.fastgit.org']
+        ]
+    }
+    if (option.infoProxy) {
+        log('[info] add prefix to matched url')
+        infoProxyDomainMap(map)
+    }
 
-  // add prefix url when matched url
-  let res = url
-  if (res) {
-    map.forEach(item => {
-      const [doamin, proxyByDomain] = item
-      res = res.replace(new RegExp(`^${doamin}`, 'ig'), proxyByDomain)
-    })
-  }
-  return res
+    // add prefix url when matched url
+    let res = url
+    if (res) {
+        map.forEach(item => {
+            const [doamin, proxyByDomain] = item
+            res = res.replace(new RegExp(`^${doamin}`, 'ig'), proxyByDomain)
+        })
+    }
+    return res
 }
 
 /**
@@ -41,13 +41,13 @@ function speedUpGithubByUrl(url, option = {}) {
  * @param {proxyDomainMap} map
  */
 function infoProxyDomainMap(map) {
-  const res = map
-    .map(v => {
-      const [domain, proxyByDomain] = v
-      return `proxy:${proxyByDomain} domain:${domain}`
-    })
-    .join('\n')
-  log(res)
+    const res = map
+        .map(v => {
+            const [domain, proxyByDomain] = v
+            return `proxy:${proxyByDomain} domain:${domain}`
+        })
+        .join('\n')
+    log(res)
 }
 
 export { speedUpGithubByUrl as speedup, infoProxyDomainMap as infoProxy }

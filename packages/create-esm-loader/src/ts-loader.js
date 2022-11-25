@@ -1,9 +1,10 @@
 import ts from 'typescript'
+
 const tsLoader = {
     resolve(specifier, opts) {
         if (specifier.endsWith('.ts')) {
-            let { parentURL } = opts
-            let url = new URL(specifier, parentURL).href
+            const { parentURL } = opts
+            const url = new URL(specifier, parentURL).href
             return { url }
         }
     },
@@ -28,7 +29,7 @@ const tsLoader = {
 // refs:https://github.com/sebamarynissen/create-esm-loader#standalone-vs-composable-loaders
 export default tsLoader
 
-//https://github.com/brev/esm-loaders
+// https://github.com/brev/esm-loaders
 
 // used by 'create-esm-loader':
 // 1.x
@@ -39,6 +40,6 @@ export default tsLoader
 // import file from './file.ts'
 
 // 3.x
-//node --experimental-loader=node-esm-loader xx.js
-//NODE_OPTIONS="--loader node-esm-loader" node index.js
-//NODE_OPTIONS="--loader create-esm-loader" node index.js
+// node --experimental-loader=node-esm-loader xx.js
+// NODE_OPTIONS="--loader node-esm-loader" node index.js
+// NODE_OPTIONS="--loader create-esm-loader" node index.js

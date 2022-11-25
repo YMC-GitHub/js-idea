@@ -14,28 +14,28 @@ import { hasOwnProperty } from './helps'
  * ```
  */
 function normalize(loader) {
-    //1
+    // 1
     if (typeof loader === 'string') {
         return {
             loader,
             options: {}
         }
     }
-    //2
+    // 2
     if (hasOwnProperty(loader, 'loader')) {
         return {
             loader: loader.loader,
             options: { ...loader.options }
         }
     }
-    //3
+    // 3
     if (!hasOwnProperty(loader, 'hooks')) {
         return {
             hooks: loader,
             options: {}
         }
     }
-    //4
+    // 4
     return loader
 }
 export default normalize

@@ -24,7 +24,7 @@ class Loader {
     // options object separately.
     constructor(loaders = {}, options = {}) {
         /* eslint-disable no-param-reassign */
-        //idea: ressign loaders and options
+        // idea: ressign loaders and options
         if (hasOwnProperty(loaders, 'loaders')) {
             ;({ loaders, options = {} } = loaders)
         }
@@ -32,14 +32,14 @@ class Loader {
         this.options = options
         this.stack = null
 
-        //idea: loading
-        //build-stack -> resolve-this
+        // idea: loading
+        // build-stack -> resolve-this
         const loading = new Promise(async resolve => {
             this.stack = await this.buildStack(loaders)
             resolve(this)
         })
 
-        //idea: ready
+        // idea: ready
         // return-loading
         this.ready = () => loading
         /* eslint-enable no-param-reassign */
@@ -60,11 +60,11 @@ class Loader {
         // Our stack might still be building from the configuration objct, so
         // make sure to await it.
         /* eslint-disable no-restricted-syntax,no-await-in-loop */
-        //idea:
+        // idea:
         // get-fns,get-global-options
         // get-fn,get-fn-options,get-final-options
         // run-fn,return-fn-result-if-exists,run-default-fn-and-return
-        /**@type fns */
+        /** @type fns */
         const fns = this.stack[id] || []
         const baseOptions = { ...this.options }
         for (const { fn, options } of fns) {
@@ -118,7 +118,7 @@ class Loader {
 
         // Handling transformation is fundamentally different as we have to
         // chain results here.
-        //idea:
+        // idea:
         // get-fns-of-transform,get-global-options
         // get-fn,get-fn-options,get-final-options
         // run-fn,return-fn-result-if-exsits,run-default-fn-and-return
@@ -244,7 +244,7 @@ class Loader {
                 }
 
                 // Now start loading.
-                //import module  -> to-loader-definition -> normailize-definition
+                // import module  -> to-loader-definition -> normailize-definition
                 wait.push(
                     (async () => {
                         const module = await import(def.loader)

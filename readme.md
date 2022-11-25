@@ -17,6 +17,11 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/ed-unicode](./packages/ed-unicode/readme.md)|encode , decode unicode|2022-11-22
+[@ymc/ed-base64](./packages/ed-base64/readme.md)|encode , decode base64|2022-11-22
+[@ymc/pingyin](./packages/pingyin/readme.md)|ymc package pingyin|2022-11-17
+[@ymc/git-commit-logs-info](./packages/git-commit-logs-info/readme.md)|generate git-commit-logs to json-format info - ycs-fy|2022-11-16
+[@ymc/get-cmted-pkg](./packages/get-cmted-pkg/readme.md)|get commited packages in mono repo|2022-11-16
 [@ymc/write-json-sync](./packages/write-json-sync/readme.md)|write json file sync|2022-11-15
 [@ymc/read-json-sync](./packages/read-json-sync/readme.md)|read json file sync|2022-11-15
 [@ymc/download-file](./packages/download-file/readme.md)|ymc package download-file|2022-11-13

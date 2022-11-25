@@ -35,12 +35,12 @@ read git-commit-msg from git log
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
 dist/index.cjs.js | 15.95kb | 4.78kb | 4.32kb
-dist/index.cjs.min.js | 4.34kb | 1.87kb | 1.69kb
-dist/index.esm.js | 8.01kb | 2.21kb | 2.02kb
-dist/index.esm.min.js | 2.28kb | 1.02kb | 0.93kb
-dist/index.js | 8.01kb | 2.21kb | 2.02kb
+dist/index.cjs.min.js | 4.31kb | 1.86kb | 1.68kb
+dist/index.esm.js | 8.02kb | 2.21kb | 2.02kb
+dist/index.esm.min.js | 2.25kb | 1.01kb | 0.92kb
+dist/index.js | 8.02kb | 2.21kb | 2.02kb
 dist/index.umd.js | 17.57kb | 4.99kb | 4.49kb
-dist/index.umd.min.js | 4.62kb | 1.99kb | 1.79kb
+dist/index.umd.min.js | 4.59kb | 1.98kb | 1.79kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

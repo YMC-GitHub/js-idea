@@ -198,7 +198,7 @@ class Store {
     async getFile(list, tpl) {
         // let { infojson } = this;
         let defalutTpl = 'git show --pretty="" --name-only {commit}';
-        defalutTpl = this.getTpl(defalutTpl);
+        // defalutTpl = this.getTpl(defalutTpl)
 
         const res = [];
         for (let index = 0; index < list.length; index += 1) {

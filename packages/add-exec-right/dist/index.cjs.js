@@ -5,8 +5,6 @@
   */
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var node_fs = require('node:fs');
 var node_child_process = require('node:child_process');
 
@@ -120,272 +118,6 @@ const execWraper = (cmd, cmdOpts, execOpts) => new Promise((resolve, reject) => 
 const execOpts = {
   exec: node_child_process.exec
 };
-
-/**
-  * cliPresetParam v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-// plan:
-// @ymc/ycs-plugin-param
-// @ymc/ycs-preset-param
-// @ymc/ycs-preset-base-param
-// @ymc/ycs-preset-token-param
-// @ymc/ycs-preset-page-param
-// @ymc/ycs-preset-user-param
-// @ymc/ycs-preset-github-param
-
-/** @typedef {{name:string,type:string,value:string|boolean,desc:string}[]} param */
-
-/**
- * ysc param preset - base - for help and version
- * @returns {param}
- */
-function baseParam() {
-  return [{
-    name: '-h,--help',
-    type: 'boolean',
-    value: false,
-    desc: 'info help'
-  }, {
-    name: '-v,--version',
-    type: 'string',
-    value: '1.0.0',
-    desc: 'info version'
-  }];
-}
-
-/**
-  * extendString v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-/**
- *
- * @param {*} s
- * @returns {string}
- * @sample
- * ```
- * humanize('per_page')// Per page
- * humanize('per-page')// Per page
- * ```
- * @description
- * ```
- * ## idea
- * - [x] replace multi - or _ to one space
- * - [x] add space to the char that is uppercase and is not the first index
- * - [x] the first char to upper ,other lowercase
- * ```
- */
-
-
-function humanize(s) {
-  return s.replace(/(?:^\w|[A-Z_-]|\b\w)/g, (word, index) => {
-    let res = ''; // log(word, index); //desc: for debug
-    // feat: replace multi - or _ to one space
-
-    res = word.replace(/[-_]+/g, ' '); // feat: add space to the char that is uppercase and is not the first index
-
-    res = index !== 0 ? res.replace(/[A-Z]/, ' $&') : res; // feat: the first char to upper ,other lowercase
-
-    return index === 0 ? res.toUpperCase() : res.toLowerCase();
-  }).replace(/\s+/g, ' ');
-}
-
-function camelize(s) {
-  return humanize(s).replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
-}
-
-/**
-  * cliParam v1.0.0
-  * (c) 2018-2022 ymc
-  * @license MIT
-  */
-/* eslint-disable no-unused-vars */
-// const { log } = console;
-
-/** @typedef {{linkKeyAndVal:string,span:string}} pathParamTransferOption */
-
-/** @typedef {{noAutoCamelize?:boolean,slim?:boolean,mode?:string,modeStyle:string}} getBuiltinFlagsOption */
-
-/* eslint-disable-line  max-len */
-
-/** @typedef {{noAutoCamelize?:boolean,slim?:boolean}} camelizeFlagsOption */
-
-/** @typedef {{noAutoCamelize?:boolean,slim?:boolean}} likeCamelizeFlagsOption */
-
-/** @typedef {{name:string,type:string,value:string|boolean,desc:string}} cliParam */
-
-/** @typedef {string} cliArgsStringExp */
-
-/** @typedef {string} httpQueryStringExp */
-
-/** @typedef {string} swithOptionStringExp */
-
-/** @typedef {object|cliArgsStringExp|httpQueryStringExp|swithOptionStringExp} getValFromParamResult */
-
-/* eslint-disable-line  max-len */
-
-/**
- * get param-string from param-json
- * @param {{[string]:string}} json
- * @param {{modeStyle:string}} options
- * @returns {string}
- */
-
-function paramJsonToString(json, options) {
-  const option = {
-    modeStyle: 'cli',
-    ...options
-  };
-  let res = ''; // param json to cli string exp
-
-  if (option.mode === 'string' && option.modeStyle === 'cli') {
-    res = Object.keys(json).map(v => {
-      if (v.length > 1) {
-        return `--${v}=${json[v]}`;
-      }
-
-      return `-${v}=${json[v]}`;
-    }).join(' ');
-  } // param json to httpquery string exp
-
-
-  if (option.mode === 'string' && option.modeStyle === 'httpquery') {
-    res = Object.keys(json).map(v => `${v}=${json[v]}`).join('&');
-  } // param json to swithoption string exp
-
-
-  if (option.mode === 'string' && option.modeStyle === 'swithoption') {
-    res = Object.keys(json).map(v => `${v}=${json[v]}`).join(';');
-  }
-
-  return res;
-}
-/**
- * get value from param-json
- * @param {cliParam[]} param
- * @param {getBuiltinFlagsOption} options
- * @returns {getValFromParamResult}
- */
-
-
-function getValFromParam(param, options = {}) {
-  let res = {};
-  const list = Object.keys(param).map(k => param[k]);
-  const option = {
-    slim: true,
-    modeStyle: 'cli',
-    ...options
-  };
-
-  if (option.mode === 'string') {
-    option.slim = true;
-  }
-
-  for (let index = 0; index < list.length; index += 1) {
-    const v = list[index];
-    const {
-      name,
-      type,
-      value,
-      desc
-    } = v;
-    const [s, l] = name.split(/,/).map(i => i.trim().replace(/^-*/gi, '')); // 'hasLong' is assigned a value but never used
-
-    const thelong = s.length > 1 ? s : l; // desc: set value for the long name
-
-    if (thelong) {
-      // feat: auto camelize
-      if (!option.noAutoCamelize) {
-        // res[camelize(thelong.replace(/-+/gi, " "))] = value;
-        // res[thelong.camelize()] = value
-        res[camelize(thelong)] = value;
-      } // feat: slim them
-
-      /* eslint-disable no-continue */
-
-
-      if (option.slim) continue; // Unexpected use of continue statement
-
-      /* eslint-enable no-continue */
-
-      res[thelong] = value;
-    } // desc: set value for the short name
-
-
-    res[s] = value;
-  }
-
-  if (option.mode === 'string') {
-    res = paramJsonToString(res, option);
-  }
-
-  return res;
-}
-/**
- * camelize param-json - nano-parser-flags
- * @param {object} flags
- * @param {camelizeFlagsOption} options
- * @returns
- */
-
-
-function camelizeFlags(flags = {}, options = {}) {
-  // let res = {}
-  const option = {
-    slim: true,
-    ...options
-  };
-  if (option.noAutoCamelize) return flags;
-  Object.keys(flags).forEach(k => {
-    const ck = camelize(k); // res[ck]=flags[k]
-
-    if (ck !== k) {
-      flags[ck] = flags[k]; // eslint-disable-line no-param-reassign
-      // Assignment to property of function parameter
-
-      if (option.slim) {
-        delete flags[k]; // eslint-disable-line no-param-reassign
-        // Assignment to property of function parameter
-      }
-    }
-  });
-  return flags;
-}
-/**
- * get config from param - call it built-in
- * @param {cliParam[]} param
- * @param {{}} options
- * @returns
- */
-
-
-function getBuiltinConfig(param, options = {}) {
-  return getValFromParam(param, options);
-}
-/**
- * get config from flags - prefer using nano-parse 's flags
- * @param {{}} flags
- * @param {{}} options
- * @returns {{}}
- */
-
-
-function getCliFlags(flags, options = {}) {
-  let cliFlags;
-  const {
-    entrys
-  } = options;
-
-  if (flags.flags || entrys && entrys.notOnlyFlags) {
-    cliFlags = flags.flags;
-  } else {
-    cliFlags = flags;
-  }
-
-  return camelizeFlags(cliFlags, options);
-}
 
 /**
   * limitAsyncHandle v1.0.0
@@ -613,56 +345,246 @@ function promiseAll(all, max) {
   });
 }
 
-/* eslint-disable prefer-const,no-unused-vars */
-
+/* eslint-disable func-names */
 const {
   log
 } = console;
+/**
+ * get loginfo function
+ * @param {boolean} enable
+ * @returns {()=>void} a function to log info
+ */
 
-function param() {
-  return [...baseParam(), {
-    name: '-p,--bin-path',
-    type: 'string',
-    value: 'bin',
-    desc: 'the location of bin path'
-  }, {
-    name: '--ext',
-    type: 'string',
-    value: '.js,.sh',
-    desc: 'only for matched file extention'
-  }, {
-    name: '--update-by-git',
-    type: 'boolean',
-    value: false,
-    desc: 'run git update-index --chmod=+x xx or not'
-  }, {
-    name: '--check-git',
-    type: 'boolean',
-    value: false,
-    desc: 'check if git init'
-  }, {
-    name: '--verbose',
-    type: 'boolean',
-    value: false,
-    desc: 'info file right info or not'
-  }, {
-    name: '--file-head',
-    type: 'string',
-    value: '',
-    // #!/usr/bin/env node # default-file-head
-    desc: 'add file head, custom file head'
-  }];
-} // uni-cli-and-lib - cli and lib use the same code
+function getLogInfo(enable) {
+  return function (...msg) {
+    if (enable) {
+      log(...msg);
+    }
+  };
+}
 
+/**
+  * streamIo v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+function readStream(stream) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    stream.on('data', chunk => {
+      data += chunk.toString();
+    }).on('end', () => {
+      resolve(data);
+    }).on('error', reject);
+  });
+}
+
+function writeStream({
+  stream,
+  data
+}) {
+  return new Promise((resolve, reject) => {
+    // write
+    stream.write(data, 'utf-8'); // fire end
+
+    stream.end(); // desc-x-s: handle event finish and err
+
+    stream.on('finish', () => {
+      resolve(data);
+    }).on('error', reject); // desc-x-e: handle event finish and err
+  });
+}
+
+/**
+  * textStreamIo v1.0.0
+  * (c) 2018-2022 ymc
+  * @license MIT
+  */
+/* eslint-disable prefer-const,class-methods-use-this */
+
+/**
+ * @sample
+ * ```
+ * textstream.file.name="CHANGELO.md"
+ * //or
+ * textstream.init("CHANGELO.md")
+ * await textstream.read()
+ * textstream.option.writemode='overide'
+ * await textstream.write('')
+ * ```
+ */
+
+class TextStream {
+  constructor(name = 'CHANGELO.md') {
+    this.init(name);
+  }
+  /**
+   * read file async (stream mode)
+   * @param {string|undefined} def
+   * @returns {Prmosie<string>}
+   */
+
+
+  async read(def = '') {
+    const {
+      file
+    } = this;
+    let reader;
+    let res;
+
+    try {
+      reader = node_fs.createReadStream(file.name);
+      res = await readStream(reader);
+    } catch (error) {
+      res = def;
+    }
+
+    file.data = res;
+    return res;
+  }
+  /**
+   * write file async (stream mode)
+   * @param {string} data
+   * @returns {Prmosie<void>}
+   */
+
+
+  async write(data) {
+    // prefer-const writer,old
+    // no-param-reassign data
+    // no-fallthrough
+    const {
+      file,
+      option
+    } = this;
+    let writer;
+    let old;
+    writer = node_fs.createWriteStream(file.name);
+    old = file.data; // insert-head?append?override?
+    // let writemode = "override";
+
+    let text;
+
+    switch (option.writemode) {
+      case 'override':
+        text = `${data}`;
+        break;
+      // case "head":
+      //   text = `${data}\n${old}`;
+      //   break;
+
+      case 'append':
+        text = `${old}\n${data}`;
+        break;
+      // case "override":
+      //   text = `${data}`;
+
+      case 'head':
+        text = `${data}\n${old}`;
+        break;
+
+      default:
+        text = `${data}`;
+        break;
+    }
+
+    file.data = text;
+    await writeStream({
+      stream: writer,
+      data: text
+    });
+  }
+  /**
+   *
+   * @param {string} name
+   * @param {string} data
+   * @returns {this}
+   */
+
+
+  init(name = 'CHANGELO.md', data = '') {
+    this.file = {
+      name,
+      data
+    };
+    this.option = {};
+    return this;
+  }
+  /**
+   * ceate a new instance
+   * @param  {...any} option
+   * @returns
+   */
+
+
+  new(...option) {
+    return new TextStream(...option);
+  }
+
+}
+
+new TextStream();
+
+/* eslint-disable prefer-const */
+// const log = getLogInfo(true)
+
+async function main$1(options = {}) {
+  const option = {
+    fileHead: '#!/usr/bin/env node',
+    ...options
+  }; // log(option)
+
+  let text;
+  let head;
+  const textfileio = new TextStream();
+  textfileio.init(option.loc);
+  text = await textfileio.read('');
+  text = text.split(/\r?\n/);
+  [head] = text;
+
+  if (head) {
+    if (!/^#!/i.test(head)) {
+      switch (option.action) {
+        case 'del':
+          text.shift();
+          break;
+
+        case 'add':
+        default:
+          text.unshift(option.fileHead);
+          break;
+      }
+    }
+  }
+
+  text = text.join('\n');
+  textfileio.init(option.loc);
+  await textfileio.write(text);
+}
+
+/* eslint-disable prefer-const,no-unused-vars */
+// read-directory
+// get-cmted-pkgs
+// gen-change-log
+
+const logout = getLogInfo(true);
 
 async function main(options = {}) {
-  const option = { // help:false,
-    ...getBuiltinConfig(param()),
-    // ...options,
-    ...getCliFlags(options)
-  };
+  const option = {
+    binPath: 'bin',
+    ext: '.js,.sh',
+    ...options // ...getBuiltinConfig(param()),
+    // ...getCliFlags(options)
+
+  }; // logout(option)
+
+  const loginfo = getLogInfo(option.logInfo);
+  const logtask = getLogInfo(option.logTask);
+  logtask('[task] add exec rights to files');
+  loginfo('[info] read file list');
   const dir = option.binPath;
   let list = node_fs.readdirSync(dir).map(f => `${dir}/${f}`).filter(f => node_fs.statSync(f).isFile());
+  loginfo('[info] filter file list when ext passed');
 
   if (option.ext) {
     const {
@@ -670,23 +592,31 @@ async function main(options = {}) {
     } = option;
     const extReg = ext.split(',').map(ex => new RegExp(`${ex}$`));
     list = list.filter(f => extReg.some(reg => reg.test(f)));
-  } // feat: add file head ? (todo) (advice: extract to a new lib or cli, to keep this to be small)
-  // if(option.fileHead){
-  // }
-  // no-shadow
+  } // no-shadow
 
 
   const genTaskHandle = opt => {
     // add exec right to file
     const addExecRightToFile = async () => {
+      // feat: add file head ? (todo)
+      // (may-be-good: extract to a new lib or cli, to keep this to be small)
+      if (opt.onFileHead) {
+        await main$1({
+          loc: opt.file,
+          ...(opt.fileHead ? {
+            fileHead: opt.fileHead
+          } : {})
+        });
+      }
+
       let res;
       let cmd = `chmod +x ${opt.file}`;
-      log(`[info] run: ${cmd}`);
+      loginfo(`[info] run: ${cmd}`);
       res = await execWraper(cmd, execOpts);
 
       if (opt.updateByGit) {
         cmd = `git update-index --chmod=+x ${opt.file}`;
-        log(`[info] run: ${cmd}`);
+        loginfo(`[info] run: ${cmd}`);
         res = await execWraper(cmd, execOpts);
       }
 
@@ -696,11 +626,13 @@ async function main(options = {}) {
 
     return addExecRightToFile;
   };
+
+  loginfo('[info] gen task handle');
   let tasks; // gen task list - task - with zero fun args
 
   tasks = list.map(f => genTaskHandle({ ...option,
     file: f
-  })); //  promise all way 5
+  })); // loginfo(`[info] run task handle`)
 
   await promiseAll(tasks, 3); // log(prs);
 
@@ -708,11 +640,10 @@ async function main(options = {}) {
 
   if (!option.verbose) {
     res = await execWraper(`ls ${dir} -l`, execOpts);
-    log(res);
+    logout(res);
   }
 } // const run = async () => {
 // https://dev.to/ku6ryo/chmod-x-by-git-on-windows-5fjd
 // https://m.imooc.com/wenda/detail/417375
 
-exports.main = main;
-exports.param = param;
+module.exports = main;

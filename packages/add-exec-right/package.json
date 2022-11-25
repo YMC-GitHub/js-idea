@@ -42,6 +42,7 @@
     "@ymc/cli-runner": "workspace:^1.0.0",
     "@ymc/nano-parse": "workspace:^0.0.1",
     "@ymc/promise-all": "workspace:^1.0.0",
-    "@ymc/run-bash": "workspace:^0.0.3"
+    "@ymc/run-bash": "workspace:^0.0.3",
+    "@ymc/text-stream-io": "workspace:^1.0.0"
   }
 }

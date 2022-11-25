@@ -6,34 +6,23 @@ import { exec, execOpts } from '@ymc/run-bash'
 // import { getBuiltinConfig, getCliFlags } from '@ymc/cli-param'
 import promiseAll from '@ymc/promise-all'
 // import param from './param'
+import { getLogInfo } from './helps'
+import addFileHead from './plugin/add-file-head'
 
 // refer:
 // read-directory
 // get-cmted-pkgs
 // gen-change-log
-const { log } = console
-
-/**
- * get loginfo function
- * @param {boolean} enable
- * @returns {()=>void} a function to log info
- */
-function getLogInfo(enable) {
-    return function (...msg) {
-        if (enable) {
-            log(...msg)
-        }
-    }
-}
+const logout = getLogInfo(true)
 async function main(options = {}) {
     const option = {
         binPath: 'bin',
         ext: '.js,.sh',
-        options
+        ...options
         // ...getBuiltinConfig(param()),
         // ...getCliFlags(options)
     }
-
+    // logout(option)
     const loginfo = getLogInfo(option.logInfo)
     const logtask = getLogInfo(option.logTask)
 
@@ -51,15 +40,16 @@ async function main(options = {}) {
         list = list.filter(f => extReg.some(reg => reg.test(f)))
     }
 
-    // feat: add file head ? (todo)
-    // (may-be-good: extract to a new lib or cli, to keep this to be small)
-    // if(option.fileHead){
-
-    // }
     // no-shadow
     const genTaskHandle = opt => {
         // add exec right to file
         const addExecRightToFile = async () => {
+            // feat: add file head ? (todo)
+            // (may-be-good: extract to a new lib or cli, to keep this to be small)
+            if (opt.onFileHead) {
+                await addFileHead({ loc: opt.file, ...(opt.fileHead ? { fileHead: opt.fileHead } : {}) })
+            }
+
             let res
             let cmd = `chmod +x ${opt.file}`
             loginfo(`[info] run: ${cmd}`)
@@ -89,7 +79,7 @@ async function main(options = {}) {
     // info file rights in loc
     if (!option.verbose) {
         res = await exec(`ls ${dir} -l`, execOpts)
-        log(res)
+        logout(res)
     }
 }
 

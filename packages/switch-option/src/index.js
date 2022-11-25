@@ -22,31 +22,31 @@
  * ```
  */
 function switchOption(option = {}, list = '', def = true) {
-  list.split(';').forEach(exp => {
-    // console.log(exp);
-    // dryrun=false
-    // 'key' is never reassigned. Use 'const' instead  prefer-const
-    /* eslint-disable prefer-const */
-    let [key, val] = exp.split('=')
+    list.split(';').forEach(exp => {
+        // console.log(exp);
+        // dryrun=false
+        // 'key' is never reassigned. Use 'const' instead  prefer-const
+        /* eslint-disable prefer-const */
+        let [key, val] = exp.split('=')
 
-    const defined = isDefine(val)
-    // emptyString?
-    // feat(switch-option): use def when val not defined in exp
-    if (!defined) {
-      val = def
-    }
+        const defined = isDefine(val)
+        // emptyString?
+        // feat(switch-option): use def when val not defined in exp
+        if (!defined) {
+            val = def
+        }
 
-    // booleanString?
-    // feat(switch-option): convert boolean string to node.js boolean\n\n with booleanfiy
-    if (defined) {
-      val = booleanfiy(val)
-    }
+        // booleanString?
+        // feat(switch-option): convert boolean string to node.js boolean\n\n with booleanfiy
+        if (defined) {
+            val = booleanfiy(val)
+        }
 
-    // number?string?
-    // todo:
+        // number?string?
+        // todo:
 
-    option[key] = val
-  })
+        option[key] = val
+    })
 }
 /**
  * convert boolean string to node.js boolean when it is boolean string
@@ -60,23 +60,23 @@ function switchOption(option = {}, list = '', def = true) {
  * ```
  */
 function booleanfiy(v) {
-  let res = v
-  if (isBoolString(v, 'false')) {
-    res = false
-  } else if (isBoolString(v, 'true')) {
-    res = true
-  }
-  return res
+    let res = v
+    if (isBoolString(v, 'false')) {
+        res = false
+    } else if (isBoolString(v, 'true')) {
+        res = true
+    }
+    return res
 }
 function isDefine(s) {
-  return s !== undefined
+    return s !== undefined
 }
 function isBoolString(s, v = 'false') {
-  // console.log(s);
-  return s.toLowerCase() === v
-  // another case
-  // let d = s.toLowerCase();
-  // return d == "false" || d == "true";
+    // console.log(s);
+    return s.toLowerCase() === v
+    // another case
+    // let d = s.toLowerCase();
+    // return d == "false" || d == "true";
 }
 // fix Prefer default export  import/prefer-default-export
 export default switchOption

@@ -1,3 +1,4 @@
+/*eslint-disable */
 // topic:
 // func,url,app
 

@@ -7,7 +7,8 @@ const pro = {
         http: 80,
         https: 443,
         tcp: 3344
-    }
+    },
+    ssl: 'kubernetes'
 }
 /**
  * config for dev env
@@ -18,7 +19,8 @@ const dev = {
         http: 80,
         https: 443,
         tcp: 3344
-    }
+    },
+    ssl: 'kubernetes'
 }
 const ports = {
     http: 3345,

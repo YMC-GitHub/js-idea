@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import { original } from 'parseurl'
 
 /**

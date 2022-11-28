@@ -1,4 +1,7 @@
-/* eslint-disable no-use-before-define */
+/*eslint-disable */
+
+// /* eslint-disable no-use-before-define */
+
 import { parse as _parse, Url as _Url } from 'url'
 
 let parse = _parse // eslint-disable-line

@@ -1,4 +1,6 @@
-/* eslint-disable no-use-before-define */
+/*eslint-disable */
+
+// /* eslint-disable no-use-before-define */
 
 export default first
 

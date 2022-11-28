@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import makeDebug from 'debug'
 
 import { EventEmitter } from 'events'

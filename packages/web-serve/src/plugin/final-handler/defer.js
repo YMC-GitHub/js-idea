@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 const defer =
     typeof setImmediate === 'function'
         ? setImmediate

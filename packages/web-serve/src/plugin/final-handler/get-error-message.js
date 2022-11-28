@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 // import { message as statusMessage } from 'statuses'
 // import { extendClass } from '@script-pkgs/class-es5-help'
 import { message as statusMessage } from '../http-status'

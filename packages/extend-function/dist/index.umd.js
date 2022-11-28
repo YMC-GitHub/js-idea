@@ -3,49 +3,68 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-(function (factory) {
-  typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-})((function () { 'use strict';
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["extend-function"] = {}));
+})(this, (function (exports) { 'use strict';
 
-  /* eslint-disable prefer-rest-params */
-  function bind(context) {
-    if (typeof this !== 'function') {
-      throw new TypeError('Error');
-    } // get args
+    /* eslint-disable prefer-rest-params,func-names */
+
+    /* eslint-disable import/prefer-default-export */
+
+    /* eslint-disable new-cap */
+
+    /* eslint-disable max-len */
+    function bind(context) {
+      // feat: change scope
+      // 1. call func with Function.prototype.apply
+      // 2. cache this to bind this to context
+      // feat: passe cached args
+      // 1. cache args
+      // 2. concat args
+      // feat: new constrcutor able
+      // 1. use middle function temp
+      // 2. set context prototype as its
+      // 3. set temp instance as bound's prototype
+      // feat:
+      if (typeof this !== 'function') {
+        throw new Error('this must be function');
+      } // desc: cache this to self
 
 
-    const args = [...arguments].slice(1);
-    const Fn = this; // fix a constructor name should not start with a lowercase letter
-    // fix a constructor name should not start with a lowercase letter
+      const self = this; // desc: cache args
+      // 1. use Array.prototype.slice
+      // 2. use Function.prototype.call
+      // 3. use arguments
+      // 4. call slice with arguments
 
-    return function Wp() {
-      // fix this line has a length of 102. Maximum allowed is 100
-      // diliver args accooding to call way
-      return Fn.apply(this instanceof Wp ? new Fn(...arguments) : context, args.concat(...arguments));
-    };
-  } // https://vue3js.cn/interview/JavaScript/bind_call_apply.html
+      const {
+        slice
+      } = Array.prototype;
+      const args = slice.apply(arguments, [1]);
 
-  /**
-   *
-   * @param {string} name
-   * @param {()=>{}} handle
-   */
+      const temp = function () {};
 
+      temp.prototype = self.prototype;
 
-  function extendFunctionPrototype(name, handle) {
-    const tobeExtende = Function.prototype;
-
-    if (!tobeExtende[name]) {
-      /* eslint-disable func-names */
-      // fix unexpected unnamed function
-      tobeExtende[name] = function (...args) {
-        return handle(this, ...args);
+      const bound = function () {
+        // desc: concat cache args
+        // 1. use Array.prototype.concat
+        // 2. use Array.prototype.slice
+        // 3. use Function.prototype.apply
+        // 4. use arguments
+        // 5. contact cached args and arguments
+        const bindedArgs = args.concat(Array.prototype.slice.apply(arguments, [0]));
+        return self.apply(this instanceof temp ? this : context || window, bindedArgs);
       };
-    }
-  }
 
-  extendFunctionPrototype('bind', bind);
-  extendFunctionPrototype('ymcBind', bind);
+      bound.prototype = new temp();
+      return bound;
+    } // refs:
+
+    exports.bind = bind;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 }));

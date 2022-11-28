@@ -11,7 +11,7 @@
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=dep&message=done&color=ff69b4&style=flat-square" />
   </a>
   <a href="https://github.com/YMC-GitHub">
-    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=done&color=ff69b4&style=flat-square" />
+    <img alt="workflow setup" src="https://img.shields.io/static/v1?label=lin&message=passing&color=ff69b4&style=flat-square" />
   </a>
     <a href="https://github.com/YMC-GitHub">
     <img alt="workflow setup" src="https://img.shields.io/static/v1?label=tes&message=fail&color=ff69b4&style=flat-square" />
@@ -34,13 +34,13 @@ extend node.js function, extend Function.prototype is optional
 ## lib size  
 file | size | gzip | brotli
 :---- | :---- | :---- | :----
-dist/index.cjs.js | 1.15kb | 0.59kb | 0.49kb
-dist/index.cjs.min.js | 0.41kb | 0.27kb | 0.23kb
-dist/index.esm.js | 1.13kb | 0.57kb | 0.49kb
-dist/index.esm.min.js | 0.39kb | 0.27kb | 0.22kb
-dist/index.js | 1.13kb | 0.57kb | 0.49kb
-dist/index.umd.js | 1.33kb | 0.64kb | 0.55kb
-dist/index.umd.min.js | 0.49kb | 0.31kb | 0.26kb
+dist/index.cjs.js | 1.58kb | 0.67kb | 0.58kb
+dist/index.cjs.min.js | 0.49kb | 0.32kb | 0.26kb
+dist/index.esm.js | 1.57kb | 0.61kb | 0.52kb
+dist/index.esm.min.js | 0.43kb | 0.28kb | 0.25kb
+dist/index.js | 1.57kb | 0.61kb | 0.52kb
+dist/index.umd.js | 2.10kb | 0.81kb | 0.69kb
+dist/index.umd.min.js | 0.71kb | 0.41kb | 0.34kb
 
 ## Author
 yemiancheng <ymc.github@gmail.com>

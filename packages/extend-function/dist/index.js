@@ -3,40 +3,58 @@
   * (c) 2018-2022 ymc
   * @license MIT
   */
-/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-rest-params,func-names */
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable new-cap */
+/* eslint-disable max-len */
 
 function bind(context) {
-  if (typeof this !== 'function') {
-    throw new TypeError('Error')
-  }
-  // get args
-  const args = [...arguments].slice(1);
-  const Fn = this;
+    // feat: change scope
+    // 1. call func with Function.prototype.apply
+    // 2. cache this to bind this to context
 
-  // fix a constructor name should not start with a lowercase letter
-  // fix a constructor name should not start with a lowercase letter
-  return function Wp() {
-    // fix this line has a length of 102. Maximum allowed is 100
-    // diliver args accooding to call way
-    return Fn.apply(this instanceof Wp ? new Fn(...arguments) : context, args.concat(...arguments))
-  }
-}
-// https://vue3js.cn/interview/JavaScript/bind_call_apply.html
+    // feat: passe cached args
+    // 1. cache args
+    // 2. concat args
 
-/**
- *
- * @param {string} name
- * @param {()=>{}} handle
- */
-function extendFunctionPrototype(name, handle) {
-  const tobeExtende = Function.prototype;
-  if (!tobeExtende[name]) {
-    /* eslint-disable func-names */
-    // fix unexpected unnamed function
-    tobeExtende[name] = function (...args) {
-      return handle(this, ...args)
+    // feat: new constrcutor able
+    // 1. use middle function temp
+    // 2. set context prototype as its
+    // 3. set temp instance as bound's prototype
+
+    // feat:
+    if (typeof this !== 'function') {
+        throw new Error('this must be function')
+    }
+
+    // desc: cache this to self
+    const self = this;
+
+    // desc: cache args
+    // 1. use Array.prototype.slice
+    // 2. use Function.prototype.call
+    // 3. use arguments
+    // 4. call slice with arguments
+    const { slice } = Array.prototype;
+    const args = slice.apply(arguments, [1]);
+
+    const temp = function () {};
+    temp.prototype = self.prototype;
+
+    const bound = function () {
+        // desc: concat cache args
+        // 1. use Array.prototype.concat
+        // 2. use Array.prototype.slice
+        // 3. use Function.prototype.apply
+        // 4. use arguments
+        // 5. contact cached args and arguments
+        const bindedArgs = args.concat(Array.prototype.slice.apply(arguments, [0]));
+
+        return self.apply(this instanceof temp ? this : context || window, bindedArgs)
     };
-  }
+
+    bound.prototype = new temp();
+    return bound
 }
-extendFunctionPrototype('bind', bind);
-extendFunctionPrototype('ymcBind', bind);
+
+export { bind };

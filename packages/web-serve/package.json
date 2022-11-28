@@ -33,5 +33,15 @@
     "pac:js": "rm -rf dist/* && rollup -c",
     "test": "exit 0"
   },
-  "private": false
+  "private": false,
+  "dependencies": {
+    "debug": "^4.3.4",
+    "ee-first": "^1.1.1",
+    "encodeurl": "^1.0.2",
+    "express": "^4.18.2",
+    "finalhandler": "^1.2.0",
+    "on-finished": "^2.4.1",
+    "parseurl": "^1.3.3",
+    "utils-merge": "^1.0.1"
+  }
 }

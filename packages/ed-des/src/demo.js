@@ -7,13 +7,14 @@ import des, { getRandomBuffer, getHexCodeFromBuffer } from './index'
 const { log } = console
 // log(des)
 log('[task] encode/decode image uri')
-const str = '/upload/image/201602120012.jpg'
+const str = '/upload/image/201606300005.jpg'
 
 let encoding = 'base64'
 let algorithm = 'aes-256-cbc'
 
 let key = getRandomBuffer(32)
 let iv = getRandomBuffer(16)
+// encoding = 'hex'
 algorithm = 'aes-128-cbc'
 if (algorithm === 'aes-128-cbc') {
     //Invalid key length

@@ -17,6 +17,16 @@ MIT
 ## pkgs list
 name|description|created_at
 :--|:--|:--
+[@ymc/slash](./packages/slash)|accepts a backslash path and returns a path with forward slashes|2022-11-29
+[@ymc/replace-ext](./packages/replace-ext)|ymc package replace-ext|2022-11-29
+[@ymc/pipe-async-func](./packages/pipe-async-func)|pipe async handles|2022-11-29
+[@ymc/text-hash](./packages/text-hash)|ymc package text-hash|2022-11-29
+[@ymc/ed-des](./packages/ed-des)|encode and decode data - des algorithm|2022-11-29
+[@ymc/escape-html](./packages/escape-html)|ymc package escape-html|2022-11-28
+[@ymc/http-status](./packages/http-status)|ymc package http-status|2022-11-28
+[@ymc/get-error-message](./packages/get-error-message)|ymc package get-error-message|2022-11-28
+[@ymc/web-serve](./packages/web-serve)|ymc package web-serve|2022-11-26
+[@ymc/ssl-cert](./packages/ssl-cert)|ymc package ssl-cert|2022-11-26
 [@ymc/ed-unicode](./packages/ed-unicode)|encode , decode unicode|2022-11-22
 [@ymc/ed-base64](./packages/ed-base64)|encode , decode base64|2022-11-22
 [@ymc/pingyin](./packages/pingyin)|ymc package pingyin|2022-11-17
@@ -24,6 +34,7 @@ name|description|created_at
 [@ymc/get-cmted-pkg](./packages/get-cmted-pkg)|get commited packages in mono repo|2022-11-16
 [@ymc/write-json-sync](./packages/write-json-sync)|write json file sync|2022-11-15
 [@ymc/read-json-sync](./packages/read-json-sync)|read json file sync|2022-11-15
+[@ymc/gen-pkg-changelog](./packages/gen-pkg-changelog)|ymc package gen-pkg-changelog|2022-11-15
 [@ymc/download-file](./packages/download-file)|ymc package download-file|2022-11-13
 [@ymc/mock-path](./packages/mock-path)|ymc package mock-path|2022-11-13
 [@ymc/esm-loader-http](./packages/esm-loader-http)|load remote esm pkg with http or https protocol|2022-11-12
@@ -67,6 +78,8 @@ name|description|created_at
 [@ymc/tpl-exp](packages/tpl-exp)|define simple template text expression , get tpl regexp , custom tpl label|2022-11-02
 [@ymc/changlog-style](packages/changlog-style)|write simple changlog-style tpl and render to string|2022-11-01
 [@ymc/changlog-file-io](packages/changlog-file-io)|read , parse and update changlog.md file|2022-11-01
+[@ymc/changeset-parse](packages/changeset-parse)|ymc package changeset-parse|2022-11-01
+[@ymc/changeset-io](packages/changeset-io)|ymc package changeset-io|2022-11-01
 [@ymc/class-es5-help](packages/class-es5-help)|help to define es5 class - set constructor ,method ,method alias and so on|2022-11-01
 [@ymc/class-esm-help](packages/class-esm-help)|ymc package class-esm-help|2022-11-01
 [@ymc/changeset](packages/changeset)|make or parse .changeset/xx.md file|2022-11-01
@@ -74,6 +87,7 @@ name|description|created_at
 [@ymc/esm-loader](./packages/esm-loader)|ymc package esm-loader|2022-10-31
 [@ymc/is-type-of](packages/is-type-of)|check type of val - enhance-typeof|2022-10-30
 [@ymc/cli-preset-param](packages/cli-preset-param)|cli param preset - base, token and other|2022-10-29
+[@ymc/add-exec-right](packages/add-exec-right)|ymc package add-exec-right|2022-10-29
 [@ymc/cli-engine](packages/cli-engine)|ymc package cli-engine|2022-10-28
 [@ymc/cli-option](packages/cli-option)|define option , to usage text , update entry option , get flags and so on.|2022-10-28
 [@ymc/cli-runner](packages/cli-runner)|ymc(y) cli(c) style(s) runner|2022-10-28
@@ -107,4 +121,6 @@ name|description|created_at
 [@ymc/ycs-help-generate-entry](packages/ycs-help-generate-entry)|ycs plugin - gen entry for test or other case|2022-10-02
 [@ymc/ycs-help-bind-option](packages/ycs-help-bind-option)|ycs plugin - bind option to cmd or ns|2022-10-02
 [@ymc/ycs-api](packages/ycs-api)|ycs api|2022-10-02
+[@ymc/ansi-color](packages/ansi-color)|ymc package ansi-color|2022-08-06
+[@ymc/color-log](packages/color-log)|ymc package color-log|2022-06-10
 
